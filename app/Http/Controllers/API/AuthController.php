@@ -32,7 +32,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
             if ($request->user_type == 'USER') {
                 if ($user->hasRole('USER')) {
-                    $data['token'] =  $user->createToken('Groomly')->accessToken;
+                    $data['token'] =  $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                 } else {
@@ -40,7 +40,7 @@ class AuthController extends Controller
                 }
             } else {
                 if ($user->hasRole('BUSINESS_OWNER')) {
-                    $data['token'] =  $user->createToken('Groomly')->accessToken;
+                    $data['auth_token'] = 'Bearer '. $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                 } else {
@@ -79,7 +79,7 @@ class AuthController extends Controller
         } else {
             $user->assignRole('BUSINESS_OWNER');
         }
-
+        $user->createToken('accessToken')->accessToken;
         $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
         return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered sucessfully'], $this->successStatus);
     }
