@@ -25,7 +25,17 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'status' => false], 401);
+            $errors['status_code'] = 401;
+            $errors['message'] = [];
+            $data = explode(',', $validator->errors());
+
+            for ($i = 0; $i < count($validator->errors()); $i++) {
+                // return $data[$i];
+                $dk = explode('["', $data[$i]);
+                $ck = explode('"]', $dk[1]);
+                $errors['message'][$i] = $ck[0];
+            }
+            return response()->json(['error' => $errors, 'status' => false], 401);
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -40,7 +50,7 @@ class AuthController extends Controller
                 }
             } else {
                 if ($user->hasRole('BUSINESS_OWNER')) {
-                    $data['auth_token'] = 'Bearer '. $user->createToken('accessToken')->accessToken;
+                    $data['auth_token'] = 'Bearer ' . $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                 } else {
@@ -64,10 +74,22 @@ class AuthController extends Controller
             'email'    => 'required|email|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'password' => 'required|min:8',
             'user_type' => 'required|in:USER,BUSINESS_OWNER',
+        ],[
+            'email.email' => 'The email format is invalid.',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'status' => false], 401);
+            $errors['status_code'] = 401;
+            $errors['message'] = [];
+            $data = explode(',', $validator->errors());
+
+            for ($i = 0; $i < count($validator->errors()); $i++) {
+                // return $data[$i];
+                $dk = explode('["', $data[$i]);
+                $ck = explode('"]', $dk[1]);
+                $errors['message'][$i] = $ck[0];
+            }
+            return response()->json(['error' => $errors, 'status' => false], 401);
         }
         $input = $request->all();
         $user = new User;

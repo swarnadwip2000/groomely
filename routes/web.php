@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\ForgetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// User & business owner portal authentication
+Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget.password');
+Route::get('reset-password/{id}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
