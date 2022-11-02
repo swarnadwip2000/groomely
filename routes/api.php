@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\User\DetailsController;
 use App\Http\Controllers\API\ForgetPasswordController;
+use App\Http\Controllers\API\User\ProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +31,7 @@ Route::group(['prefix' => 'v1'], function () {
     //User
     Route::group(['prefix' => 'user','middleware'=>'auth:api'], function () {
         Route::post('details', [DetailsController::class, 'details']);
+        Route::post('update-profile', [ProfileController::class, 'updateProfile']);
     });
 
     Route::get('all-user-details', [DetailsController::class, 'allUserDetails']);
