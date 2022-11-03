@@ -17,7 +17,6 @@
     <link href="{{asset('frontend_assets/auth_assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('frontend_assets/auth_assets/css/responsive.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Custom styles for this template -->
 </head>

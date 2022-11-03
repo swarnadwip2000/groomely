@@ -28,45 +28,63 @@ Groomely | CONTACT US
                     <div class="contact-left">
                         <h2>Contact Us</h2>
                         <p>Now we are engaged for some time, let's get connected</p>
-                        <div class="contact-form">
-                            <div class="row">
-                                <div class="col-xl-6 col-md-6 col-12">
-                                    <div class="form-group-wrap">
-                                        <label for="First-Name" class="form-label">First Name</label>
-                                        <input type="text" class="form-control" id="First-Name" placeholder="">
+                        <form action="{{route('contact.store')}}" method="post">
+                            @csrf
+                            <div class="contact-form">
+                                <div class="row">
+                                    <div class="col-xl-6 col-md-6 col-12">
+                                        <div class="form-group-wrap">
+                                            <label for="First-Name" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="First-Name" value="{{old('first_name')}}" name="first_name" placeholder="">
+                                        </div>
+                                        @if($errors->has('first_name'))
+                                        <div class="error" style="color:red;">{{ $errors->first('first_name') }}</div>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-md-6 col-12">
-                                    <div class="form-group-wrap">
-                                        <label for="Last-Name" class="form-label">Last Name</label>
-                                        <input type="text" class="form-control" id="Last-Name" placeholder="">
+                                    <div class="col-xl-6 col-md-6 col-12">
+                                        <div class="form-group-wrap">
+                                            <label for="Last-Name" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" name="last_name" value="{{old('last_name')}}" id="Last-Name" placeholder="">
+                                        </div>
+                                        @if($errors->has('last_name'))
+                                        <div class="error" style="color:red;">{{ $errors->first('last_name') }}</div>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-md-6 col-12">
-                                    <div class="form-group-wrap">
-                                        <label for="Email-Id" class="form-label">Email Id</label>
-                                        <input type="email" class="form-control" id="First-Name" placeholder="">
+                                    <div class="col-xl-6 col-md-6 col-12">
+                                        <div class="form-group-wrap">
+                                            <label for="Email-Id" class="form-label">Email Id</label>
+                                            <input type="text" class="form-control" name="email" value="{{old('email')}}" id="First-Name" placeholder="">
+                                        </div>
+                                        @if($errors->has('email'))
+                                        <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="col-xl-6 col-md-6 col-12">
-                                    <div class="form-group-wrap">
-                                        <label for="Phone Number" class="form-label">Phone Number</label>
-                                        <input type="text" class="form-control" id="Last-Name" placeholder="">
+                                    <div class="col-xl-6 col-md-6 col-12">
+                                        <div class="form-group-wrap">
+                                            <label for="Phone Number" class="form-label">Phone Number</label>
+                                            <input type="text" class="form-control" name="phone" value="{{old('phone')}}" id="Last-Name" placeholder="">
+                                        </div>
+                                        @if($errors->has('phone'))
+                                        <div class="error" style="color:red;">{{ $errors->first('phone') }}</div>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="col-xl-12">
-                                    <div class="form-group-wrap">
-                                        <label for="message" class="form-label">Message</label>
-                                        <textarea class="form-control" id="message" rows="3"></textarea>
+                                    <div class="col-xl-12">
+                                        <div class="form-group-wrap">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" name="message" id="message" rows="3">{{old('first_name')}}</textarea>
+                                            @if($errors->has('message'))
+                                            <div class="error" style="color:red;">{{ $errors->first('message') }}</div>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-12 text-center">
-                                    <div class="send-msg">
-                                        <a href="#" class="btn">SEND MESSAGE</a>
+                                    <div class="col-xl-12 text-center">
+                                        <div class="send-msg">
+                                            <button type="submit" class="btn">SEND MESSAGE</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-12">

@@ -14,7 +14,7 @@ Groomely | BLOG
         <div class="row">
             <div class="col-md-12">
                 <div class="inner_banner_ontent text-center">
-                    <h2>Blog</h2>
+                    <h2>{{$blogCategory['name']}}</h2>
                     <!--<h4>BARBERSHOP</h4>-->
                 </div>
             </div>
@@ -47,34 +47,7 @@ Groomely | BLOG
         @else
         <h3>No data found......</h3>
         @endif
-        <!-- <div class="row">
-            <div class="col-md-6">
-                <div class="single_blog">
-                    <h6>July 26, 2021 <span>STYLING </span></h6>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <div class="blog_img_wrapper">
-                        <a href="#"><img src="{{asset('frontend_assets/images/abt1.jpg')}}" class="img-fluid" /></a>
-                    </div>
-                    <div class="blog_desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi...</p>
-                        <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="blog-details.html"><span>READ MORE</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="single_blog">
-                    <h6>July 26, 2021 <span>STYLING </span></h6>
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <div class="blog_img_wrapper">
-                        <a href="blog-details.html"><img src="{{asset('frontend_assets/images/abt2.jpg')}}" class="img-fluid" /></a>
-                    </div>
-                    <div class="blog_desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi...</p>
-                        <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="blog-details.html"><span>READ MORE</span></a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        
         
     </div>
 </section>

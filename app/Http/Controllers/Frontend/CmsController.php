@@ -27,18 +27,9 @@ class CmsController extends Controller
         return view('frontend.best-sellers');
     }
 
-    public function blog()
-    {
-        return view('frontend.blog');
-    }
-
     public function gallery()
     {
         return view('frontend.gallery');
     }
 
-    public function contact()
-    {
-        return view('frontend.contact');
-    }
 }
