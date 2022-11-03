@@ -44,3 +44,10 @@ Route::post('/contact-store', [ContactusController::class, 'contactStore'])->nam
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('blog-details/{blogslug}/{slug}/{id}', [BlogController::class, 'blogDetails'])->name('blog.details');
 Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])->name('blog.category');
+
+
+/*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/
+
+Route::get('/dashboard', function(){
+        return view('admin.dashboard');
+});
