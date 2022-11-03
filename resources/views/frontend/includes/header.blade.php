@@ -10,8 +10,12 @@
                                 <div class="login_register">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="fa-solid fa-user"></i>
-                                        <a href="login.html">Login</a> /
-                                        <a href="registration.html">Register</a>
+                                        @if(!Auth::check())
+                                        <a href="{{route('login')}}">Login</a> /
+                                        <a href="{{route('register')}}">Register</a>
+                                        @else
+                                        <a href="{{route('logout')}}">Logout</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="booknow_btn">

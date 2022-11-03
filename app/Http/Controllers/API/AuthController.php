@@ -39,9 +39,9 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
+            $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
             if ($request->user_type == 'USER') {
-                if ($user->hasRole('USER')) {
+                if ($user->hasRole('USER') && $user->status == 1 ) {
                     $data['token'] =  $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
@@ -49,7 +49,7 @@ class AuthController extends Controller
                     return response()->json(['messager' => 'Email id & password was invalid!', 'status' => false], 401);
                 }
             } else {
-                if ($user->hasRole('BUSINESS_OWNER')) {
+                if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                     $data['auth_token'] = 'Bearer ' . $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
@@ -96,8 +96,10 @@ class AuthController extends Controller
         $user->name = $input['name'];
         $user->email = $input['email'];
         $user->password = bcrypt($input['password']);
+        $user->status = true;
         $user->save();
         if ($request->user_type == 'USER') {
+            $user->assignRole('USER');
         } else {
             $user->assignRole('BUSINESS_OWNER');
         }

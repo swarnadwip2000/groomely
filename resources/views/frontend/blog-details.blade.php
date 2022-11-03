@@ -2,14 +2,14 @@
 @section('meta')
 @endsection
 @section('title')
-BLOG DETAILS | Groomely
+Groomely | BLOG DETAILS
 @endsection
 @push('style')
 @endpush
 
 
 @section('content')
-<section class="inner_banner_sec" style="background-image: url(assets/images/abt-banner.jpg); background-position: center; background-repeat: no-repeat; background-size: cover">
+<section class="inner_banner_sec" style="background-image: url({{asset('frontend_assets/images/abt-banner.jpg')}}); background-position: center; background-repeat: no-repeat; background-size: cover">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -30,7 +30,7 @@ BLOG DETAILS | Groomely
                             <h6>July 26, 2021 <span>STYLING </span></h6>
                             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
                             <div class="blog_img_wrapper">
-                                <a href="#"><img src="assets/images/abt1.jpg" class="img-fluid" /></a>
+                                <a href="#"><img src="{{asset('frontend_assets/images/abt1.jpg')}}" class="img-fluid" /></a>
                             </div>
                             <div class="blog_desc">
                                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
@@ -89,22 +89,22 @@ BLOG DETAILS | Groomely
                     <div class="col-md-12">
                         <div class="best_seller_list">
                             <div class="single_seller">
-                                <img src="assets/images/best_seller.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
                             </div>
                             <div class="single_seller">
-                                <img src="assets/images/best_seller2.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller2.png')}}" />
                             </div>
                             <div class="single_seller">
-                                <img src="assets/images/best_seller3.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller3.png')}}" />
                             </div>
                             <div class="single_seller">
-                                <img src="assets/images/best_seller4.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller4.png')}}" />
                             </div>
                             <div class="single_seller">
-                                <img src="assets/images/best_seller1.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller1.png')}}" />
                             </div>
                             <div class="single_seller">
-                                <img src="assets/images/best_seller.png" />
+                                <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
                             </div>
                         </div>
                     </div>

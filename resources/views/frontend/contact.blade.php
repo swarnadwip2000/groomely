@@ -2,7 +2,7 @@
 @section('meta')
 @endsection
 @section('title')
-CONTACT US | Groomely
+Groomely | CONTACT US
 @endsection
 @push('style')
 @endpush

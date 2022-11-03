@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\CmsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
@@ -17,6 +18,12 @@ use App\Http\Controllers\Frontend\ForgetPasswordController;
 
 
 // User & business owner portal authentication
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register-store', [AuthController::class, 'registerStore'])->name('register.store');
+Route::post('login-check', [AuthController::class, 'loginCheck'])->name('login.check');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget.password');
 Route::get('reset-password/{id}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
 

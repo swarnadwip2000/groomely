@@ -2,7 +2,7 @@
 @section('meta')
 @endsection
 @section('title')
-GALLERY | Groomely
+Groomely | GALLERY
 @endsection
 @push('style')
 @endpush
