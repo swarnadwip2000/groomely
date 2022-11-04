@@ -46,7 +46,7 @@ Groomly | Customers
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputEnterYourName" name="name" placeholder="Enter Your Name">
+                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Your Name">
                                             @if($errors->has('name'))
                                             <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
                                             @endif
@@ -56,7 +56,7 @@ Groomly | Customers
                                     <div class="row mb-3">
                                         <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputPhoneNo2" name="phone" placeholder="Phone No">
+                                            <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('phone')}}" name="phone" placeholder="Phone No">
                                             @if($errors->has('phone'))
                                             <div class="error" style="color:red;">{{ $errors->first('phone') }}</div>
                                             @endif
@@ -66,7 +66,7 @@ Groomly | Customers
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email Address</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputEmailAddress2" name="email" placeholder="Email Address">
+                                            <input type="text" class="form-control" id="inputEmailAddress2" value="{{old('email')}}" name="email" placeholder="Email Address">
                                             @if($errors->has('email'))
                                             <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
                                             @endif
@@ -77,7 +77,7 @@ Groomly | Customers
                                     <div class="row mb-3">
                                         <label for="inputAddress4" class="col-sm-3 col-form-label">Zipcode</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputAddress4" name="zipcode" placeholder="Zip code">
+                                            <input type="text" class="form-control" id="inputAddress4" value="{{old('zipcode')}}" name="zipcode" placeholder="Zip code">
                                             @if($errors->has('zipcode'))
                                             <div class="error" style="color:red;">{{ $errors->first('zipcode') }}</div>
                                             @endif
