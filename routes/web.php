@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\CmsController;
@@ -47,7 +50,22 @@ Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])
 
 
 /*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/
+Route::get('/admin', [AdminAuthController::class, 'admin'])->name('admin');
 
-Route::get('/dashboard', function(){
-        return view('admin.dashboard');
+Route::group(['prefix'=>'admin'], function(){
+        Route::get('/login', [AdminAuthController::class, 'login'])->name('admin.login');
+        Route::post('/login-check', [AdminAuthController::class, 'loginCheck'])->name('admin.login.check');
+        Route::group(['middleware'=>'admin'], function(){
+                Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
+                Route::get('/profile', [DashboardController::class, 'profile'])->name('admin.profile');
+                Route::post('/profile-update', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
+                Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+                Route::resource('customers', CustomerController::class);
+                Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
+                Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
+                Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])->name('admin.customers.update');
+        });
+        
 });
+

@@ -25,7 +25,7 @@ class ProfileController extends Controller
             }
             $file= $request->file('profile_picture');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $image_path = $request->file('profile_picture')->store('image', 'public');
+            $image_path = $request->file('profile_picture')->store('customer', 'public');
             $user->profile_picture = $image_path;
         }
         $user->save();

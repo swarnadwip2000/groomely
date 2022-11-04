@@ -339,7 +339,7 @@ Groomely | HOME
                             <h2>became a seller</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                         </div>
-                        @if(!Auth::check())
+                        @if(!Auth::check() || !Auth::user()->hasRole('USER'))
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>REGISTER NOW</span></a>
                         @else
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>LOGOUT</span></a>

@@ -10,11 +10,11 @@
                                 <div class="login_register">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="fa-solid fa-user"></i>
-                                        @if(!Auth::check())
+                                        @if(Auth::check() && Auth::user()->hasRole('USER'))
+                                        <a href="{{route('logout')}}">Logout</a>
+                                        @else
                                         <a href="{{route('login')}}">Login</a> /
                                         <a href="{{route('register')}}">Register</a>
-                                        @else
-                                        <a href="{{route('logout')}}">Logout</a>
                                         @endif
                                     </div>
                                 </div>
