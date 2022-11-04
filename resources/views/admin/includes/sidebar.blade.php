@@ -26,8 +26,8 @@
                         <div class="menu-title">Customers</div>
                     </a>
                 </li>
-                <li>
-                    <a href="file-manager.html">
+                <li class="{{Request::is('admin/business-owner*') ? 'mm-active' : ''}}">
+                    <a href="{{route('business-owner.index')}}">
                         <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
                         </div>
                         <div class="menu-title">Business Owners</div>

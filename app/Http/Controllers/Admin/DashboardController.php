@@ -11,7 +11,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $count['customers'] = User::role('USER')->count();
+        $count['business_owners'] = User::role('BUSINESS_OWNER')->count();
+        return view('admin.dashboard')->with(compact('count'));
     }
 
     public function profile()

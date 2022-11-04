@@ -182,25 +182,7 @@ $(function () {
 			}
 		}
 	});
-	// chart 6
-	new Chart(document.getElementById("chart6"), {
-		type: 'doughnut',
-		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-			datasets: [{
-				label: "Population (millions)",
-				backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
-				data: [2478, 5267, 734, 784, 433]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Predicted world population (millions) in 2050'
-			}
-		}
-	});
+	
 	// chart 7
 	new Chart(document.getElementById("chart7"), {
 		type: 'horizontalBar',
