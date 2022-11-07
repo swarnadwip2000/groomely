@@ -163,5 +163,6 @@ class CustomerController extends Controller
         $user->save();
         return response()->json(['success'=>'Status change successfully.']);
     }
+    
 
 }

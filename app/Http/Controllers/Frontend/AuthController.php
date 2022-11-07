@@ -31,6 +31,7 @@ class AuthController extends Controller
             'phone'     => 'required|numeric|digits:10',
             'email'    => 'required|email|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'password' => 'required|min:8',
+            'user_type' => 'required',
             'confirm_password' => 'required|min:8|same:password',
             'confirm' => 'required',
         ], [
@@ -71,20 +72,14 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
-            if ($request->user_type == 'USER') {
-                if ($user->hasRole('USER') && $user->status == 1) {
-                    return "logged in successfully";
-                } else {
-                    Auth::logout();
-                    return redirect()->back()->with('error', 'Email id & password was invalid!');
-                }
+
+            if ($user->hasRole('USER') && $user->status == 1) {
+                return "logged in successfully";
+            } else if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
+                return redirect()->route('seller.dashboard');
             } else {
-                if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
-                    return "logged in successfully";
-                } else {
-                    Auth::logout();
-                    return redirect()->back()->with('error', 'Email id & password was invalid!');
-                }
+                Auth::logout();
+                return redirect()->back()->with('error', 'Email id & password was invalid!');
             }
         } else {
             return redirect()->back()->with('error', 'Email id & password was invalid!');

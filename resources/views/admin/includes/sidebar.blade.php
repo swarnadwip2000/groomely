@@ -33,7 +33,14 @@
                         <div class="menu-title">Business Owners</div>
                     </a>
                 </li>
-                
+                <li class="menu-label">Service Category Section</li>
+                <li class="{{Request::is('admin/category*') ? 'mm-active' : ''}}">
+                    <a href="{{route('category.index')}}">
+                        <div class="parent-icon icon-color-6"><i class="fa fa-list-alt"></i>
+                        </div>
+                        <div class="menu-title">Category</div>
+                    </a>
+                </li>
 
                 <li class="menu-label">Others</li>
                 <li>

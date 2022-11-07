@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BusinessOwnerController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
+use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,7 @@ Route::group(['prefix'=>'admin'], function(){
                 Route::resource('business-owner', BusinessOwnerController::class);
                 Route::resource('contact-us', AdminContactUsController::class);
                 Route::resource('blogs', AdminBlogController::class);
+                Route::resource('category', CategoryController::class);
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
@@ -80,7 +83,21 @@ Route::group(['prefix'=>'admin'], function(){
                 Route::get('/changeBlogStatus', [AdminBlogController::class, 'changeBlogStatus'])->name('admin.blogs.change-status');
                 Route::get('/blog-delete/{id}', [AdminBlogController::class, 'delete'])->name('blogs.delete');
                 Route::post('/blog-update', [AdminBlogController::class, 'blogUpdate'])->name('admin.blogs.update');
+                // Service category
+                Route::get('/changeCategoryStatus', [CategoryController::class, 'changeCategoryStatus'])->name('admin.category.change-status');
+                Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
+                Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
         });
         
 });
 
+
+
+/*-------------------------------------------------------- Business owner panel -----------------------------------------------------------------------*/
+
+Route::group(['prefix'=>'seller', 'middleware'=>'seller'], function(){
+        Route::get('/dashboard', [SellerDashboardController::class, 'dashboard'])->name('seller.dashboard');
+        Route::get('/profile', [SellerDashboardController::class, 'profile'])->name('seller.profile');
+        Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
+        Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
+});

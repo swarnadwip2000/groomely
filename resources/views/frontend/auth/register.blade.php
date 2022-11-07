@@ -43,7 +43,7 @@
                                         <div class="login_form">
                                             <form action="{{route('register.store')}}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="user_type" value="USER">
+                                                <!-- <input type="hidden" name="user_type" value="USER"> -->
                                                 <div class="row">
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
@@ -96,49 +96,65 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                                        <div class="position-relative">
-                                                            <label for="txtPassword">Password</label>
-                                                            <input type="password" id="txtPassword" name="password" class="form-control" />
-                                                            <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
-
-                                                        </div>
-                                                        @if($errors->has('password'))
-                                                        <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-6 col-12">
-                                                        <div class="position-relative">
-                                                            <label for="txtPassword">Confirm Password</label>
-                                                            <input type="password" id="password-field" name="confirm_password" class="form-control" />
-                                                            <button type="button" id="btnToggle1" class="toggle"><i id="eyeIcon1" toggle="#password-field" class="fa fa-eye"></i></button>
-                                                        </div>
-                                                        @if($errors->has('confirm_password'))
-                                                        <div class="error" style="color:red;">{{ $errors->first('confirm_password') }}</div>
-                                                        @endif
-                                                    </div>
-                                                </div>
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                                                    <div class="form-check">
-                                                        <input type="checkbox" name="confirm" class="form-check-input" id="exampleCheck1">
-                                                        <label class="form-check-label" for="exampleCheck1">I agree to the Groomely Terms. Learn about how we use and protect your data in our Privacy Policy.</label>
-                                                    </div>
-                                                    @if($errors->has('confirm'))
-                                                    <div class="error" style="color:red;">{{ $errors->first('confirm') }}</div>
-                                                    @endif
-                                                    <button class="btn btn-lg btn-primary btn-block btn-login">Register</button>
-                                                    <div class="login-text">
-                                                        <p>You have already account? <a href="{{route('login')}}">SIGNIN NOW</a></p>
+                                                    <div class="">
+                                                    <label for="exampleInputFirstName" class="form-label">User Type    &nbsp;&nbsp;</label>
+                                                         <input type="radio" id="html" name="user_type" value="USER">
+                                                          <label for="html">User</label>
+                                                          <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER">
+                                                          <label for="css">Seller</label><br>
+                                                        @if($errors->has('user_type'))
+                                                        <div class="error" style="color:red;">{{ $errors->first('user_type') }}</div>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            </form>
+                                                </div>
+
+                                        
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                                <div class="position-relative">
+                                                    <label for="txtPassword">Password</label>
+                                                    <input type="password" id="txtPassword" name="password" class="form-control" />
+                                                    <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
+
+                                                </div>
+                                                @if($errors->has('password'))
+                                                <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
+                                                @endif
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                                <div class="position-relative">
+                                                    <label for="txtPassword">Confirm Password</label>
+                                                    <input type="password" id="password-field" name="confirm_password" class="form-control" />
+                                                    <button type="button" id="btnToggle1" class="toggle"><i id="eyeIcon1" toggle="#password-field" class="fa fa-eye"></i></button>
+                                                </div>
+                                                @if($errors->has('confirm_password'))
+                                                <div class="error" style="color:red;">{{ $errors->first('confirm_password') }}</div>
+                                                @endif
+                                            </div>
                                         </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="confirm" class="form-check-input" id="exampleCheck1">
+                                                <label class="form-check-label" for="exampleCheck1">I agree to the Groomely Terms. Learn about how we use and protect your data in our Privacy Policy.</label>
+                                            </div>
+                                            @if($errors->has('confirm'))
+                                            <div class="error" style="color:red;">{{ $errors->first('confirm') }}</div>
+                                            @endif
+                                            <button class="btn btn-lg btn-primary btn-block btn-login">Register</button>
+                                            <div class="login-text">
+                                                <p>You have already account? <a href="{{route('login')}}">SIGNIN NOW</a></p>
+                                            </div>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
             </div>
         </section>
@@ -181,43 +197,39 @@
     <script src="{{asset('frontend_assets/auth_assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('frontend_assets/auth_assets/js/custom.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-      <script>
+    <script>
         @if(Session::has('message'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
         }
         toastr.success("{{ session('message') }}");
         @endif
 
         @if(Session::has('error'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
         }
         toastr.error("{{ session('error') }}");
         @endif
 
         @if(Session::has('info'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
         }
         toastr.info("{{ session('info') }}");
         @endif
 
         @if(Session::has('warning'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true
         }
-          toastr.warning("{{ session('warning') }}");
+        toastr.warning("{{ session('warning') }}");
         @endif
-      </script>  
+    </script>
     <script>
         $("#eyeIcon1").click(function() {
 
@@ -229,7 +241,7 @@
                 input.attr("type", "password");
             }
         });
-</script>
+    </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ Groomly | Customers
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Edit</div>
+                <div class="breadcrumb-title pe-3">Create</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
@@ -44,7 +44,7 @@ Groomly | Customers
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name</label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Your Name">
                                             @if($errors->has('name'))
@@ -54,7 +54,7 @@ Groomly | Customers
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No</label>
+                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Phone No <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('phone')}}" name="phone" placeholder="Phone No">
                                             @if($errors->has('phone'))
@@ -64,7 +64,7 @@ Groomly | Customers
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email Address</label>
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Email Address <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputEmailAddress2" value="{{old('email')}}" name="email" placeholder="Email Address">
                                             @if($errors->has('email'))
@@ -75,7 +75,7 @@ Groomly | Customers
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zipcode</label>
+                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zipcode <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputAddress4" value="{{old('zipcode')}}" name="zipcode" placeholder="Zip code">
                                             @if($errors->has('zipcode'))
@@ -85,7 +85,7 @@ Groomly | Customers
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Password</label>
+                                        <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Password <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="password" class="form-control" id="inputChoosePassword2" name="password" placeholder="Choose Password">
                                             @if($errors->has('password'))
@@ -95,7 +95,7 @@ Groomly | Customers
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Confirm Password</label>
+                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Confirm Password <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="password" class="form-control" id="inputConfirmPassword2" name="confirm_password" placeholder="Confirm Password">
                                             @if($errors->has('confirm_password'))
@@ -105,7 +105,7 @@ Groomly | Customers
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image</label>
+                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="file" class="form-control" id="inputConfirmPassword2" name="profile_picture" placeholder="Confirm Password">
                                             @if($errors->has('profile_picture'))
