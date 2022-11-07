@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BusinessOwnerController;
+use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\AuthController;
@@ -63,14 +65,21 @@ Route::group(['prefix'=>'admin'], function(){
                 Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
                 Route::resource('customers', CustomerController::class);
+                Route::resource('business-owner', BusinessOwnerController::class);
+                Route::resource('contact-us', AdminContactUsController::class);
+                Route::resource('blogs', AdminBlogController::class);
+
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
                 Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])->name('admin.customers.update');
-
-                Route::resource('business-owner', BusinessOwnerController::class);
+                // business owner crud
                 Route::get('/changeBusinessOwnerStatus', [BusinessOwnerController::class, 'changeBusinessOwnerStatus'])->name('admin.business-owner.change-status');
                 Route::get('/business-owner-delete/{id}', [BusinessOwnerController::class, 'delete'])->name('business-owner.delete');
                 Route::post('/business-owner-update', [BusinessOwnerController::class, 'businessOwnerUpdate'])->name('admin.business-owner.update');
+                // blog section
+                Route::get('/changeBlogStatus', [AdminBlogController::class, 'changeBlogStatus'])->name('admin.blogs.change-status');
+                Route::get('/blog-delete/{id}', [AdminBlogController::class, 'delete'])->name('blogs.delete');
+                Route::post('/blog-update', [AdminBlogController::class, 'blogUpdate'])->name('admin.blogs.update');
         });
         
 });

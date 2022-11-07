@@ -40,22 +40,21 @@
                     <a class="has-arrow" href="javascript:;">
                         <div class="parent-icon icon-color-11"><i class="bx bx-menu"></i>
                         </div>
-                        <div class="menu-title">Menu Levels</div>
+                        <div class="menu-title">Blogs</div>
                     </a>
                     <ul>
-                        <li> <a class="has-arrow" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level One</a>
-                            <ul>
-                                <li> <a class="has-arrow" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level Two</a>
-                                    <ul>
-                                        <li> <a href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Level Three</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <li> <a class="" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Category</a>
+                        <li class="{{Request::is('admin/blogs*') ? 'mm-active' : ''}}"> <a class="" href="{{route('blogs.index')}}"><i class="bx bx-right-arrow-alt"></i>List</a>
                         </li>
                     </ul>
                 </li>
-               
+                <li class="{{Request::is('admin/contact-us*') ? 'mm-active' : ''}}">
+                    <a href="{{route('contact-us.index')}}">
+                        <div class="parent-icon icon-color-4"><i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="menu-title">Contact Us</div>
+                    </a>
+                </li>
             </ul>
             <!--end navigation-->
         </div>

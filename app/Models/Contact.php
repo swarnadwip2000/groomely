@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
+    public function getFullNameAttribute()
+    {
+       return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
 }
