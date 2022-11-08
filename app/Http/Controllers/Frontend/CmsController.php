@@ -38,8 +38,15 @@ class CmsController extends Controller
 
     public function package()
     {
-    $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
+        $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
         return view('frontend.package')->with(compact('services'));
+    }
+
+    public function serviceCategory($slug, $id)
+    {
+        $services = Service::where(['category_id'=>$id, 'status'=>1])->orderBy('id', 'desc')->paginate(20);
+        $category = Category::findOrFail($id);
+        return view('frontend.category')->with(compact('services', 'category'));
     }
 
 }

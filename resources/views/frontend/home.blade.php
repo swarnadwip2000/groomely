@@ -45,7 +45,7 @@ Groomely | HOME
                 <div class="d-flex align-items-center justify-content-start">
                     @foreach($categories as $category)
                     <div class="min_box">
-                        <a href="">
+                        <a href="{{route('service.category',['slug'=>$category->slug, 'id'=>$category->id])}}">
                             <img src="{{Storage::url($category['icon'])}}" alt="" />
                             <p>{{$category['name']}}</p>
                         </a>
@@ -193,7 +193,7 @@ Groomely | HOME
                                 <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
                                 <li>{{substr($service['description'],0,55)}}...</li>
                             </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
+                            <a href="{{route('book-now', base64_encode($service['id']))}}" class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
                         </div>
                     </div>
                 </div>

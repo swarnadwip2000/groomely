@@ -46,6 +46,7 @@ Route::get('/services', [CmsController::class, 'services'])->name('services');
 Route::get('/best-sellers', [CmsController::class, 'bestSellers'])->name('best.sellers');
 Route::get('/gallery', [CmsController::class, 'gallery'])->name('gallery');
 Route::get('/package', [CmsController::class, 'package'])->name('package');
+Route::get('/service-category/{slug}/{id}', [CmsController::class, 'serviceCategory'])->name('service.category');
 
 // Contact us
 Route::get('/contact', [ContactusController::class, 'contact'])->name('contact');
