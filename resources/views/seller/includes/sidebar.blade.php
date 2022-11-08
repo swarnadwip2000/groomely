@@ -4,7 +4,7 @@
                     <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
                 </div>
                 <div>
-                    <h4 class="logo-text">Syndash</h4>
+                    <a href="{{route('home')}}"><h4 class="logo-text">Groomly</h4></a>
                 </div>
                 <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
                 </a>
@@ -18,32 +18,25 @@
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
-                <li class="{{Request::is('admin/profile*') ? 'mm-active' : ''}}">
+                <li class="{{Request::is('seller/profile*') ? 'mm-active' : ''}}">
                     <a href="{{route('seller.profile')}}">
                         <div class="parent-icon icon-color-5"><i class="fa fa-user"></i>
                         </div>
                         <div class="menu-title">My Profile</div>
                     </a>
                 </li>
-                <li class="{{Request::is('admin/business-owner*') ? 'mm-active' : ''}}">
-                    <a href="{{route('business-owner.index')}}">
+                <li class="{{Request::is('seller/manage-booking*') ? 'mm-active' : ''}}">
+                    <a href="{{route('manage-booking.index')}}">
                         <div class="parent-icon icon-color-4"><i class="fa fa-calendar"></i>
                         </div>
                         <div class="menu-title">Manage Booking</div>
                     </a>
                 </li>
-                <li class="{{Request::is('admin/contact-us*') ? 'mm-active' : ''}}">
+                <li class="{{Request::is('seller/contact-us*') ? 'mm-active' : ''}}">
                     <a href="{{route('contact-us.index')}}">
                         <div class="parent-icon icon-color-3"><i class="fa fa-history"></i>
                         </div>
                         <div class="menu-title">Bookin History</div>
-                    </a>
-                </li>
-                <li class="{{Request::is('admin/contact-us*') ? 'mm-active' : ''}}">
-                    <a href="{{route('contact-us.index')}}">
-                        <div class="parent-icon icon-color-1"><i class="fas fa-user-cog"></i>
-                        </div>
-                        <div class="menu-title">Manage Barbers</div>
                     </a>
                 </li>
             </ul>

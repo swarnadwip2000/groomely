@@ -16,7 +16,7 @@ class AddToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->nullable()->after('email');
             $table->string('zipcode')->nullable()->after('phone');
-            $table->enum('status', [0, 1])->default(true)->after('profile_picture');
+            $table->tinyInteger('status')->default(true)->after('profile_picture');
         });
     }
 

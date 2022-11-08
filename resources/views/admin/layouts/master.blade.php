@@ -159,7 +159,7 @@
     <script>
 		$(document).ready(function () {
 			//Default data table
-			$('#example').DataTable({ order: [[3, "asc"]] });
+			$('#example').DataTable({ order: [[1, "asc"]] });
 			var table = $('#example2').DataTable({
 				lengthChange: false,
                 order: false,

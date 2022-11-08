@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <!--favicon-->
     <link rel="icon" href="{{asset('seller_assets/images/favicon-32x32.png')}}" type="image/png" />
@@ -159,7 +160,7 @@
     <script>
 		$(document).ready(function () {
 			//Default data table
-			$('#example').DataTable();
+            $('#example').DataTable({ order: [[0, "asc"]] });
 			var table = $('#example2').DataTable({
 				lengthChange: false,
 				buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']

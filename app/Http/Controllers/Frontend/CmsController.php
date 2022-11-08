@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
     public function home()
     {
-        return view('frontend.home');
+        $categories = Category::where('status', 1)->get();
+        $services = Service::where('status', 1)->orderBy('id', 'desc')->get();
+        return view('frontend.home')->with(compact('categories','services'));
     }
 
     public function about()
@@ -30,6 +34,12 @@ class CmsController extends Controller
     public function gallery()
     {
         return view('frontend.gallery');
+    }
+
+    public function package()
+    {
+    $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
+        return view('frontend.package')->with(compact('services'));
     }
 
 }

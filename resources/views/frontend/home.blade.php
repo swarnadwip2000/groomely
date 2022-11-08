@@ -43,24 +43,15 @@ Groomely | HOME
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-start">
+                    @foreach($categories as $category)
                     <div class="min_box">
                         <a href="">
-                            <img src="{{asset('frontend_assets/images/before_about.png')}}" alt="" />
-                            <p>woman hair cut</p>
+                            <img src="{{Storage::url($category['icon'])}}" alt="" />
+                            <p>{{$category['name']}}</p>
                         </a>
                     </div>
-                    <div class="min_box">
-                        <a href="">
-                            <img src="{{asset('frontend_assets/images/before_about1.png')}}" alt="" />
-                            <p>man hair cut</p>
-                        </a>
-                    </div>
-                    <div class="min_box">
-                        <a href="">
-                            <img src="{{asset('frontend_assets/images/before_about2.png')}}" alt="" />
-                            <p>Children</p>
-                        </a>
-                    </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
@@ -78,7 +69,7 @@ Groomely | HOME
                     <h2>welcome to GROomely</h2>
                     <p>Providing quality electrical services and solutions across all aspects of domestic and commercial environments, from new installations , upgrades, repairs and maintenance services. Austi Electrical are licensed and insured electrical contractors based in the Northern Illawarra region servicing all areas of Greater Sydney, Wollongong, Campbelltown and the Sutherland Shire.</p>
                 </div>
-                <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href=""><span>READ MORE</span></a>
+                <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="{{route('about')}}"><span>READ MORE</span></a>
             </div>
         </div>
     </div>
@@ -103,7 +94,7 @@ Groomely | HOME
                                     <h5>HAIRCUTTING</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                                 </div>
-                                <a href="">VIEW ALL</a>
+                                <a href="{{route('services')}}#haircutting">VIEW ALL</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -116,7 +107,7 @@ Groomely | HOME
                                     <h5>SHAVING</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                                 </div>
-                                <a href="">VIEW ALL</a>
+                                <a href="{{route('services')}}#shaving">VIEW ALL</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -129,7 +120,7 @@ Groomely | HOME
                                     <h5>STYLING</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                                 </div>
-                                <a href="">VIEW ALL</a>
+                                <a href="{{route('services')}}#styling">VIEW ALL</a>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -142,7 +133,7 @@ Groomely | HOME
                                     <h5>TRIMMING</h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                                 </div>
-                                <a href="">VIEW ALL</a>
+                                <a href="{{route('services')}}#trimming">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -184,146 +175,29 @@ Groomely | HOME
         </div>
         <div class="mt-4">
             <div class="feature stick-dots">
+                @foreach($services as $service)
                 <div class="slide_feature">
                     <div class="feature_box">
                         <div class="top_pack">Package</div>
                         <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
+                            <h4>{{$service['name']}}</h4>
+                            <h5>{{$service['user']['name']}}</h5>
                             <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
                             <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
+                                <div class="price">${{$service['rate']}}</div>
+                                <p><i class="fa-regular fa-clock"></i>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</p>
                             </div>
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
+                                <!-- <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
                                 <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
+                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
+                                <li>{{substr($service['description'],0,55)}}...</li>
                             </ul>
                             <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide_feature">
-                    <div class="feature_box">
-                        <div class="top_pack">Package</div>
-                        <div class="white_box_pack">
-                            <h4>Haircut + Beard + Massage</h4>
-                            <h5>ABCD Barber House</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
-                            <div class="d-flex align-items-center py-2">
-                                <div class="price">$115</div>
-                                <p><i class="fa-regular fa-clock"></i>1 hr 5 mins</p>
-                            </div>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li>
-                            </ul>
-                            <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -339,11 +213,16 @@ Groomely | HOME
                             <h2>became a seller</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                         </div>
+                        @if(!Auth::check() || !Auth::user()->hasRole('BUSINESS_OWNER'))
                         @if(!Auth::check() || !Auth::user()->hasRole('USER'))
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>REGISTER NOW</span></a>
                         @else
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>LOGOUT</span></a>
                         @endif
+                        @else
+                        <a class="buttonfx slidebottomleft" href="{{route('seller.dashboard')}}"><span>Dashboard</span></a>
+                        @endif
+
                     </div>
                 </div>
             </div>

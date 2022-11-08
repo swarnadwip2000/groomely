@@ -18,7 +18,7 @@ Groomly | Business Owners
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('business-owner.index')}}">Business Owner</a>
+                            <li class="breadcrumb-item"><a href="{{route('business-owner.index')}}">Barbers</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
@@ -36,7 +36,7 @@ Groomly | Business Owners
             <!--end row-->
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Create Business Owner</h6>
+                    <h6 class="mb-0 text-uppercase">Create Barbers</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">

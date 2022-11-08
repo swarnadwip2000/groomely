@@ -1,8 +1,17 @@
-@extends('admin.layouts.master')
+@extends('seller.layouts.master')
 @section('title')
-Groomly | Blogs
+Groomly | Manage Booking Create
 @endsection
 @push('styles')
+<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<style type="text/css">
+    .bootstrap-timepicker-meridian,
+    .meridian-column {
+        display: none;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -18,7 +27,7 @@ Groomly | Blogs
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('blogs.index')}}">Blogs</a>
+                            <li class="breadcrumb-item"><a href="{{route('manage-booking.index')}}">Manage Booking</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
@@ -26,7 +35,7 @@ Groomly | Blogs
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('blogs.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('manage-booking.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -35,25 +44,25 @@ Groomly | Blogs
 
             <!--end row-->
             <div class="row">
-                <div class="col-xl-9 mx-auto">
+                <div class="col-xl-11 mx-auto">
                     <h6 class="mb-0 text-uppercase">Create Blog</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('blogs.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('manage-booking.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Category<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <select name="blog_category_id" id="" class="form-control">
+                                            <select name="category_id" id="" class="form-control">
                                                 <option value="">Select A Category</option>
                                                 @foreach($categories as $category)
                                                 <option value="{{$category['id']}}">{{$category['name']}}</option>
                                                 @endforeach
                                             </select>
-                                            @if($errors->has('blog_category_id'))
-                                            <div class="error" style="color:red;">{{ $errors->first('blog_category_id') }}</div>
+                                            @if($errors->has('category_id'))
+                                            <div class="error" style="color:red;">{{ $errors->first('category_id') }}</div>
                                             @endif
                                         </div>
 
@@ -69,11 +78,32 @@ Groomly | Blogs
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Slug<span style="color:red">*<span></label>
+                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Rate<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('slug')}}" name="slug" placeholder="Slug">
-                                            @if($errors->has('slug'))
-                                            <div class="error" style="color:red;">{{ $errors->first('slug') }}</div>
+                                            <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('rate')}}" name="rate" placeholder="Rate($)">
+                                            @if($errors->has('rate'))
+                                            <div class="error" style="color:red;">{{ $errors->first('rate') }}</div>
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Duration<span style="color:red">*<span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="timepicker" value="{{old('duration')}}" name="duration" placeholder="Duration">
+                                            @if($errors->has('duration'))
+                                            <div class="error" style="color:red;">{{ $errors->first('duration') }}</div>
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                   
+                                    <div class="row mb-3">
+                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Description<span style="color:red">*<span></label>
+                                        <div class="col-sm-9">
+                                            <textarea name="description" id="editor1" class="form-control" cols="30" rows="10">{{old('description')}}</textarea>
+                                            @if($errors->has('description'))
+                                            <div class="error" style="color:red;">{{ $errors->first('description') }}</div>
                                             @endif
                                         </div>
 
@@ -81,19 +111,9 @@ Groomly | Blogs
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="inputConfirmPassword2" name="image" placeholder="Confirm Password">
+                                            <input type="file" class="form-control dropzone" id="image-upload" name="image[]" multiple>
                                             @if($errors->has('image'))
                                             <div class="error" style="color:red;">{{ $errors->first('image') }}</div>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Description<span style="color:red">*<span></label>
-                                        <div class="col-sm-9">
-                                            <textarea name="description" id="editor1" cols="30" rows="10">{{old('description')}}</textarea>
-                                            @if($errors->has('description'))
-                                            <div class="error" style="color:red;">{{ $errors->first('description') }}</div>
                                             @endif
                                         </div>
 
@@ -118,20 +138,21 @@ Groomly | Blogs
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('editor1');
-    CKEDITOR.on('instanceReady', function(evt) {
-        var editor = evt.editor;
-
-        editor.on('change', function(e) {
-            var contentSpace = editor.ui.space('contents');
-            var ckeditorFrameCollection = contentSpace.$.getElementsByTagName('iframe');
-            var ckeditorFrame = ckeditorFrameCollection[0];
-            var innerDoc = ckeditorFrame.contentDocument;
-            var innerDocTextAreaHeight = $(innerDoc.body).height();
-            console.log(innerDocTextAreaHeight);
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#timepicker').timepicker({
+            showMeridian: false,
+            showInputs: true
         });
     });
+</script>
+<script type="text/javascript">
+    Dropzone.options.imageUpload = {
+        maxFilesize: 1,
+        acceptedFiles: ".jpeg,.jpg,.png,.gif"
+    };
 </script>
 @endpush

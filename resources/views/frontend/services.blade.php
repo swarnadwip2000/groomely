@@ -30,7 +30,7 @@ Groomely | SERVICES
                             <img src="{{asset('frontend_assets/images/serv1.jpg')}}" class="img-fluid" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="haircutting">
                         <div class="abt_content">
                             <h2>Haircutting</h2>
                             <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
@@ -45,7 +45,7 @@ Groomely | SERVICES
                             <img src="{{asset('frontend_assets/images/serv2.jpg')}}" class="img-fluid" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="shaving">
                         <div class="abt_content">
                             <h2>Shaving</h2>
                             <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
@@ -60,7 +60,7 @@ Groomely | SERVICES
                             <img src="{{asset('frontend_assets/images/serv3.jpg')}}" class="img-fluid" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="styling">
                         <div class="abt_content">
                             <h2>styling</h2>
                             <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
@@ -75,7 +75,7 @@ Groomely | SERVICES
                             <img src="{{asset('frontend_assets/images/serv4.jpg')}}" class="img-fluid" />
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="trimming">
                         <div class="abt_content">
                             <h2>trimming</h2>
                             <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>

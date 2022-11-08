@@ -4,7 +4,7 @@
                     <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
                 </div>
                 <div>
-                    <h4 class="logo-text">Syndash</h4>
+                    <h4 class="logo-text">Groomly</h4>
                 </div>
                 <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
                 </a>
@@ -23,14 +23,14 @@
                     <a href="{{route('customers.index')}}">
                         <div class="parent-icon icon-color-5"><i class="bx bx-group"></i>
                         </div>
-                        <div class="menu-title">Customers</div>
+                        <div class="menu-title">Manage Customers</div>
                     </a>
                 </li>
                 <li class="{{Request::is('admin/business-owner*') ? 'mm-active' : ''}}">
                     <a href="{{route('business-owner.index')}}">
                         <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
                         </div>
-                        <div class="menu-title">Business Owners</div>
+                        <div class="menu-title">Manage Barbers</div>
                     </a>
                 </li>
                 <li class="menu-label">Service Category Section</li>

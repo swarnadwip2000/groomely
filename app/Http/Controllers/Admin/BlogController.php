@@ -157,6 +157,6 @@ class BlogController extends Controller
             $blog->image = $image_path;
         }
         $blog->save();
-        return redirect()->route('blogs.index')->with('message', 'Blog has been successfully.');
+        return redirect()->route('blogs.index')->with('message', 'Blog has been updated successfully.');
     }
 }

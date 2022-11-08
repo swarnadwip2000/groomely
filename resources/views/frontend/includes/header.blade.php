@@ -10,16 +10,20 @@
                                 <div class="login_register">
                                     <div class="d-flex align-items-center justify-content-center">
                                         <i class="fa-solid fa-user"></i>
+                                        @if(!Auth::check() || !Auth::user()->hasRole('BUSINESS_OWNER'))
                                         @if(Auth::check() && Auth::user()->hasRole('USER'))
                                         <a href="{{route('logout')}}">Logout</a>
                                         @else
                                         <a href="{{route('login')}}">Login</a> /
                                         <a href="{{route('register')}}">Register</a>
                                         @endif
+                                        @else
+                                        <a href="{{route('seller.dashboard')}}">Dashboard</a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="booknow_btn">
-                                    <a href="book-an-appointment.html">BOOK AN APPOINTMENT</a>
+                                    <a href="{{route('package')}}">BOOK AN APPOINTMENT</a>
                                 </div>
                                 <div class="button_container" id="toggle">
                                     <span class="top"></span>

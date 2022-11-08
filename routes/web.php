@@ -9,11 +9,13 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\BookNowController;
 use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
+use App\Http\Controllers\Seller\ManageBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,7 @@ Route::get('/about', [CmsController::class, 'about'])->name('about');
 Route::get('/services', [CmsController::class, 'services'])->name('services');
 Route::get('/best-sellers', [CmsController::class, 'bestSellers'])->name('best.sellers');
 Route::get('/gallery', [CmsController::class, 'gallery'])->name('gallery');
+Route::get('/package', [CmsController::class, 'package'])->name('package');
 
 // Contact us
 Route::get('/contact', [ContactusController::class, 'contact'])->name('contact');
@@ -53,14 +56,16 @@ Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('blog-details/{blogslug}/{slug}/{id}', [BlogController::class, 'blogDetails'])->name('blog.details');
 Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])->name('blog.category');
 
+// Booking 
+Route::get('/book-now/{id}', [BookNowController::class, 'bookNow'])->name('book-now');
 
 /*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/
 Route::get('/admin', [AdminAuthController::class, 'admin'])->name('admin');
 
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix' => 'admin'], function () {
         Route::get('/login', [AdminAuthController::class, 'login'])->name('admin.login');
         Route::post('/login-check', [AdminAuthController::class, 'loginCheck'])->name('admin.login.check');
-        Route::group(['middleware'=>'admin'], function(){
+        Route::group(['middleware' => 'admin'], function () {
                 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
                 Route::get('/profile', [DashboardController::class, 'profile'])->name('admin.profile');
                 Route::post('/profile-update', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
@@ -88,16 +93,24 @@ Route::group(['prefix'=>'admin'], function(){
                 Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
                 Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
         });
-        
 });
 
 
 
 /*-------------------------------------------------------- Business owner panel -----------------------------------------------------------------------*/
 
-Route::group(['prefix'=>'seller', 'middleware'=>'seller'], function(){
+Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         Route::get('/dashboard', [SellerDashboardController::class, 'dashboard'])->name('seller.dashboard');
         Route::get('/profile', [SellerDashboardController::class, 'profile'])->name('seller.profile');
         Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
         Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
+
+        Route::resource('manage-booking', ManageBookingController::class);
+
+        // Manage Booking
+        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('admin.manage-booking.change-status');
+        Route::get('/manage-booking-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-booking.delete');
+        Route::get('manage-booking/manage-booking-view/{id}', [ManageBookingController::class, 'view'])->name('manage-booking.view');
+        Route::post('/manage-booking-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('admin.manage-booking.update');
+        Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-booking.delete-image');
 });
