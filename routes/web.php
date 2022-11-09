@@ -120,4 +120,5 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
 
         // Booking history
         Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');
+        Route::get('booking-history/accept-booking/{id}', [BookingController::class, 'acceptBooking'])->name('seller.booking.accept');
 });

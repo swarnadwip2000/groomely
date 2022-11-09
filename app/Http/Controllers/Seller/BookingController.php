@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AcceptAppointmentMail;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -100,5 +102,17 @@ class BookingController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function acceptBooking($id)
+    {
+        Appointment::where('id', $id)->update(['status'=>'accepted']);
+        $appointment = Appointment::find($id);
+        $email = $appointment['service']['user']['email'];
+        $maildata = [
+            'appointment' => $appointment,
+        ];
+        Mail::to($email)->send(new AcceptAppointmentMail($maildata));
+        return redirect()->back()->with('message', 'Booking has been accepted successfully.');
     }
 }
