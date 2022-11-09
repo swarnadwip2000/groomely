@@ -74,7 +74,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
 
             if ($user->hasRole('USER') && $user->status == 1) {
-                return "logged in successfully";
+                return redirect()->route('package');
             } else if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                 return redirect()->route('seller.dashboard');
             } else {

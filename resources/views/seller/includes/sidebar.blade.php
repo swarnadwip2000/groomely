@@ -32,8 +32,8 @@
                         <div class="menu-title">Manage Booking</div>
                     </a>
                 </li>
-                <li class="{{Request::is('seller/contact-us*') ? 'mm-active' : ''}}">
-                    <a href="{{route('contact-us.index')}}">
+                <li class="{{Request::is('seller/booking-history*') ? 'mm-active' : ''}}">
+                    <a href="{{route('booking-history.index')}}">
                         <div class="parent-icon icon-color-3"><i class="fa fa-history"></i>
                         </div>
                         <div class="menu-title">Bookin History</div>

@@ -167,147 +167,94 @@ Groomely | Packages
         <div class="book-app-head">
             <h2>book an appointment</h2>
         </div>
-        <div class="book-app-main">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="calender-wrap">
-                        <h3>Select Date and Time</h3>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-xl-6">
-                            <div class="date-wrap">
-                                <div id="datepicker" ></div>
-                            </div>
+        <form action="{{route('submit-appointment')}}" method="post">
+            @csrf
+            <input type="hidden" name="service_id" value="{{$service['id']}}">
+            <div class="book-app-main">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="calender-wrap">
+                            <h3>Select Date and Time</h3>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="time-wrap">
-                                <div class="row">
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm1" name="animal" value="" />
-                                            <label for="tm1">9.00 am</label>
+                        <div class="row align-items-center">
+                            <div class="col-xl-6">
+                                <div class="date-wrap">
+                                    <div id="datepicker"></div>
+                                <input type="hidden" name="booking_date" id="booking-date">
+                                <input type="hidden" name="amount" id="" value="{{$service['rate']}}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="time-wrap">
+                                    <div class="row">
+                                        @foreach($times as $time)
+                                        <div class="col-xl-2 col-md-3 col-lg-3 col-6">
+                                            <div class="time-pick">
+                                                <input type="radio" id="tm{{$time['id']}}" name="booking_time_id" value="{{$time['id']}}" />
+                                                <label for="tm{{$time['id']}}">{{$time['time']}}</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm2" name="animal" value="" />
-                                            <label for="tm2">10.00 am</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm3" name="animal" value="" />
-                                            <label for="tm3">11.00 am</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm4" name="animal" value="" />
-                                            <label for="tm4">12.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm5" name="animal" value="" />
-                                            <label for="tm5">1.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm6" name="animal" value="" />
-                                            <label for="tm6">2.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm1" name="animal" value="" />
-                                            <label for="tm1">3.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm2" name="animal" value="" />
-                                            <label for="tm2">4.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm3" name="animal" value="" />
-                                            <label for="tm3">5.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm4" name="animal" value="" />
-                                            <label for="tm4">6.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm5" name="animal" value="" />
-                                            <label for="tm5">7.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm6" name="animal" value="" />
-                                            <label for="tm6">8.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm1" name="animal" value="" />
-                                            <label for="tm1">9.00 pm</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-2 col-md-3 col-lg-3 col-6">
-                                        <div class="time-pick">
-                                            <input type="radio" id="tm2" name="animal" value="" />
-                                            <label for="tm2">10.00 pm</label>
-                                        </div>
+                                        @endforeach
+                                        @if($errors->has('booking_time_id'))
+                                        <div class="error" style="color:red;">{{ $errors->first('booking_time_id') }}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="personal-details">
-                <div class="container">
-                    <div class="personal-details-head">
-                        <h3>Enter Your Personal Details</h3>
-                    </div>
-                    <div class="row">
-                        <div class="form-wrap">
-                            <form>
-                                <div class="row">
-                                    <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="FULL NAME" name="fullname">
-                                    </div>
-                                    <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="EMAIL ADDRESS" name="email">
-                                    </div>
-                                    <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                        <input type="text" class="form-control" placeholder="PHONE NUMBER" name="phone">
-                                    </div>
-                                    <div class="col-xl-12 text-center">
-                                        <div class="book-slot-btn">
-                                            <a href="#" class="btn">BOOK SLOT</a>
+                <div class="personal-details">
+                    <div class="container">
+                        <div class="personal-details-head">
+                            <h3>Enter Your Personal Details</h3>
+                        </div>
+                        <div class="row">
+                            <div class="form-wrap">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4 col-12 mb-3">
+                                            <input type="text" class="form-control" placeholder="FULL NAME" name="name" value="{{old('name')}}">
+                                            @if($errors->has('name'))
+                                            <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="col-xl-4 col-md-4 col-12 mb-3">
+                                            <input type="text" class="form-control" placeholder="EMAIL ADDRESS" name="email" value="{{old('email')}}">
+                                            @if($errors->has('email'))
+                                            <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="col-xl-4 col-md-4 col-12 mb-3">
+                                            <input type="text" class="form-control" placeholder="PHONE NUMBER" name="phone" value="{{old('phone')}}">
+                                            @if($errors->has('phone'))
+                                            <div class="error" style="color:red;">{{ $errors->first('phone') }}</div>
+                                            @endif
+                                        </div>
+                                        <div class="col-xl-12 text-center">
+                                            <div class="book-slot-btn">
+                                                <button type="submit" class="btn">BOOK SLOT</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </section>
 @endsection
 
 @push('script')
-
+<script>
+    $('.sdf').on('click', function() {
+        var date = $('#datepicker').val();
+        $('#booking-date').val(date)
+    });
+</script>
 @endpush

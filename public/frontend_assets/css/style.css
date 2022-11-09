@@ -1589,9 +1589,11 @@ h6 {
 /**************Calemder***************/
 #datepicker{
     padding: 20px;   
+   
 }
 #ui-datepicker-div{
     display: none;
+    width: 500px;
 }
 .ui-widget{
     width:100%;

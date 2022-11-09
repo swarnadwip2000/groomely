@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
+use App\Http\Controllers\Seller\BookingController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 use App\Http\Controllers\Seller\ManageBookingController;
 
@@ -59,6 +60,7 @@ Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])
 
 // Booking 
 Route::get('/book-now/{id}', [BookNowController::class, 'bookNow'])->name('book-now');
+Route::post('/submit-appointment', [BookNowController::class, 'submitAppointment'])->name('submit-appointment');
 
 /*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/
 Route::get('/admin', [AdminAuthController::class, 'admin'])->name('admin');
@@ -107,11 +109,15 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
 
         Route::resource('manage-booking', ManageBookingController::class);
+        Route::resource('booking-history', BookingController::class);
 
         // Manage Booking
-        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('admin.manage-booking.change-status');
+        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('seller.manage-booking.change-status');
         Route::get('/manage-booking-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-booking.delete');
         Route::get('manage-booking/manage-booking-view/{id}', [ManageBookingController::class, 'view'])->name('manage-booking.view');
-        Route::post('/manage-booking-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('admin.manage-booking.update');
+        Route::post('/manage-booking-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-booking.update');
         Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-booking.delete-image');
+
+        // Booking history
+        Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');
 });

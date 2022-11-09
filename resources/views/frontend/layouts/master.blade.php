@@ -18,7 +18,7 @@
     <link href="{{asset('frontend_assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('frontend_assets/css/responsive.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    
+
     @stack('styles')
     <!-- Custom styles for this template -->
 </head>
@@ -28,14 +28,18 @@
         @include('frontend.includes.header')
 
         @yield('content')
-        
+
         @include('frontend.includes.footer')
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://alexandrebuffet.fr/codepen/slider/slick-animation.min.js"></script>
     <script src="{{asset('frontend_assets/js/bootstrap.bundle.min.js')}}"></script>
+    
     <script src="https://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script>
+       
+    </script>
     <script src="{{asset('frontend_assets/js/custom.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

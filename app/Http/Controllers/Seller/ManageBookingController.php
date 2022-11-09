@@ -18,7 +18,7 @@ class ManageBookingController extends Controller
      */
     public function index()
     {
-        $services = Service::orderby('id', 'desc')->get();
+        $services = Service::where('user_id', Auth::user()->id)->orderby('id', 'desc')->get();
         return view('seller.manage-booking.list')->with(compact('services'));
     }
 
@@ -75,7 +75,7 @@ class ManageBookingController extends Controller
                 $serviceImage->save();
             }
         }
-        
+
         return redirect()->route('manage-booking.index')->with('message', 'Booking has been added successfully');
     }
 
@@ -87,9 +87,14 @@ class ManageBookingController extends Controller
      */
     public function show($id)
     {
-        $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
-        $service = Service::findOrFail($id);
-        return view('seller.manage-booking.edit')->with(compact('categories','service'));
+        $count = Service::where(['user_id' => Auth::user()->id, 'id' => $id])->count();
+        if ($count > 0) {
+            $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
+            $service = Service::findOrFail($id);
+            return view('seller.manage-booking.edit')->with(compact('categories', 'service'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -180,13 +185,18 @@ class ManageBookingController extends Controller
 
     public function view($id)
     {
-        $booking = Service::findOrFail($id);
-        return view('seller.manage-booking.view')->with(compact('booking'));
+        $count = Service::where(['user_id' => Auth::user()->id, 'id' => $id])->count();
+        if ($count > 0) {
+            $booking = Service::findOrFail($id);
+            return view('seller.manage-booking.view')->with(compact('booking'));
+        } else {
+            return redirect()->back();
+        }
     }
 
     public function deleteImage($id)
     {
         ServiceImage::find($id)->delete();
-        return response()->json(['message' => 'Image has been deleted successfully', 'status'=>true]);
+        return response()->json(['message' => 'Image has been deleted successfully', 'status' => true]);
     }
 }
