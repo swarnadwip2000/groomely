@@ -191,7 +191,7 @@ Groomely | HOME
                                 <!-- <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
                                 <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
                                 <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
-                                <li>{{substr($service['description'],0,55)}}...</li>
+                                <li>{{substr($service['description'],0,45)}}...</li>
                             </ul>
                             <a href="{{route('book-now', base64_encode($service['id']))}}" class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
                         </div>

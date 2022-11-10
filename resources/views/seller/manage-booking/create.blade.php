@@ -45,7 +45,7 @@ Groomly | Manage Booking Create
             <!--end row-->
             <div class="row">
                 <div class="col-xl-11 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Create Blog</h6>
+                    <h6 class="mb-0 text-uppercase">Create Booking</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">

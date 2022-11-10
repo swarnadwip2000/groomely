@@ -77,6 +77,20 @@ Groomly | Manage Booking
 @endsection
 
 @push('scripts')
+<script>
+    $('#example').DataTable({
+        "aaSorting": [],
+        "columnDefs": [{
+                "orderable": false,
+                "targets": [4,5]
+            },
+            {
+                "orderable": true,
+                "targets": [0,1, 2, 3,]
+            }
+        ]
+    });
+</script>
 
 <script>
     $('.toggle-class').change(function() {
@@ -96,5 +110,7 @@ Groomly | Manage Booking
             }
         });
     });
+    
 </script>
+
 @endpush

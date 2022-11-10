@@ -15,10 +15,10 @@
     <link href="{{asset('admin_assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
     <link href="{{asset('admin_assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
     <!--Data Tables -->
-	<link href="{{asset('admin_assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
-	<link href="{{asset('admin_assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- loader-->
     <link href="{{asset('admin_assets/css/pace.min.css')}}" rel="stylesheet" />
     <script src="{{asset('admin_assets/js/pace.min.js')}}"></script>
@@ -43,11 +43,11 @@
         <!--end sidebar-wrapper-->
         <!--header-->
         @include('admin.includes.header')
-        
+
         <!--end header-->
         <!--page-wrapper-->
         @yield('content')
-        
+
         <!--end page-wrapper-->
         <!--start overlay-->
         <div class="overlay toggle-btn-mobile"></div>
@@ -56,7 +56,7 @@
         <!--End Back To Top Button-->
         <!--footer -->
         @include('admin.includes.footer')
-        
+
         <!-- end footer -->
     </div>
     <!-- end wrapper -->
@@ -114,7 +114,7 @@
     <script src="{{asset('admin_assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
     <script src="{{asset('admin_assets/js/index.js')}}"></script>
     <!--Data Tables js-->
-	<script src="{{asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
@@ -157,17 +157,14 @@
         new PerfectScrollbar('.dashboard-top-countries');
     </script>
     <script>
-		$(document).ready(function () {
-			//Default data table
-			$('#example').DataTable({ order: [[1, "asc"]] });
-			var table = $('#example2').DataTable({
-				lengthChange: false,
-                order: false,
-				buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
-			});
-			table.buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
-		});
-	</script>
+        $(document).ready(function() {
+            //Default data table
+            $('#example').DataTable({
+                "aaSorting": []
+            });
+
+        });
+    </script>
     @stack('scripts')
 </body>
 

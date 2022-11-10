@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $count['customers'] = User::role('USER')->count();
-        $count['business_owners'] = User::role('BUSINESS_OWNER')->count();
+        $count['accepted'] = Appointment::where('status', 'accepted')->count();
+        $count['reshedule'] = Appointment::where('status', 'reshedule')->count();
+        $count['rejected'] = Appointment::where('status', 'rejected')->count();
         return view('seller.dashboard')->with(compact('count'));
     }
 

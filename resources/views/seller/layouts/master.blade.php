@@ -160,7 +160,7 @@
     <script>
 		$(document).ready(function () {
 			//Default data table
-            $('#example').DataTable({ order: [[0, "asc"]] });
+            
 			var table = $('#example2').DataTable({
 				lengthChange: false,
 				buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
