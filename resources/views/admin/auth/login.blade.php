@@ -32,7 +32,7 @@
                             <div class="col-xl-6">
                                 <div class="card-body p-5">
                                     <div class="text-center">
-                                        <img src="{{asset('admin_assets/images/logo-icon.png')}}" width="80" alt="">
+                                        <img src="{{asset('frontend_assets/images/logo.png')}}" width="180" alt="">
                                         <h3 class="mt-4 font-weight-bold">Welcome Back</h3>
                                     </div>
                                     <div class="">
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-6 bg-login-color d-flex align-items-center justify-content-center">
-                                <img src="{{asset('admin_assets/images/login-images/login-frent-img.jpg')}}" class="img-fluid" alt="...">
+                                <img src="{{asset('frontend_assets/images/about.jpg')}}" class="img-fluid" alt="...">
                             </div>
                         </div>
                         <!--end row-->

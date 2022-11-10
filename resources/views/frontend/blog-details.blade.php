@@ -30,7 +30,7 @@ Groomely | BLOG DETAILS
                             <h6>{{date('M d, Y', strtotime($blog['created_at']))}} <span>{{$blog->blogSlug($blog['blog_category_id'])->name}} </span></h6>
                             <h2>{{$blog['name']}}</h2>
                             <div class="blog_img_wrapper">
-                                <a href="#"><img src="{{asset('frontend_assets/images/abt1.jpg')}}" class="img-fluid" /></a>
+                                <a href="#"><img src="{{Storage::url($blog['image'])}}" class="img-fluid" /></a>
                             </div>
                             <div class="blog_desc">
                             {!! $blog['description'] !!}

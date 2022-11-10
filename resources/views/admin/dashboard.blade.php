@@ -63,7 +63,7 @@ Groomly | Dashboard
                                     </li>
                                     <li class="list-group-item d-flex align-items-center">
                                         <div class="d-flex align-items-center gap-2">
-                                            <div class="widgets-social bg-facebook rounded-circle text-white"><i class="bx bx-archive"></i>
+                                            <div class="widgets-social bg-dribbble rounded-circle text-white"><i class="bx bx-archive"></i>
                                             </div>
                                             <div class="">
                                                 <a href="{{route('business-owner.index')}}">
@@ -73,6 +73,32 @@ Groomly | Dashboard
                                             </div>
                                         </div>
                                         <div class="ms-auto">{{$count['business_owners']}}</div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="widgets-social bg-linkedin rounded-circle text-white"><i class="bx bx-menu"></i>
+                                            </div>
+                                            <div class="">
+                                                <a href="{{route('blogs.index')}}">
+                                                    <h6 class="mb-0">Blogs</h6>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">{{$count['blogs']}}</div>
+                                    </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="widgets-social bg-facebook rounded-circle text-white"><i class="fa fa-phone"></i>
+                                            </div>
+                                            <div class="">
+                                                <a href="{{route('contact-us.index')}}">
+                                                    <h6 class="mb-0">Contact Us</h6>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">{{$count['contact_us']}}</div>
                                     </li>
 
                                 </ul>

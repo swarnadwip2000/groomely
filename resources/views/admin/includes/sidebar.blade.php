@@ -50,7 +50,7 @@
                         <div class="menu-title">Blogs</div>
                     </a>
                     <ul>
-                        <li> <a class="" href="javascript:;"><i class="bx bx-right-arrow-alt"></i>Category</a>
+                        <li> <a class="{{Request::is('admin/blog-category*') ? 'mm-active' : ''}}" href="{{route('blog-category.index')}}"><i class="bx bx-right-arrow-alt"></i>Category</a>
                         <li class="{{Request::is('admin/blogs*') ? 'mm-active' : ''}}"> <a class="" href="{{route('blogs.index')}}"><i class="bx bx-right-arrow-alt"></i>List</a>
                         </li>
                     </ul>

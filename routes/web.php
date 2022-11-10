@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BusinessOwnerController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -79,6 +80,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('contact-us', AdminContactUsController::class);
                 Route::resource('blogs', AdminBlogController::class);
                 Route::resource('category', CategoryController::class);
+                Route::resource('blog-category', BlogCategoryController::class);
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
@@ -91,10 +93,14 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/changeBlogStatus', [AdminBlogController::class, 'changeBlogStatus'])->name('admin.blogs.change-status');
                 Route::get('/blog-delete/{id}', [AdminBlogController::class, 'delete'])->name('blogs.delete');
                 Route::post('/blog-update', [AdminBlogController::class, 'blogUpdate'])->name('admin.blogs.update');
+                // blog category
+                Route::get('/blog-category-delete/{id}', [BlogCategoryController::class, 'delete'])->name('blog-category.delete');
+                Route::post('/blog-category-update', [BlogCategoryController::class, 'blogCategoryUpdate'])->name('admin.blog-category.update');
                 // Service category
                 Route::get('/changeCategoryStatus', [CategoryController::class, 'changeCategoryStatus'])->name('admin.category.change-status');
                 Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
                 Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
+
         });
 });
 
