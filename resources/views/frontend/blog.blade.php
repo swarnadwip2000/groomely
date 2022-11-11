@@ -30,7 +30,7 @@ Groomely | BLOG
         @foreach($item as $blog)
             <div class="col-md-6">
                 <div class="single_blog">
-                    <h6>{{date('M d, Y', strtotime($blog['created_at']))}} <span>{{$blog->blogSlug($blog['blog_category_id'])->name}} </span></h6>
+                    <h6>{{date('M d, Y', strtotime($blog['created_at']))}} <span>{{$blog->blogSlug($blog['blog_category_id'])->name}} </span></h6> 
                     <h2>{{$blog['name']}}</h2>
                     <div class="blog_img_wrapper">
                         <a href="{{route('blog.details',['blogslug'=> $blog->blogSlug($blog['blog_category_id'])->slug,'slug'=>$blog['slug'], 'id'=>$blog['id']])}}"><img src="{{Storage::url($blog['image'])}}" class="img-fluid" /></a>

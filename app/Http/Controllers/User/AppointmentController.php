@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Mail\ResheduleAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
-class BookingController extends Controller
+class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +17,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('booking_date', 'asc')->with('service')->whereHas('service', function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        })->get();
-        return view('seller.booking-history.list')->with(compact('appointments'));
+        $appointments = Appointment::where('user_id', Auth::user()->id)->get();
+        return view('user.appointments.list')->with(compact('appointments'));
     }
 
     /**
@@ -91,41 +87,17 @@ class BookingController extends Controller
         //
     }
 
-    public function view($id)
-    {
-        $count = Appointment::where(['id' => $id])->whereHas('service', function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        })->count();
-
-        if ($count > 0) {
-            $appointment = Appointment::findOrFail($id);
-            return view('seller.booking-history.view')->with(compact('appointment'));
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function acceptBooking($id)
-    {
-        Appointment::where('id', $id)->update(['status' => 'accepted']);
-        $appointment = Appointment::find($id);
-        $email = $appointment['service']['user']['email'];
-        $maildata = [
-            'appointment' => $appointment,
-        ];
-        return redirect()->back()->with('message', 'Booking has been accepted successfully.');
-    }
-
     public function resheduleBooking($id)
     {
         $appointment = Appointment::findOrFail($id);
         $times = BookingTime::all();
-        return view('seller.booking-history.reshedule')->with(compact('appointment', 'times'));
+        return view('user.appointments.reshedule')->with(compact('appointment', 'times'));
     }
 
     public function resheduleStore(Request $request)
     {
         $request->validate([
+            'booking_time_id' => 'required',
             'booking_date' => 'required',
         ], [
             'booking_time_id.required' => 'Booking time filed is required.'
@@ -134,27 +106,27 @@ class BookingController extends Controller
         $appointment = Appointment::findOrFail($request->id);
         $appointment->booking_time_id = $request->booking_time_id;
         $appointment->booking_date = $request->booking_date;
-        $appointment->status = 'reshedule';
+        $appointment->status = 'process';
         $appointment->update();
-        $email = $appointment->email;
-        $maildata = [
-            'appointment' => $appointment,
-        ];
-        Mail::to($email)->send(new ResheduleAppointmentMail($maildata));
-        return redirect()->route('booking-history.index')->with('message', 'Booking has been resheduled successfully.');
+        return redirect()->route('user.index')->with('message', 'Appointment has been resheduled successfully. Please wait for barber response');
     }
 
-    public function bookingAccepted($id)
+    public function acceptAppointment($id)
     {
-        $id = base64_decode($id);
-        Appointment::where('id', $id)->update(['status' => 'accepted']);
-        return redirect()->back();
+        Appointment::where('id',$id)->update(['status'=>'accepted']);
+        return redirect()->back()->with('message', 'Appointment has been accepted successfully.');
     }
 
-    public function bookingRejected($id)
+    public function view($id)
     {
-        $id = base64_decode($id);
-        Appointment::where('id', $id)->update(['status' => 'rejected']);
-        return redirect()->back();
+
+        $count = Appointment::where(['id' => $id, 'user_id' => Auth::user()->id])->count();
+
+        if ($count > 0) {
+            $appointment = Appointment::findOrFail($id);
+            return view('user.appointments.view')->with(compact('appointment'));
+        } else {
+            return redirect()->back();
+        }
     }
 }

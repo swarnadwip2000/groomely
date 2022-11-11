@@ -112,6 +112,9 @@ Groomly | Manage Booking Create
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image(Drag and drop multiple image)<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
                                             <input type="file" class="form-control dropzone" id="image-upload" name="image[]" multiple>
+                                            @if($errors->has('image.*'))
+                                            <div class="error" style="color:red;">{{ $errors->first('image.*') }}</div>
+                                            @endif
                                             @if($errors->has('image'))
                                             <div class="error" style="color:red;">{{ $errors->first('image') }}</div>
                                             @endif

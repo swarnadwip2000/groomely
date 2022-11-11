@@ -1,6 +1,6 @@
-@extends('seller.layouts.master')
+@extends('user.layouts.master')
 @section('title')
-Groomly | Booking Reshedule
+Groomly | Appointment Reshedule
 @endsection
 @push('styles')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
@@ -27,15 +27,15 @@ Groomly | Booking Reshedule
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('booking-history.index')}}">Booking History</a>
+                            <li class="breadcrumb-item"><a href="{{route('appointments.index')}}">Booking History</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Reshedule Booking</li>
+                            <li class="breadcrumb-item active" aria-current="page">Appointment Reshedule</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('booking-history.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('appointments.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -45,18 +45,18 @@ Groomly | Booking Reshedule
             <!--end row-->
             <div class="row">
                 <div class="col-xl-11 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Reshedule Booking Time & Date</h6>
+                    <h6 class="mb-0 text-uppercase">Appointment Reshedule Time & Date</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('booking-history.reshedule.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('appointment.reshedule.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$appointment['id']}}">
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
                                         <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Booking Date<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <input type="date" class="form-control" onfocus="this.showPicker()" id="inputPhoneNo2" value="{{date('Y-m-d',strtotime($appointment['booking_date']))}}" name="booking_date" min="{{date('Y-m-d',strtotime('today'))}}">
+                                            <input type="date" class="form-control" id="inputPhoneNo2" onfocus="this.showPicker()" value="{{date('Y-m-d',strtotime($appointment['booking_date']))}}" name="booking_date" min="{{date('Y-m-d',strtotime('+1 day'))}}">
                                             @if($errors->has('booking_date'))
                                             <div class="error" style="color:red;">{{ $errors->first('booking_date') }}</div>
                                             @endif

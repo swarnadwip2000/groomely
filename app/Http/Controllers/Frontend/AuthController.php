@@ -76,7 +76,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
 
             if ($request->user_type == 'USER' && $user->hasRole('USER') && $user->status == 1) {
-                return redirect()->route('user.dashboard');
+                return redirect()->route('appointments.index');
             } else if ($request->user_type == 'BUSINESS_OWNER' && $user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                 return redirect()->route('seller.dashboard');
             } else {

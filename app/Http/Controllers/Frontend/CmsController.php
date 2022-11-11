@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Gallery;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,8 @@ class CmsController extends Controller
 
     public function gallery()
     {
-        return view('frontend.gallery');
+        $galleries = Gallery::all();
+        return view('frontend.gallery')->with(compact('galleries'));
     }
 
     public function package()

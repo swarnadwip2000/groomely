@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\BookingController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 use App\Http\Controllers\Seller\ManageBookingController;
+use App\Http\Controllers\user\AppointmentController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 
 /*
@@ -82,6 +84,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('blogs', AdminBlogController::class);
                 Route::resource('category', CategoryController::class);
                 Route::resource('blog-category', BlogCategoryController::class);
+                Route::resource('gallery', GalleryController::class);
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
@@ -101,6 +104,8 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/changeCategoryStatus', [CategoryController::class, 'changeCategoryStatus'])->name('admin.category.change-status');
                 Route::get('/category-delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
                 Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
+                // Gallery 
+                Route::get('/deleteImage/{id}', [GalleryController::class, 'deleteImage'])->name('admin.deleteImage');
 
         });
 });
@@ -141,5 +146,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'user'], function () {
         Route::get('/dashboard', [UserDashboardController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/profile', [UserDashboardController::class, 'profile'])->name('user.profile');
         Route::post('/profile-update', [UserDashboardController::class, 'profileUpdate'])->name('user.profile.update');
+
+        Route::resource('appointments', AppointmentController::class);
+
+        // appointments
+        Route::get('appointments/reshedule-booking/{id}', [AppointmentController::class, 'resheduleBooking'])->name('user.appointment.reshedule');
+        Route::post('appointments/reshedule-store', [AppointmentController::class, 'resheduleStore'])->name('appointment.reshedule.store');
+        Route::get('appointments/accept-appointment/{id}', [AppointmentController::class, 'acceptAppointment'])->name('user.appointment.accept');
+        Route::get('appointments/view/{id}', [AppointmentController::class, 'view'])->name('appointments.view');
 
 });

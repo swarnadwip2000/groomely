@@ -55,9 +55,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{Request::is('admin/gallery*') ? 'mm-active' : ''}}">
+                    <a href="{{route('gallery.index')}}">
+                        <div class="parent-icon icon-color-1"><i class="fa fa-image"></i>
+                        </div>
+                        <div class="menu-title">Gallery</div>
+                    </a>
+                </li>
                 <li class="{{Request::is('admin/contact-us*') ? 'mm-active' : ''}}">
                     <a href="{{route('contact-us.index')}}">
-                        <div class="parent-icon icon-color-4"><i class="fa-solid fa-phone"></i>
+                        <div class="parent-icon icon-color-4"><i class="fa fa-phone"></i>
                         </div>
                         <div class="menu-title">Contact Us</div>
                     </a>

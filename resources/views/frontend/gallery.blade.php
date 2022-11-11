@@ -28,53 +28,19 @@ Groomely | GALLERY
         <div class="row">
             <div class="col-md-12">
                 <div class="gallery_inner">
-                    <a href="{{asset('frontend_assets/images/gallery/gallery1.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery1.jpg')}}" />
+                    @php 
+                    $count = 1; 
+                    $count1 = 2;
+                    @endphp
+                    @foreach($galleries as $key => $gallery)
+                    <a href="{{Storage::url($gallery['image'])}}" data-lightbox="homePortfolio" @if($key%2 == 0) class="horizontal" @elseif($count%2 ==0) class="big" @elseif($count1%2 ==0) class="vertical" @endif>
+                        <img src="{{Storage::url($gallery['image'])}}" />
                     </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery2.jpg')}}" data-lightbox="homePortfolio" class="vertical">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery2.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery3.jpg')}}" data-lightbox="homePortfolio" class="horizontal">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery3.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery4.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery4.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery5.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery5.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery6.jpg')}}" data-lightbox="homePortfolio" class="big">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery6.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery7.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery7.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery8.jpg')}}" data-lightbox="homePortfolio" class="vertical">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery8.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery9.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery9.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery10.jpg')}}" data-lightbox="homePortfolio" class="horizontal">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery10.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery11.jpg')}}" data-lightbox="homePortfolio">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery11.jpg')}}" />
-                    </a>
-
-                    <a href="{{asset('frontend_assets/images/gallery/gallery12.jpg')}}" data-lightbox="homePortfolio" class="">
-                        <img src="{{asset('frontend_assets/images/gallery/gallery12.jpg')}}" />
-                    </a>
+                    @php
+                     $count++;
+                     $count1++;
+                     @endphp
+                    @endforeach
                 </div>
             </div>
         </div>

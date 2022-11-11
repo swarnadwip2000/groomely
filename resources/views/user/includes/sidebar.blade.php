@@ -25,8 +25,8 @@
                         <div class="menu-title">My Profile</div>
                     </a>
                 </li>
-                <li class="{{Request::is('seller/manage-booking*') ? 'mm-active' : ''}}">
-                    <a href="{{route('manage-booking.index')}}">
+                <li class="{{Request::is('user/appointments*') ? 'mm-active' : ''}}">
+                    <a href="{{route('appointments.index')}}">
                         <div class="parent-icon icon-color-4"><i class="fa fa-calendar"></i>
                         </div>
                         <div class="menu-title">Appointments</div>

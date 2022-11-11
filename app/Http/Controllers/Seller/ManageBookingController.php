@@ -154,6 +154,7 @@ class ManageBookingController extends Controller
             'rate' => 'required|numeric',
             'duration' => 'required',
             'description' => 'required',
+            'images' => 'required',
         ], [
             'category_id.required' => 'Category field is required.'
         ]);
