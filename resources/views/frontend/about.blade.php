@@ -44,7 +44,7 @@ Groomely | About us
                 <div class="cta_sec" style="background-image: url({{asset('frontend_assets/images/abt-cta.jpg')}}); background-repeat: no-repeat; background-size: cover">
                     <div class="cta_content text-center">
                         <h4>BOOK AN APPOINTMENT</h4>
-                        <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href=""><span>Book Your Appointment</span></a>
+                        <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="{{route('package')}}"><span>Book Your Appointment</span></a>
                     </div>
                 </div>
             </div>

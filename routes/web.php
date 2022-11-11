@@ -18,6 +18,7 @@ use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\BookingController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 use App\Http\Controllers\Seller\ManageBookingController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,3 +135,11 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         // resheduling accept & reject process
         Route::get('booking-accepted/{id}', [BookingController::class, 'bookingAccepted'])->name('booking.accepted');
         Route::get('booking-rejected/{id}', [BookingController::class, 'bookingRejected'])->name('booking.rejected');
+
+/*-----------------------------------------------------------User protal----------------------------------------------------------------------------- */
+Route::group(['prefix' => 'user', 'middleware' => 'user'], function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'dashboard'])->name('user.dashboard');
+        Route::get('/profile', [UserDashboardController::class, 'profile'])->name('user.profile');
+        Route::post('/profile-update', [UserDashboardController::class, 'profileUpdate'])->name('user.profile.update');
+
+});

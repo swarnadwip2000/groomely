@@ -24,7 +24,7 @@
                                 <p class="designattion mb-0">Available</p>
                             </div>
                             @if(!Auth::user()->profile_picture)
-                            <img src="{{asset('seller_assets/images/avatars/avatar-1.png')}}" class="user-img" alt="user avatar">
+                            <img src="{{asset('user_assets/images/avatars/avatar-1.png')}}" class="user-img" alt="user avatar">
                             @else
                             <img src="{{Storage::url(Auth::user()->profile_picture)}}" class="user-img" alt="user avatar">
                             @endif

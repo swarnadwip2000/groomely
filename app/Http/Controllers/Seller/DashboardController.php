@@ -12,9 +12,15 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $count['accepted'] = Appointment::where('status', 'accepted')->count();
-        $count['reshedule'] = Appointment::where('status', 'reshedule')->count();
-        $count['rejected'] = Appointment::where('status', 'rejected')->count();
+        $count['accepted'] = Appointment::where('status', 'accepted')->whereHas('service', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->count();
+        $count['reshedule'] = Appointment::where('status', 'reshedule')->whereHas('service', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->count();
+        $count['rejected'] = Appointment::where('status', 'rejected')->whereHas('service', function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        })->count();
         return view('seller.dashboard')->with(compact('count'));
     }
 
@@ -27,7 +33,7 @@ class DashboardController extends Controller
     {
         $request->validate([
             'name'     => 'required',
-            'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,'.Auth::user()->id,
+            'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,' . Auth::user()->id,
             'phone'    => 'required|numeric|min:10',
         ]);
 
@@ -46,14 +52,13 @@ class DashboardController extends Controller
             $request->validate([
                 'profile_picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
-            
-            $file= $request->file('profile_picture');
-            $filename= date('YmdHi').$file->getClientOriginalName();
+
+            $file = $request->file('profile_picture');
+            $filename = date('YmdHi') . $file->getClientOriginalName();
             $image_path = $request->file('profile_picture')->store('seller', 'public');
             $data->profile_picture = $image_path;
         }
         $data->save();
         return redirect()->back()->with('message', 'Profile updated successfully.');
     }
-    
 }

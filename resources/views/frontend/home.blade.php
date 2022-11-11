@@ -214,11 +214,7 @@ Groomely | HOME
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                         </div>
                         @if(!Auth::check() || !Auth::user()->hasRole('BUSINESS_OWNER'))
-                        @if(!Auth::check() || !Auth::user()->hasRole('USER'))
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>REGISTER NOW</span></a>
-                        @else
-                        <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>LOGOUT</span></a>
-                        @endif
                         @else
                         <a class="buttonfx slidebottomleft" href="{{route('seller.dashboard')}}"><span>Dashboard</span></a>
                         @endif

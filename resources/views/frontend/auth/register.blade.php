@@ -43,7 +43,6 @@
                                         <div class="login_form">
                                             <form action="{{route('register.store')}}" method="post">
                                                 @csrf
-                                                <!-- <input type="hidden" name="user_type" value="USER"> -->
                                                 <div class="row">
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
@@ -102,7 +101,7 @@
                                                          <input type="radio" id="html" name="user_type" value="USER">
                                                           <label for="html">User</label>
                                                           <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER">
-                                                          <label for="css">Seller</label><br>
+                                                          <label for="css">Partner</label><br>
                                                         @if($errors->has('user_type'))
                                                         <div class="error" style="color:red;">{{ $errors->first('user_type') }}</div>
                                                         @endif

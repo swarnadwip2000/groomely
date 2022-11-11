@@ -44,7 +44,6 @@
                                         <div class="login_form">
                                             <form action="{{route('login.check')}}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="user_type" value="USER">
                                                 <div class="">
                                                     <label for="exampleInputEmail1" class="form-label">User Name / Email ID</label>
                                                     <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -52,6 +51,21 @@
                                                 @if($errors->has('email'))
                                                 <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
                                                 @endif
+                                                <div class="row">
+                                                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                                                    <div class="">
+                                                    <label for="exampleInputFirstName" class="form-label">User Type    &nbsp;&nbsp;</label>
+                                                         <input type="radio" id="html" name="user_type" value="USER">
+                                                          <label for="html">User</label>
+                                                          <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER">
+                                                          <label for="css">Partner</label><br>
+                                                        @if($errors->has('user_type'))
+                                                        <div class="error" style="color:red;">{{ $errors->first('user_type') }}</div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                </div>
+
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Password</label>
                                                     <input type="password" id="txtPassword" name="password" class="form-control" name="txtPassword" />
@@ -60,6 +74,7 @@
                                                 @if($errors->has('password'))
                                                 <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
                                                 @endif
+
                                                 <button class="btn btn-lg btn-primary btn-block btn-login">LOGIN</button>
                                                 <div class="login-text">
                                                     <p>Don’t Have an Account? <a href="{{route('register')}}">SIGNUP NOW</a></p>

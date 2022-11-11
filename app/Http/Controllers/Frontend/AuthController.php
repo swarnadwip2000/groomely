@@ -65,17 +65,19 @@ class AuthController extends Controller
 
     public function loginCheck(Request $request)
     {
+        // return $request->all();
         $request->validate([
             'email'    => 'required|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
+            'user_type' => 'required'
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
 
-            if ($user->hasRole('USER') && $user->status == 1) {
-                return redirect()->route('package');
-            } else if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
+            if ($request->user_type == 'USER' && $user->hasRole('USER') && $user->status == 1) {
+                return redirect()->route('user.dashboard');
+            } else if ($request->user_type == 'BUSINESS_OWNER' && $user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                 return redirect()->route('seller.dashboard');
             } else {
                 Auth::logout();

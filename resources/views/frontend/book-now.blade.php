@@ -188,7 +188,7 @@ Groomely | Packages
                                 <div class="time-wrap">
                                     <div class="row">
                                         @foreach($times as $time)
-                                        <div class="col-xl-2 col-md-3 col-lg-3 col-6">
+                                        <div class="col-xl-4 col-md-3 col-lg-3 col-6">
                                             <div class="time-pick">
                                                 <input type="radio" id="tm{{$time['id']}}" name="booking_time_id" value="{{$time['id']}}" />
                                                 <label for="tm{{$time['id']}}">{{$time['time']}}</label>
