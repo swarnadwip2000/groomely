@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,7 @@ class DashboardController extends Controller
         $count['customers'] = User::role('USER')->count();
         $count['business_owners'] = User::role('BUSINESS_OWNER')->count();
         $count['blogs'] = Blog::count();
+        $count['gallery'] = Gallery::count();
         $count['contact_us'] = Contact::count();
         return view('admin.dashboard')->with(compact('count'));
     }

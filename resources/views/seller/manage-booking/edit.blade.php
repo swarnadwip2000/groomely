@@ -158,6 +158,9 @@ Groomly | Manage Booking Edit
                                             @if($errors->has('image'))
                                             <div class="error" style="color:red;">{{ $errors->first('image') }}</div>
                                             @endif
+                                            @if($errors->has('image.*'))
+                                            <div class="error" style="color:red;">{{ $errors->first('image.*') }}</div>
+                                            @endif
                                         </div>
 
                                     </div>

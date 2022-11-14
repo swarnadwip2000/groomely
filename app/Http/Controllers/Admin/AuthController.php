@@ -30,16 +30,16 @@ class AuthController extends Controller
             'email'    => 'required|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'password' => 'required|min:8'
         ]);
+        $remember_me = $request->has('remember_me') ? true : false;
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me  )) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
-                if ($user->hasRole('ADMIN') && $user->status == 1) {
-                    return redirect()->route('admin.dashboard');
-                } else {
-                    Auth::logout();
-                    return redirect()->back()->with('error', 'Email id & password was invalid!');
-                }
-            
+            if ($user->hasRole('ADMIN') && $user->status == 1) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                Auth::logout();
+                return redirect()->back()->with('error', 'Email id & password was invalid!');
+            }
         } else {
             return redirect()->back()->with('error', 'Email id & password was invalid!');
         }

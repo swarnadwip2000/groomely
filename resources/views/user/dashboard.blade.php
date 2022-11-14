@@ -20,7 +20,7 @@ Groomly | Dashboard
                                     <div class="card radius-15">
                                         <div class="card-body">
                                             <div class="card-title">
-                                                <h4 class="mb-0">Booking History statistics</h4>
+                                                <h4 class="mb-0">Appointment statistics</h4>
                                             </div>
                                             <hr />
                                             <div class="card-title"></div>
@@ -117,11 +117,11 @@ Groomly | Dashboard
     new Chart(document.getElementById("chart6"), {
         type: 'doughnut',
         data: {
-            labels: ['Accepted Booking','Rejected Booking', 'Reshedule Booking'],
+            labels: ['Accepted Booking', 'Reshedule Booking'],
             datasets: [{
                 label: "Statistics",
-                backgroundColor: ["green", "red", "yellow"],
-                data: [{{$count['accepted']}}, {{$count['rejected']}} , {{$count['reshedule']}}]
+                backgroundColor: ["#29e929",  "yellow"],
+                data: [{{$count['accepted']}}	 , {{$count['reshedule']}}]
             }]
         },
         options: {

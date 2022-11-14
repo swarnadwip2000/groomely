@@ -69,5 +69,22 @@ Groomly | Contact Us
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        //Default data table
+        $('#example').DataTable({
+            "aaSorting": [],
+            "columnDefs": [{
+                "orderable": false,
+                "targets": [3]
+            },
+            {
+                "orderable": true,
+                "targets": [0,1,2]
+            }
+        ]
+        });
 
+    });
+</script>
 @endpush

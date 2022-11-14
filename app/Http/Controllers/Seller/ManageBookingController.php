@@ -154,7 +154,6 @@ class ManageBookingController extends Controller
             'rate' => 'required|numeric',
             'duration' => 'required',
             'description' => 'required',
-            'images' => 'required',
         ], [
             'category_id.required' => 'Category field is required.'
         ]);
@@ -166,6 +165,12 @@ class ManageBookingController extends Controller
         $service->rate = $request->rate;
         $service->description = $request->description;
         $service->save();
+        $count = ServiceImage::where('service_id', $service->id)->count();
+        if ($count == 0) {
+            $request->validate([
+                'image' => 'required',
+            ]);
+        }
         if ($request->hasFile('image')) {
             foreach ($request->image as  $value) {
                 $request->validate([

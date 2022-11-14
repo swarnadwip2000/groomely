@@ -76,6 +76,24 @@ Groomly | Customers
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        //Default data table
+        $('#example').DataTable({
+            "aaSorting": [],
+            "columnDefs": [{
+                "orderable": false,
+                "targets": [ 4, 5]
+            },
+            {
+                "orderable": true,
+                "targets": [0,1,2,3]
+            }
+        ]
+        });
+
+    });
+</script>
 
 <script>
     $('.toggle-class').change(function() {

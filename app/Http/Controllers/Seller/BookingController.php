@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Mail\ResheduleAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
+use App\Models\ExtraService;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -96,10 +98,12 @@ class BookingController extends Controller
         $count = Appointment::where(['id' => $id])->whereHas('service', function ($query) {
             $query->where('user_id', Auth::user()->id);
         })->count();
-
+    
         if ($count > 0) {
             $appointment = Appointment::findOrFail($id);
-            return view('seller.booking-history.view')->with(compact('appointment'));
+            $services = Service::where('user_id', Auth::user()->id)->get();
+            $extraServices = ExtraService::where('appointment_id', $id)->get();
+            return view('seller.booking-history.view')->with(compact('appointment', 'services', 'extraServices'));
         } else {
             return redirect()->back();
         }
@@ -132,16 +136,21 @@ class BookingController extends Controller
         ]);
 
         $appointment = Appointment::findOrFail($request->id);
-        $appointment->booking_time_id = $request->booking_time_id;
-        $appointment->booking_date = $request->booking_date;
-        $appointment->status = 'reshedule';
-        $appointment->update();
-        $email = $appointment->email;
-        $maildata = [
-            'appointment' => $appointment,
-        ];
-        Mail::to($email)->send(new ResheduleAppointmentMail($maildata));
-        return redirect()->route('booking-history.index')->with('message', 'Booking has been resheduled successfully.');
+        $count = Appointment::where(['service_id' => $appointment->service_id, 'booking_date' => $request->booking_date, 'booking_time_id' => $request->booking_time_id])->count();
+        if ($count >= 25) {
+            return redirect()->back()->with('error', 'Slot not available!!');
+        } else {
+            $appointment->booking_time_id = $request->booking_time_id;
+            $appointment->booking_date = $request->booking_date;
+            $appointment->status = 'reshedule';
+            $appointment->update();
+            $email = $appointment->email;
+            $maildata = [
+                'appointment' => $appointment,
+            ];
+            Mail::to($email)->send(new ResheduleAppointmentMail($maildata));
+            return redirect()->route('booking-history.index')->with('message', 'Booking has been resheduled successfully.');
+        }
     }
 
     public function bookingAccepted($id)
@@ -156,5 +165,22 @@ class BookingController extends Controller
         $id = base64_decode($id);
         Appointment::where('id', $id)->update(['status' => 'rejected']);
         return redirect()->back();
+    }
+
+    public function addExtraService(Request $request)
+    {
+        $request->validate([
+            'service_id' => 'required',
+        ]);
+
+        $extraService = new ExtraService();
+        $extraService->service_id = $request->service_id;
+        $extraService->appointment_id = $request->appointment_id;
+        $extraService->save();
+        $service = Service::find($request->service_id);
+        $appointment = Appointment::find($request->appointment_id);
+        $appointment->amount = $appointment->amount + $service->rate;
+        $appointment->save();
+        return redirect()->back()->with('message', 'Extra service has been added succesfully.');
     }
 }

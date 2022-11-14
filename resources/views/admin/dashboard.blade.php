@@ -100,7 +100,19 @@ Groomly | Dashboard
                                         </div>
                                         <div class="ms-auto">{{$count['contact_us']}}</div>
                                     </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="widgets-social bg-dribbble rounded-circle text-white"><i class="fa fa-image"></i>
+                                            </div>
+                                            <div class="">
+                                                <a href="{{route('gallery.index')}}">
+                                                    <h6 class="mb-0">Gallery</h6>
+                                                </a>
 
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">{{$count['gallery']}}</div>
+                                    </li>
                                 </ul>
                                 <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                                     <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>

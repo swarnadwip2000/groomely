@@ -68,7 +68,24 @@ Groomly | Blog Category
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        //Default data table
+        $('#example').DataTable({
+            "aaSorting": [],
+            "columnDefs": [{
+                "orderable": false,
+                "targets": [ 2]
+            },
+            {
+                "orderable": true,
+                "targets": [0,1]
+            }
+        ]
+        });
 
+    });
+</script>
 <script>
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0;

@@ -104,17 +104,22 @@ class AppointmentController extends Controller
         ]);
 
         $appointment = Appointment::findOrFail($request->id);
-        $appointment->booking_time_id = $request->booking_time_id;
-        $appointment->booking_date = $request->booking_date;
-        $appointment->status = 'process';
-        $appointment->update();
-        return redirect()->route('user.index')->with('message', 'Appointment has been resheduled successfully. Please wait for barber response');
+        $count = Appointment::where(['service_id' => $appointment->service_id, 'booking_date' => $request->booking_date, 'booking_time_id' => $request->booking_time_id])->count();
+        if ($count >= 25) {
+            return redirect()->back()->with('error', 'Slot not available!!');
+        } else {
+            $appointment->booking_time_id = $request->booking_time_id;
+            $appointment->booking_date = $request->booking_date;
+            $appointment->status = 'process';
+            $appointment->update();
+            return redirect()->route('user.index')->with('message', 'Appointment has been resheduled successfully. Please wait for barber response');
+        }
     }
 
     public function acceptAppointment($id)
     {
-        Appointment::where('id',$id)->update(['status'=>'accepted']);
-        return redirect()->back()->with('message', 'Appointment has been accepted successfully.');
+        Appointment::where('id', $id)->update(['status' => 'accepted']);
+        return redirect()->back()->with('message', 'Appointment has been resheduled successfully.');
     }
 
     public function view($id)

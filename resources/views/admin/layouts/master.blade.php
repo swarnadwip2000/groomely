@@ -156,15 +156,7 @@
         new PerfectScrollbar('.dashboard-social-list');
         new PerfectScrollbar('.dashboard-top-countries');
     </script>
-    <script>
-        $(document).ready(function() {
-            //Default data table
-            $('#example').DataTable({
-                "aaSorting": []
-            });
-
-        });
-    </script>
+    
     @stack('scripts')
 </body>
 

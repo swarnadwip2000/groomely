@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BusinessOwnerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CmsController as AdminCmsController;
 use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -106,6 +107,9 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
                 // Gallery 
                 Route::get('/deleteImage/{id}', [GalleryController::class, 'deleteImage'])->name('admin.deleteImage');
+                Route::group(['prefix'=>'cms'], function(){
+                        Route::get('/home-cms', [AdminCmsController::class, 'homeCms'])->name('home.cms');
+                });
 
         });
 });
@@ -135,6 +139,7 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         Route::get('booking-history/accept-booking/{id}', [BookingController::class, 'acceptBooking'])->name('seller.booking.accept');
         Route::get('booking-history/reshedule-booking/{id}', [BookingController::class, 'resheduleBooking'])->name('seller.booking.reshedule');
         Route::post('booking-history/reshedule-store', [BookingController::class, 'resheduleStore'])->name('booking-history.reshedule.store');
+        Route::post('add-extra-service', [BookingController::class, 'addExtraService'])->name('add.extra.service');
 });
 
         // resheduling accept & reject process

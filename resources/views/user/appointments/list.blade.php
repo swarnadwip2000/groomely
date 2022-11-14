@@ -63,14 +63,14 @@ Groomly | Appointment List
                                     <td>{{date('h',strtotime($appointment['service']['duration']))}} hr {{date('i',strtotime($appointment['service']['duration']))}} mins</td>
                                     <td>${{$appointment['amount']}}</td>
                                     <td style="text-align: center;">@if($appointment['status'] == 'process')
-                                    <p style="background-color: #f3e1ac; width: auto;text-align: center;font-weight: 600; height: 23px; color: #a7882a;">Pending!!</p>
+                                    <p style="background-color: #f3e1ac; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #a7882a;">Pending!!</p>
                                         @elseif($appointment['status'] == 'accepted')
-                                        <p style="background-color: #b9e38f; width: auto;text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Accepted!!</p>
+                                        <p style="background-color: #b9e38f; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Accepted!!</p>
                                         @elseif($appointment['status'] == 'reshedule')
                                         <a href="{{route('user.appointment.accept', $appointment['id'])}}" onclick="return confirm('Do you want to accept the appointment?')"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
                                         <a href="{{route('user.appointment.reshedule', $appointment['id'])}}"><button class="btn btn-warning"><i class="fa fa-refresh"></i> Reshedule</button></a>
                                         @else
-                                        <p style="background-color: #dd9fa8; width: auto;text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Rejected!!</p>
+                                        <p style="background-color: #dd9fa8; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Rejected!!</p>
                                         @endif
                                     </td>
                                     <td align="center">

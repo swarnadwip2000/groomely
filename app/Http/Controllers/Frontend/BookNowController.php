@@ -56,7 +56,7 @@ class BookNowController extends Controller
                     'appointment' => $appointment,
                 ];
                 Mail::to($email)->send(new BookAppointmentMail($maildata));
-                return redirect()->route('package')->with('message', 'Thank you for booking slot. Our team will be in touch with you soon');
+                return redirect()->route('appointments.index')->with('message', 'Thank you for booking slot. Our team will be in touch with you soon');
             } else {
                 return redirect()->route('login')->with('error','Please login as a user!!');
             }

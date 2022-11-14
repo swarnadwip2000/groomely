@@ -63,17 +63,7 @@ Groomly | View Appointment Details
                                             <div class="col-md-12 m-1"><b>Service Name:-</b> {{$appointment['service']['name']}}</div>
                                             <div class="col-md-12 m-1"><b>Service Category:-</b> {{$appointment['service']['category']['name']}}</div>
                                             <div class="col-md-12 m-1"><b>Duration:- </b>{{date('h',strtotime($appointment['service']['duration']))}} hr {{date('i',strtotime($appointment['service']['duration']))}} mins</div>
-                                            @if($appointment['service']['images'])
-                                            <div class="col-md-12 m-1">
-                                            <b>Service image:- </b>
-                                                <div style="display: flex;">
-                                                    @foreach($appointment['service']['images'] as $image)
-                                                        <img src="{{Storage::url($image['slider_image'])}}" class="m-2" alt="Preview" style="width: 110px; height:110px">
-                                                        @break
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            @endif
+                                           
                                         </div>
                                     </div>
                                 </div>

@@ -64,11 +64,24 @@
                 </li>
                 <li class="{{Request::is('admin/contact-us*') ? 'mm-active' : ''}}">
                     <a href="{{route('contact-us.index')}}">
-                        <div class="parent-icon icon-color-4"><i class="fa fa-phone"></i>
+                        <div class="parent-icon icon-color-9"><i class="fa fa-phone"></i>
                         </div>
                         <div class="menu-title">Contact Us</div>
                     </a>
                 </li>
+
+                {{-- <li>
+                    <a class="has-arrow" href="javascript:;">
+                        <div class="parent-icon icon-color-10"><i class="fas fa-list"></i>
+                        </div>
+                        <div class="menu-title">CMS</div>
+                    </a>
+                    <ul>
+                        <li> <a class="{{Request::is('admin/cms*') ? 'mm-active' : ''}}" href="{{route('home.cms')}}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
+                        <li class="{{Request::is('admin/blogs*') ? 'mm-active' : ''}}"> <a class="" href="{{route('blogs.index')}}"><i class="bx bx-right-arrow-alt"></i>List</a>
+                        </li>
+                    </ul>
+                </li> --}}
             </ul>
             <!--end navigation-->
         </div>
