@@ -18,9 +18,6 @@ class DashboardController extends Controller
         $count['reshedule'] = Appointment::where('status', 'reshedule')->whereHas('service', function ($query) {
             $query->where('user_id', Auth::user()->id);
         })->count();
-        $count['rejected'] = Appointment::where('status', 'rejected')->whereHas('service', function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        })->count();
         return view('seller.dashboard')->with(compact('count'));
     }
 

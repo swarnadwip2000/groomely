@@ -117,11 +117,11 @@ Groomly | Dashboard
     new Chart(document.getElementById("chart6"), {
         type: 'doughnut',
         data: {
-            labels: ['Accepted Booking','Rejected Booking', 'Reshedule Booking'],
+            labels: ['Accepted Booking', 'Reshedule Booking'],
             datasets: [{
                 label: "Statistics",
-                backgroundColor: ["green", "red", "yellow"],
-                data: [{{$count['accepted']}}, {{$count['rejected']}} , {{$count['reshedule']}}]
+                backgroundColor: ["#22d922", "#c9c94a"],
+                data: [{{$count['accepted']}}, {{$count['reshedule']}}]
             }]
         },
         options: {
