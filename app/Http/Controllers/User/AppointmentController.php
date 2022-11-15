@@ -112,7 +112,7 @@ class AppointmentController extends Controller
             $appointment->booking_date = $request->booking_date;
             $appointment->status = 'process';
             $appointment->update();
-            return redirect()->route('user.index')->with('message', 'Appointment has been resheduled successfully. Please wait for barber response');
+            return redirect()->route('appointments.index')->with('message', 'Appointment has been resheduled successfully. Please wait for barber response');
         }
     }
 
