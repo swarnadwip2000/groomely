@@ -65,7 +65,9 @@ Groomly | Appointment List
                                     <td style="text-align: center;">@if($appointment['status'] == 'process')
                                     <p style="background-color: #f3e1ac; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #a7882a;">Pending!!</p>
                                         @elseif($appointment['status'] == 'accepted')
-                                        <p style="background-color: #b9e38f; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Accepted!!</p>
+                                        <p style="background-color: #8fddd2; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #0b4e68;">Accepted!!</p>
+                                        @elseif($appointment['status'] == 'completed')
+                                        <p style="background-color: #b9e38f; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Completed!!</p>
                                         @elseif($appointment['status'] == 'reshedule')
                                         <a href="{{route('user.appointment.accept', $appointment['id'])}}" onclick="return confirm('Do you want to accept the appointment?')"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
                                         <a href="{{route('user.appointment.reshedule', $appointment['id'])}}"><button class="btn btn-warning"><i class="fa fa-refresh"></i> Reshedule</button></a>

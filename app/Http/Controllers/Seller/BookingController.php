@@ -11,6 +11,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -113,10 +114,6 @@ class BookingController extends Controller
     {
         Appointment::where('id', $id)->update(['status' => 'accepted']);
         $appointment = Appointment::find($id);
-        $email = $appointment['service']['user']['email'];
-        $maildata = [
-            'appointment' => $appointment,
-        ];
         return redirect()->back()->with('message', 'Booking has been accepted successfully.');
     }
 
@@ -182,5 +179,25 @@ class BookingController extends Controller
         $appointment->amount = $appointment->amount + $service->rate;
         $appointment->save();
         return redirect()->back()->with('message', 'Extra service has been added succesfully.');
+    }
+
+    public function completeBooking($id)
+    {
+        Appointment::where('id', $id)->update(['status' => 'completed']);
+        return redirect()->back()->with('message', 'Booking has been completed successfully.');
+    }
+
+    public function sendInvoice($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $extraServices = ExtraService::where('appointment_id', $id)->get();
+        $data = [
+            'appointment' => $appointment,
+            'extraServices' => $extraServices
+        ];
+          
+        $pdf = PDF::loadView('seller.booking-history.invoice', $data);
+    
+        return $pdf->download('invoice.pdf');
     }
 }

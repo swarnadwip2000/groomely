@@ -64,15 +64,20 @@ Groomly | Booking History
                                         <a href="{{route('seller.booking.accept', $appointment['id'])}}" onclick="return confirm('Do you want to accept the appointment?')"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
                                         <a href="{{route('seller.booking.reshedule', $appointment['id'])}}"><button class="btn btn-warning"><i class="fa fa-refresh"></i> Reshedule</button></a>
                                         @elseif($appointment['status'] == 'accepted')
-                                        <p style="background-color: #b9e38f; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Accepted!!</p>
+                                        <a href="{{route('seller.booking.complete', $appointment['id'])}}" onclick="return confirm('Do you want to complete the appointment?')"><button class="btn btn-info"><i class="fa fa-check-square"></i> Complete</button></a>
                                         @elseif($appointment['status'] == 'reshedule')
-                                        <p style="background-color: #f3e1ac; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #a7882a;">Request for resheduling!!</p>
+                                        <p style="background-color: #f3e1ac; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #a7882a;">Reshedule</p>
+                                        @elseif($appointment['status'] == 'completed')
+                                        <p style="background-color: #b9e38f; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Completed</p>
                                         @else
-                                        <p style="background-color: #dd9fa8; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Appointment declain by the user!!</p>
+                                        <p style="background-color: #dd9fa8; width: auto; border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Cancelled</p>
                                         @endif
                                     </td>
                                     <td align="center">
-                                        <a href="{{route('booking-history.view', $appointment->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
+                                        <a title="View booking" href="{{route('booking-history.view', $appointment->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
+                                        @if($appointment['status'] == 'completed')
+                                        <a title="Send Invoice" href="{{route('seller.send-invoice', $appointment->id)}}"><i class="fa fa-paper-plane"></i></a>&nbsp;&nbsp;
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
@@ -94,11 +99,11 @@ Groomly | Booking History
         "aaSorting": [],
         "columnDefs": [{
                 "orderable": false,
-                "targets": [ 7, 8]
+                "targets": [6, 7]
             },
             {
                 "orderable": true,
-                "targets": [1, 2, 3, 4, 5, 6]
+                "targets": [0,1, 2, 3, 4, 5]
             }
         ]
     });

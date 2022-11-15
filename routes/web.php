@@ -137,9 +137,11 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         // Booking history
         Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');
         Route::get('booking-history/accept-booking/{id}', [BookingController::class, 'acceptBooking'])->name('seller.booking.accept');
+        Route::get('booking-history/complete-booking/{id}', [BookingController::class, 'completeBooking'])->name('seller.booking.complete');
         Route::get('booking-history/reshedule-booking/{id}', [BookingController::class, 'resheduleBooking'])->name('seller.booking.reshedule');
         Route::post('booking-history/reshedule-store', [BookingController::class, 'resheduleStore'])->name('booking-history.reshedule.store');
         Route::post('add-extra-service', [BookingController::class, 'addExtraService'])->name('add.extra.service');
+        Route::get('send-invoice/{id}', [BookingController::class, 'sendInvoice'])->name('seller.send-invoice');
 });
 
         // resheduling accept & reject process
