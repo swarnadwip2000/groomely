@@ -14,5 +14,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call([
+            // AssignRoleSeeder::class,
+            // AssignAdminSeeder::class,
+            // AddCategoriesSeeder::class,
+            addTimeShedule::class,
+            // addHomePageSeeder::class
+        ]);
+    
     }
 }
