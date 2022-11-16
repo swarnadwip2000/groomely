@@ -45,11 +45,13 @@ class EveryTimeQuote extends Command
             $time = Carbon::parse($lastTime[1]);
             $time->addMinutes(30);
             $newTime = date('h:i A', strtotime($time));
-            if ($newTime <= date('h:i A') ) {
-                dd('done');
-            } else {
-                dd('not done');
+            if ($appointment['BookTime'] == 'completed') {
+                if ($newTime <= date('h:i A') ) {
+                    Appointment::where('id', $appointment->id)->update(['status'=> 'cancelled']);
+                }
             }
+            
         }
+        $this->info('Successfully sent daily quote to everyone.');
     }
 }

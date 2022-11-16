@@ -19,6 +19,11 @@ class Appointment extends Model
         return $this->belongsTo(Service::class);
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function setBookingDateAttribute($value)
     {
         $this->attributes['booking_date'] = date('m/d/Y', strtotime($value));

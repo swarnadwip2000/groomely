@@ -7,10 +7,12 @@ use App\Mail\ResheduleAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\ExtraService;
+use App\Models\Invoice;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class BookingController extends Controller
 {
@@ -98,7 +100,7 @@ class BookingController extends Controller
         $count = Appointment::where(['id' => $id])->whereHas('service', function ($query) {
             $query->where('user_id', Auth::user()->id);
         })->count();
-    
+
         if ($count > 0) {
             $appointment = Appointment::findOrFail($id);
             $services = Service::where('user_id', Auth::user()->id)->get();
@@ -113,10 +115,6 @@ class BookingController extends Controller
     {
         Appointment::where('id', $id)->update(['status' => 'accepted']);
         $appointment = Appointment::find($id);
-        $email = $appointment['service']['user']['email'];
-        $maildata = [
-            'appointment' => $appointment,
-        ];
         return redirect()->back()->with('message', 'Booking has been accepted successfully.');
     }
 
@@ -182,5 +180,35 @@ class BookingController extends Controller
         $appointment->amount = $appointment->amount + $service->rate;
         $appointment->save();
         return redirect()->back()->with('message', 'Extra service has been added succesfully.');
+    }
+
+    public function completeBooking($id)
+    {
+        Appointment::where('id', $id)->update(['status' => 'completed']);
+        return redirect()->back()->with('message', 'Booking has been completed successfully.');
+    }
+
+    public function sendInvoice($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $extraServices = ExtraService::where('appointment_id', $id)->get();
+        $data = [
+            'appointment' => $appointment,
+            'extraServices' => $extraServices
+        ];
+        $options['isHtml5ParserEnabled'] = true;
+        $options['isRemoteEnabled'] = true;
+        $options['isPhpEnabled'] = true;
+        $options['defaultFont'] = 'sans-serif';
+
+        $data = new Invoice();
+        $pdf = PDF::loadView('seller.booking-history.invoice', $data)->setOptions($options)->setPaper('a3', 'potrait');
+        return $pdf;
+        $filename = date('YmdHi') . $pdf->getClientOriginalName();
+        $pdf_path = $pdf->file('invoice')->store('invoice', 'public');
+        $data->file = $pdf_path;
+        $data->appointment_id = $id;
+        $data->save();
+        return redirect()->back()->with('message', 'Invoice has been sent succesfully.');
     }
 }
