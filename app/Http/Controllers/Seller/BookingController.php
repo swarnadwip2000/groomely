@@ -12,6 +12,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 class BookingController extends Controller
@@ -201,14 +202,14 @@ class BookingController extends Controller
         $options['isPhpEnabled'] = true;
         $options['defaultFont'] = 'sans-serif';
 
-        $data = new Invoice();
         $pdf = PDF::loadView('seller.booking-history.invoice', $data)->setOptions($options)->setPaper('a3', 'potrait');
-        return $pdf;
-        $filename = date('YmdHi') . $pdf->getClientOriginalName();
-        $pdf_path = $pdf->file('invoice')->store('invoice', 'public');
-        $data->file = $pdf_path;
+        $data = new Invoice();
+        $content = $pdf->download()->getOriginalContent();
+        $filename = 'en'. $id . date('YmdHi').'.pdf';
+        Storage::put('public/invoice/'.$filename, $content);
+        $data->file = 'invoice/'.$filename;
         $data->appointment_id = $id;
         $data->save();
-        return redirect()->back()->with('message', 'Invoice has been sent succesfully.');
+        return redirect()->back()->with('message', 'Invoice has been sent succesfully');    
     }
 }

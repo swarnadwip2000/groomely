@@ -16,10 +16,19 @@ class BookNowController extends Controller
 {
     public function bookNow($id)
     {
-        $id = base64_decode($id);
-        $service = Service::findOrFail($id);
-        $times = BookingTime::get();
-        return view('frontend.book-now')->with(compact('service','times'));
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error','Please login first to booked the appointment!!');
+        }else{
+            if (Auth::user()->hasRole('USER')) {
+                $id = base64_decode($id);
+                $service = Service::findOrFail($id);
+                $times = BookingTime::get();
+                return view('frontend.book-now')->with(compact('service','times'));
+            } else {
+                return redirect()->route('login')->with('error','Please login as a user!!');
+            }
+        }
+        
     }
 
     public function submitAppointment(Request $request)
