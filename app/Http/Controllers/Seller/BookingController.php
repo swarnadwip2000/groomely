@@ -7,6 +7,7 @@ use App\Mail\ResheduleAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\ExtraService;
+use App\Models\Invoice;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,7 +100,7 @@ class BookingController extends Controller
         $count = Appointment::where(['id' => $id])->whereHas('service', function ($query) {
             $query->where('user_id', Auth::user()->id);
         })->count();
-    
+
         if ($count > 0) {
             $appointment = Appointment::findOrFail($id);
             $services = Service::where('user_id', Auth::user()->id)->get();
@@ -195,9 +196,19 @@ class BookingController extends Controller
             'appointment' => $appointment,
             'extraServices' => $extraServices
         ];
-          
-        $pdf = PDF::loadView('seller.booking-history.invoice', $data);
-    
-        return $pdf->download('invoice.pdf');
+        $options['isHtml5ParserEnabled'] = true;
+        $options['isRemoteEnabled'] = true;
+        $options['isPhpEnabled'] = true;
+        $options['defaultFont'] = 'sans-serif';
+
+        $data = new Invoice();
+        $pdf = PDF::loadView('seller.booking-history.invoice', $data)->setOptions($options)->setPaper('a3', 'potrait');
+        return $pdf;
+        $filename = date('YmdHi') . $pdf->getClientOriginalName();
+        $pdf_path = $pdf->file('invoice')->store('invoice', 'public');
+        $data->file = $pdf_path;
+        $data->appointment_id = $id;
+        $data->save();
+        return redirect()->back()->with('message', 'Invoice has been sent succesfully.');
     }
 }
