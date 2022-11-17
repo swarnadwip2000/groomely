@@ -10,11 +10,11 @@ class EveryTimeQuote extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
+     * 
+     * @var string 
      */
-    protected $signature = 'time:quote';
-
+     protected $signature = 'time:quote';
+     
     /**
      * The console command description.
      *
