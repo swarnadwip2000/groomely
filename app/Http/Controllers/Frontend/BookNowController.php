@@ -69,5 +69,6 @@ class BookNowController extends Controller
                 return redirect()->route('login')->with('error', 'Please login as a user!!');
             }
         }
-    }
+    } 
 }
+ 
