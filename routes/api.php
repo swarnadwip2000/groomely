@@ -28,6 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+    Route::post('category-details', [AuthController::class, 'category']);
     
     //User
     Route::group(['prefix' => 'user','middleware'=>'auth:api'], function () {

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class SellerController extends Controller
 {
-
+    use SoftDeletes;
     public $successStatus = 200;
 
     public function sellerdetail()
@@ -28,32 +28,7 @@ class SellerController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // return $request;
-        $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'email'    => 'required|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'password' => 'required|min:8',
-            'phone'    => 'required|min:10',
-            'zipcode'  => 'required',
-            
-        ],[
-            'email.email' => 'The email format is invalid.',
-        ]);
-
-        if ($validator->fails()) {
-            $errors['status_code'] = 401;
-            $errors['message'] = [];
-            $data = explode(',', $validator->errors());
-
-            for ($i = 0; $i < count($validator->errors()); $i++) {
-                // return $data[$i];
-                $dk = explode('["', $data[$i]);
-                $ck = explode('"]', $dk[1]);
-                $errors['message'][$i] = $ck[0];
-            }
-            return response()->json(['error' => $errors, 'status' => false], 401);
-        }
-
+        
         $user = User::where('id', Auth::user()->id)->first();
         if ($request->hasFile('image')) {
             $validator = Validator::make($request->all(), [
@@ -72,7 +47,9 @@ class SellerController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->zipcode = $request->zipcode;
+        if($request->password !=''){
         $user->password	 = bcrypt($request->password);
+        }
         $user->save();
         return response()->json(['data' => $user, 'status' => true, 'message' => 'Profile updated successfully'], $this->successStatus);
     }
@@ -80,8 +57,10 @@ class SellerController extends Controller
     public function deleteProfile()
     {
         // return "okkk";
-    return    $count = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->first();
+        $user->delete();
 
-
+        return response()->json(['data' => $user, 'status' => true, 'message' => 'Profile deleted successfully'], $this->successStatus);
+        
     }
 }

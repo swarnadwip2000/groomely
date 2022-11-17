@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Category;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -106,5 +108,13 @@ class AuthController extends Controller
         $user->createToken('accessToken')->accessToken;
         $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
         return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered sucessfully'], $this->successStatus);
+    }
+
+    public function category()
+    {
+        // return "okkk";
+        $category = Category::select('id','name','slug','icon')->where('status',1)->get(); 
+        return response()->json(['data' => $category, 'status' => true, 'message' => 'Category find successfully'], $this->successStatus);
+
     }
 }
