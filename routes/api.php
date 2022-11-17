@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\User\DetailsController;
+use App\Http\Controllers\API\Seller\SellerController;
 use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\User\ProfileController;
 
@@ -34,5 +35,15 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('update-profile', [ProfileController::class, 'updateProfile']);
     });
 
+    //seller
+    Route::group(['prefix' => 'seller','middleware'=>'auth:api'], function () {
+        Route::post('seller-detail', [SellerController::class, 'sellerdetail']);
+        Route::post('profile-update', [SellerController::class, 'updateProfile']);
+        Route::post('profile-delete', [SellerController::class, 'deleteProfile']);
+    });
+    
     Route::get('all-user-details', [DetailsController::class, 'allUserDetails']);
 });
+
+
+
