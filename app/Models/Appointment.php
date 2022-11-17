@@ -24,6 +24,11 @@ class Appointment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class)->orderBy('id', 'desc');
+    }
+
     public function setBookingDateAttribute($value)
     {
         $this->attributes['booking_date'] = date('m/d/Y', strtotime($value));

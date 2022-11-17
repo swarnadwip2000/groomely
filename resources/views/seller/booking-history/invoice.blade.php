@@ -182,9 +182,9 @@
                                 <font
                                     style=" font-size:16px;color: #2022e2;font-weight: 600; width:100%; display: inline-block;">
                                    @if (count($extraServices) > 0)
-								   $ {{ $appointment['service']['rate'] +  $extraRate }}
+								   ${{ $appointment['service']['rate'] +  $extraRate }}
 									@else
-									$ {{ $appointment['service']['rate'] }}
+									${{ $appointment['service']['rate'] }}
 								   @endif </font>
                             </td>
                         </tr>

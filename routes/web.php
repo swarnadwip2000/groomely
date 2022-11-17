@@ -161,5 +161,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'user'], function () {
         Route::post('appointments/reshedule-store', [AppointmentController::class, 'resheduleStore'])->name('appointment.reshedule.store');
         Route::get('appointments/accept-appointment/{id}', [AppointmentController::class, 'acceptAppointment'])->name('user.appointment.accept');
         Route::get('appointments/view/{id}', [AppointmentController::class, 'view'])->name('appointments.view');
+        Route::get('download-invoice/{id}', [AppointmentController::class, 'downloadInvoice'])->name('download.invoice');
 
 });

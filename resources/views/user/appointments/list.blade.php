@@ -67,12 +67,19 @@ Groomly | Appointment List
                                         @elseif($appointment['status'] == 'accepted')
                                         <p style="background-color: #8fddd2; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #0b4e68;">Accepted!!</p>
                                         @elseif($appointment['status'] == 'completed')
+                                        @if (count($appointment['invoices']) > 0)
+                                        @foreach ($appointment['invoices'] as $invoice)
+                                        <a title="download invoice" href="{{ route('download.invoice',$invoice->id) }}"><i class="fas fa-download"></i></a>
+                                        @break
+                                        @endforeach
+                                        @else
                                         <p style="background-color: #b9e38f; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Completed!!</p>
+                                        @endif
                                         @elseif($appointment['status'] == 'reshedule')
                                         <a href="{{route('user.appointment.accept', $appointment['id'])}}" onclick="return confirm('Do you want to accept the appointment?')"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
                                         <a href="{{route('user.appointment.reshedule', $appointment['id'])}}"><button class="btn btn-warning"><i class="fa fa-refresh"></i> Reshedule</button></a>
                                         @else
-                                        <p style="background-color: #dd9fa8; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Rejected!!</p>
+                                        <p style="background-color: #dd9fa8; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Cancelled!!</p>
                                         @endif
                                     </td>
                                     <td align="center">

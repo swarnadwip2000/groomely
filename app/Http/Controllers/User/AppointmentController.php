@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\BookingTime;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,7 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::where('user_id', Auth::user()->id)->get();
+
         return view('user.appointments.list')->with(compact('appointments'));
     }
 
@@ -133,5 +135,14 @@ class AppointmentController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function downloadInvoice($id)
+    {
+        $invoice = Invoice::find($id);
+        $file_path = $invoice->file;
+        $myFile = storage_path('app/public/'.$file_path);
+    	return response()->download($myFile);
+
     }
 }
