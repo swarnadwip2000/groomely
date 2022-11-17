@@ -210,7 +210,7 @@ Groomely | HOME
                 <div class="col-lg-7 col-xxl-6">
                     <div class="become_text">
                         <div class="heading_hp text-left">
-                            <h2>became a seller</h2>
+                            <h2>become a seller</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
                         </div>
                         @if(!Auth::check() || !Auth::user()->hasRole('BUSINESS_OWNER'))
