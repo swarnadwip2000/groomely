@@ -28,9 +28,9 @@ class DetailsController extends Controller
 
     public function allUserDetails()
     {
-        $count = User::count();
-        if ($count > 0) {
-            $user = User::select('id', 'name', 'email')->get();
+        $count = User::role(['USER','BUSINESS_OWNER'])->get();
+        if ($count !='') {
+            $user = User::role(['USER','BUSINESS_OWNER'])->select('id', 'name', 'email','phone','zipcode','profile_picture')->get();
             return response()->json(['status' => true, 'message' => 'Users details found successfully.', 'data' => $user], $this->successStatus);
         } else {
             return response()->json(['messager' => 'No detail found!', 'status' => false], 401);

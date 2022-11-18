@@ -110,11 +110,5 @@ class AuthController extends Controller
         return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered sucessfully'], $this->successStatus);
     }
 
-    public function category()
-    {
-        // return "okkk";
-        $category = Category::select('id','name','slug','icon')->where('status',1)->get(); 
-        return response()->json(['data' => $category, 'status' => true, 'message' => 'Category find successfully'], $this->successStatus);
-
-    }
+    
 }

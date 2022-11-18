@@ -17,9 +17,9 @@ class SellerController extends Controller
     public function sellerdetail()
     {
         // return "okkk";
-        $count = User::where('id', Auth::user()->id)->count();
+        $count = User::where('id', Auth::user()->id)->role(['BUSINESS_OWNER'])->count();
         if ($count > 0) {
-            $user = User::where('id', Auth::user()->id)->select('id', 'name', 'email','phone','zipcode','shop_name','profile_picture')->first();
+            $user = User::where('id', Auth::user()->id)->select('id', 'name', 'email','phone','zipcode','shop_name','profile_picture')->role(['BUSINESS_OWNER'])->first();
             return response()->json(['data' => $user, 'status' => true, 'message' => 'Details found successfully.'], $this->successStatus);
         } else {
             return response()->json(['messager' => 'No detail found!', 'status' => false], 401);
@@ -29,7 +29,7 @@ class SellerController extends Controller
     public function updateProfile(Request $request)
     {
         
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->role(['BUSINESS_OWNER'])->first();
         if ($request->hasFile('image')) {
             $validator = Validator::make($request->all(), [
                 'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
@@ -57,7 +57,7 @@ class SellerController extends Controller
     public function deleteProfile()
     {
         // return "okkk";
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id)->role(['BUSINESS_OWNER'])->first();
         $user->delete();
 
         return response()->json(['data' => $user, 'status' => true, 'message' => 'Profile deleted successfully'], $this->successStatus);

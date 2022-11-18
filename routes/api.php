@@ -7,6 +7,7 @@ use App\Http\Controllers\API\User\DetailsController;
 use App\Http\Controllers\API\Seller\SellerController;
 use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\User\ProfileController;
+use App\Http\Controllers\API\category\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,11 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
-    Route::post('category-details', [AuthController::class, 'category']);
+    Route::post('category-details', [ApiController::class, 'category']);
+    Route::post('servicetype-details', [ApiController::class, 'servicetype']);
+    Route::post('booking-times', [ApiController::class, 'bookingtimes']);
+    Route::post('service-details', [ApiController::class, 'servicedetails']);
+
     
     //User
     Route::group(['prefix' => 'user','middleware'=>'auth:api'], function () {
