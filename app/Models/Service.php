@@ -14,6 +14,11 @@ class Service extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function serviceType()
+    {
+        return $this->belongsTo(ServiceType::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -40,7 +40,8 @@ Groomly | Manage Booking
                         <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Service Category</th>
+                                    <th>Category</th>
+                                    <th>Service Type</th>
                                     <th>Rate($)</th>
                                     <th>Duration</th>
                                     <th>Status</th>
@@ -52,6 +53,7 @@ Groomly | Manage Booking
                                 <tr>
                                     <td>{{$service['name']}}</td>
                                     <td>{{$service['category']['name']}}</td>
+                                    <td>{{$service['serviceType']['name']}}</td>
                                     <td>${{$service['rate']}}</td>
                                     <td>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</td>
                                     <td>

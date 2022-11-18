@@ -36,7 +36,7 @@
                     <a href="{{route('booking-history.index')}}">
                         <div class="parent-icon icon-color-3"><i class="fa fa-history"></i>
                         </div>
-                        <div class="menu-title">Bookin History</div>
+                        <div class="menu-title">Booking History</div>
                     </a>
                 </li>
             </ul>

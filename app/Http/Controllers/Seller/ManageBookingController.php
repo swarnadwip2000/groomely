@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Service;
 use App\Models\ServiceImage;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,8 @@ class ManageBookingController extends Controller
     public function create()
     {
         $categories = Category::where('status', 1)->get();
-        return view('seller.manage-booking.create')->with(compact('categories'));
+        $serviceTypes = ServiceType::where('status', 1)->get();
+        return view('seller.manage-booking.create')->with(compact('categories', 'serviceTypes'));
     }
 
     /**
@@ -44,18 +46,21 @@ class ManageBookingController extends Controller
         // return $request->all();
         $request->validate([
             'category_id' => 'required',
+            'service_type_id' => 'required',
             'name' => 'required',
             'rate' => 'required|numeric',
             'duration' => 'required',
             'image' => 'required',
             'description' => 'required',
         ], [
-            'category_id.required' => 'Category field is required.'
+            'category_id.required' => 'Please select a category.',
+            'service_type_id.required' => 'Please select a service type.'
         ]);
 
         $service = new Service;
         $service->name = $request->name;
         $service->user_id = Auth::user()->id;
+        $service->service_type_id = $request->service_type_id;
         $service->category_id = $request->category_id;
         $service->duration = $request->duration;
         $service->rate = $request->rate;
@@ -91,7 +96,8 @@ class ManageBookingController extends Controller
         if ($count > 0) {
             $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
             $service = Service::findOrFail($id);
-            return view('seller.manage-booking.edit')->with(compact('categories', 'service'));
+            $serviceTypes = ServiceType::where('status', 1)->get();
+            return view('seller.manage-booking.edit')->with(compact('categories', 'service', 'serviceTypes'));
         } else {
             return redirect()->back();
         }
@@ -150,17 +156,20 @@ class ManageBookingController extends Controller
         // return $request->all();
         $request->validate([
             'category_id' => 'required',
+            'service_type_id' => 'required',
             'name' => 'required',
             'rate' => 'required|numeric',
             'duration' => 'required',
             'description' => 'required',
         ], [
-            'category_id.required' => 'Category field is required.'
+            'category_id.required' => 'Please select a category.',
+            'service_type_id.required' => 'Please select a service type.'
         ]);
 
         $service = Service::findOrFail($request->id);
         $service->name = $request->name;
         $service->category_id = $request->category_id;
+        $service->service_type_id = $request->service_type_id;
         $service->duration = $request->duration;
         $service->rate = $request->rate;
         $service->description = $request->description;

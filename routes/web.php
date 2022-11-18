@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
@@ -86,6 +87,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('category', CategoryController::class);
                 Route::resource('blog-category', BlogCategoryController::class);
                 Route::resource('gallery', GalleryController::class);
+                Route::resource('service-type', ServiceTypeController::class);
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');
@@ -107,6 +109,11 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/category-update', [CategoryController::class, 'categoryUpdate'])->name('admin.category.update');
                 // Gallery 
                 Route::get('/deleteImage/{id}', [GalleryController::class, 'deleteImage'])->name('admin.deleteImage');
+                // Service Type
+                Route::get('/changeServiceTypeStatus', [ServiceTypeController::class, 'changeServiceTypeStatus'])->name('admin.service-type.change-status');
+                Route::get('/service-type-delete/{id}', [ServiceTypeController::class, 'delete'])->name('service-type.delete');
+                Route::post('/service-type-update', [ServiceTypeController::class, 'serviceTypeUpdate'])->name('admin.service-type.update');
+
                 Route::group(['prefix'=>'cms'], function(){
                         Route::get('/home-cms', [AdminCmsController::class, 'homeCms'])->name('home.cms');
                 });
