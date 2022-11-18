@@ -68,6 +68,21 @@ Groomly | Manage Booking Create
 
                                     </div>
                                     <div class="row mb-3">
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Type<span style="color:red">*<span></label>
+                                        <div class="col-sm-9">
+                                            <select name="service_type_id" id="" class="form-control">
+                                                <option value="">Select A Service Type</option>
+                                                @foreach($serviceTypes as $serviceType)
+                                                <option value="{{$serviceType['id']}}">{{$serviceType['name']}}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('service_type_id'))
+                                            <div class="error" style="color:red;">{{ $errors->first('service_type_id') }}</div>
+                                            @endif
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Your Name">
