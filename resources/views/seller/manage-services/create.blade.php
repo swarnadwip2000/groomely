@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-Groomly | Manage Booking Create
+Groomly | Manage Services Create
 @endsection
 @push('styles')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@ Groomly | Manage Booking Create
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('manage-booking.index')}}">Manage Booking</a>
+                            <li class="breadcrumb-item"><a href="{{route('manage-services.index')}}">Manage Services</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
@@ -35,7 +35,7 @@ Groomly | Manage Booking Create
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('manage-booking.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('manage-services.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -45,11 +45,11 @@ Groomly | Manage Booking Create
             <!--end row-->
             <div class="row">
                 <div class="col-xl-11 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Create Booking</h6>
+                    <h6 class="mb-0 text-uppercase">Create Services</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('manage-booking.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('manage-services.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">

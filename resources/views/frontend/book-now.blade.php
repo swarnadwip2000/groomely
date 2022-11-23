@@ -180,7 +180,7 @@ Groomely | Packages
                             <div class="col-xl-6">
                                 <div class="date-wrap">
                                     <div id="datepicker"></div>
-                                <input type="hidden" name="booking_date" id="booking-date">
+                                <input type="hidden" name="booking_date" id="booking-date" value="{{ date('m/d/Y') }}">
                                 <input type="hidden" name="amount" id="" value="{{$service['rate']}}">
                                 </div>
                             </div>

@@ -36,6 +36,7 @@ class BookNowController extends Controller
             return redirect()->route('login')->with('error', 'Please login first to booked the appointment!!');
         } else {
             if (Auth::user()->hasRole('USER')) {
+                // return $request->all();
                 $request->validate([
                     'booking_date' => 'required',
                     'booking_time_id' => 'required',

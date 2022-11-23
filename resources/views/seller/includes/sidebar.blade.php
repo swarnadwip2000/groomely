@@ -25,11 +25,11 @@
                         <div class="menu-title">My Profile</div>
                     </a>
                 </li>
-                <li class="{{Request::is('seller/manage-booking*') ? 'mm-active' : ''}}">
-                    <a href="{{route('manage-booking.index')}}">
+                <li class="{{Request::is('seller/manage-services*') ? 'mm-active' : ''}}">
+                    <a href="{{route('manage-services.index')}}">
                         <div class="parent-icon icon-color-4"><i class="fa fa-calendar"></i>
                         </div>
-                        <div class="menu-title">Manage Booking</div>
+                        <div class="menu-title">Manage Services</div>
                     </a>
                 </li>
                 <li class="{{Request::is('seller/booking-history*') ? 'mm-active' : ''}}">

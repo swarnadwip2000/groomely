@@ -20,7 +20,7 @@ class ManageBookingController extends Controller
     public function index()
     {
         $services = Service::where('user_id', Auth::user()->id)->orderby('id', 'desc')->get();
-        return view('seller.manage-booking.list')->with(compact('services'));
+        return view('seller.manage-services.list')->with(compact('services'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ManageBookingController extends Controller
     {
         $categories = Category::where('status', 1)->get();
         $serviceTypes = ServiceType::where('status', 1)->get();
-        return view('seller.manage-booking.create')->with(compact('categories', 'serviceTypes'));
+        return view('seller.manage-services.create')->with(compact('categories', 'serviceTypes'));
     }
 
     /**
@@ -81,7 +81,7 @@ class ManageBookingController extends Controller
             }
         }
 
-        return redirect()->route('manage-booking.index')->with('message', 'Booking has been added successfully');
+        return redirect()->route('manage-services.index')->with('message', 'Booking has been added successfully');
     }
 
     /**
@@ -97,7 +97,7 @@ class ManageBookingController extends Controller
             $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
             $service = Service::findOrFail($id);
             $serviceTypes = ServiceType::where('status', 1)->get();
-            return view('seller.manage-booking.edit')->with(compact('categories', 'service', 'serviceTypes'));
+            return view('seller.manage-services.edit')->with(compact('categories', 'service', 'serviceTypes'));
         } else {
             return redirect()->back();
         }
@@ -195,7 +195,7 @@ class ManageBookingController extends Controller
             }
         }
 
-        return redirect()->route('manage-booking.index')->with('message', 'Booking has been updated successfully.');
+        return redirect()->route('manage-services.index')->with('message', 'Booking has been updated successfully.');
     }
 
     public function view($id)
@@ -203,7 +203,7 @@ class ManageBookingController extends Controller
         $count = Service::where(['user_id' => Auth::user()->id, 'id' => $id])->count();
         if ($count > 0) {
             $booking = Service::findOrFail($id);
-            return view('seller.manage-booking.view')->with(compact('booking'));
+            return view('seller.manage-services.view')->with(compact('booking'));
         } else {
             return redirect()->back();
         }
