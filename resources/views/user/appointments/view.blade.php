@@ -40,21 +40,22 @@ Groomly | View Appointment Details
                                             <div class="col-md-12 m-1">
                                                 <h5><u>Appointment Details</u></h5>
                                             </div>
-                                            <div class="col-md-12 m-1"><b>User Name:-</b>{{$appointment['name']}}</div>
-                                            <div class="col-md-12 m-1"><b>User Email:- </b>{{$appointment['email']}}</div>
-                                            <div class="col-md-12 m-1"><b> User Phone Number:- </b>{{$appointment['phone']}}</div>
-                                            <div class="col-md-12 m-1"><b>appointment Date:- </b>{{date('d M, Y',strtotime($appointment['booking_date']))}}</div>
-                                            <div class="col-md-12 m-1"><b>appointment time:- </b>{{$appointment['bookTime']['time']}}</div>
-                                            <div class="col-md-12 m-1"><b>Amount:- </b>${{$appointment['amount']}}</div>
-                                            <div class="col-md-12 m-1"><b>Staus:- </b>{{$appointment['status']}}</div>
+                                            <div class="col-md-12 m-1"><b>User Name:-</b> {{$appointment['name']}}</div>
+                                            <div class="col-md-12 m-1"><b>User Email:- </b> {{$appointment['email']}}</div>
+                                            <div class="col-md-12 m-1"><b> User Phone Number:- </b> {{$appointment['phone']}}</div>
+                                            <div class="col-md-12 m-1"><b>appointment Date:- </b> {{date('d M, Y',strtotime($appointment['booking_date']))}}</div>
+                                            <div class="col-md-12 m-1"><b>appointment time:- </b> {{$appointment['bookTime']['time']}}</div>
+                                            <div class="col-md-12 m-1"><b>Amount:- </b> ${{$appointment['amount']}}</div>
+                                            <div class="col-md-12 m-1"><b>Staus:- </b> {{$appointment['status']}}</div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="col-md-12 m-1">
                                                 <h5><u>Barber Details</u></h5>
                                             </div>
-                                            <div class="col-md-12 m-1"><b>Barber Name:-</b>{{$appointment['service']['user']['name']}}</div>
-                                            <div class="col-md-12 m-1"><b>Barber Email:- </b>{{$appointment['service']['user']['email']}}</div>
-                                            <div class="col-md-12 m-1"><b> Barber Phone Number:- </b>{{$appointment['service']['user']['phone']}}</div>
+                                            <div class="col-md-12 m-1"><b>Shop Name:-</b> {{$appointment['service']['user']['shop_name']}}</div>
+                                            <div class="col-md-12 m-1"><b>Barber Name:-</b> {{$appointment['service']['user']['name']}}</div>
+                                            <div class="col-md-12 m-1"><b>Barber Email:- </b> {{$appointment['service']['user']['email']}}</div>
+                                            <div class="col-md-12 m-1"><b> Barber Phone Number:- </b> {{$appointment['service']['user']['phone']}}</div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="col-md-12 m-1">
@@ -62,7 +63,7 @@ Groomly | View Appointment Details
                                             </div>
                                             <div class="col-md-12 m-1"><b>Service Name:-</b> {{$appointment['service']['name']}}</div>
                                             <div class="col-md-12 m-1"><b>Service Category:-</b> {{$appointment['service']['category']['name']}}</div>
-                                            <div class="col-md-12 m-1"><b>Duration:- </b>{{date('h',strtotime($appointment['service']['duration']))}} hr {{date('i',strtotime($appointment['service']['duration']))}} mins</div>
+                                            <div class="col-md-12 m-1"><b>Duration:- </b> {{date('h',strtotime($appointment['service']['duration']))}} hr {{date('i',strtotime($appointment['service']['duration']))}} mins</div>
                                            
                                         </div>
                                     </div>

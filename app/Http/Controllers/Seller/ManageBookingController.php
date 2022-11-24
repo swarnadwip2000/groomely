@@ -19,8 +19,13 @@ class ManageBookingController extends Controller
      */
     public function index()
     {
-        $services = Service::where('user_id', Auth::user()->id)->orderby('id', 'desc')->get();
-        return view('seller.manage-services.list')->with(compact('services'));
+        if (Auth::user()->shop_name) {
+            $services = Service::where('user_id', Auth::user()->id)->orderby('id', 'desc')->get();
+            return view('seller.manage-services.list')->with(compact('services'));
+        } else {
+            return redirect()->route('seller.profile')->with('error', 'Please add the shop name for manage service section.');
+        }
+        
     }
 
     /**
