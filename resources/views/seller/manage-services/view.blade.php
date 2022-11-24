@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-Groomly | View booking details
+Groomly | View Services details
 @endsection
 @push('styles')
 @endpush
@@ -12,13 +12,13 @@ Groomly | View booking details
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Manage Booking</div>
+                <div class="breadcrumb-title pe-3">Manage Services</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('manage-booking.index')}}">Manage Booking</i></a>
+                            <li class="breadcrumb-item"><a href="{{route('manage-services.index')}}">Manage Services</i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">View</li>
                         </ol>

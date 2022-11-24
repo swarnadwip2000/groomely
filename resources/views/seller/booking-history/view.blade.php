@@ -81,6 +81,7 @@
                         </div>
                     </div>
                     <div class="row">
+                        @if( $appointment['status'] != 'completed')
                         <div class="col-md-12">
                             <div class="col-md-12 m-1">
                                 <div style="float: right">
@@ -91,6 +92,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="card radius-15" id="box" style="display: none">
                             <div class="card-body">
                                 <div class="tab-content mt-3">

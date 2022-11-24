@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-Groomly | Manage Booking
+Groomly | Manage Services
 @endsection
 @push('styles')
 @endpush
@@ -12,13 +12,13 @@ Groomly | Manage Booking
         <div class="page-content">
             <!--breadcrumb-->
             <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Manage Booking</div>
+                <div class="breadcrumb-title pe-3">Manage Services</div>
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="{{route('seller.dashboard')}}"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Manage Booking</li>
+                            <li class="breadcrumb-item active" aria-current="page">Manage Services</li>
                         </ol>
                     </nav>
                 </div>
@@ -29,8 +29,8 @@ Groomly | Manage Booking
                 <div class="card-body">
                     <div class="card-title">
                         <div class="row">
-                            <div class="col-md-6"><h4 class="mb-0">Manage Booking</h4></div>
-                            <div class="col-md-6"><a href="{{route('manage-booking.create')}}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Booking</button></a></div>
+                            <div class="col-md-6"><h4 class="mb-0">Manage Services</h4></div>
+                            <div class="col-md-6"><a href="{{route('manage-services.create')}}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Services</button></a></div>
                         </div>
                     </div>
 
@@ -60,9 +60,9 @@ Groomly | Manage Booking
                                         <input data-id="{{$service['id']}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $service['status'] ? 'checked' : '' }}>
                                     </td>
                                     <td align="center">
-                                        <a href="{{route('manage-booking.view', $service->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp; 
-                                        <a href="{{route('manage-booking.show', $service->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('manage-booking.delete', $service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('manage-services.view', $service->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp; 
+                                        <a href="{{route('manage-services.show', $service->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
+                                        <a href="{{route('manage-services.delete', $service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -102,7 +102,7 @@ Groomly | Manage Booking
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/seller/changeManageBookingStatus',
+            url: '/seller/changeManageServicesStatus',
             data: {
                 'status': status,
                 'user_id': user_id

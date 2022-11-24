@@ -40,6 +40,7 @@ Groomely | Packages {{$category['name']}}
                     <div class="top_pack">Package</div>
                     <div class="white_box_pack">
                     <h4>{{$service['name']}}</h4>
+                            <h5>{{$service['user']['shop_name']}}</h5>
                         <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
                         <div class="d-flex align-items-center py-2">
                             <div class="price">${{$service['rate']}}</div>

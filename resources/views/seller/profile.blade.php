@@ -74,6 +74,13 @@ Groomly | Profile
                                                             @endif
                                                         </div>
                                                         <div class="col-12">
+                                                            <label class="form-label">Shop Name</label>
+                                                            <input type="text" value="{{Auth::user()->shop_name}}" name="shop_name" class="form-control">
+                                                            @if($errors->has('shop_name'))
+                                                            <div class="error" style="color:red;">{{ $errors->first('shop_name') }}</div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-12">
                                                             <label class="form-label">Email</label>
                                                             <input type="text" value="{{Auth::user()->email}}" name="email" class="form-control">
                                                             @if($errors->has('email'))

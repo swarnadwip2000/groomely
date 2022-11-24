@@ -131,15 +131,15 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
         Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
 
-        Route::resource('manage-booking', ManageBookingController::class);
+        Route::resource('manage-services', ManageBookingController::class);
         Route::resource('booking-history', BookingController::class);
 
         // Manage Booking
-        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('seller.manage-booking.change-status');
-        Route::get('/manage-booking-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-booking.delete');
-        Route::get('manage-booking/manage-booking-view/{id}', [ManageBookingController::class, 'view'])->name('manage-booking.view');
-        Route::post('/manage-booking-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-booking.update');
-        Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-booking.delete-image');
+        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('seller.manage-services.change-status');
+        Route::get('/manage-services-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-services.delete');
+        Route::get('manage-services/manage-services-view/{id}', [ManageBookingController::class, 'view'])->name('manage-services.view');
+        Route::post('/manage-services-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-services.update');
+        Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-services.delete-image');
 
         // Booking history
         Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');

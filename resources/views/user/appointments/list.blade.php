@@ -41,6 +41,7 @@ Groomly | Appointment List
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
+                                    <th>Shop Name</th>
                                     <th>Barber Name</th>
                                     <th>Barber Email</th>
                                     <th>Barber Phone</th>
@@ -55,6 +56,7 @@ Groomly | Appointment List
                             <tbody>
                                 @foreach($appointments as $appointment)
                                 <tr>
+                                    <td>{{$appointment['service']['user']['shop_name']}}</td>
                                     <td>{{$appointment['service']['user']['name']}}</td>
                                     <td>{{$appointment['service']['user']['email']}}</td>
                                     <td>{{$appointment['service']['user']['phone']}}</td>

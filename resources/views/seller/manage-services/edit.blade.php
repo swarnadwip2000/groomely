@@ -70,7 +70,7 @@ Groomly | Manage Booking Edit
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('manage-booking.index')}}">Manage Booking</a>
+                            <li class="breadcrumb-item"><a href="{{route('manage-services.index')}}">Manage Booking</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Edit</li>
                         </ol>
@@ -78,7 +78,7 @@ Groomly | Manage Booking Edit
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('manage-booking.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('manage-services.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ Groomly | Manage Booking Edit
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('seller.manage-booking.update')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('seller.manage-services.update')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$service['id']}}">
                                 <div class="border p-4 rounded">
