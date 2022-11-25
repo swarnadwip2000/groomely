@@ -13,12 +13,12 @@ Groomely | HOME
     <div class="slider stick-dots">
         <div class="slide">
             <div class="slide__img">
-                <img src="" alt="" data-lazy="{{asset('frontend_assets/images/banner.jpg')}}" class="full-image animated" data-animation-in="zoomInImage" />
+                <img src="" alt="" data-lazy="{{ Storage::url($homeCms['banner_img']) }}" class="full-image animated" data-animation-in="zoomInImage" />
             </div>
             <div class="slide__content">
                 <div class="slide__content--headings text-center">
-                    <span class="animated top_titel" data-animation-in="fadeInUp" data-delay-in="0.3">WELCOME TO </span>
-                    <h2 class="animated title" data-animation-in="fadeInUp">Groomely</h2>
+                    <span class="animated top_titel" data-animation-in="fadeInUp" data-delay-in="0.3">{{ $homeCms['banner_content_1'] }} </span>
+                    <h2 class="animated title" data-animation-in="fadeInUp">{{ $homeCms['banner_content_2'] }} </h2>
                     <!-- <p class="animated top-title" data-animation-in="fadeInUp" data-delay-in="0.3">BARBERSHOP</p> -->
                     <div class="hero-text mb-3">
                         <form action="/">
@@ -39,8 +39,8 @@ Groomely | HOME
         <div class="container">
             <div class="box_abo">
                 <div class="catego heading_hp">
-                    <h2>categories</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                    <h2>{{ $homeCms['section_1_title'] }} </h2>
+                    <p>{{ $homeCms['section_1_description'] }}</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-start">
                     @foreach($categories as $category)
@@ -60,14 +60,14 @@ Groomely | HOME
         <div class="row align-items-center">
             <div class="col-lg-6 p-2 p-lg-0">
                 <div class="img_part">
-                    <img src="{{asset('frontend_assets/images/about.jpg')}}" alt="" />
+                    <img src="{{ Storage::url($homeCms['section_2_img'] ) }}" alt="" />
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="about_text heading_hp">
-                    <span>ABOUT US</span>
-                    <h2>welcome to GROomely</h2>
-                    <p>Providing quality electrical services and solutions across all aspects of domestic and commercial environments, from new installations , upgrades, repairs and maintenance services. Austi Electrical are licensed and insured electrical contractors based in the Northern Illawarra region servicing all areas of Greater Sydney, Wollongong, Campbelltown and the Sutherland Shire.</p>
+                    <span>{{ $homeCms['section_2_name'] }} </span>
+                    <h2>{{ $homeCms['section_2_title'] }} </h2>
+                    <p>{{ $homeCms['section_2_description'] }} </p>
                 </div>
                 <a class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="{{route('about')}}"><span>READ MORE</span></a>
             </div>
@@ -79,8 +79,8 @@ Groomely | HOME
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-12">
                 <div class="services_text heading_hp">
-                    <h2>Our Services</h2>
-                    <p>All aspects of domestic and commercial environments</p>
+                    <h2>{{ $homeCms['section_3_title'] }} </h2>
+                    <p>{{ $homeCms['section_3_description'] }} </p>
                 </div>
                 <div class="four_service">
                     <div class="row">
@@ -168,8 +168,8 @@ Groomely | HOME
         <div class="row align-items-center justify-content-between">
             <div class="col-lg-12">
                 <div class="heading_hp">
-                    <h2>Our featured services</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                    <h2>{{ $homeCms['section_4_title'] }}</h2>
+                    <p>{{ $homeCms['section_4_description'] }}</p>
                 </div>
             </div>
         </div>
@@ -205,13 +205,13 @@ Groomely | HOME
 <section class="become_seller_section">
     <div class="container">
         <div class="become_sell">
-            <img src="{{asset('frontend_assets/images/became_a_seller.jpg')}}" class="bg_img_be" alt="" />
+            <img src="{{ Storage::url( $homeCms['section_5_img'] ) }}" class="bg_img_be" alt="" />
             <div class="row align-items-center ">
                 <div class="col-lg-7 col-xxl-6">
                     <div class="become_text">
                         <div class="heading_hp text-left">
-                            <h2>become a seller</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                            <h2>{{ $homeCms['section_5_title'] }}</h2>
+                            <p>{{ $homeCms['section_5_description'] }}</p>
                         </div>
                         @if(!Auth::check() || !Auth::user()->hasRole('BUSINESS_OWNER'))
                         <a class="buttonfx slidebottomleft" href="{{route('register')}}"><span>REGISTER NOW</span></a>

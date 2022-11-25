@@ -78,7 +78,7 @@
             </a>
         </li>
 
-        {{-- <li>
+        <li>
                     <a class="has-arrow" href="javascript:;">
                         <div class="parent-icon icon-color-10"><i class="fas fa-list"></i>
                         </div>
@@ -89,7 +89,7 @@
                         <li class="{{Request::is('admin/blogs*') ? 'mm-active' : ''}}"> <a class="" href="{{route('blogs.index')}}"><i class="bx bx-right-arrow-alt"></i>List</a>
                         </li>
                     </ul>
-                </li> --}}
+                </li>
     </ul>
     <!--end navigation-->
 </div>

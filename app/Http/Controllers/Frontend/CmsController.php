@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Models\HomeCms;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class CmsController extends Controller
     {
         $categories = Category::where('status', 1)->get();
         $services = Service::where('status', 1)->orderBy('id', 'desc')->get();
-        return view('frontend.home')->with(compact('categories','services'));
+        $homeCms = HomeCms::first();
+        return view('frontend.home')->with(compact('categories','services', 'homeCms'));
     }
 
     public function about()
