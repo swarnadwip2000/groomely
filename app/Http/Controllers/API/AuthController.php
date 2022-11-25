@@ -71,6 +71,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        // return $request;
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
             'email'    => 'required|email|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
