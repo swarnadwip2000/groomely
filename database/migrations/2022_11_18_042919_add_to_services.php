@@ -14,7 +14,7 @@ class AddToServices extends Migration
     public function up()
     {
         Schema::table('services', function (Blueprint $table) {
-            $table->foreignId('service_type_id')->after('category_id')->references('id')->on('service_types')->onDelete('cascade');
+            $table->foreignId('service_type_id')->after('category_id')->nullable()->references('id')->on('service_types')->onDelete('cascade');
         });
     }
 
@@ -26,7 +26,8 @@ class AddToServices extends Migration
     public function down()
     {
         Schema::table('services', function (Blueprint $table) {
-            Schema::dropIfExists('service_type_id');
+            $table->dropForeign('services_service_type_id_foreign');
+            $table->dropColumn('service_type_id');
         });
     }
 }
