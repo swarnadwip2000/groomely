@@ -69,9 +69,9 @@
                 <table width="800" style="width:800px; margin:0 auto;">
                     <tbody>
                         <tr>
-                            <td style="vertical-align:middle; padding: 07px 15px;">
+                            {{-- <td style="vertical-align:middle; padding: 07px 15px;">
                                 <font style=" font-size:20px;color: #5719cc;font-weight: 600;">Fare Details</font>
-                            </td>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>
@@ -255,7 +255,7 @@
                                     Support</font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
-                                    +1 918 519 8362 <font style="color:#757575">(Tollfree)</font>
+                                    +1 918 519 8362 <font style="color:#757575"></font>
                                 </font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
