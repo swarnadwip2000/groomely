@@ -117,6 +117,9 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::group(['prefix'=>'cms'], function(){
                         Route::get('/home-cms', [AdminCmsController::class, 'homeCms'])->name('home.cms');
                         Route::post('/home-cms/store', [AdminCmsController::class, 'homeCmsStore'])->name('home-cms.store');
+                        Route::get('/about-cms', [AdminCmsController::class, 'aboutCms'])->name('about.cms');
+                        Route::post('/about-cms/store', [AdminCmsController::class, 'aboutCmsStore'])->name('about-cms.store');
+                        Route::get('/service-cms', [AdminCmsController::class, 'serviceCms'])->name('service.cms');
                 });
 
         });

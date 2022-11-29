@@ -85,8 +85,9 @@
                         <div class="menu-title">CMS</div>
                     </a>
                     <ul>
-                        <li> <a class="{{Request::is('admin/cms*') ? 'mm-active' : ''}}" href="{{route('home.cms')}}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
-                        <li class="{{Request::is('admin/blogs*') ? 'mm-active' : ''}}"> <a class="" href="{{route('blogs.index')}}"><i class="bx bx-right-arrow-alt"></i>List</a>
+                        <li> <a class="{{Request::is('admin/cms/home-cms*') ? 'mm-active' : ''}}" href="{{route('home.cms')}}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
+                        <li class="{{Request::is('admin/cms/about-cms*') ? 'mm-active' : ''}}"> <a class="" href="{{route('about.cms')}}"><i class="bx bx-right-arrow-alt"></i>About Us Page</a>
+                            <li class="{{Request::is('admin/cms/service-cms*') ? 'mm-active' : ''}}"> <a class="" href="{{route('service.cms')}}"><i class="bx bx-right-arrow-alt"></i>Service Page</a>
                         </li>
                     </ul>
                 </li>

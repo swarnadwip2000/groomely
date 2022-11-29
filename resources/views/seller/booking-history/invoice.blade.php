@@ -69,9 +69,9 @@
                 <table width="800" style="width:800px; margin:0 auto;">
                     <tbody>
                         <tr>
-                            <td style="vertical-align:middle; padding: 07px 15px;">
+                            {{-- <td style="vertical-align:middle; padding: 07px 15px;">
                                 <font style=" font-size:20px;color: #5719cc;font-weight: 600;">Fare Details</font>
-                            </td>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>
@@ -196,36 +196,24 @@
                             <td style="vertical-align:middle; border-bottom: 5px solid #000;padding-bottom: 15px;">
                                 <font
                                     style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                    *The credit, for GST charged by the Airline and included in the airfare, would be
-                                    available against a separate GST invoice/eticket issued by the Airline.</font>
+                                    *Greetings! Dear customer, the services encompass the licence and provision of the “Company” that allows you to leverage professional grooming and hairstyling. Please go through the following terms and conditions of services carefully before availing of them.</font>
                             </td>
                         </tr>
                         <tr>
                             <td style="vertical-align:middle; border-bottom: 5px solid #000;padding-bottom: 15px;">
                                 <font
                                     style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block; margin-bottom: 12px;">
-                                    - The amount received as donation will be used for the specified charitable causes.
-                                    Groomely will donate the collected amount to Groomely Foundation (a public trust
-                                    registered with charitable objects) or similar charitable organizations to help
-                                    create a social impact</font>
+                                    - The Company is only for non-commercial and personal usage unless otherwise concurred upon in accordance with the separate agreement’s terms and conditions.</font>
                                 <font
                                     style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block; margin-bottom: 12px;">
-                                    - The contributions once made will not be refunded or cancelled.</font>
+                                    - Please note that the Company intends to provide service within the territory where it is based. If customers agree to avail of any service from other legal jurisdictions, they will be adjudged to have agreed to the terms and conditions applicable to that jurisdiction.</font>
                                 <font
                                     style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block; margin-bottom: 12px;">
-                                    - You voluntarily choose to contribute to the social cause and by proceeding to
-                                    donate the money, you do so at own risk and expressly waive any and all claims,
-                                    rights of action and/or remedies (under law or otherwise) that you may have against
-                                    Groomely arising out of or in connection with the aforesaid transaction.</font>
+                                    - Any services accepted by the customers are deemed to be agreed upon in accordance with the service offered by the professionals over the Company.</font>
+                              
                                 <font
                                     style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block; margin-bottom: 12px;">
-                                    - No certificate under section 80G of the Income Tax Act, 1961 will be issued.
-                                </font>
-                                <font
-                                    style=" font-size:15px;color: #757575;font-weight: 400; width:100%; display: inline-block; margin-bottom: 12px;">
-                                    - By proceeding to donate the money, you understand and confirm that this donation
-                                    is not from any foreign source as defined under Foreign Contribution Regulation Act,
-                                    2010.</font>
+                                    - Customers may be required to furnish their identification proof to avail of the services they have accepted from the Company or any authorised platform of the Company for certain instances. In case of failure to provide the required identity proof may lead to denial of the service.</font>
                             </td>
                         </tr>
                     </tbody>
@@ -255,7 +243,7 @@
                                     Support</font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
-                                    +1 918 519 8362 <font style="color:#757575">(Tollfree)</font>
+                                    +1 918 519 8362 <font style="color:#757575"></font>
                                 </font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
