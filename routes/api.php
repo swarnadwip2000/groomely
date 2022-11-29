@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Seller\SellerController;
 use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\User\ProfileController;
 use App\Http\Controllers\API\category\ApiController;
+use App\Http\Controllers\API\GoogleSocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,12 @@ Route::group(['prefix' => 'v1'], function () {
     });
     
     Route::get('all-user-details', [DetailsController::class, 'allUserDetails']);
+    //google login
+    Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToGoogle']);
+    Route::get('auth/callback/{provider}', [GoogleSocialiteController::class, 'handleCallback']);
+    
+  
+
 });
 
 
