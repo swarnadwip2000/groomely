@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 
 class User extends Authenticatable
@@ -24,6 +25,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'social_type',
+        'login_status',
+        'google_id',
         'password',
         'profile_picture',
     ];
