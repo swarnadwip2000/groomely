@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AboutCms;
 use App\Models\HomeCms;
+use App\Models\ServiceCms;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
 
@@ -117,5 +118,89 @@ class CmsController extends Controller
         $aboutCms->save();
 
         return redirect()->back()->with('message', 'About us page content has been updated successfully.');
+    }
+
+    public function serviceCms()
+    {
+        // return "okk";
+        $allService = ServiceCms::orderby('id','desc')->get();
+        return view('admin.cms.service-cms.viewservice-cms',compact('allService'));
+    }
+
+    public function serviceCmsCreate()
+    {
+        // return "okk";
+        return view('admin.cms.service-cms.createservice-cms');
+    }
+
+    public function serviceCmsStore(Request $request)
+    {
+        // return $request;
+        $validateData =  $request->validate([
+            'name'=>'required',
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+            'icon' => 'required',
+        ]);
+        $serviceCms =  new ServiceCms;
+        $serviceCms->name = $request->name;
+        $serviceCms->title = $request->title;
+        $serviceCms->description = $request->description;
+        if ($request->hasfile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $serviceCms->image = $this->imageUpload($request->file('image'), 'serrvice-cms/image');
+        }
+
+        if ($request->hasfile('icon')) {
+            $request->validate([
+                'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $serviceCms->icon = $this->imageUpload($request->file('icon'), 'serrvice-cms/icon');
+        }
+        $serviceCms->save();
+
+        return redirect()->back()->with('message', 'Home page content has been updated successfully.');
+    }
+
+    public function serviceCmsEdit($id,Request $request)
+    {
+        // return $id;
+        $serviceCms = ServiceCms::where('id',$id)->first();
+        return view('admin.cms.service-cms.editservice-cms',compact('serviceCms'));
+       
+    }
+
+    public function serviceCmsUpdate(Request $request)
+    {
+        // return $request;
+        $serviceCms =  ServiceCms::findOrFail($request->id);
+        $serviceCms->name = $request->name;
+        $serviceCms->title = $request->title;
+        $serviceCms->description = $request->description;
+        if ($request->hasfile('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $serviceCms->image = $this->imageUpload($request->file('image'), 'serrvice-cms/image');
+        }
+
+        if ($request->hasfile('icon')) {
+            $request->validate([
+                'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $serviceCms->icon = $this->imageUpload($request->file('icon'), 'serrvice-cms/icon');
+        }
+        $serviceCms->update();
+
+        return redirect()->back()->with('message', 'Service Cms content has been updated successfully.');
+    }
+
+    public function serviceCmsDelete($id,Request $request)
+    {
+        ServiceCms::findOrFail($id)->delete();
+        return redirect()->back()->with('error', 'Service cms has been deleted!');
     }
 }

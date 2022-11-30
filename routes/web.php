@@ -120,7 +120,12 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::get('/about-cms', [AdminCmsController::class, 'aboutCms'])->name('about.cms');
                         Route::post('/about-cms/store', [AdminCmsController::class, 'aboutCmsStore'])->name('about-cms.store');
                         Route::get('/service-cms', [AdminCmsController::class, 'serviceCms'])->name('service.cms');
-                });
+                        Route::get('/service-cms/create', [AdminCmsController::class, 'serviceCmsCreate'])->name('service-cms.create');
+                        Route::post('/service-cms/store', [AdminCmsController::class, 'serviceCmsStore'])->name('service-cms.store');
+                        Route::get('/service-delete/{id}', [AdminCmsController::class, 'serviceCmsDelete'])->name('service-cms.delete');
+                        Route::get('/service-edit/{id}', [AdminCmsController::class, 'serviceCmsEdit'])->name('service-cms.edit');
+                        Route::post('/service-cms-update', [AdminCmsController::class, 'serviceCmsUpdate'])->name('service-cms.update');
+                });  
 
         });
 });
