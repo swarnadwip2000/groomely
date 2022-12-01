@@ -76,7 +76,7 @@ Groomly | Booking History
                                     <td align="center">
                                         <a title="View booking" href="{{route('booking-history.view', $appointment->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                         @if($appointment['status'] == 'completed')
-                                        <a title="Send Invoice" href="{{route('seller.send-invoice', $appointment->id)}}" onclick="return confirm('Are you send the invoice to the customer?')"><i class="fa fa-paper-plane"></i></a>&nbsp;&nbsp;
+                                        <a title="Send Invoice" href="{{route('seller.send-invoice', $appointment->id)}}" onclick="return confirm('Are you sending the invoice to the customer?')"><i class="fa fa-paper-plane"></i></a>&nbsp;&nbsp;
                                         @endif
                                     </td>
                                 </tr>
