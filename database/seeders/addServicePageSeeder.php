@@ -21,6 +21,7 @@ class addServicePageSeeder extends Seeder
                                 Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.',
             'icon' => 'serrvice-cms/icon/haircutting.png',
             'image' => 'serrvice-cms/image/haircutting.jpg',
+            'status' => true,
         ]);
 
         ServiceCms::create([
@@ -30,6 +31,7 @@ class addServicePageSeeder extends Seeder
                               Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.',
             'icon' => 'serrvice-cms/icon/shaving.png',
             'image' => 'serrvice-cms/image/shaving.jpg',
+            'status' => true,
         ]);
 
         ServiceCms::create([
@@ -39,6 +41,7 @@ class addServicePageSeeder extends Seeder
                               Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.',
             'icon' => 'serrvice-cms/icon/stylling.png',
             'image' => 'serrvice-cms/image/styling.jpg',
+            'status' => true,
         ]);
 
         ServiceCms::create([
@@ -48,6 +51,7 @@ class addServicePageSeeder extends Seeder
                               Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.',
             'icon' => 'serrvice-cms/icon/trimming.png',
             'image' => 'serrvice-cms/image/trimming.jpg',
+            'status' => true,
         ]);
 
     }

@@ -124,19 +124,19 @@ class CmsController extends Controller
     {
         // return "okk";
         $allService = ServiceCms::orderby('id','desc')->get();
-        return view('admin.cms.service-cms.viewservice-cms',compact('allService'));
+        return view('admin.cms.service-cms.list',compact('allService'));
     }
 
     public function serviceCmsCreate()
     {
         // return "okk";
-        return view('admin.cms.service-cms.createservice-cms');
+        return view('admin.cms.service-cms.create');
     }
 
     public function serviceCmsStore(Request $request)
     {
         // return $request;
-        $validateData =  $request->validate([
+       $request->validate([
             'name'=>'required',
             'title' => 'required',
             'description' => 'required',
@@ -162,14 +162,14 @@ class CmsController extends Controller
         }
         $serviceCms->save();
 
-        return redirect()->back()->with('message', 'Home page content has been updated successfully.');
+        return redirect()->route('service.cms')->with('message', 'Service content has been uploaded successfully.');
     }
 
     public function serviceCmsEdit($id,Request $request)
     {
         // return $id;
         $serviceCms = ServiceCms::where('id',$id)->first();
-        return view('admin.cms.service-cms.editservice-cms',compact('serviceCms'));
+        return view('admin.cms.service-cms.edit',compact('serviceCms'));
        
     }
 

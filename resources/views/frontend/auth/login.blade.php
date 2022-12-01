@@ -74,8 +74,10 @@
                                                 @if($errors->has('password'))
                                                 <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
                                                 @endif
-
-                                                <button class="btn btn-lg btn-primary btn-block btn-login">LOGIN</button>
+                                                <div style="float:right;">
+                                                   <a href="{{ route('forget.password.show') }}">Forget password ?</a> 
+                                                </div>
+                                                <button type="submit" class="btn btn-lg btn-primary btn-block btn-login">LOGIN</button>
                                                 <div class="login-text">
                                                     <p>Don’t Have an Account? <a href="{{route('register')}}">SIGNUP NOW</a></p>
                                                 </div>

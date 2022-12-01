@@ -84,58 +84,22 @@ Groomely | HOME
                 </div>
                 <div class="four_service">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-6">
+                        @foreach ($servicesCms as $serviceCms)
+                            <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="one_f">
-                                <div class="bg_image_one"><img src="{{asset('frontend_assets/images/services.jpg')}}" /></div>
+                                <div class="bg_image_one"><img src="{{ Storage::url($serviceCms->image) }}" /></div>
                                 <div class="icon_boxs">
-                                    <img src="{{asset('frontend_assets/images/service_icon.png')}}" alt="" />
+                                    <img src="{{ Storage::url($serviceCms->icon) }}" alt="" />
                                 </div>
                                 <div class="tre_et">
-                                    <h5>HAIRCUTTING</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                                    <h5>{{ $serviceCms->name }}</h5>
+                                    <p>{{substr($serviceCms['description'],0,50)}}...</p>
                                 </div>
-                                <a href="{{route('services')}}#haircutting">VIEW ALL</a>
+                                <a href="{{route('services')}}#{{ $serviceCms->name }}">VIEW ALL</a>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="one_f">
-                                <div class="bg_image_one"><img src="{{asset('frontend_assets/images/services.jpg')}}" /></div>
-                                <div class="icon_boxs">
-                                    <img src="{{asset('frontend_assets/images/service_icon1.png')}}" alt="" />
-                                </div>
-                                <div class="tre_et">
-                                    <h5>SHAVING</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
-                                </div>
-                                <a href="{{route('services')}}#shaving">VIEW ALL</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="one_f">
-                                <div class="bg_image_one"><img src="{{asset('frontend_assets/images/services.jpg')}}" /></div>
-                                <div class="icon_boxs">
-                                    <img src="{{asset('frontend_assets/images/service_icon2.png')}}" alt="" />
-                                </div>
-                                <div class="tre_et">
-                                    <h5>STYLING</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
-                                </div>
-                                <a href="{{route('services')}}#styling">VIEW ALL</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            <div class="one_f">
-                                <div class="bg_image_one"><img src="{{asset('frontend_assets/images/services.jpg')}}" /></div>
-                                <div class="icon_boxs">
-                                    <img src="{{asset('frontend_assets/images/service_icon3.png')}}" alt="" />
-                                </div>
-                                <div class="tre_et">
-                                    <h5>TRIMMING</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
-                                </div>
-                                <a href="{{route('services')}}#trimming">VIEW ALL</a>
-                            </div>
-                        </div>
+                        @endforeach
+                        
                     </div>
                 </div>
             </div>

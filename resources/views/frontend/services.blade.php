@@ -24,66 +24,22 @@ Groomely | SERVICES
 
         <section class="abt_section section">
             <div class="container">
-                <div class="row align-items-center mb-5">
+                @foreach ($servicesCms as $key => $serviceCms)
+                    <div class="row align-items-center mb-5 @if(($key+1) % 2 == 0) flex-row-reverse @endif">
                     <div class="col-md-6">
                         <div class="abt_img">
-                            <img src="{{asset('frontend_assets/images/serv1.jpg')}}" class="img-fluid" />
+                            <img src="{{ Storage::url($serviceCms->image) }}" class="img-fluid" />
                         </div>
                     </div>
-                    <div class="col-md-6" id="haircutting">
+                    <div class="col-md-6" id="{{ $serviceCms->name }}">
                         <div class="abt_content">
-                            <h2>Haircutting</h2>
-                            <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi. Proin dui non, risus tincidunt. Nunc id sollicitudin diam aliquet volutpat nam rhoncus morbi. Non sit ac pulvinar commodo tincidunt magnis nascetur. Scelerisque eget accumsan eget nisl vestibulum, tristique praesent tempus eget. Vestibulum viverra ut dapibus aliquam nunc auctor. Orci ultrices pellentesque sed ultricies ipsum quis neque, elementum. Enim donec sed pellentesque aliquet mi ultricies turpis non maecenas. Purus aliquet iaculis amet, vel eleifend ut elit. Vulputate amet, metus purus aenean sapien tempor, neque turpis risus. Egestas id urna ultrices dignissim.</p>
-                            <p>Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.</p>
+                            <h2>{{ $serviceCms->name }}</h2>
+                            <h4>{{ $serviceCms->title }}</h4>
+                            {!! nl2br($serviceCms->description) !!}
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center flex-row-reverse mb-5">
-                    <div class="col-md-6">
-                        <div class="abt_img">
-                            <img src="{{asset('frontend_assets/images/serv2.jpg')}}" class="img-fluid" />
-                        </div>
-                    </div>
-                    <div class="col-md-6" id="shaving">
-                        <div class="abt_content">
-                            <h2>Shaving</h2>
-                            <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi. Proin dui non, risus tincidunt. Nunc id sollicitudin diam aliquet volutpat nam rhoncus morbi. Non sit ac pulvinar commodo tincidunt magnis nascetur. Scelerisque eget accumsan eget nisl vestibulum, tristique praesent tempus eget. Vestibulum viverra ut dapibus aliquam nunc auctor. Orci ultrices pellentesque sed ultricies ipsum quis neque, elementum. Enim donec sed pellentesque aliquet mi ultricies turpis non maecenas. Purus aliquet iaculis amet, vel eleifend ut elit. Vulputate amet, metus purus aenean sapien tempor, neque turpis risus. Egestas id urna ultrices dignissim.</p>
-                            <p>Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center mb-5">
-                    <div class="col-md-6">
-                        <div class="abt_img">
-                            <img src="{{asset('frontend_assets/images/serv3.jpg')}}" class="img-fluid" />
-                        </div>
-                    </div>
-                    <div class="col-md-6" id="styling">
-                        <div class="abt_content">
-                            <h2>styling</h2>
-                            <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi. Proin dui non, risus tincidunt. Nunc id sollicitudin diam aliquet volutpat nam rhoncus morbi. Non sit ac pulvinar commodo tincidunt magnis nascetur. Scelerisque eget accumsan eget nisl vestibulum, tristique praesent tempus eget. Vestibulum viverra ut dapibus aliquam nunc auctor. Orci ultrices pellentesque sed ultricies ipsum quis neque, elementum. Enim donec sed pellentesque aliquet mi ultricies turpis non maecenas. Purus aliquet iaculis amet, vel eleifend ut elit. Vulputate amet, metus purus aenean sapien tempor, neque turpis risus. Egestas id urna ultrices dignissim.</p>
-                            <p>Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="row align-items-center flex-row-reverse mb-5">
-                    <div class="col-md-6">
-                        <div class="abt_img">
-                            <img src="{{asset('frontend_assets/images/serv4.jpg')}}" class="img-fluid" />
-                        </div>
-                    </div>
-                    <div class="col-md-6" id="trimming">
-                        <div class="abt_content">
-                            <h2>trimming</h2>
-                            <h4>More than just a hair salon, we provide classic barbershop service with legendary style.</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et mauris enim, viverra convallis blandit facilisi eget id urna. Consequat cursus donec in diam pellentesque imperdiet elit. Et sagittis, morbi non adipiscing malesuada nibh diam quam. Arcu, et convallis arcu in mi. Proin dui non, risus tincidunt. Nunc id sollicitudin diam aliquet volutpat nam rhoncus morbi. Non sit ac pulvinar commodo tincidunt magnis nascetur. Scelerisque eget accumsan eget nisl vestibulum, tristique praesent tempus eget. Vestibulum viverra ut dapibus aliquam nunc auctor. Orci ultrices pellentesque sed ultricies ipsum quis neque, elementum. Enim donec sed pellentesque aliquet mi ultricies turpis non maecenas. Purus aliquet iaculis amet, vel eleifend ut elit. Vulputate amet, metus purus aenean sapien tempor, neque turpis risus. Egestas id urna ultrices dignissim.</p>
-                            <p>Libero aenean vestibulum placerat ultrices nullam. Semper sit ac a iaculis et morbi mattis. Pellentesque lacus, id semper id lectus ac. Dui elit pellentesque at mi quam tincidunt praesent a. Condimentum pretium aliquet aenean eu tincidunt vitae. Ac auctor sapien pretium in. Egestas metus pulvinar eu eu maecenas et. Vel fringilla quam mattis mollis vitae eu. Scelerisque dignissim turpis urna egestas suspendisse eget non. Egestas mattis felis platea sed in morbi aliquam.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
 

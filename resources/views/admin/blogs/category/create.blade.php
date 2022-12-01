@@ -46,7 +46,7 @@ Groomly | Blog Category Create
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Your Name">
+                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Blog Category Name">
                                             @if($errors->has('name'))
                                             <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
                                             @endif

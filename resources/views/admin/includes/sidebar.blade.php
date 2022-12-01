@@ -79,18 +79,21 @@
         </li>
 
         <li>
-                    <a class="has-arrow" href="javascript:;">
-                        <div class="parent-icon icon-color-10"><i class="fas fa-list"></i>
-                        </div>
-                        <div class="menu-title">CMS</div>
-                    </a>
-                    <ul>
-                        <li> <a class="{{Request::is('admin/cms/home-cms*') ? 'mm-active' : ''}}" href="{{route('home.cms')}}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
-                        <li class="{{Request::is('admin/cms/about-cms*') ? 'mm-active' : ''}}"> <a class="" href="{{route('about.cms')}}"><i class="bx bx-right-arrow-alt"></i>About Us Page</a>
-                            <li class="{{Request::is('admin/cms/service-cms*') ? 'mm-active' : ''}}"> <a class="" href="{{route('service.cms')}}"><i class="bx bx-right-arrow-alt"></i>Service Page</a>
-                        </li>
-                    </ul>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon icon-color-10"><i class="fas fa-list"></i>
+                </div>
+                <div class="menu-title">CMS</div>
+            </a>
+            <ul>
+                <li> <a class="{{ Request::is('admin/cms/home-cms*') ? 'mm-active' : '' }}"
+                        href="{{ route('home.cms') }}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
+                <li class="{{ Request::is('admin/cms/about-cms*') ? 'mm-active' : '' }}"> <a class=""
+                        href="{{ route('about.cms') }}"><i class="bx bx-right-arrow-alt"></i>About Us Page</a>
+                <li class="{{ Request::is('admin/cms/service-cms*') ? 'mm-active' : '' }}"> <a class=""
+                        href="{{ route('service.cms') }}"><i class="bx bx-right-arrow-alt"></i>Service Page</a>
                 </li>
+            </ul>
+        </li>
     </ul>
     <!--end navigation-->
 </div>

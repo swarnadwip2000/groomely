@@ -67,7 +67,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" id="inputEnterYourName"
                                                     value="{{ old('name') }}" name="name"
-                                                    placeholder="Enter Your Name">
+                                                    placeholder="Enter Blog Name">
                                                 @if ($errors->has('name'))
                                                     <div class="error" style="color:red;">{{ $errors->first('name') }}
                                                     </div>

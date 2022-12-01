@@ -14,7 +14,7 @@ class AddLoginstatusToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('login_status')->default(0)->after('status');
+            $table->boolean('login_status')->default(false)->after('status');
             $table->string('social_type')->nullable()->after('profile_picture');
             //
         });
@@ -28,7 +28,8 @@ class AddLoginstatusToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumns(['login_status','social_type']);
+            $table->dropColumn('login_status');
+            $table->dropColumn('social_type');
         });
     }
 }

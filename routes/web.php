@@ -44,6 +44,8 @@ Route::post('login-check', [AuthController::class, 'loginCheck'])->name('login.c
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget.password');
+Route::post('change-password', [ForgetPasswordController::class, 'changePassword'])->name('change.password');
+Route::get('forget-password/show', [ForgetPasswordController::class, 'forgetPasswordShow'])->name('forget.password.show');
 Route::get('reset-password/{id}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
 
 // CMS page view
@@ -123,7 +125,7 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::get('/service-cms/create', [AdminCmsController::class, 'serviceCmsCreate'])->name('service-cms.create');
                         Route::post('/service-cms/store', [AdminCmsController::class, 'serviceCmsStore'])->name('service-cms.store');
                         Route::get('/service-delete/{id}', [AdminCmsController::class, 'serviceCmsDelete'])->name('service-cms.delete');
-                        Route::get('/service-edit/{id}', [AdminCmsController::class, 'serviceCmsEdit'])->name('service-cms.edit');
+                        Route::get('/service-cms/edit/{id}', [AdminCmsController::class, 'serviceCmsEdit'])->name('service-cms.edit');
                         Route::post('/service-cms-update', [AdminCmsController::class, 'serviceCmsUpdate'])->name('service-cms.update');
                 });  
 
