@@ -27,15 +27,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //User & business owner portal authentication
 Route::group(['prefix' => 'v1'], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
-    Route::post('category-details', [ApiController::class, 'category']);
-    Route::post('servicetype-details', [ApiController::class, 'servicetype']);
-    Route::post('booking-times', [ApiController::class, 'bookingtimes']);
-    Route::post('service-details', [ApiController::class, 'servicedetails']);
 
-    
+    Route::group(['prefix' => 'user'], function () {
+        Route::post('register', [AuthController::class, 'register']);
+        Route::post('login', [AuthController::class, 'login']);
+        
+        Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
+    });
+ 
     //User
     Route::group(['prefix' => 'user','middleware'=>'auth:api'], function () {
         Route::post('details', [DetailsController::class, 'details']);
@@ -44,7 +43,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     //seller
     Route::group(['prefix' => 'seller','middleware'=>'auth:api'], function () {
-        Route::post('seller-detail', [SellerController::class, 'sellerdetail']);
+        Route::post('detail-forme', [SellerController::class, 'sellerdetail']);
         Route::post('profile-update', [SellerController::class, 'updateProfile']);
         Route::post('profile-delete', [SellerController::class, 'deleteProfile']);
     });
@@ -53,6 +52,20 @@ Route::group(['prefix' => 'v1'], function () {
     //google login
     Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToGoogle']);
     Route::get('auth/callback/{provider}', [GoogleSocialiteController::class, 'handleCallback']);
+
+    //
+    Route::group(['prefix' => 'category'], function () {
+        Route::post('details', [ApiController::class, 'category']);
+    });
+
+    Route::group(['prefix' => 'servicetype'], function () { 
+        Route::post('details', [ApiController::class, 'servicetype']);
+    });
+
+    Route::group(['prefix' => 'appointment'], function () { 
+        Route::post('bookingtimes', [ApiController::class, 'bookingtimes']);
+    });    
+    Route::post('service-details', [ApiController::class, 'servicedetails']);
     
   
 

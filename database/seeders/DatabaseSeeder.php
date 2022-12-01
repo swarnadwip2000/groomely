@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
             // AssignAdminSeeder::class,
             // AddCategoriesSeeder::class,
             // addTimeShedule::class,
-            addHomePageSeeder::class,
+            // addHomePageSeeder::class,
             // addServiceTypeSeeder::class,
-            AddAbouPageSeeder::class
+            // AddAbouPageSeeder::class,
+            addServicePageSeeder::class,
         ]);
     
     }

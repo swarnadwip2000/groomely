@@ -44,7 +44,7 @@ class AuthController extends Controller
             $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
             if ($request->user_type == 'USER') {
                 if ($user->hasRole('USER') && $user->status == 1 ) {
-                    $data['token'] =  $user->createToken('accessToken')->accessToken;
+                    $data['auth_token'] = 'Bearer ' . $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user->makeHidden('roles');
                     return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                 } else {
