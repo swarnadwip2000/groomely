@@ -32,7 +32,7 @@ Groomly | Service-cms List
                             <div class="col-md-6">
                                 <h4 class="mb-0">Service Cms Details</h4>
                             </div>
-                            <div class="col-md-6"><a href="{{route('service-cms.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Service-Cms</button></a></div>
+                            <div class="col-md-6"><a href="{{route('service-cms.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Service Cms</button></a></div>
                         </div>
                     </div>
 

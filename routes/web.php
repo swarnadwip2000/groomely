@@ -139,6 +139,8 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::get('/service-delete/{id}', [AdminCmsController::class, 'serviceCmsDelete'])->name('service-cms.delete');
                         Route::get('/service-cms/edit/{id}', [AdminCmsController::class, 'serviceCmsEdit'])->name('service-cms.edit');
                         Route::post('/service-cms-update', [AdminCmsController::class, 'serviceCmsUpdate'])->name('service-cms.update');
+                        Route::get('/footer-cms', [AdminCmsController::class, 'footerCms'])->name('footer.cms');
+                        Route::post('/footer-cms/store', [AdminCmsController::class, 'footerCmsStore'])->name('footer-cms.store');
                 });  
 
         });
