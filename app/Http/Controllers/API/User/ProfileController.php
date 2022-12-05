@@ -14,9 +14,10 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
-        
+           
         $user = User::where('id', Auth::user()->id)->first();
         if ($request->hasFile('profile_picture')) {
+            
             $validator = Validator::make($request->all(), [
                 'profile_picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);

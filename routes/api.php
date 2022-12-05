@@ -28,47 +28,48 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //User & business owner portal authentication
 Route::group(['prefix' => 'v1'], function () {
 
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'users'], function () {
         Route::post('register', [AuthController::class, 'register']);
         Route::post('login', [AuthController::class, 'login']);
-        
         Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
     });
  
     //User
-    Route::group(['prefix' => 'user','middleware'=>'auth:api'], function () {
-        Route::post('details', [DetailsController::class, 'details']);
-        Route::post('update-profile', [ProfileController::class, 'updateProfile']);
+    Route::group(['prefix' => 'users','middleware'=>'auth:api'], function () {
+        Route::post('me', [DetailsController::class, 'details']);
+        Route::group(['prefix' => 'profile','middleware'=>'auth:api'], function () {
+            Route::post('update', [ProfileController::class, 'updateProfile']);
+        });    
     });
 
     //seller
-    Route::group(['prefix' => 'seller','middleware'=>'auth:api'], function () {
-        Route::post('detail-forme', [SellerController::class, 'sellerdetail']);
-        Route::post('profile-update', [SellerController::class, 'updateProfile']);
-        Route::post('profile-delete', [SellerController::class, 'deleteProfile']);
+    Route::group(['prefix' => 'sellers','middleware'=>'auth:api'], function () {
+        Route::post('me', [SellerController::class, 'sellerdetail']);
+        Route::group(['prefix' => 'profile','middleware'=>'auth:api'], function () {
+            Route::post('update', [SellerController::class, 'updateProfile']);
+            Route::delete('delete', [SellerController::class, 'deleteProfile']);
+        });    
     });
     
-    Route::get('all-user-details', [DetailsController::class, 'allUserDetails']);
+    Route::get('users', [DetailsController::class, 'allUserDetails']);
     //google login
     Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToGoogle']);
     Route::get('auth/callback/{provider}', [GoogleSocialiteController::class, 'handleCallback']);
 
     //
     Route::group(['prefix' => 'category'], function () {
-        Route::post('details', [ApiController::class, 'category']);
+        Route::get('list', [ApiController::class, 'category']);
     });
 
-    Route::group(['prefix' => 'servicetype'], function () { 
-        Route::post('details', [ApiController::class, 'servicetype']);
+    Route::group(['prefix' => 'service'], function () { 
+        Route::get('types', [ApiController::class, 'servicetype']);
+        Route::get('details', [ApiController::class, 'servicedetails']);
     });
 
     Route::group(['prefix' => 'appointment'], function () { 
-        Route::post('bookingtimes', [ApiController::class, 'bookingtimes']);
+        Route::get('booking-times', [ApiController::class, 'bookingtimes']);
     });    
-    Route::post('service-details', [ApiController::class, 'servicedetails']);
-    
-  
-
+   
 });
 
 

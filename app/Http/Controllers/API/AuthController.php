@@ -26,6 +26,7 @@ class AuthController extends Controller
             'user_type' => 'required|in:USER,BUSINESS_OWNER',
         ]);
 
+
         if ($validator->fails()) {
             $errors['status_code'] = 401;
             $errors['message'] = [];
@@ -74,11 +75,9 @@ class AuthController extends Controller
         // return $request;
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
-            'email'    => 'required|email|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'email'    => 'required|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'password' => 'required|min:8',
             'user_type' => 'required|in:USER,BUSINESS_OWNER',
-        ],[
-            'email.email' => 'The email format is invalid.',
         ]);
 
         if ($validator->fails()) {
@@ -108,7 +107,7 @@ class AuthController extends Controller
         }
         $user->createToken('accessToken')->accessToken;
         $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
-        return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered sucessfully'], $this->successStatus);
+        return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered successfully'], $this->successStatus);
     }
 
     

@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\BookingTime;
 use App\Models\ServiceType;
 use App\Models\Service;
+use Exception;
 
 
 use Illuminate\Support\Facades\Validator;
@@ -32,13 +33,17 @@ class ApiController extends Controller
 
     public function servicetype()
     {
-        $service = ServiceType::select('id','name','image')->get(); 
-        if($service !='')
-        {
-            return response()->json(['data' => $service, 'status' => true, 'message' => 'Servicetype find successfully'], $this->successStatus);
-        }
-        else{
-            return response()->json(['messager' => 'Servicetype not found!', 'status' => false], 401);
+        try {
+            $service = ServiceType::select('id','name','image')->get(); 
+            if($service !='')
+            {
+                return response()->json(['data' => $service, 'status' => true, 'message' => 'Servicetype find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['messager' => 'Servicetype not found!', 'status' => false], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
         }
     }
 
@@ -51,7 +56,7 @@ class ApiController extends Controller
             return response()->json(['data' => $booking_time, 'status' => true, 'message' => 'Booking time find successfully'], $this->successStatus);
         }
         else{
-            return response()->json(['messager' => 'Servicetype not found!', 'status' => false], 401);
+            return response()->json(['messager' => 'Bookingtimes not found!', 'status' => false], 401);
         }
     }
 
