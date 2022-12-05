@@ -92,6 +92,9 @@
                 <li class="{{ Request::is('admin/cms/service-cms*') ? 'mm-active' : '' }}"> <a class=""
                         href="{{ route('service.cms') }}"><i class="bx bx-right-arrow-alt"></i>Service Page</a>
                 </li>
+                <li class="{{ Request::is('admin/cms/footer-cms*') ? 'mm-active' : '' }}"> <a class=""
+                        href="{{ route('footer.cms') }}"><i class="bx bx-right-arrow-alt"></i>Footer Content</a>
+                </li>
             </ul>
         </li>
     </ul>

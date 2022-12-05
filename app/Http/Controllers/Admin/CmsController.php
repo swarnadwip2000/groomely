@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutCms;
+use App\Models\FooterCms;
 use App\Models\HomeCms;
 use App\Models\ServiceCms;
 use Illuminate\Http\Request;
@@ -202,5 +203,30 @@ class CmsController extends Controller
     {
         ServiceCms::findOrFail($id)->delete();
         return redirect()->back()->with('error', 'Service cms has been deleted!');
+    }
+
+    public function footerCms()
+    {
+        $footer = FooterCms::first();
+        return view('admin.cms.footer-cms')->with(compact('footer'));
+    }
+
+    public function footerCmsStore(Request $request)
+    {
+        $validateData =  $request->validate([
+            'copyright_content' => 'required',
+            'facebook_link' => 'required',
+            'instagram_link' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'youtube_link'=> 'required',
+        ]);
+
+        $footerCms =  FooterCms::findOrFail($request->id);
+        $footerCms->fill($validateData);
+        $footerCms->save();
+
+        return redirect()->back()->with('message', 'Footer page content has been updated successfully.');
     }
 }
