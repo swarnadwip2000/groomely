@@ -2,7 +2,7 @@
 <h1>We have received your request to reset your account password</h1>
 <p>You can click the following button to recover your account:</p>
 
-@component('mail::button', ['url' => route('reset.password', ['id'=>$id])])
+@component('mail::button', ['url' => route('reset.password', ['id'=>$details['id'],'token'=>$details['token']])])
     Reset Password
 @endcomponent
 

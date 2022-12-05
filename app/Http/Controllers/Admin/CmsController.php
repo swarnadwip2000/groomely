@@ -8,6 +8,7 @@ use App\Models\HomeCms;
 use App\Models\ServiceCms;
 use Illuminate\Http\Request;
 use App\Traits\ImageTrait;
+use Illuminate\Support\Facades\Session;
 
 class CmsController extends Controller
 {
@@ -61,7 +62,6 @@ class CmsController extends Controller
         }
 
         $homeCms->save();
-
         return redirect()->back()->with('message', 'Home page content has been updated successfully.');
         
     }

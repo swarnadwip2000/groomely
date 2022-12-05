@@ -78,7 +78,7 @@ Groomly | Category Edit
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($category['icon'])}}" style="width: 100%; height:180px;" alt="">
+                                            <img src="{{Storage::url($category['icon'])}}" style="width: 100px; height:100px;" alt="">
                                         </div>
 
                                     </div>

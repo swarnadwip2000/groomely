@@ -10,16 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class SendCodeResetPassword extends Mailable
 {
     use Queueable, SerializesModels;
-    public $id;
+    public $details;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($details)
     {
-        $this->id = $id;
+        $this->details = $details;
     }
 
     /**
@@ -29,7 +29,7 @@ class SendCodeResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->markdown('api.emails.send-code-reset-password')->with('id', $this->id);
+        return $this->markdown('api.emails.send-code-reset-password')->with('details', $this->details);
 
     }
 }

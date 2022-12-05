@@ -21,8 +21,9 @@ use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\BookingController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 use App\Http\Controllers\Seller\ManageBookingController;
-use App\Http\Controllers\user\AppointmentController;
+use App\Http\Controllers\User\AppointmentController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,17 @@ use App\Http\Controllers\User\DashboardController as UserDashboardController;
 |
 */
 
+// Clear cache
+Route::get('clear', function () {
+        Artisan::call('optimize:clear');
+        return "Optimize clear has been successfully";
+});
+
+// Error for expire link
+Route::get('link-expire', function(){
+        return view('frontend.errors.link-expired');
+})->name('errors.link-expire');
+
 
 // User & business owner portal authentication
 Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -46,7 +58,7 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword'])->name('forget.password');
 Route::post('change-password', [ForgetPasswordController::class, 'changePassword'])->name('change.password');
 Route::get('forget-password/show', [ForgetPasswordController::class, 'forgetPasswordShow'])->name('forget.password.show');
-Route::get('reset-password/{id}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
+Route::get('reset-password/{id}/{token}', [ForgetPasswordController::class, 'resetPassword'])->name('reset.password');
 
 // CMS page view
 Route::get('/', [CmsController::class, 'home'])->name('home');
@@ -76,7 +88,7 @@ Route::get('/admin', [AdminAuthController::class, 'admin'])->name('admin');
 Route::group(['prefix' => 'admin'], function () {
         Route::get('/login', [AdminAuthController::class, 'login'])->name('admin.login');
         Route::post('/login-check', [AdminAuthController::class, 'loginCheck'])->name('admin.login.check');
-        Route::group(['middleware' => 'admin'], function () {
+        Route::group(['middleware' => 'admin', 'preventBackHistory'], function () {
                 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
                 Route::get('/profile', [DashboardController::class, 'profile'])->name('admin.profile');
                 Route::post('/profile-update', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
@@ -136,7 +148,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 /*-------------------------------------------------------- Business owner panel -----------------------------------------------------------------------*/
 
-Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
+Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHistory']], function () {
         Route::get('/dashboard', [SellerDashboardController::class, 'dashboard'])->name('seller.dashboard');
         Route::get('/profile', [SellerDashboardController::class, 'profile'])->name('seller.profile');
         Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
@@ -167,13 +179,13 @@ Route::group(['prefix' => 'seller', 'middleware' => 'seller'], function () {
         Route::get('booking-rejected/{id}', [BookingController::class, 'bookingRejected'])->name('booking.rejected');
 
 /*-----------------------------------------------------------User protal----------------------------------------------------------------------------- */
-Route::group(['prefix' => 'user', 'middleware' => 'user'], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'preventBackHistory']], function () {
         Route::get('/dashboard', [UserDashboardController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/profile', [UserDashboardController::class, 'profile'])->name('user.profile');
         Route::post('/profile-update', [UserDashboardController::class, 'profileUpdate'])->name('user.profile.update');
 
         Route::resource('appointments', AppointmentController::class);
-
+        
         // appointments
         Route::get('appointments/reshedule-booking/{id}', [AppointmentController::class, 'resheduleBooking'])->name('user.appointment.reshedule');
         Route::post('appointments/reshedule-store', [AppointmentController::class, 'resheduleStore'])->name('appointment.reshedule.store');
@@ -182,3 +194,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'user'], function () {
         Route::get('download-invoice/{id}', [AppointmentController::class, 'downloadInvoice'])->name('download.invoice');
 
 });
+

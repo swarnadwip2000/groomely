@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Mail\SendCodeResetPassword;
+use App\Models\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 
 class ForgetPasswordController extends Controller
 {
@@ -32,8 +34,20 @@ class ForgetPasswordController extends Controller
         $count = User::where('email', $request->email)->count();
         if ($count > 0) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
-             $id = Crypt::encrypt($user->id);
-            Mail::to($request->email)->send(new SendCodeResetPassword($id));
+            ResetPassword::where('email', $request->email)->delete();
+            $id = Crypt::encrypt($user->id);
+            $token = Str::random(20) . 'pass' . $user->id;
+            ResetPassword::create([
+                'email' => $request->email,
+                'token' => $token
+            ]);
+
+            $details = [
+                'id' => $id,
+                'token' => $token
+            ];
+
+            Mail::to($request->email)->send(new SendCodeResetPassword($details));
             return response()->json(['data' => $user, 'status' => true, 'message' => 'Please! check your mail.'], $this->successStatus);
         } else {
             return response()->json(['messager' => "Couldn't find your account!", 'status' => false], 401);

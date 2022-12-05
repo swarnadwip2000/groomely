@@ -117,6 +117,7 @@
     <script src="{{asset('admin_assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
     <script>
         @if(Session::has('message'))
         toastr.options = {
@@ -150,6 +151,8 @@
         toastr.warning("{{ session('warning') }}");
         @endif
     </script>
+
+  
     <!-- App JS -->
     <script src="{{asset('admin_assets/js/app.js')}}"></script>
     <script>

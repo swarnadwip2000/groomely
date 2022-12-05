@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Mail\SendCodeResetPassword;
+use App\Models\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Str;
 
 class ForgetPasswordController extends Controller
 {
@@ -26,18 +28,41 @@ class ForgetPasswordController extends Controller
         $count = User::role(['USER', 'BUSINESS_OWNER'])->where('email', $request->email)->count();
         if ($count > 0) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
+            ResetPassword::where('email', $request->email)->delete();
              $id = Crypt::encrypt($user->id);
-            Mail::to($request->email)->send(new SendCodeResetPassword($id));
+             $token = Str::random(20) . 'pass' . $user->id;
+             ResetPassword::create([
+                'email' => $request->email,
+                'token' => $token
+             ]);
+
+             $details = [
+                'id' => $id,
+                'token' => $token
+             ];
+
+            Mail::to($request->email)->send(new SendCodeResetPassword($details));
             return redirect()->back()->with('message', "Please! check your mail to reset your password.");
         } else {
              return redirect()->back()->with('error', "Couldn't find your account!");
         }
     }
 
-    public function resetPassword($id)
+    public function resetPassword($id, $token)
     {
-        $id = $id;
-        return view('frontend.auth.reset-password')->with(compact('id'));
+        $user = User::findOrFail(Crypt::decrypt($id));
+        $resetPassword = ResetPassword::where('email', $user->email)->orderBy('id', 'desc')->first();
+         $newTime =  date('h:i A', strtotime( $resetPassword->created_at->addHour()));
+        //  return $newTime;
+        //  return date('h:i A');
+        if ($newTime > date('h:i A')) {
+            $id = $id;
+            return view('frontend.auth.reset-password')->with(compact('id'));
+        } else {
+            return redirect()->route('errors.link-expire');
+        }
+
+        
     }
 
     public function changePassword(Request $request)
