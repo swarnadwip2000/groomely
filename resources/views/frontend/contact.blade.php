@@ -26,8 +26,8 @@ Groomely | CONTACT US
             <div class="row">
                 <div class="col-xl-6 col-md-12">
                     <div class="contact-left">
-                        <h2>Contact Us</h2>
-                        <p>Now we are engaged for some time, let's get connected</p>
+                        <h2>{{ $contactUs['title'] }}</h2>
+                        <p>{!! nl2br($contactUs['description']) !!}</p>
                         <form action="{{route('contact.store')}}" method="post">
                             @csrf
                             <div class="contact-form">
@@ -95,7 +95,7 @@ Groomely | CONTACT US
                             </div>
                             <div class="con-text">
                                 <h3>VISIT US</h3>
-                                <p> 502 W SKELLY RD Haskell 74436 USA</p>
+                                <p> {{ $contactUs['visit_us'] }}</p>
                             </div>
                         </div>
                         <div class="contact-info d-flex justify-content-start align-items-start">
@@ -104,7 +104,7 @@ Groomely | CONTACT US
                             </div>
                             <div class="con-text">
                                 <h3>CALL US</h3>
-                                <a href="tel:+1 918 519 8362">+1 918 519 8362</a>
+                                <a href="tel:{{ $contactUs['call_us'] }}">{{ $contactUs['call_us'] }}</a>
                             </div>
                         </div>
                         <div class="contact-info d-flex justify-content-start align-items-start">
@@ -113,7 +113,7 @@ Groomely | CONTACT US
                             </div>
                             <div class="con-text">
                                 <h3>MAIL US</h3>
-                                <a href="mailto:charleshollis0088@gmail.com">charleshollis0088@gmail.com</a>
+                                <a href="mailto:{{ $contactUs['mail_us'] }}">{{ $contactUs['mail_us'] }}</a>
                             </div>
                         </div>
                     </div>

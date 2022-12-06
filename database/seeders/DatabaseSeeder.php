@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             // AddAbouPageSeeder::class,
             // addServicePageSeeder::class,
             // AddFooterPageSeeder::class,
-            GalleryImageSeeder::class
+            // GalleryImageSeeder::class
+            AddContactUsSeeder::class
         ]);
     
     }

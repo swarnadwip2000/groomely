@@ -141,6 +141,8 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::post('/service-cms-update', [AdminCmsController::class, 'serviceCmsUpdate'])->name('service-cms.update');
                         Route::get('/footer-cms', [AdminCmsController::class, 'footerCms'])->name('footer.cms');
                         Route::post('/footer-cms/store', [AdminCmsController::class, 'footerCmsStore'])->name('footer-cms.store');
+                        Route::get('/contact-us-cms', [AdminCmsController::class, 'contactUsCms'])->name('contact-us.cms');
+                        Route::post('/contact-us-cms/store', [AdminCmsController::class, 'contactUsCmsStore'])->name('contact-us-cms.store');
                 });  
 
         });

@@ -33,24 +33,24 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('login', [AuthController::class, 'login']);
         Route::post('forget-password', [ForgetPasswordController::class, 'forgetPassword']);
     });
- 
+
     //User
-    Route::group(['prefix' => 'users','middleware'=>'auth:api'], function () {
+    Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
         Route::post('me', [DetailsController::class, 'details']);
-        Route::group(['prefix' => 'profile','middleware'=>'auth:api'], function () {
+        Route::group(['prefix' => 'profile', 'middleware' => 'auth:api'], function () {
             Route::post('update', [ProfileController::class, 'updateProfile']);
-        });    
+        });
     });
 
     //seller
-    Route::group(['prefix' => 'sellers','middleware'=>'auth:api'], function () {
+    Route::group(['prefix' => 'sellers', 'middleware' => 'auth:api'], function () {
         Route::post('me', [SellerController::class, 'sellerdetail']);
-        Route::group(['prefix' => 'profile','middleware'=>'auth:api'], function () {
+        Route::group(['prefix' => 'profile', 'middleware' => 'auth:api'], function () {
             Route::post('update', [SellerController::class, 'updateProfile']);
             Route::delete('delete', [SellerController::class, 'deleteProfile']);
-        });    
+        });
     });
-    
+
     Route::get('users', [DetailsController::class, 'allUserDetails']);
     //google login
     Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToGoogle']);
@@ -61,16 +61,12 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('list', [ApiController::class, 'category']);
     });
 
-    Route::group(['prefix' => 'service'], function () { 
+    Route::group(['prefix' => 'service'], function () {
         Route::get('types', [ApiController::class, 'servicetype']);
         Route::get('details', [ApiController::class, 'servicedetails']);
     });
 
-    Route::group(['prefix' => 'appointment'], function () { 
+    Route::group(['prefix' => 'appointment'], function () {
         Route::get('booking-times', [ApiController::class, 'bookingtimes']);
-    });    
-   
+    });
 });
-
-
-

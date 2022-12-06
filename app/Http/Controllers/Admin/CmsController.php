@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutCms;
+use App\Models\ContactUsCms;
 use App\Models\FooterCms;
 use App\Models\HomeCms;
 use App\Models\ServiceCms;
@@ -218,7 +219,7 @@ class CmsController extends Controller
             'facebook_link' => 'required',
             'instagram_link' => 'required',
             'address' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|min:10|max:16',
             'email' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'youtube_link'=> 'required',
         ]);
@@ -228,5 +229,28 @@ class CmsController extends Controller
         $footerCms->save();
 
         return redirect()->back()->with('message', 'Footer page content has been updated successfully.');
+    }
+
+    public function contactUsCms()
+    {
+        $contactUs = ContactUsCms::first();
+        return view('admin.cms.contact-us-cms')->with(compact('contactUs'));
+    }
+
+    public function contactUsCmsStore(Request $request)
+    {
+        $validateData =  $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'visit_us' => 'required',
+            'call_us' => 'required|min:10|max:16',
+            'mail_us' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+        ]);
+
+        $contactUsCms =  ContactUsCms::findOrFail($request->id);
+        $contactUsCms->fill($validateData);
+        $contactUsCms->save();
+
+        return redirect()->back()->with('message', 'Contact us page content has been updated successfully.');
     }
 }

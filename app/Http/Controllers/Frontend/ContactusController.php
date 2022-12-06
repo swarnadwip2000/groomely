@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\ContactUsCms;
 use Illuminate\Http\Request;
 
 class ContactusController extends Controller
 {
     public function contact()
     {
-        return view('frontend.contact');
+        $contactUs = ContactUsCms::first();
+        return view('frontend.contact')->with(compact('contactUs'));
     }
 
     public function contactStore(Request $request)
