@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             AssignRoleSeeder::class,
             AssignAdminSeeder::class,
             AddCategoriesSeeder::class,
-            addTimeShedule::class,
+            addTimeShedule::class, 
             addHomePageSeeder::class,
             addServiceTypeSeeder::class,
             AddAbouPageSeeder::class,
