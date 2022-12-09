@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Seller\SellerController;
 use App\Http\Controllers\API\ForgetPasswordController;
 use App\Http\Controllers\API\User\ProfileController;
 use App\Http\Controllers\API\category\ApiController;
+use App\Http\Controllers\API\Appointment\AppointmentController;
 use App\Http\Controllers\API\GoogleSocialiteController;
 
 /*
@@ -39,7 +40,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('me', [DetailsController::class, 'details']);
         Route::group(['prefix' => 'profile','middleware'=>'auth:api'], function () {
             Route::post('update', [ProfileController::class, 'updateProfile']);
-        });    
+        });
+        Route::group(['prefix' => 'booking'], function () {
+            Route::post('create', [AppointmentController::class, 'bookingcreate']);
+        });     
     });
 
     //seller
