@@ -35,22 +35,29 @@ class AppointmentController extends Controller
             }
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
+        try {
 
-        $user = User::where('id', Auth::user()->id)->first();
-        $get_seller = Service::where('id',$request->service_id)->first();
-      
-        $appointment_create = new Appointment;
-        $appointment_create->user_id = $user->id;
-        $appointment_create->service_id = $request->service_id;
-        $appointment_create->name = $user->name;
-        $appointment_create->email = $user->email;
-        $appointment_create->phone = $user->phone;
-        $appointment_create->booking_date = $request->booking_date;
-        $appointment_create->booking_time_id = $request->booking_time_id;
-        $appointment_create->amount = $request->amount;
-        $appointment_create->save();
+            $user = User::where('id', Auth::user()->id)->first();
+            $get_seller = Service::where('id',$request->service_id)->count();
+            if($get_seller > 0)
+            {
+                $appointment_create = new Appointment;
+                $appointment_create->user_id = $user->id;
+                $appointment_create->service_id = $request->service_id;
+                $appointment_create->name = $user->name;
+                $appointment_create->email = $user->email;
+                $appointment_create->phone = $user->phone;
+                $appointment_create->booking_date = $request->booking_date;
+                $appointment_create->booking_time_id = $request->booking_time_id;
+                $appointment_create->amount = $request->amount;
+                $appointment_create->save();
 
-        return response()->json(['data' => $appointment_create, 'status' => true, 'message' => 'Booking successfully'], $this->successStatus);
-
+                return response()->json(['data' => $appointment_create, 'status' => true, 'message' => 'Booking successfully'], $this->successStatus);
+            }else{
+                return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
+        }
     }
 }

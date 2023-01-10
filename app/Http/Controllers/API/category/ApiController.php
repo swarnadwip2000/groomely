@@ -21,14 +21,18 @@ class ApiController extends Controller
     public $successStatus = 200;
     public function category()
     {
-        $category = Category::select('id','name','slug','icon')->where('status',1)->get(); 
-        if($category !='')
-        {
-            return response()->json(['data' => $category, 'status' => true, 'message' => 'Category find successfully'], $this->successStatus);
-        }
-        else{
-            return response()->json(['messager' => 'Category not found!', 'status' => false], 401);
-        }
+        try {
+            $category = Category::select('id','name','slug','icon')->where('status',1)->get(); 
+            if($category !='')
+            {
+                return response()->json(['data' => $category, 'status' => true, 'message' => 'Category find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['message' => 'Category not found!', 'status' => false], 401);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
+        }    
     }
 
     public function servicetype()
@@ -40,7 +44,7 @@ class ApiController extends Controller
                 return response()->json(['data' => $service, 'status' => true, 'message' => 'Servicetype find successfully'], $this->successStatus);
             }
             else{
-                return response()->json(['messager' => 'Servicetype not found!', 'status' => false], 401);
+                return response()->json(['message' => 'Servicetype not found!', 'status' => false], 401);
             }
         } catch (Exception $e) {
             return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
@@ -50,27 +54,35 @@ class ApiController extends Controller
     public function bookingtimes()
     {
         // return "okkk";
-        $booking_time = BookingTime::select('id','time')->get();
-        if($booking_time !='')
-        {
-            return response()->json(['data' => $booking_time, 'status' => true, 'message' => 'Booking time find successfully'], $this->successStatus);
-        }
-        else{
-            return response()->json(['messager' => 'Bookingtimes not found!', 'status' => false], 401);
-        }
+        try {
+            $booking_time = BookingTime::select('id','time')->get();
+            if($booking_time !='')
+            {
+                return response()->json(['data' => $booking_time, 'status' => true, 'message' => 'Booking time find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['message' => 'Bookingtimes not found!', 'status' => false], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+        }    
     }
 
     public function servicedetails()
     {
         // return "okkk";
-        $service_list = Service::where('status',1)->get();
-        if($service_list !='')
-        {
-            return response()->json(['data' => $service_list, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
-        }
-        else{
-            return response()->json(['messager' => 'Service not found!', 'status' => false], 401);
-        }
+        try {
+            $service_list = Service::where('status',1)->get();
+            if($service_list !='')
+            {
+                return response()->json(['data' => $service_list, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['message' => 'Service not found!', 'status' => false], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+        }        
 
     }
 }

@@ -27,30 +27,35 @@ class ForgetPasswordController extends Controller
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'status' => false], 401);
-        }
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors(), 'status' => false], 401);
+            }
 
-        $count = User::where('email', $request->email)->count();
-        if ($count > 0) {
-            $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
-            ResetPassword::where('email', $request->email)->delete();
-            $id = Crypt::encrypt($user->id);
-            $token = Str::random(20) . 'pass' . $user->id;
-            ResetPassword::create([
-                'email' => $request->email,
-                'token' => $token
-            ]);
+            try {
 
-            $details = [
-                'id' => $id,
-                'token' => $token
-            ];
+                $count = User::where('email', $request->email)->count();
+                if ($count > 0) {
+                    $user = User::where('email', $request->email)->select('id', 'name', 'email')->first();
+                    ResetPassword::where('email', $request->email)->delete();
+                    $id = Crypt::encrypt($user->id);
+                    $token = Str::random(20) . 'pass' . $user->id;
+                    ResetPassword::create([
+                        'email' => $request->email,
+                        'token' => $token
+                    ]);
 
-            Mail::to($request->email)->send(new SendCodeResetPassword($details));
-            return response()->json(['data' => $user, 'status' => true, 'message' => 'Please! check your mail.'], $this->successStatus);
-        } else {
-            return response()->json(['messager' => "Couldn't find your account!", 'status' => false], 401);
-        }
+                    $details = [
+                        'id' => $id,
+                        'token' => $token
+                    ];
+
+                    Mail::to($request->email)->send(new SendCodeResetPassword($details));
+                    return response()->json(['data' => $user, 'status' => true, 'message' => 'Please! check your mail.'], $this->successStatus);
+                } else {
+                    return response()->json(['message' => "Couldn't find your account!", 'status' => false], 401);
+                }
+            } catch (Exception $e) {
+                return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+            }      
     }
 }
