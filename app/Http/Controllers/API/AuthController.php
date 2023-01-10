@@ -40,29 +40,34 @@ class AuthController extends Controller
             }
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
-
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
-            if ($request->user_type == 'USER') {
-                if ($user->hasRole('USER') && $user->status == 1 ) {
-                    $data['auth_token'] = $user->createToken('accessToken')->accessToken;
-                    $data['user'] = $user->makeHidden('roles');
-                    return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
+        try {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
+                if ($request->user_type == 'USER') {
+                    if ($user->hasRole('USER') && $user->status == 1 ) {
+                        $data['auth_token'] = $user->createToken('accessToken')->accessToken;
+                        $data['user'] = $user->makeHidden('roles');
+                        return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
+                    } else {
+                        return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
+                    }
                 } else {
-                    return response()->json(['messager' => 'Email id & password was invalid!', 'status' => false], 401);
+                    if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
+                        $data['auth_token'] = $user->createToken('accessToken')->accessToken;
+                        $data['user'] = $user->makeHidden('roles');
+                        return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
+                    } else {
+                        return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
+                    }
                 }
             } else {
-                if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
-                    $data['auth_token'] = $user->createToken('accessToken')->accessToken;
-                    $data['user'] = $user->makeHidden('roles');
-                    return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
-                } else {
-                    return response()->json(['messager' => 'Email id & password was invalid!', 'status' => false], 401);
-                }
+                return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
             }
-        } else {
-            return response()->json(['messager' => 'Email id & password was invalid!', 'status' => false], 401);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
         }
+
+        
     }
 
     /** 
@@ -93,23 +98,25 @@ class AuthController extends Controller
             }
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
-        $input = $request->all();
-        $user = new User;
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        $user->password = bcrypt($input['password']);
-        $user->status = true;
-        $user->save();
-        if ($request->user_type == 'USER') {
-            $user->assignRole('USER');
-        } else {
-            $user->assignRole('BUSINESS_OWNER');
+        try {
+            $input = $request->all();
+            $user = new User;
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->password = bcrypt($input['password']);
+            $user->status = true;
+            $user->save();
+            if ($request->user_type == 'USER') {
+                $user->assignRole('USER');
+            } else {
+                $user->assignRole('BUSINESS_OWNER');
+            }
+            $user->createToken('accessToken')->accessToken;
+            $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
+            return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered successfully'], $this->successStatus);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
         }
-        $user->createToken('accessToken')->accessToken;
-        $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
-        return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered successfully'], $this->successStatus);
     }
-
-    
 }
 
