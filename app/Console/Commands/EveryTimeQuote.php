@@ -53,6 +53,6 @@ class EveryTimeQuote extends Command
             }
             
         }
-        $this->info('Auto cancelletion of booking.');
+        $this->info('Auto cancelletion of booking has been done.');
     }
 }
