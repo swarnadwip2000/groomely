@@ -3,6 +3,19 @@
 Groomly | Blogs
 @endsection
 @push('styles')
+<style>
+    .tooltip-inner {
+    max-width: 1500px !important; //define whatever width you want
+}
+.tooltip {
+  font-family: Georgia;
+  font-size: 15px;
+}
+.tooltip .tooltip-inner {
+  background-color: #d5a353;
+  color: white;
+}
+</style>
 @endpush
 
 @section('content')
@@ -40,6 +53,7 @@ Groomly | Blogs
                         <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Descripiton</th>
                                     <th>Slug</th>
                                     <th>Category</th>
                                     <th>Status</th>
@@ -49,7 +63,9 @@ Groomly | Blogs
                             <tbody>
                                 @foreach($blogs as $blog)
                                 <tr>
+
                                     <td>{{$blog['name']}}</td>
+                                    <td style="cursor: pointer;" data-toggle="tooltip" rel="tooltip" data-placement="top" title="{!! $blog['description'] !!}">{!! substr($blog['description'], 0,60) !!}.......</td>
                                     <td>{{$blog['slug']}}</td>
                                     <td>{{$blog['category']['name']}}</td>
                                     <td>
@@ -74,6 +90,13 @@ Groomly | Blogs
 @endsection
 
 @push('scripts')
+
+ <script>
+     $( document ).ready(function() {
+         $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+     });
+ </script>
+
 <script>
     $(document).ready(function() {
         //Default data table
