@@ -42,5 +42,11 @@ return [
         'redirect' => env('INSTAGRAM_REDIRECT_URI')
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => env('FACEBOOK_REDIRECT_URI')
+    ],
+
 
 ];
