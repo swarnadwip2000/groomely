@@ -61,16 +61,28 @@ class GoogleSocialiteController extends Controller
                     $file_name = NULL;
                 }
 
-
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'social_type'=> 'google',
-                    'password' => Hash::make($user->name.'@'.$user->id),
-                    'profile_picture' => $file_name,
-                    'login_status' =>true
-                ]);
+                if($provider == 'google')
+                {
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'google_id'=> $user->id,
+                        'social_type'=> 'google',
+                        'password' => Hash::make($user->name.'@'.$user->id),
+                        'profile_picture' => $file_name,
+                        'login_status' =>true
+                    ]); 
+                }else if($provider == 'facebook') {
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'facebook_id'=> $user->id,
+                        'social_type'=> 'facebook',
+                        'password' => Hash::make($user->name.'@'.$user->id),
+                        'profile_picture' => $file_name,
+                        'login_status' =>true
+                    ]); 
+                }   
  
                 // return $user->avatar;
 
@@ -86,6 +98,7 @@ class GoogleSocialiteController extends Controller
             return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
         }
     }
+
 
     
 }

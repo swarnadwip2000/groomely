@@ -30,6 +30,7 @@ class User extends Authenticatable
         'social_type',
         'login_status',
         'google_id',
+        'facebook_id',
         'password',
         'profile_picture',
     ];
