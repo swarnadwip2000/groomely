@@ -102,7 +102,7 @@ Groomly | Category List
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/admin/changeCategoryStatus',
+            url: '{{route('admin.category.change-status')}}',
             data: {
                 'status': status,
                 'user_id': user_id

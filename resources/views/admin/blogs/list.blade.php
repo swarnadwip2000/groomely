@@ -104,11 +104,11 @@ Groomly | Blogs
             "aaSorting": [],
             "columnDefs": [{
                 "orderable": false,
-                "targets": [3, 4]
+                "targets": [4, 5]
             },
             {
                 "orderable": true,
-                "targets": [0,1,2]
+                "targets": [0,1,2,3]
             }
         ]
         });
@@ -123,7 +123,7 @@ Groomly | Blogs
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/admin/changeBlogStatus',
+            url: '{{route("admin.blogs.change-status")}}',
             data: {
                 'status': status,
                 'user_id': user_id
