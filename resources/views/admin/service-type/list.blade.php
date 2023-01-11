@@ -100,7 +100,7 @@ Groomly | Service Type List
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/admin/changeServiceTypeStatus',
+            url: '{{route("admin.service-type.change-status")}}',
             data: {
                 'status': status,
                 'service_type_id': service_type_id

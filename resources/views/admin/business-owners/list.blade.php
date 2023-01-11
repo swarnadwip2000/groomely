@@ -40,6 +40,7 @@ Groomly | Manage Barbers
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Shop Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Zipcode</th>
@@ -51,6 +52,7 @@ Groomly | Manage Barbers
                                 @foreach($business_owners as $business_owner)
                                 <tr>
                                     <td>{{$business_owner['name']}}</td>
+                                    <td>{{$business_owner['shop_name']}}</td>
                                     <td>{{$business_owner['email']}}</td>
                                     <td>{{$business_owner['phone']}}</td>
                                     <td>{{$business_owner['zipcode']}}</td>
@@ -102,7 +104,7 @@ Groomly | Manage Barbers
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/admin/changeCustomerStatus',
+            url: '{{route("admin.business-owner.change-status")}}',
             data: {
                 'status': status,
                 'user_id': user_id

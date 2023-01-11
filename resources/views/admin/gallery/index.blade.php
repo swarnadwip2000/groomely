@@ -76,7 +76,7 @@ Groomly | Manage Booking Edit
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        
+
                     </div>
                 </div>
             </div>
@@ -105,14 +105,14 @@ Groomly | Manage Booking Edit
                                         </div>
 
                                     </div>
-                                    
+
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
                                             <button type="submit" class="btn btn-info px-5">Upload</button>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                                 @if($galleries)
                                     <div class="row mb-3">
@@ -121,7 +121,7 @@ Groomly | Manage Booking Edit
                                             @foreach($galleries as $gallery)
                                             <div class="image-area m-4 col-xl-6 col-md-4 col-lg-4 col-4" id="{{$gallery['id']}}">
                                                 <img src="{{Storage::url($gallery['image'])}}" alt="Preview" >
-                                                <a class="remove-image" href="javascript:void(0);" onclick="return confirm('Are you delete the image from gallery?');" data-id="{{$gallery['id']}}" style="display: inline;">&#215;</a>
+                                                <a class="remove-image" href="javascript:void(0);" data-route="{{route('admin.deleteImage',$gallery->id)}}" onclick="return confirm('Are you delete the image from gallery?');" data-id="{{$gallery['id']}}" style="display: inline;">&#215;</a>
                                             </div>
                                             @endforeach
                                         </div>
@@ -163,7 +163,7 @@ Groomly | Manage Booking Edit
         var id = $(this).attr('data-id');
         // alert(id);
         $.ajax({
-            url: '/admin/deleteImage/' + id,
+            url: $(this).data('route'),
             type: 'get',
             success: function(response) {
                 $('#'+id).hide();

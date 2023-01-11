@@ -103,7 +103,7 @@ Groomly | Customers
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/admin/changeCustomerStatus',
+            url: '{{route("admin.customers.change-status")}}',
             data: {
                 'status': status,
                 'user_id': user_id
