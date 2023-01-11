@@ -4,7 +4,8 @@
 @section('title')
 Groomely | GALLERY
 @endsection
-@push('style')
+@push('styles')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css" rel="stylesheet">
 @endpush
 
 
@@ -86,5 +87,6 @@ Groomely | GALLERY
 </section>
 @endsection
 
-@push('script')
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox-plus-jquery.min.js"></script>
 @endpush

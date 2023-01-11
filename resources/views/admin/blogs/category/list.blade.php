@@ -30,7 +30,7 @@ Groomly | Blog Category
                     <div class="card-title">
                         <div class="row">
                             <div class="col-md-6"><h4 class="mb-0">Category list</h4></div>
-                            <div class="col-md-6"><a href="{{route('blog-category.create')}}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add blog</button></a></div>
+                            <div class="col-md-6"><a href="{{route('blog-category.create')}}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add blog category</button></a></div>
                         </div>
                     </div>
 
