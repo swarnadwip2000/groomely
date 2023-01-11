@@ -4,7 +4,7 @@
             <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
         </div>
         <div>
-            <h4 class="logo-text">Groomly</h4>
+            <a href="{{ route('home') }}"><h4 class="logo-text">Groomly</h4></a>
         </div>
         <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
         </a>
@@ -56,7 +56,7 @@
                 <div class="menu-title">Blogs</div>
             </a>
             <ul>
-                <li> <a class="{{ Request::is('admin/blog-category*') ? 'mm-active' : '' }}"
+                <li class="{{ Request::is('admin/blog-category*') ? 'mm-active' : '' }}"> <a class=""
                         href="{{ route('blog-category.index') }}"><i class="bx bx-right-arrow-alt"></i>Category</a>
                 <li class="{{ Request::is('admin/blogs*') ? 'mm-active' : '' }}"> <a class=""
                         href="{{ route('blogs.index') }}"><i class="bx bx-right-arrow-alt"></i>List</a>

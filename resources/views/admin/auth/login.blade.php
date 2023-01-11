@@ -32,7 +32,7 @@
                             <div class="col-xl-6">
                                 <div class="card-body p-5">
                                     <div class="text-center">
-                                        <img src="{{asset('frontend_assets/images/logo.png')}}" width="180" alt="">
+                                       <a href="{{ route('home') }}"> <img src="{{asset('frontend_assets/images/logo.png')}}" width="180" alt=""></a> 
                                         <h3 class="mt-4 font-weight-bold">Welcome Back</h3>
                                     </div>
                                     <div class="">
