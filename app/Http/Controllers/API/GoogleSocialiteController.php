@@ -19,7 +19,7 @@ class GoogleSocialiteController extends Controller
      *
      * @return void
      */
-    public function redirectToGoogle($provider)
+    public function redirectToProvider($provider)
     {
         // return "okk";
         return Socialite::driver($provider)->stateless()->redirect();

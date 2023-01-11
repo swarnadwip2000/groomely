@@ -58,7 +58,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('users', [DetailsController::class, 'allUserDetails']);
     //google login
-    Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToGoogle']);
+    Route::get('auth/{provider}/', [GoogleSocialiteController::class, 'redirectToProvider']);
     Route::get('auth/callback/{provider}', [GoogleSocialiteController::class, 'handleCallback']);
 
     //
