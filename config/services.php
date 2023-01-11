@@ -39,13 +39,13 @@ return [
     'instagram' => [
         'client_id' => env('INSTAGRAM_KEY'),
         'client_secret' => env('INSTAGRAM_SECRET'),
-        'redirect' => env('INSTAGRAM_REDIRECT_URI')
+        'redirect' => env('INSTAGRAM_REDIRECT_URI'),
     ],
 
-    'facebook' => [
+   'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'redirect' => env('FACEBOOK_REDIRECT_URI')
+        'redirect' => env('FACEBOOK_REDIRECT_URL')
     ],
 
 

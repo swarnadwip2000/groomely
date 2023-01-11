@@ -1,7 +1,7 @@
 <?php
-   
+
 namespace App\Http\Controllers\API;
-   
+
 use App\Http\Controllers\Controller;
 use Socialite;
 use Auth;
@@ -21,10 +21,9 @@ class GoogleSocialiteController extends Controller
      */
     public function redirectToProvider($provider)
     {
-        // return "okk";
         return Socialite::driver($provider)->stateless()->redirect();
     }
-       
+
     /**
      * Create a new controller instance.
      *
@@ -32,21 +31,16 @@ class GoogleSocialiteController extends Controller
      */
     public function handleCallback($provider)
     {
-        // return $provider;
-        try {
-     
-            $user = Socialite::driver($provider)->stateless()->user();
-            // dd($user);
-      
+
+          return  $user = Socialite::driver($provider)->stateless()->user();
+
             $finduser = User::where('email', $user->email)->first();
-      
+
             if($finduser){
-      
+
              $chhk = Auth::login($finduser);
-     
-                // return redirect('/home');
-                return response()->json(['message' => 'User login successfully', 'status' => true], 200);
-      
+            return response()->json(['message' => 'User login successfully', 'status' => true], 200);
+
             }else{
 
                $user->avatar = NULL;
@@ -71,8 +65,10 @@ class GoogleSocialiteController extends Controller
                         'password' => Hash::make($user->name.'@'.$user->id),
                         'profile_picture' => $file_name,
                         'login_status' =>true
-                    ]); 
+                    ]);
+
                 }else if($provider == 'facebook') {
+
                     $newUser = User::create([
                         'name' => $user->name,
                         'email' => $user->email,
@@ -81,24 +77,18 @@ class GoogleSocialiteController extends Controller
                         'password' => Hash::make($user->name.'@'.$user->id),
                         'profile_picture' => $file_name,
                         'login_status' =>true
-                    ]); 
-                }   
- 
-                // return $user->avatar;
-
-               
+                    ]);
+                }
 
                 Auth::login($newUser);
-      
-                // return redirect('/home');
+
                 return response()->json(['message' => 'login successfully', 'status' => true], 200);
             }
-     
-        } catch (Exception $e) {
-            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
-        }
+
+
     }
 
 
-    
+
+
 }
