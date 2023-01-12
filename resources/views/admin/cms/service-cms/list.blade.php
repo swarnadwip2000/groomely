@@ -55,8 +55,10 @@ Groomly | Service-cms List
                                     <td>{{$service['name']}}</td>
                                     <td>{{ Str::limit($service['title'], 30)}}</td>
                                     <td>{{ Str::limit($service['description'], 40)}}</td>                                  
-                                    <td><img src="{{Storage::url($service['image'])}}" alt="" style="height: 100px; width: 100px;"></td>
-                                    <td><img src="{{Storage::url($service['icon'])}}" alt=""></td>                               
+                                    <td><a href="{{Storage::url($service['image'])}}" target="_blank">
+                                        <img src="{{Storage::url($service['image'])}}" alt="" style="height: 100px; width: 100px;"></a></td>
+                                    <td><a href="{{Storage::url($service['icon'])}}" target="_blank">
+                                        <img src="{{Storage::url($service['icon'])}}" alt=""></a></td>                               
                                     <td align="center">
                                         <a href="{{route('service-cms.edit', $service->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                         @if ($service['status'] != true)

@@ -102,6 +102,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('blog-category', BlogCategoryController::class);
                 Route::resource('gallery', GalleryController::class);
                 Route::resource('service-type', ServiceTypeController::class);
+                Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');

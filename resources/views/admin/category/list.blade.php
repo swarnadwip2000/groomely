@@ -53,7 +53,8 @@ Groomly | Category List
                                 <tr>
                                     <td>{{$category['name']}}</td>
                                     <td>{{$category['slug']}}</td>
-                                    <td><img src="{{Storage::url($category['icon'])}}" alt=""></td>
+                                    <td><a href="{{Storage::url($category['icon'])}}" target="_blank">
+                                        <img src="{{Storage::url($category['icon'])}}" alt=""></a></td>
                                     <td>
                                         <input data-id="{{$category['id']}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $category['status'] ? 'checked' : '' }}>
                                     </td>

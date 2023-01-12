@@ -5,6 +5,8 @@
 @push('styles')
 @endpush
 
+
+
 @section('content')
     <div class="page-wrapper">
         <!--page-content-wrapper-->
@@ -49,6 +51,8 @@
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Zipcode</th>
+                                        <th>Complete Appointments</th>
+                                        <th>Total Revenue</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -61,8 +65,13 @@
                                             <td>{{ $business_owner['email'] }}</td>
                                             <td>{{ $business_owner['phone'] }}</td>
                                             <td>{{ $business_owner['zipcode'] }}</td>
+                                            <td><a href="{{ route('appointments-details.show', $business_owner->id) }}">
+                                                <button type="button" style="border:none;background: none;" data-toggle="tooltip" data-placement="right" title="Click to show {{ $business_owner['name'] }}'s appontments">
+                                                {{ $business_owner->appointmentsCount($business_owner['id']) }} </button></a>
+                                            </td>
+                                            
+                                            <td>${{$business_owner->totalAmount($business_owner['id'])}}</td>
                                             <td>
-
                                                 <div class="button-switch">
                                                     <input type="checkbox" id="switch-orange" class="switch toggle-class"
                                                         data-id="{{ $business_owner['id'] }}"

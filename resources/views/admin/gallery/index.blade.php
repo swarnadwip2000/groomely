@@ -120,7 +120,8 @@ Groomly | Manage Booking Edit
                                         <div class="row" style="display: flex;">
                                             @foreach($galleries as $gallery)
                                             <div class="image-area m-4 col-xl-6 col-md-4 col-lg-4 col-4" id="{{$gallery['id']}}">
-                                                <img src="{{Storage::url($gallery['image'])}}" alt="Preview" >
+                                                <a href="{{Storage::url($gallery['image'])}}" target="_blank">
+                                                <img src="{{Storage::url($gallery['image'])}}" alt="Preview" ></a>
                                                 <a class="remove-image" href="javascript:void(0);" data-route="{{route('admin.deleteImage',$gallery->id)}}" onclick="return confirm('Are you delete the image from gallery?');" data-id="{{$gallery['id']}}" style="display: inline;">&#215;</a>
                                             </div>
                                             @endforeach

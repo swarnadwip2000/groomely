@@ -68,7 +68,8 @@ Groomly | Service Type Edit
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($serviceType['image'])}}" style="width: 100px; height:100px;" alt="">
+                                            <a href="{{Storage::url($serviceType['image'])}}" target="_blank">
+                                            <img src="{{Storage::url($serviceType['image'])}}" style="width: 100px; height:100px;" alt=""></a>
                                         </div>
 
                                     </div>
