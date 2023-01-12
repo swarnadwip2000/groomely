@@ -55,7 +55,13 @@ Groomly | Customers
                                     <td>{{$customer['phone']}}</td>
                                     <td>{{$customer['zipcode']}}</td>
                                     <td>
-                                        <input data-id="{{$customer['id']}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $customer['status'] ? 'checked' : '' }}>
+                                        <div class="button-switch">
+                                            <input type="checkbox" id="switch-orange" class="switch toggle-class"
+                                                data-id="{{ $customer['id'] }}"
+                                                {{ $customer['status'] ? 'checked' : '' }} />
+                                            <label for="switch-orange" class="lbl-off"></label>
+                                            <label for="switch-orange" class="lbl-on"></label>
+                                        </div>
                                     </td>
                                     <td align="center">
                                         <a href="{{route('customers.show', $customer->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
