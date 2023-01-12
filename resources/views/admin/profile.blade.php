@@ -33,9 +33,11 @@ Groomly | Profile
                                 <div class="d-md-flex align-items-center">
                                     <div class="mb-md-0 mb-3">
                                         @if(!Auth::user()->profile_picture)
-                                        <img src="{{asset('admin_assets/images/avatars/avatar-1.png')}}" class="rounded-circle shadow" width="130" height="130" alt="" />
+                                        <a href="{{asset('admin_assets/images/avatars/avatar-1.png')}}" target="_blank">
+                                        <img src="{{asset('admin_assets/images/avatars/avatar-1.png')}}" class="rounded-circle shadow" width="130" height="130" alt="" /></a>
                                         @else
-                                        <img src="{{Storage::url(Auth::user()->profile_picture)}}" class="rounded-circle shadow" width="130" height="130" alt="">
+                                        <a href="{{Storage::url(Auth::user()->profile_picture)}}" target="_blank">
+                                        <img src="{{Storage::url(Auth::user()->profile_picture)}}" class="rounded-circle shadow" width="130" height="130" alt=""></a>
                                         @endif
                                     </div>
                                     <div class="ms-md-4 flex-grow-1">

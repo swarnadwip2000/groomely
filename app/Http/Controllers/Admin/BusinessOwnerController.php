@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Appointment;
+use App\Models\Service;
 
 class BusinessOwnerController extends Controller
 {
@@ -15,7 +17,8 @@ class BusinessOwnerController extends Controller
      */
     public function index()
     {
-        $business_owners = User::orderby('id', 'desc')->Role('BUSINESS_OWNER')->get();
+        $business_owners = User::orderby('id', 'desc')->Role('BUSINESS_OWNER')->get();      
+   
         return view('admin.business-owners.list')->with(compact('business_owners'));
     }
 
@@ -83,15 +86,13 @@ class BusinessOwnerController extends Controller
         return view('admin.business-owners.edit')->with(compact('business_owner'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+  
+
+    public function appointmentList($id)
     {
-        //
+        // return $id;
+        $business_owners = User::findOrFail($id);
+        return view('admin.business-owners.appointment.list')->with(compact('business_owners'));
     }
 
     /**

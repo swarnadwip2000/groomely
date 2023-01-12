@@ -53,4 +53,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function appointmentsCount($id)
+    {
+        $count = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
+            $query->where('user_id', $id);
+        })->count();
+        return $count;
+    }
+
+    public static function appontmentDetails($id)
+    {
+        $detail = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
+            $query->where('user_id', $id);
+        })->get();
+        return $detail;
+    }
+
+    public static function totalAmount($id)
+    {
+        $amount = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
+            $query->where('user_id', $id);
+        })->sum('amount');
+        return $amount;
+    }
 }

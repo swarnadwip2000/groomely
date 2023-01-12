@@ -99,7 +99,8 @@ Groomly | Customers
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($customer->profile_picture)}}" alt="" style="width: 100%; height: 215px;">
+                                            <a href="{{Storage::url($customer->profile_picture)}}" target="_blank">
+                                            <img src="{{Storage::url($customer->profile_picture)}}" alt="" style="width: 100%; height: 215px;"></a>
                                         </div>
                                     </div>
                                     @endif

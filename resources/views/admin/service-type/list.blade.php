@@ -51,7 +51,8 @@ Groomly | Service Type List
                                 @foreach($serviceTypes as $serviceType)
                                 <tr>
                                     <td>{{$serviceType['name']}}</td>
-                                    <td><img src="{{Storage::url($serviceType['image'])}}" alt=""></td>
+                                    <td><a href="{{Storage::url($serviceType['image'])}}" target="_blank">
+                                        <img src="{{Storage::url($serviceType['image'])}}" alt=""></a></td>
                                     <td>
                                         <div class="button-switch">
                                             <input type="checkbox" id="switch-orange" class="switch toggle-class"
