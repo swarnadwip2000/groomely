@@ -57,10 +57,16 @@ Groomly | Manage Services
                                     <td>${{$service['rate']}}</td>
                                     <td>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</td>
                                     <td>
-                                        <input data-id="{{$service['id']}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $service['status'] ? 'checked' : '' }}>
+                                        <div class="button-switch">
+                                            <input type="checkbox" id="switch-orange" class="switch toggle-class"
+                                                data-id="{{ $service['id'] }}"
+                                                {{ $service['status'] ? 'checked' : '' }} />
+                                            <label for="switch-orange" class="lbl-off"></label>
+                                            <label for="switch-orange" class="lbl-on"></label>
+                                        </div>
                                     </td>
                                     <td align="center">
-                                        <a href="{{route('manage-services.view', $service->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp; 
+                                        <a href="{{route('manage-services.view', $service->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                         <a href="{{route('manage-services.show', $service->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                         <a href="{{route('manage-services.delete', $service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></a>
                                     </td>
@@ -102,7 +108,7 @@ Groomly | Manage Services
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/seller/changeManageServicesStatus',
+            url: '/seller/changeManageBookingStatus',
             data: {
                 'status': status,
                 'user_id': user_id
@@ -112,7 +118,7 @@ Groomly | Manage Services
             }
         });
     });
-    
+
 </script>
 
 @endpush

@@ -55,10 +55,10 @@
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                                     <div class="">
                                                     <label for="exampleInputFirstName" class="form-label">User Type    &nbsp;&nbsp;</label>
-                                                         <input type="radio" id="html" name="user_type" value="USER">
-                                                          <label for="html">User</label>
-                                                          <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER">
-                                                          <label for="css">Partner</label><br>
+                                                         <input type="radio" id="html" name="user_type" value="USER" style="cursor: pointer;">
+                                                          <label for="html" style="cursor: pointer;">User</label>
+                                                          <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER" style="cursor: pointer;">
+                                                          <label for="css" style="cursor: pointer;">Partner</label><br>
                                                         @if($errors->has('user_type'))
                                                         <div class="error" style="color:red;">{{ $errors->first('user_type') }}</div>
                                                         @endif
@@ -75,7 +75,7 @@
                                                 <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
                                                 @endif
                                                 <div style="float:right;">
-                                                   <a href="{{ route('forget.password.show') }}">Forget password ?</a> 
+                                                   <a href="{{ route('forget.password.show') }}">Forget password ?</a>
                                                 </div>
                                                 <button type="submit" class="btn btn-lg btn-primary btn-block btn-login">LOGIN</button>
                                                 <div class="login-text">

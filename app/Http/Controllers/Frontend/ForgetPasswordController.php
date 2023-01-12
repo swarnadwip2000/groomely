@@ -50,6 +50,7 @@ class ForgetPasswordController extends Controller
 
     public function resetPassword($id, $token)
     {
+        // return "dfs";
         $user = User::findOrFail(Crypt::decrypt($id));
         $resetPassword = ResetPassword::where('email', $user->email)->orderBy('id', 'desc')->first();
          $newTime =  date('h:i A', strtotime( $resetPassword->created_at->addHour()));
@@ -71,13 +72,18 @@ class ForgetPasswordController extends Controller
             'password' => 'required|min:8',
             'confirm_password' => 'required|min:8|same:password'
         ]);
-
-        if ($request->id != '') {
-            $id = Crypt::decrypt($request->id);
-            User::where('id', $request->id)->update(['password' => bcrypt($request->password)]);
-            return redirect()->route('login')->with('message', 'Password has been changed successfully.');
-        } else {
-            abort(404);
+        // return $request->all();
+        try {
+            if ($request->id != '') {
+                $id = Crypt::decrypt($request->id);
+                User::where('id', $id)->update(['password' => bcrypt($request->password)]);
+                return redirect()->route('login')->with('message', 'Password has been changed successfully.');
+            } else {
+                abort(404);
+            }
+        } catch (\Throwable $th) {
+            return redirect()->route('login')->with('message', 'Something went wrong.');
         }
+       
     }
 }

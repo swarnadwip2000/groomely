@@ -3,6 +3,7 @@
 Groomly | Appointment List
 @endsection
 @push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
 @endpush
 
 @section('content')
@@ -69,16 +70,9 @@ Groomly | Appointment List
                                         @elseif($appointment['status'] == 'accepted')
                                         <p style="background-color: #8fddd2; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #0b4e68;">Accepted!!</p>
                                         @elseif($appointment['status'] == 'completed')
-                                        @if (count($appointment['invoices']) > 0)
-                                        @foreach ($appointment['invoices'] as $invoice)
-                                        <a title="download invoice" href="{{ route('download.invoice',$invoice->id) }}"><i class="fas fa-download"></i></a>
-                                        @break
-                                        @endforeach
-                                        @else
                                         <p style="background-color: #b9e38f; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: forestgreen;">Completed!!</p>
-                                        @endif
                                         @elseif($appointment['status'] == 'reshedule')
-                                        <a href="{{route('user.appointment.accept', $appointment['id'])}}" onclick="return confirm('Do you want to accept the appointment?')"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
+                                        <a href="javascript:void(0);" data-route="{{route('user.appointment.accept', $appointment['id'])}}" id="accept"><button class="btn btn-success"><i class="fa fa-check"></i> Accept</button></a>
                                         <a href="{{route('user.appointment.reshedule', $appointment['id'])}}"><button class="btn btn-warning"><i class="fa fa-refresh"></i> Reshedule</button></a>
                                         @else
                                         <p style="background-color: #dd9fa8; width: auto;border-radius:50px; text-align: center;font-weight: 600; height: 23px; color: #c70a2d;"> Cancelled!!</p>
@@ -102,6 +96,7 @@ Groomly | Appointment List
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 <script>
     $('#example').DataTable({
         "aaSorting": [],
@@ -115,5 +110,26 @@ Groomly | Appointment List
             }
         ]
     });
+
+    $(document).on('click', '#accept', function(e) {
+		    swal({
+				title: "Are you sure?",
+				text: "To accept the appointment",
+				type: "warning",
+				confirmButtonText: "Yes",
+				showCancelButton: true
+		    })
+		    	.then((result) => {
+					if (result.value) {
+					    window.location = $(this).data('route');
+					} else if (result.dismiss === 'cancel') {
+					    swal(
+					      'Cancelled',
+					      'Your stay here :)',
+					      'error'
+					    )
+					}
+				})
+		});
 </script>
 @endpush

@@ -53,7 +53,13 @@ Groomly | Service Type List
                                     <td>{{$serviceType['name']}}</td>
                                     <td><img src="{{Storage::url($serviceType['image'])}}" alt=""></td>
                                     <td>
-                                        <input data-id="{{$serviceType['id']}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $serviceType['status'] ? 'checked' : '' }}>
+                                        <div class="button-switch">
+                                            <input type="checkbox" id="switch-orange" class="switch toggle-class"
+                                                data-id="{{ $serviceType['id'] }}"
+                                                {{ $serviceType['status'] ? 'checked' : '' }} />
+                                            <label for="switch-orange" class="lbl-off"></label>
+                                            <label for="switch-orange" class="lbl-on"></label>
+                                        </div>
                                     </td>
                                     <td align="center">
                                         <a href="{{route('service-type.show', $serviceType->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
