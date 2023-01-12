@@ -19,6 +19,7 @@ class GoogleSocialiteController extends Controller
      *
      * @return void
      */
+    public $successStatus = 200;
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->stateless()->redirect();
@@ -32,14 +33,13 @@ class GoogleSocialiteController extends Controller
     public function handleCallback($provider)
     {
 
-          return  $user = Socialite::driver($provider)->stateless()->user();
+            $user = Socialite::driver($provider)->stateless()->user();
 
             $finduser = User::where('email', $user->email)->first();
 
             if($finduser){
-
-             $chhk = Auth::login($finduser);
-            return response()->json(['message' => 'User login successfully', 'status' => true], 200);
+                $data['auth_token'] = $finduser->createToken('accessToken')->accessToken;
+                return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
 
             }else{
 
@@ -55,40 +55,29 @@ class GoogleSocialiteController extends Controller
                     $file_name = NULL;
                 }
 
-                if($provider == 'google')
-                {
-                    $newUser = User::create([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'google_id'=> $user->id,
-                        'social_type'=> 'google',
-                        'password' => Hash::make($user->name.'@'.$user->id),
-                        'profile_picture' => $file_name,
-                        'login_status' =>true
-                    ]);
+               
+                    $newUser = new User();
+                    $newUser->name = $user->name;
+                    $newUser->email = $user->email;
+                    
+                    if($provider == 'google')
+                    {
+                        $newUser->google_id = $user->id;
+                        $newUser->social_type =  'google';
+                    }else {
+                        $newUser->facebook_id =  $user->id;
+                        $newUser->social_type = 'facebook';
+                    }
+                    $newUser->password = Hash::make($user->name.'@'.$user->id);
+                    $newUser->profile_picture = $file_name;
+                    $newUser->login_status = true;
+                    $newUser->save();
+                    $data['auth_token'] = $newUser->createToken('accessToken')->accessToken;  
+                    $data['user_details'] = $newUser;
 
-                }else if($provider == 'facebook') {
-
-                    $newUser = User::create([
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'facebook_id'=> $user->id,
-                        'social_type'=> 'facebook',
-                        'password' => Hash::make($user->name.'@'.$user->id),
-                        'profile_picture' => $file_name,
-                        'login_status' =>true
-                    ]);
-                }
-
-                Auth::login($newUser);
-
-                return response()->json(['message' => 'login successfully', 'status' => true], 200);
+                    return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
             }
 
-
     }
-
-
-
 
 }
