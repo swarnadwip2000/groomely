@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class AuthController extends Controller
 {
@@ -46,6 +46,7 @@ class AuthController extends Controller
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;
+                        Session::put('password_update_time', );
                         $data['user'] = $user->makeHidden('roles');
                         return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {
@@ -111,7 +112,6 @@ class AuthController extends Controller
             } else {
                 $user->assignRole('BUSINESS_OWNER');
             }
-            $user->createToken('accessToken')->accessToken;
             $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
             return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered successfully'], $this->successStatus);
         } catch (\Throwable $th) {

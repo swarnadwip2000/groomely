@@ -36,7 +36,7 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     //User
-    Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
+    Route::group(['prefix' => 'users', 'middleware' => ['auth:api','checkPassword']], function () {
         Route::post('me', [DetailsController::class, 'details']);
         Route::group(['prefix' => 'profile'], function () {
             Route::post('update', [ProfileController::class, 'updateProfile']);
@@ -48,7 +48,7 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     //seller
-    Route::group(['prefix' => 'sellers', 'middleware' => 'auth:api'], function () {
+    Route::group(['prefix' => 'sellers', 'middleware' => ['auth:api','checkPassword']], function () {
         Route::post('me', [SellerController::class, 'sellerdetail']);
         Route::group(['prefix' => 'profile'], function () {
             Route::post('update', [SellerController::class, 'updateProfile']);

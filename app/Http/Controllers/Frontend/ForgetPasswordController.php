@@ -77,6 +77,8 @@ class ForgetPasswordController extends Controller
             if ($request->id != '') {
                 $id = Crypt::decrypt($request->id);
                 User::where('id', $id)->update(['password' => bcrypt($request->password)]);
+                $now_time = Carbon::now()->toDateTimeString();
+                User::where('email', $request->email)->update(['password_update_time'=>$now_time]);
                 return redirect()->route('login')->with('message', 'Password has been changed successfully.');
             } else {
                 abort(404);

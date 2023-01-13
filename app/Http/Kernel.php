@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'seller'=> \App\Http\Middleware\Seller::class,
         'user'=> \App\Http\Middleware\User::class,
         'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
+        'checkPassword' => \App\Http\Middleware\CheckPassword::class,
 
     ];
 }
