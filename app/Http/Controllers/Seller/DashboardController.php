@@ -7,6 +7,8 @@ use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class DashboardController extends Controller
 {
@@ -55,6 +57,9 @@ class DashboardController extends Controller
             ]);
             $data->password = bcrypt($request->password);
         }
+        $now_time = Carbon::now()->toDateTimeString();  
+        $data->password_update_time = $now_time;
+
 
         if ($request->hasFile('profile_picture')) {
             $request->validate([

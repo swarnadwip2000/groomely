@@ -43,14 +43,13 @@ class AuthController extends Controller
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
         try {
+            $token_time = Carbon::now()->toDateTimeString();
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
-                        $data['auth_token'] = $user->createToken('accessToken')->accessToken;
-                        $token_time = Carbon::now()->toDateTimeString(); 
-                        Session::put('token_update_time',$token_time);
-                       
+                        $data['auth_token'] = $user->createToken('accessToken')->accessToken;                        
+                        Session::put('token_update_time',$token_time);                      
                         $data['user'] = $user->makeHidden('roles');
                         return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {
@@ -60,6 +59,7 @@ class AuthController extends Controller
                     if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;
                         $data['user'] = $user->makeHidden('roles');
+                        Session::put('token_update_time',$token_time);
                         return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {
                         return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);

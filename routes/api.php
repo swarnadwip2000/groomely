@@ -40,6 +40,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('me', [DetailsController::class, 'details']);
         Route::group(['prefix' => 'profile'], function () {
             Route::post('update', [ProfileController::class, 'updateProfile']);
+            Route::post('change-password', [ProfileController::class, 'changePassword']);
         });
 
         Route::group(['prefix' => 'booking'], function () {
