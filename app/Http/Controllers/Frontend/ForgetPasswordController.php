@@ -11,6 +11,7 @@ use App\Models\ResetPassword;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ForgetPasswordController extends Controller
 {
@@ -68,6 +69,7 @@ class ForgetPasswordController extends Controller
 
     public function changePassword(Request $request)
     {
+        
         $request->validate([
             'password' => 'required|min:8',
             'confirm_password' => 'required|min:8|same:password'
@@ -77,13 +79,15 @@ class ForgetPasswordController extends Controller
             if ($request->id != '') {
                 $id = Crypt::decrypt($request->id);
                 User::where('id', $id)->update(['password' => bcrypt($request->password)]);
-                $now_time = Carbon::now()->toDateTimeString();
-                User::where('email', $request->email)->update(['password_update_time'=>$now_time]);
+                $now_time = Carbon::now()->toDateTimeString();    
+                User::where('id', $id)->update(['password_update_time'=>$now_time]);
+                
                 return redirect()->route('login')->with('message', 'Password has been changed successfully.');
             } else {
                 abort(404);
             }
-        } catch (\Throwable $th) {
+        } 
+        catch (\Throwable $th) {
             return redirect()->route('login')->with('message', 'Something went wrong.');
         }
        

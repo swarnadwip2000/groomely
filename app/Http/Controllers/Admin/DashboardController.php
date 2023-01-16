@@ -19,7 +19,8 @@ class DashboardController extends Controller
         $count['blogs'] = Blog::count();
         $count['gallery'] = Gallery::count();
         $count['contact_us'] = Contact::count();
-        return view('admin.dashboard')->with(compact('count'));
+        $users = User::select('name','id')->role('BUSINESS_OWNER')->get();
+        return view('admin.dashboard')->with(compact('count','users'));
     }
 
     public function profile()

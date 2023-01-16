@@ -46,7 +46,7 @@ class AuthController extends Controller
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;
-                        Session::put('password_update_time', );
+                        // Session::put('password_update_time', );
                         $data['user'] = $user->makeHidden('roles');
                         return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {

@@ -12,6 +12,7 @@ Groomly | Dashboard
         <div class="page-content">
             <!--end row-->
             <div class="row">
+          
                 <div class="col-12 col-lg-12 col-xl-6 d-flex">
                     <div class="card radius-15 w-100">
                         <div class="card-body">
@@ -125,8 +126,18 @@ Groomly | Dashboard
                     </div>
                 </div>
             </div>
+           
+     
+
+            <div class="row">
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
     </div>
+
+    
+
+   
     <!--end page-content-wrapper-->
 </div>
 @endsection
@@ -134,7 +145,7 @@ Groomly | Dashboard
 @push('scripts')
 <script src="{{asset('admin_assets/plugins/chartjs/js/Chart.min.js')}}"></script>
 <script src="{{asset('admin_assets/plugins/chartjs/js/chartjs-custom.js')}}"></script>
-<script>
+<script >
     // chart 6
     new Chart(document.getElementById("chart6"), {
         type: 'doughnut',
@@ -154,5 +165,30 @@ Groomly | Dashboard
             }
         }
     });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(document.getElementById("myChart"),{
+
+    type: 'bar',
+    data: {
+      labels: [@foreach($users as $user) '{{$user->name}}',  @endforeach],
+      datasets: [{
+        label: 'Transaction',
+        data: [@foreach($users as $user) {{$user->totalAmount($user['id'])}}, @endforeach],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  
+});
 </script>
 @endpush

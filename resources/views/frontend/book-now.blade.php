@@ -213,7 +213,6 @@ Groomely | Packages
                         </div>
                         <div class="row">
                             <div class="form-wrap">
-                                <form>
                                     <div class="row">
                                         <div class="col-xl-4 col-md-4 col-12 mb-3">
                                             <input type="text" class="form-control" placeholder="FULL NAME" name="name" value="@if(Auth::check() && Auth::user()->hasRole('USER')) {{ Auth::user()->name }} @else {{old('name')}} @endif" >
@@ -239,7 +238,6 @@ Groomely | Packages
                                             </div>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
