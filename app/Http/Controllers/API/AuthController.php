@@ -9,6 +9,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Session;
+
 
 class AuthController extends Controller
 {
@@ -46,7 +48,9 @@ class AuthController extends Controller
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;
-                        // Session::put('password_update_time', );
+                        $token_time = Carbon::now()->toDateTimeString(); 
+                        Session::put('token_update_time',$token_time);
+                       
                         $data['user'] = $user->makeHidden('roles');
                         return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {

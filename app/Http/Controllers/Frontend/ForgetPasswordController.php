@@ -57,10 +57,12 @@ class ForgetPasswordController extends Controller
          $newTime =  date('h:i A', strtotime( $resetPassword->created_at->addHour()));
         //  return $newTime;
         //  return date('h:i A');
+        
         if ($newTime > date('h:i A')) {
+             
             $id = $id;
             return view('frontend.auth.reset-password')->with(compact('id'));
-        } else {
+        } else {           
             return redirect()->route('errors.link-expire');
         }
 
