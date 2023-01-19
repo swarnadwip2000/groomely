@@ -4,7 +4,7 @@
             <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
         </div>
         <div>
-            <a href="{{ route('home') }}"><h4 class="logo-text">Groomly</h4></a>
+            <a href="{{ route('home') }}"><h4 class="logo-text">Groomely</h4></a>
         </div>
         <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
         </a>
@@ -16,6 +16,13 @@
                 <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.index') }}">
+                <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
+                </div>
+                <div class="menu-title">Manage Admins</div>
             </a>
         </li>
         <li class="menu-label">User Management</li>
