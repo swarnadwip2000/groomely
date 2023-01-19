@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\BusinessOwnerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CmsController as AdminCmsController;
 use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
@@ -102,6 +103,12 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('blog-category', BlogCategoryController::class);
                 Route::resource('gallery', GalleryController::class);
                 Route::resource('service-type', ServiceTypeController::class);
+                Route::resource('admin', AdminController::class);
+                //admin 
+                Route::get('/admin/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edit');
+                Route::get('/admin-delete/{id}', [AdminController::class, 'delete'])->name('admin.destroy');
+                Route::post('/admin-update', [AdminController::class, 'update'])->name('admin.update');
+
                 Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
