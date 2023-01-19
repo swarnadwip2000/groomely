@@ -45,8 +45,8 @@
                 </div>
                 <div class="footer_contatc_details">
                     <div class="single_foo_address">
-                        <span><i class="fas fa-map-marker-alt"></i></span>
-                        <p>{{ $footer_content['address'] }}</p>
+                        {{-- <span><i class="fas fa-map-marker-alt"></i></span> --}}
+                        {{-- <p>{{ $footer_content['address'] }}</p> --}}
                     </div>
                     <div class="single_foo_address">
                         <span><i class="fas fa-phone-alt"></i></span>

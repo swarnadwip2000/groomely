@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-Groomly | Profile
+Groomely | Profile
 @endsection
 @push('styles')
 @endpush
@@ -60,7 +60,7 @@ Groomly | Profile
                                                     <form class="row g-3" action="{{route('seller.profile.update')}}" method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="col-12">
-                                                            <label class="form-label">Profile Picture</label>
+                                                            <label class="form-label">Shop Logo</label>
                                                             <input type="file" name="profile_picture" class="form-control">
                                                             @if($errors->has('profile_picture'))
                                                             <div class="error" style="color:red;">{{ $errors->first('profile_picture') }}</div>

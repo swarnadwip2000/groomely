@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-    Groomly | View Appointment Details
+    Groomely | View Appointment Details
 @endsection
 @push('styles')
 @endpush

@@ -218,7 +218,7 @@ class CmsController extends Controller
             'copyright_content' => 'required',
             'facebook_link' => 'required',
             'instagram_link' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'phone' => 'required|min:10|max:16',
             'email' => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'youtube_link'=> 'required',

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    Groomly | Manage Barbers
+    Groomely | Manage Barbers
 @endsection
 @push('styles')
 @endpush

@@ -15,7 +15,7 @@ Groomely | GALLERY
         <div class="row">
             <div class="col-md-12">
                 <div class="inner_banner_ontent text-center">
-                    <h2>Photo gallery of groomly</h2>
+                    <h2>Photo gallery of Groomely</h2>
                     <!--<h4>BARBERSHOP</h4>-->
                 </div>
             </div>

@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-    Groomly | View Booking History
+    Groomely | View Booking History
 @endsection
 @push('styles')
     <style>

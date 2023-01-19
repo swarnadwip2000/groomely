@@ -1,6 +1,6 @@
 @extends('user.layouts.master')
 @section('title')
-Groomly | Appointment Reshedule
+Groomely | Appointment Reshedule
 @endsection
 @push('styles')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">

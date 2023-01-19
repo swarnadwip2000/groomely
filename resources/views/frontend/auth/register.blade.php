@@ -47,7 +47,7 @@
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
                                                             <label for="exampleInputFirstName" class="form-label">First Name</label>
-                                                            <input type="text" class="form-control" value="{{old('first_name')}}" id="exampleInputFirstName" name="first_name" aria-describedby="emailHelp">
+                                                            <input type="text" class="form-control" value="{{old('first_name')}}" id="exampleInputFirstName" name="first_name" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('first_name'))
                                                             <div class="error" style="color:red;">{{ $errors->first('first_name') }}</div>
                                                             @endif
@@ -56,7 +56,7 @@
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
                                                             <label for="exampleInputFirstName" class="form-label">Last Name</label>
-                                                            <input type="text" class="form-control" value="{{old('last_name')}}" name="last_name" id="exampleInputFirstName" aria-describedby="emailHelp">
+                                                            <input type="text" class="form-control" value="{{old('last_name')}}" name="last_name" id="exampleInputFirstName" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('last_name'))
                                                             <div class="error" style="color:red;">{{ $errors->first('last_name') }}</div>
                                                             @endif
@@ -67,7 +67,7 @@
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                                         <div class="">
                                                             <label for="exampleInputFirstName" class="form-label">Email Id</label>
-                                                            <input type="text" class="form-control" name="email" value="{{old('email')}}" id="exampleInputFirstName" aria-describedby="emailHelp">
+                                                            <input type="text" class="form-control" name="email" value="{{old('email')}}" id="exampleInputFirstName" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('email'))
                                                             <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
                                                             @endif
@@ -78,7 +78,7 @@
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
                                                             <label for="exampleInputFirstName" class="form-label">Phone Number</label>
-                                                            <input type="text" class="form-control" name="phone" value="{{old('phone')}}" id="exampleInputFirstName" aria-describedby="emailHelp">
+                                                            <input type="text" class="form-control" name="phone" value="{{old('phone')}}" id="exampleInputFirstName" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('phone'))
                                                             <div class="error" style="color:red;">{{ $errors->first('phone') }}</div>
                                                             @endif
@@ -87,7 +87,7 @@
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                         <div class="">
                                                             <label for="exampleInputFirstName" class="form-label">Location Zipcode</label>
-                                                            <input type="text" class="form-control" name="zipcode" value="{{old('zipcode')}}" id="exampleInputFirstName" aria-describedby="emailHelp">
+                                                            <input type="text" class="form-control" name="zipcode" value="{{old('zipcode')}}" id="exampleInputFirstName" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('zipcode'))
                                                             <div class="error" style="color:red;">{{ $errors->first('zipcode') }}</div>
                                                             @endif
@@ -114,7 +114,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Password</label>
-                                                    <input type="password" id="txtPassword" name="password" class="form-control" />
+                                                    <input type="password" id="txtPassword" name="password" class="form-control" autocomplete="off"/>
                                                     <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
 
                                                 </div>
@@ -125,7 +125,7 @@
                                             <div class="col-xl-6 col-lg-6 col-md-6 col-12">
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Confirm Password</label>
-                                                    <input type="password" id="password-field" name="confirm_password" class="form-control" />
+                                                    <input type="password" id="password-field" name="confirm_password" class="form-control" autocomplete="off"/>
                                                     <button type="button" id="btnToggle1" class="toggle"><i id="eyeIcon1" toggle="#password-field" class="fa fa-eye"></i></button>
                                                 </div>
                                                 @if($errors->has('confirm_password'))

@@ -18,7 +18,7 @@ class AddContactUsSeeder extends Seeder
         $data->title = 'Contact Us';
         $data->description = "Now we are engaged for some time, let's get connected";
         $data->visit_us = '502 W SKELLY RD Haskell 74436 USA';
-        $data->call_us = '+1 918 519 8362';
+        $data->call_us = '+1 561 318 3904';
         $data->mail_us = 'charleshollis0088@gmail.com';
         $data->save();
     }

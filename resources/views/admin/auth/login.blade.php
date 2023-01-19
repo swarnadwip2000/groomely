@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Groomly - admin login</title>
+    <title>Groomely - admin login</title>
     <!--favicon-->
     <link rel="icon" href="{{asset('admin_assets/images/favicon-32x32.png')}}" type="image/png" />
     <!-- loader-->

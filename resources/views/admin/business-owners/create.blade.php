@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomly | Business Owners
+Groomely | Business Owners
 @endsection
 @push('styles')
 @endpush

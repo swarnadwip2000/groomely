@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomly | Footer Cms
+Groomely | Footer Cms
 @endsection
 @push('styles')
 @endpush
@@ -68,13 +68,13 @@ Groomly | Footer Cms
                                             <div class="error" style="color:red;">{{ $errors->first('instagram_link') }}</div>
                                             @endif
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <label for="inputEnterYourName" class="col-form-label">Address <span style="color: red;">*</span></label>
                                             <input type="text" class="form-control" id="inputEnterYourName" value="{{$footer['address']}}" name="address" >
                                             @if($errors->has('address'))
                                             <div class="error" style="color:red;">{{ $errors->first('address') }}</div>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <label for="inputEnterYourName" class="col-form-label">Phone <span style="color: red;">*</span></label>
                                             <input type="text" class="form-control" id="inputEnterYourName" value="{{$footer['phone']}}" name="phone" >

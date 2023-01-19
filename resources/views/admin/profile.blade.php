@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomly | Profile
+Groomely | Profile
 @endsection
 @push('styles')
 @endpush

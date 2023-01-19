@@ -1,6 +1,6 @@
 @extends('seller.layouts.master')
 @section('title')
-Groomly | Manage Services
+Groomely | Manage Services
 @endsection
 @push('styles')
 @endpush

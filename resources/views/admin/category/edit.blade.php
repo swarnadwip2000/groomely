@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomly | Category Edit
+Groomely | Category Edit
 @endsection
 @push('styles')
 @endpush

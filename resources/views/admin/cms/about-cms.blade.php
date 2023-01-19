@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomly | About Cms
+Groomely | About Cms
 @endsection
 @push('styles')
 @endpush

@@ -4,7 +4,7 @@
             <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
         </div>
         <div>
-            <a href="{{ route('home') }}"><h4 class="logo-text">Groomly</h4></a>
+            <a href="{{ route('home') }}"><h4 class="logo-text">Groomely</h4></a>
         </div>
         <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
         </a>
