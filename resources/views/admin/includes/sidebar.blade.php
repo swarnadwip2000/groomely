@@ -33,6 +33,13 @@
                 <div class="menu-title">Manage Customers</div>
             </a>
         </li>
+        <li class="{{ Request::is('admin/customers-order*') ? 'mm-active' : '' }}">
+            <a href="{{ route('customer-order.list') }}">
+                <div class="parent-icon icon-color-4"><i class="fas fa-tag"></i>
+                </div>
+                <div class="menu-title">Customer Orders</div>
+            </a>
+        </li>
         <li class="{{ Request::is('admin/business-owner*') ? 'mm-active' : '' }}">
             <a href="{{ route('business-owner.index') }}">
                 <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
@@ -40,6 +47,7 @@
                 <div class="menu-title">Manage Barbers</div>
             </a>
         </li>
+        
         <li class="menu-label">Service Section</li>
         <li class="{{ Request::is('admin/category*') ? 'mm-active' : '' }}">
             <a href="{{ route('category.index') }}">

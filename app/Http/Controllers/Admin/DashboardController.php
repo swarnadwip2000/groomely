@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\View;
+
 
 class DashboardController extends Controller
 {
@@ -22,7 +24,18 @@ class DashboardController extends Controller
         $count['gallery'] = Gallery::count();
         $count['contact_us'] = Contact::count();
         $users = User::select('name','id')->role('BUSINESS_OWNER')->get();
-        return view('admin.dashboard')->with(compact('count','users'));
+        $years = date('Y');
+        return view('admin.dashboard')->with(compact('count','users','years'));
+    }
+
+    public function adminAjaxBarChart(Request $request)
+    {
+        // return $request;
+        if ($request->ajax()) {
+            $years = $request->year;
+            $users = User::select('name','id')->role('BUSINESS_OWNER')->get();
+            return response()->json(['view'=>(String)View::make('admin.admin-ajax-bar-chart')->with(compact('users','years'))]);
+        }
     }
 
     public function profile()

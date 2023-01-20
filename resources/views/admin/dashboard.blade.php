@@ -128,9 +128,28 @@ Groomely | Dashboard
             </div>
            
      
-
-            <div class="row">
-                <canvas id="myChart"></canvas>
+            <div class="col-6 col-lg-6 col-xl-6 d-flex">
+                <div class="card radius-15 w-100">
+                    <div class="card-body">
+                        <div class="row">
+                        @php
+                            $year = 2023;
+                        @endphp
+                        <select id="years" class="form-control">
+                            @for ($i = $year; $i <= 2024; $i++)
+                                <option value="{{ $year }}"
+                                    @if ($year == date('Y')) selected="" @endif>
+                                    {{ $year }}</option>
+                                @php $year++ @endphp
+                            @endfor
+                        </select>
+                            
+                            <div id="adminAjaxBarChart">
+                                @include('admin.admin-ajax-bar-chart')
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -170,25 +189,29 @@ Groomely | Dashboard
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-new Chart(document.getElementById("myChart"),{
-
-    type: 'bar',
-    data: {
-      labels: [@foreach($users as $user) '{{$user->name}}',  @endforeach],
-      datasets: [{
-        label: 'Transaction',
-        data: [@foreach($users as $user) {{$user->totalAmount($user['id'])}}, @endforeach],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  
-});
+    $('#years').on('change', function() {
+        
+        var years = $(this).val();
+        $.ajaxSetup({
+            data: {
+        "_token": "{{ csrf_token() }}",
+     }
+        });
+        $.ajax({
+            type: 'post',
+            url: '{{ route('admin.ajax-bar-chart') }}',
+            data: {
+                'year': years,
+            },
+            success: function(resp) {
+                $('#adminAjaxBarChart').html(resp.view);
+                console.log(resp);
+            },
+            error: function() {
+                console.log('alert');
+            }
+        });
+    });
 </script>
+
 @endpush

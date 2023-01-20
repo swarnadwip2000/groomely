@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Appointment Details</title>
+    
+</head>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+<body>
+    <div class="">
+        <img src="{{asset('seller_assets/images/favicon-32x32.png')}}"   />
+        <h3>Appointment Details:</h3>
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($data as $appointment)
+                <tr>
+                    <td align="center">{{$appointment['name']}}</td>
+                    <td align="center">{{$appointment['email']}}</td>
+                    <td align="center">{{$appointment['phone']}}</td>
+                    <td align="center">{{date('d M, Y', strtotime($appointment['booking_date']))}}</td>
+                    <td align="center">${{$appointment['amount']}}</td>                                                                       
+                </tr>
+                @endforeach
+                <tr>
+                    <td colspan="5" align="right">Total: ${{$sum}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+</body>
+</html>

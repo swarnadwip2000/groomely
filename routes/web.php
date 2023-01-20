@@ -93,6 +93,8 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
                 Route::get('/profile', [DashboardController::class, 'profile'])->name('admin.profile');
                 Route::post('/profile-update', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
+                //admin ajax barchart
+                Route::post('/admin-ajax-bar-chart', [DashboardController::class, 'adminAjaxBarChart'])->name('admin.ajax-bar-chart');
                 Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
                 Route::resource('customers', CustomerController::class);
@@ -109,7 +111,14 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/admin-delete/{id}', [AdminController::class, 'delete'])->name('admin.destroys');
                 Route::post('/admin-update', [AdminController::class, 'update'])->name('admin.updates');
 
+                
+                Route::get('appointment-download-invoice', [CustomerController::class, 'downloadAppointmentInvoice'])->name('appointment.download.invoice');
+                // Route::get('pdfview',array('as'=>'pdfview','uses'=>'CustomerController@downloadAppointmentInvoice'));   
+  
+
                 Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
+                Route::get('/customer-order', [CustomerController::class, 'customerOrder'])->name('customer-order.list');
+                Route::post('/customer-order-price', [CustomerController::class, 'customerOrderPrice'])->name('customer-order.edit-price');
 
                 Route::get('/changeCustomerStatus', [CustomerController::class, 'changeCustomerStatus'])->name('admin.customers.change-status');
                 Route::get('/customer-delete/{id}', [CustomerController::class, 'delete'])->name('customers.delete');

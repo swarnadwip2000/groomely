@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
+use PDF;
 
 class CustomerController extends Controller
 {
@@ -163,6 +165,32 @@ class CustomerController extends Controller
         $user->save();
         return response()->json(['success'=>'Status change successfully.']);
     }
+
+    public function customerOrder(Request $request)
+    {
+        $appointments = Appointment::where('status','completed')->Orderby('id','desc')->get();
+        return view('admin.customers.appointment.list')->with(compact('appointments'));
+    }
+
+    public function customerOrderPrice(Request $request)
+    {
+        // return $request;
+        $update_amount = Appointment::where('id',$request->id)->first();
+        $update_amount->amount = $request->amount;
+        $update_amount->update();
+
+        return back()->with('message','Appointment updated successfully');
+    } 
     
+    public function downloadAppointmentInvoice()
+    {
+        $data = Appointment::where('status','completed')->Orderby('id','desc')->get();
+        $sum = Appointment::where('status','completed')->Orderby('id','desc')->get()->sum('amount');
+        $pdf = PDF::loadView('admin.myPDF',array('data' => $data, 'sum' => $sum));
+    
+        return $pdf->download('appointment-details.pdf');
+        // return response()->download('appoinment-details.pdf');
+       
+    }
 
 }
