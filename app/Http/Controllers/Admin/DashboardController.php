@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Contact;
 use App\Models\Gallery;
+use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
