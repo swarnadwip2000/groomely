@@ -105,9 +105,9 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('service-type', ServiceTypeController::class);
                 Route::resource('admin', AdminController::class);
                 //admin 
-                Route::get('/admin/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edit');
-                Route::get('/admin-delete/{id}', [AdminController::class, 'delete'])->name('admin.destroy');
-                Route::post('/admin-update', [AdminController::class, 'update'])->name('admin.update');
+                Route::get('/admin/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edits');
+                Route::get('/admin-delete/{id}', [AdminController::class, 'delete'])->name('admin.destroys');
+                Route::post('/admin-update', [AdminController::class, 'update'])->name('admin.updates');
 
                 Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
 
@@ -165,6 +165,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::get('/profile', [SellerDashboardController::class, 'profile'])->name('seller.profile');
         Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
         Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
+        Route::post('/ajax-bar-chart', [SellerDashboardController::class, 'ajaxBarChart'])->name('seller.ajax-bar-chart');
 
         Route::resource('manage-services', ManageBookingController::class);
         Route::resource('booking-history', BookingController::class);

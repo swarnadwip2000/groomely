@@ -40,7 +40,7 @@
                         <hr>
                         <div class="card border-top border-0 border-4 border-info">
                             <div class="card-body">
-                                <form action="{{ route('admin.update') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.updates') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="admin_id" value="{{ $admin->id }}">
                                     <div class="border p-4 rounded">

@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\View;
 
 class DashboardController extends Controller
 {
@@ -31,44 +31,91 @@ class DashboardController extends Controller
 
          $transaction['january'] = Appointment::with('service')->whereHas('service', function($query){
                 $query->where('user_id', Auth::user()->id);
-         })->where('status', 'completed')->whereMonth('created_at', '1')->sum('amount');
+         })->where('status', 'completed')->whereMonth('updated_at', '1')->whereYear('updated_at',date('Y'))->sum('amount');
          $transaction['february'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-         })->where('status', 'completed')->whereMonth('created_at', '2')->sum('amount');
+         })->where('status', 'completed')->whereMonth('updated_at', '2')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['march'] = Appointment::with('service')->whereHas('service', function($query){
                 $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '3')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '3')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['april'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '4')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '4')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['may'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '5')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '5')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['june'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '6')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '6')->whereYear('updated_at',date('Y'))->sum('amount');
 
         $transaction['july'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '7')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '7')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['august'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '8')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '8')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['september'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '9')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '9')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['october'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '10')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '10')->whereYear('updated_at',date('Y'))->sum('amount');
 
         $transaction['november'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '11')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '11')->whereYear('updated_at',date('Y'))->sum('amount');
         $transaction['december'] = Appointment::with('service')->whereHas('service', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereMonth('created_at', '12')->sum('amount');
+        })->where('status', 'completed')->whereMonth('updated_at', '12')->whereYear('updated_at',date('Y'))->sum('amount');
 
         return view('seller.dashboard')->with(compact('count','transaction'));
+    }
+
+    public function ajaxBarChart(Request $request)
+    {
+        if ($request->ajax()) {
+        
+            $transaction['january'] = Appointment::with('service')->whereHas('service', function($query){
+                $query->where('user_id', Auth::user()->id);
+         })->where('status', 'completed')->whereMonth('updated_at', '1')->whereYear('updated_at',$request->year)->sum('amount');
+         $transaction['february'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+         })->where('status', 'completed')->whereMonth('updated_at', '2')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['march'] = Appointment::with('service')->whereHas('service', function($query){
+                $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '3')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['april'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '4')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['may'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '5')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['june'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '6')->whereYear('updated_at',$request->year)->sum('amount');
+
+        $transaction['july'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '7')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['august'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '8')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['september'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '9')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['october'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '10')->whereYear('updated_at',$request->year)->sum('amount');
+
+        $transaction['november'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '11')->whereYear('updated_at',$request->year)->sum('amount');
+        $transaction['december'] = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereMonth('updated_at', '12')->whereYear('updated_at',$request->year)->sum('amount');
+           
+        return response()->json(['view'=>(String)View::make('seller.ajax-bar-chart')->with(compact('transaction'))]);
+        }
     }
 
     public function profile()
