@@ -21,8 +21,9 @@ class DetailsController extends Controller
         try {
             $count = User::where('id', Auth::user()->id)->count();
             if ($count > 0) {
-                $user = User::where('id', Auth::user()->id)->select('id', 'name', 'email')->first();
-                return response()->json(['data' => $user, 'status' => true, 'message' => 'Details found successfully.'], $this->successStatus);
+                $user = User::where('id', Auth::user()->id)->select('id', 'name', 'email','phone','zipcode')->first();
+                $data['user'] = $user;
+                return response()->json(['status' => true, 'statusCode' => 200, 'message' => 'Details found successfully.', 'data' => $data], $this->successStatus);
             } else {
                 return response()->json(['message' => 'No detail found!', 'status' => false], 401);
             }

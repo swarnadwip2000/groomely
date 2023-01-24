@@ -78,7 +78,8 @@ Groomely | Category Edit
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($category['icon'])}}" style="width: 100px; height:100px;" alt="">
+                                            <a href="{{Storage::url($category['icon'])}}" target="_blank">
+                                            <img src="{{Storage::url($category['icon'])}}" style="width: 100px; height:100px;" alt=""></a>
                                         </div>
 
                                     </div>

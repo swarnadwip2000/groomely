@@ -131,18 +131,37 @@ Groomely | Dashboard
             <div class="col-6 col-lg-6 col-xl-6 d-flex">
                 <div class="card radius-15 w-100">
                     <div class="card-body">
+                        <div class="card-title">
+                            <h4 class="mb-0">Barber transactions</h4>
+                            <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -170px;">
+                                <form action="{{ route('admin.transaction.download') }}" method="post" >
+                                    @csrf
+                                <input type="hidden" name="start_date" value="{{date('Y-m-d')}}" id="start_date1">             
+                                <input type="hidden" name="end_date" value="{{date('Y-m-d', strtotime('30 days'))}}" id="end_date1">                                             
+                                <a href="#"><button class="btn btn-primary" type="submit"> <i class="fas fa-download"></i> Download Transaction</button></a>
+                                </form>
+                            </div>
+                        </div>
+                        <hr />
                         <div class="row">
                         @php
                             $year = 2023;
                         @endphp
-                        <select id="years" class="form-control">
-                            @for ($i = $year; $i <= 2024; $i++)
+                        <label>Monthly transactions:</label>
+                        <div class="col-6 col-lg-6">
+                        <input type="date" value="{{date('Y-m-d')}}" id="start_date" class=" form-control">
+                        </div>
+                        <div class="col-6 col-lg-6">
+                        <input type="date" id="end_date" value="{{date('Y-m-d', strtotime('30 days'))}}" class="col-5 col-lg-5 form-control" readonly>
+                        </div>
+                        {{-- <select id="years" class="form-control">
+                            @for ($i = $year; $i <= date('Y'); $i++)
                                 <option value="{{ $year }}"
                                     @if ($year == date('Y')) selected="" @endif>
                                     {{ $year }}</option>
                                 @php $year++ @endphp
                             @endfor
-                        </select>
+                        </select> --}}
                             
                             <div id="adminAjaxBarChart">
                                 @include('admin.admin-ajax-bar-chart')
@@ -189,9 +208,15 @@ Groomely | Dashboard
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    $('#years').on('change', function() {
+    $('#start_date').on('change', function() {
         
-        var years = $(this).val();
+        var sdate = $(this).val();
+        var lastdate=new Date(sdate);
+        lastdate.setMonth( lastdate.getMonth() + 1 );
+        let ldate = JSON.stringify(lastdate)
+        ldate = ldate.slice(1,11)
+        $('#end_date').val(ldate);
+
         $.ajaxSetup({
             data: {
         "_token": "{{ csrf_token() }}",
@@ -201,7 +226,8 @@ Groomely | Dashboard
             type: 'post',
             url: '{{ route('admin.ajax-bar-chart') }}',
             data: {
-                'year': years,
+                'sdate': sdate,
+                'ldate': ldate
             },
             success: function(resp) {
                 $('#adminAjaxBarChart').html(resp.view);
@@ -211,6 +237,11 @@ Groomely | Dashboard
                 console.log('alert');
             }
         });
+
+        $('#start_date1').val(sdate);
+        $('#end_date1').val(ldate);
+        
+
     });
 </script>
 

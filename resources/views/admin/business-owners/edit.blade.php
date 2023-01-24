@@ -85,6 +85,17 @@ Groomely | Business Owners
                                         </div>
 
                                     </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputShopname" class="col-sm-3 col-form-label">Shop Name<span style="color:red">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputShopname" value="@if($business_owner['shop_name']) {{$business_owner['shop_name']}} @endif" name="shop_name" placeholder="Shop Name">
+                                            @if($errors->has('shop_name'))
+                                            <div class="error" style="color:red;">{{ $errors->first('shop_name') }}</div>
+                                            @endif
+                                        </div>
+
+                                    </div>
                                     
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image</label>
@@ -99,7 +110,8 @@ Groomely | Business Owners
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($business_owner->profile_picture)}}" alt="" style="width: 100%; height: 215px;">
+                                            <a href="{{Storage::url($business_owner->profile_picture)}}" target="_blank">
+                                            <img src="{{Storage::url($business_owner->profile_picture)}}" alt="" style="width: 100%; height: 215px;"></a>
                                         </div>
                                     </div>
                                     @endif

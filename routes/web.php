@@ -114,7 +114,8 @@ Route::group(['prefix' => 'admin'], function () {
                 
                 Route::get('appointment-download-invoice', [CustomerController::class, 'downloadAppointmentInvoice'])->name('appointment.download.invoice');
                 // Route::get('pdfview',array('as'=>'pdfview','uses'=>'CustomerController@downloadAppointmentInvoice'));   
-  
+                
+                Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 
                 Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
                 Route::get('/customer-order', [CustomerController::class, 'customerOrder'])->name('customer-order.list');
@@ -174,7 +175,9 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::get('/profile', [SellerDashboardController::class, 'profile'])->name('seller.profile');
         Route::post('/profile-update', [SellerDashboardController::class, 'profileUpdate'])->name('seller.profile.update');
         Route::get('/logout', [SellerDashboardController::class, 'logout'])->name('seller.logout');
-        Route::post('/ajax-bar-chart', [SellerDashboardController::class, 'ajaxBarChart'])->name('seller.ajax-bar-chart');
+        Route::post('/ajax-bar-chart', [SellerDashboardController::class, 'ajaxBarChart'])->name('seller.ajax-bar-chart');       
+        Route::post('/transaction-download', [SellerDashboardController::class, 'downloadTransaction'])->name('seller.transaction.download');
+        
 
         Route::resource('manage-services', ManageBookingController::class);
         Route::resource('booking-history', BookingController::class);

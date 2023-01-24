@@ -42,6 +42,7 @@ class BusinessOwnerController extends Controller
     {
         $request->validate([
             'name'     => 'required',
+            'shop_name' => 'required',
             'email'    => 'required|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'phone'    => 'required|numeric|min:10',
             'zipcode'    => 'required|numeric',
@@ -57,6 +58,7 @@ class BusinessOwnerController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->zipcode = $request->zipcode;
+        $data->shop_name = $request->shop_name;
         $data->password = bcrypt($request->password);
 
         if ($request->hasFile('profile_picture')) {
@@ -126,6 +128,7 @@ class BusinessOwnerController extends Controller
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,'.$request->id,
             'phone'    => 'required|numeric|min:10',
             'zipcode'    => 'required|numeric',
+            'shop_name' => 'required',
         ],[
             'profile_picture.required' =>'Image filed is required.'
         ]);
@@ -135,6 +138,7 @@ class BusinessOwnerController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->zipcode = $request->zipcode;
+        $data->shop_name = $request->shop_name;
 
         if ($request->hasFile('profile_picture')) {
             $request->validate([

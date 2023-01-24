@@ -93,7 +93,8 @@ Groomely | Blogs
                                     <div class="row mb-3">
                                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image Preview</label>
                                         <div class="col-sm-9">
-                                            <img src="{{Storage::url($blog['image'])}}" style="width: 100%; height:180px;" alt="">
+                                            <a href="{{Storage::url($blog['image'])}}" target="_blank">
+                                            <img src="{{Storage::url($blog['image'])}}" style="width: 100%; height:180px;" alt=""></a>
                                         </div>
 
                                     </div>

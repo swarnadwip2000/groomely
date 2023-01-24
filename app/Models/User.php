@@ -77,12 +77,14 @@ class User extends Authenticatable
         })->sum('amount');
         return $amount;
     }
-    public static function totalAmountByYear($id, $years)
+    public static function totalAmountByMonth($id, $sdate, $ldate)
     {
         // dd($years);
-        $amount = Appointment::with('service')->where('status', 'completed')->whereYear('updated_at',$years)->wherehas('service', function($query) use($id){
+        $amount = Appointment::with('service')->where('status', 'completed')->whereBetween('updated_at', [$sdate, $ldate])->wherehas('service', function($query) use($id){
             $query->where('user_id', $id);
         })->sum('amount');
+        
+
         return $amount;
     }
 }

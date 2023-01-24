@@ -117,11 +117,11 @@ Groomely | Dashboard
     new Chart(document.getElementById("chart6"), {
         type: 'doughnut',
         data: {
-            labels: ['Accepted Booking', 'Reshedule Booking'],
+            labels: ['Accepted', 'Reshedule', 'Completed' , 'Cancelled'],
             datasets: [{
                 label: "Statistics",
-                backgroundColor: ["#29e929",  "yellow"],
-                data: [{{$count['accepted']}}	 , {{$count['reshedule']}}]
+                backgroundColor: ["blue",  "#c9c94a", "#22d922", "red"],
+                data: [{{$count['accepted']}}	 , {{$count['reshedule']}}, {{$count['completed']}}, {{$count['cancelled']}}]
             }]
         },
         options: {

@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $appointment)
+                @foreach($transactions as $appointment)
                 <tr>
                     <td align="center">{{$appointment['name']}}</td>
                     <td align="center">{{$appointment['email']}}</td>

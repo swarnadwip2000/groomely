@@ -37,20 +37,27 @@
                     <div class="col-12 col-lg-12 col-xl-6 d-flex">
                         <div class="card radius-15 w-100">
                             <div class="card-body">
+                                
                                 <div class="row row-cols-1 row-cols-md-3 g-3">
                                     <div class="col-12 col-lg-12 mx-auto">
                                         <div class="card radius-15">
-                                            <div class="card-body">
-
+                                            <div class="card-body">                                             
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Transaction History</h4>
+                                                    <h4 class="mb-0">Transaction History</h4>                                      
+                                                    <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -150px;">
+                                                        <form action="{{ route('seller.transaction.download') }}" method="post" >
+                                                            @csrf
+                                                        <input type="hidden" name="year" id="yrr">                             
+                                                        <a href="#"><button class="btn btn-primary" type="submit"> <i class="fas fa-download"></i> Download Transaction</button></a>
+                                                        </form>
+                                                    </div>                                      
                                                 </div>
                                                 <hr />
                                                 @php
                                                     $year = 2023;
                                                 @endphp
                                                 <select id="year" class="form-control">
-                                                    @for ($i = $year; $i <= 2024; $i++)
+                                                    @for ($i = $year; $i <= date('Y'); $i++)
                                                         <option value="{{ $year }}"
                                                             @if ($year == date('Y')) selected="" @endif>
                                                             {{ $year }}</option>
@@ -128,6 +135,18 @@
                     console.log('alert');
                 }
             });
+            $('#yrr').val(year);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function($)  {
+            var yr = $('#year').val();
+            $('#yrr').val(yr);
+            if({{$count['completed']}} < 1)
+            {
+                $('#pdf').hide();
+            } 
         });
     </script>
 @endpush

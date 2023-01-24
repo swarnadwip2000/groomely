@@ -66,7 +66,7 @@
                                                 <div class="row">
                                                     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                                         <div class="">
-                                                            <label for="exampleInputFirstName" class="form-label">Email Id</label>
+                                                            <label for="exampleInputFirstName" class="form-label">Email</label>
                                                             <input type="text" class="form-control" name="email" value="{{old('email')}}" id="exampleInputFirstName" aria-describedby="emailHelp"autocomplete="off">
                                                             @if($errors->has('email'))
                                                             <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
@@ -97,7 +97,7 @@
                                                 <div class="row">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                                     <div class="">
-                                                    <label for="exampleInputFirstName" class="form-label">User Type    &nbsp;&nbsp;</label>
+                                                    <label for="exampleInputFirstName" class="form-label">Are you   &nbsp;&nbsp;</label>
                                                          <input type="radio" id="html" name="user_type" value="USER">
                                                           <label for="html">User</label>
                                                           <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER">
@@ -143,7 +143,7 @@
                                             @endif
                                             <button class="btn btn-lg btn-primary btn-block btn-login">Register</button>
                                             <div class="login-text">
-                                                <p>You have already account? <a href="{{route('login')}}">SIGNIN NOW</a></p>
+                                                <p>You have already account? <a href="{{route('login')}}">LOGIN NOW</a></p>
                                             </div>
                                         </div>
                                         </form>

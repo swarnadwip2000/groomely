@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
+use PDF;
+
 
 
 class DashboardController extends Controller
@@ -24,17 +26,19 @@ class DashboardController extends Controller
         $count['gallery'] = Gallery::count();
         $count['contact_us'] = Contact::count();
         $users = User::select('name','id')->role('BUSINESS_OWNER')->get();
-        $years = date('Y');
-        return view('admin.dashboard')->with(compact('count','users','years'));
+        $sdate = date('Y-m-d');
+        $ldate = date('Y-m-d', strtotime('30 days'));
+        return view('admin.dashboard')->with(compact('count','users','sdate','ldate'));
     }
 
     public function adminAjaxBarChart(Request $request)
     {
-        // return $request;
+        
         if ($request->ajax()) {
-            $years = $request->year;
+            $sdate = $request->sdate;
+            $ldate = $request->ldate;
             $users = User::select('name','id')->role('BUSINESS_OWNER')->get();
-            return response()->json(['view'=>(String)View::make('admin.admin-ajax-bar-chart')->with(compact('users','years'))]);
+            return response()->json(['view'=>(String)View::make('admin.admin-ajax-bar-chart')->with(compact('users','sdate','ldate'))]);
         }
     }
 
@@ -74,5 +78,18 @@ class DashboardController extends Controller
         }
         $data->save();
         return redirect()->back()->with('message', 'Profile updated successfully.');
+    }
+
+    public function transactionDownload(Request $request)
+    {
+        // return $request;
+        $sdate = $request->start_date;
+        $ldate = $request->end_date;
+        $transactions = Appointment::with('service')->whereBetween('updated_at', [$sdate.' 00:00:00', $ldate.' 23:59:59'])->where('status', 'completed')->get();
+        $transactions = Appointment::whereBetween('updated_at', [$sdate.' 00:00:00', $ldate.' 23:59:59'])->where('status', 'completed')->get();
+        $sum = Appointment::whereBetween('updated_at', [$sdate.' 00:00:00', $ldate.' 23:59:59'])->where('status', 'completed')->get()->sum('amount');
+        $pdf = PDF::loadView('admin.transactionPDF',array('transactions' => $transactions, 'sum' => $sum));
+    
+        return $pdf->download('admin-transaction.pdf');
     }
 }

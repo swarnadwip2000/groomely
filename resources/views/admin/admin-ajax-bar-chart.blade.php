@@ -10,7 +10,7 @@ new Chart(document.getElementById("myChart"),{
       labels: [@foreach($users as $user) '{{$user->name}}',  @endforeach],
       datasets: [{
         label: 'Transaction',
-        data: [@foreach($users as $user) {{$user->totalAmountByYear($user['id'], $years)}}, @endforeach],
+        data: [@foreach($users as $user) {{$user->totalAmountByMonth($user['id'], $sdate, $ldate)}}, @endforeach],
         borderWidth: 1
       }]
     },

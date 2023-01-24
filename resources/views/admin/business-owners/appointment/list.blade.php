@@ -56,7 +56,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <!-- dd({{ $business_owners->appontmentDetails($business_owners['id']) }}); -->
                                
                                 @foreach ($business_owners->appontmentDetails($business_owners['id']) as $business_owner)
                                     <tr>                                        

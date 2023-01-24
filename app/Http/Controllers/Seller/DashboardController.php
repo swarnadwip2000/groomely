@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
+use PDF;
+
 
 class DashboardController extends Controller
 {
@@ -159,5 +161,21 @@ class DashboardController extends Controller
         }
         $data->save();
         return redirect()->back()->with('message', 'Profile updated successfully.');
+    }
+
+    public function downloadTransaction(Request $request)
+    {
+        // return $request;
+        $transactions = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereYear('updated_at',$request->year)->get();
+
+        $sum = Appointment::with('service')->whereHas('service', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->where('status', 'completed')->whereYear('updated_at',$request->year)->get()->sum('amount');
+
+        $pdf = PDF::loadView('seller.transactionPDF',array('transactions' => $transactions, 'sum' => $sum));
+    
+        return $pdf->download('seller-transaction.pdf');
     }
 }

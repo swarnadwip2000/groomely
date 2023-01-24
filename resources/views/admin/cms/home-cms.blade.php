@@ -49,7 +49,8 @@ Groomely | Home Cms
                                         
                                         <div class="col-md-6" >
                                             @if($home->banner_img)
-                                            <img src="{{ Storage::url($home->banner_img) }}" alt="" style="height: 150px; float:right; width: 100%;">
+                                            <a href="{{Storage::url($home->banner_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->banner_img) }}" alt="" style="height: 150px; float:right; width: 100%;"></a>
                                             @endif
                                         </div>
 
@@ -116,7 +117,8 @@ Groomely | Home Cms
                                         </div>
                                          <div class="col-md-6">
                                             @if($home->section_2_img)
-                                            <img src="{{ Storage::url($home->section_2_img) }}" alt="" style="height: 150px; width: 100%;  float:right; margin-top:10px;">
+                                            <a href="{{Storage::url($home->section_2_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->section_2_img) }}" alt="" style="height: 150px; width: 100%;  float:right; margin-top:10px;"></a>
                                             @endif
                                         </div>
                                         <div class="col-md-6">
@@ -192,7 +194,8 @@ Groomely | Home Cms
 
                                         <div class="col-md-6">
                                             @if($home->section_5_img)
-                                            <img src="{{ Storage::url($home->section_5_img) }}" alt="" style="height: 150px; width: 100%; margin-top:38px;">
+                                            <a href="{{Storage::url($home->section_5_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->section_5_img) }}" alt="" style="height: 150px; width: 100%; margin-top:38px;"></a>
                                             @endif
                                         </div>
                                         

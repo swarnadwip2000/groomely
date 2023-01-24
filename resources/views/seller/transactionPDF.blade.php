@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Appointment Details</title>
+    <title>Transaction Details</title>
     
 </head>
 <style>
@@ -12,8 +12,11 @@
 <body>
     <div class="">
         <img src="{{public_path('frontend_assets/images/black2.jpg')}}" style="width: 120px; height: 80px; align-items: center; padding: 5px; position: relative;">
-       
-        <h3>Appointment Details:</h3>
+        <h4 style="margin:1; padding:0;">Seller Details:</h4> 
+        <p> Name: {{Auth::user()->name}}</br>
+            Shopname : {{Auth::user()->shop_name}}</br>
+            Email: {{Auth::user()->email}}</p>
+        <h3 style="margin:1; padding:1;">Customer Details:</h3>
         <table style="width:100%">
             <thead>
                 <tr>
@@ -25,13 +28,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $appointment)
+                @foreach($transactions as $transaction)
                 <tr>
-                    <td align="center">{{$appointment['name']}}</td>
-                    <td align="center">{{$appointment['email']}}</td>
-                    <td align="center">{{$appointment['phone']}}</td>
-                    <td align="center">{{date('d M, Y', strtotime($appointment['booking_date']))}}</td>
-                    <td align="center">${{$appointment['amount']}}</td>                                                                       
+                    <td align="center">{{$transaction['name']}}</td>
+                    <td align="center">{{$transaction['email']}}</td>
+                    <td align="center">{{$transaction['phone']}}</td>
+                    <td align="center">{{date('d M, Y', strtotime($transaction['booking_date']))}}</td>
+                    <td align="center">${{$transaction['amount']}}</td>                                                                       
                 </tr>
                 @endforeach
                 <tr>

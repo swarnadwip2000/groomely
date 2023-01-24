@@ -28,7 +28,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
-            'phone' => 'required|numeric|digits:10',
+            'phone' => 'required|numeric|min:10',
             'image' => 'required',
         ]);
 
@@ -71,7 +71,7 @@ class AdminController extends Controller
         // return $request;
         $request->validate([
             'name'     => 'required',
-            'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,'.Auth::user()->id,
+            'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,'.$request->admin_id,
             'phone'    => 'required|numeric|min:10',
         ]);
 

@@ -45,7 +45,7 @@
                                             <form action="{{route('login.check')}}" method="post">
                                                 @csrf
                                                 <div class="">
-                                                    <label for="exampleInputEmail1" class="form-label">User Name / Email ID</label>
+                                                    <label for="exampleInputEmail1" class="form-label">User Name / Email</label>
                                                     <input type="text" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                                 </div>
                                                 @if($errors->has('email'))
@@ -54,7 +54,7 @@
                                                 <div class="row">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                                                     <div class="">
-                                                    <label for="exampleInputFirstName" class="form-label">User Type    &nbsp;&nbsp;</label>
+                                                    <label for="exampleInputFirstName" class="form-label">Are you    &nbsp;&nbsp;</label>
                                                          <input type="radio" id="html" name="user_type" value="USER" style="cursor: pointer;">
                                                           <label for="html" style="cursor: pointer;">User</label>
                                                           <input type="radio" id="css" name="user_type" value="BUSINESS_OWNER" style="cursor: pointer;">
@@ -79,7 +79,7 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-lg btn-primary btn-block btn-login">LOGIN</button>
                                                 <div class="login-text">
-                                                    <p>Don’t Have an Account? <a href="{{route('register')}}">SIGNUP NOW</a></p>
+                                                    <p>Don’t Have an Account? <a href="{{route('register')}}">SIGN UP </a></p>
                                                 </div>
                                             </form>
                                         </div>

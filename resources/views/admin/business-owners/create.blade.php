@@ -84,6 +84,17 @@ Groomely | Business Owners
                                         </div>
 
                                     </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputShopname" class="col-sm-3 col-form-label">Shop Name<span style="color:red">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputShopname" value="{{old('shop_name')}}" name="shop_name" placeholder="Shop Name">
+                                            @if($errors->has('shop_name'))
+                                            <div class="error" style="color:red;">{{ $errors->first('shop_name') }}</div>
+                                            @endif
+                                        </div>
+
+                                    </div>
                                     <div class="row mb-3">
                                         <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Password<span style="color:red">*</span></label>
                                         <div class="col-sm-9">

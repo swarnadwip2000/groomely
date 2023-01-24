@@ -16,6 +16,8 @@ class DashboardController extends Controller
     {
         $count['accepted'] = Appointment::where('status', 'accepted')->where('user_id', Auth::user()->id)->count();
         $count['reshedule'] = Appointment::where('status', 'reshedule')->where('user_id', Auth::user()->id)->count();
+        $count['completed'] = Appointment::where('status', 'completed')->where('user_id', Auth::user()->id)->count();
+        $count['cancelled'] = Appointment::where('status', 'cancelled')->where('user_id', Auth::user()->id)->count();
         
         return view('user.dashboard')->with(compact('count'));
     }

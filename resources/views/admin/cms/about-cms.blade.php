@@ -55,7 +55,8 @@ Groomely | About Cms
                                         </div>
                                         <div class="col-md-6" >
                                             @if($about->banner_img)
-                                            <img src="{{ Storage::url($about->banner_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;">
+                                            <a href="{{Storage::url($about->banner_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($about->banner_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;"></a>
                                             @endif
                                         </div>
                                     </div>
@@ -85,7 +86,8 @@ Groomely | About Cms
                                         </div>
                                         <div class="col-md-6">
                                              @if($about->section_1_img)
-                                            <img src="{{ Storage::url($about->section_1_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;">
+                                             <a href="{{Storage::url($about->section_1_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($about->section_1_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;"></a>
                                             @endif
                                         </div>
                                         <div class="col-md-6">
@@ -118,7 +120,8 @@ Groomely | About Cms
                                         <div class="col-md-6"></div>
                                          <div class="col-md-6">
                                             @if($about->section_2_img)
-                                            <img src="{{ Storage::url($about->section_2_img) }}" alt="" style="height: 150px; width: 100%;  float:right; margin-top:10px;">
+                                            <a href="{{Storage::url($about->section_2_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($about->section_2_img) }}" alt="" style="height: 150px; width: 100%;  float:right; margin-top:10px;"></a>
                                             @endif
                                         </div>
                                         
@@ -149,7 +152,8 @@ Groomely | About Cms
                                         </div>
                                         <div class="col-md-6" >
                                             @if($about->section_3_img)
-                                            <img src="{{ Storage::url($about->section_3_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;">
+                                            <a href="{{Storage::url($about->section_3_img)}}" target="_blank">
+                                            <img src="{{ Storage::url($about->section_3_img) }}" alt="" style="height: 150px; float:right; width: 100%; margin-top:10px;"></a>
                                             @endif
                                         </div>
                                         <div class="col-md-6">
