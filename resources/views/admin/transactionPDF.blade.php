@@ -35,7 +35,7 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <td colspan="5" align="right">Total: ${{$sum}}</td>
+                    <td colspan="5," align="right">Total: ${{$sum}}</td>
                 </tr>
             </tbody>
         </table>
