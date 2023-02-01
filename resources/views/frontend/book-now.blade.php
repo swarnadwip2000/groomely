@@ -128,7 +128,7 @@ Groomely | Packages
                             <div class="row align-items-center mb-3">
                                 <div class="col-xl-4 col-md-4 col-4">
                                     <div class="tab-img">
-                                        <img src="{{asset('frontend_assets/images/tab-img.png')}}">
+                                        <img src="{{ asset('frontend_assets/images/tab-img.png') }}">
                                     </div>
                                 </div>
                                 <div class="col-xl-8 col-md-8 col-8">
