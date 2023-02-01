@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 
 
+
 class ProfileController extends Controller
 {
     public $successStatus = 200;
@@ -34,14 +35,33 @@ class ProfileController extends Controller
                 $user->profile_picture = $image_path;
             }
             $user->save();
-            return response()->json(['data' => $user, 'status' => true, 'message' => 'Profile updated successfully'], $this->successStatus);
+            return response()->json(['status' => true,'statusCode' => 200, 'data' => $user, 'message' => 'Profile picture updated successfully'], $this->successStatus);
         } catch (Exception $e) {
-            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+            return response()->json([ 'status' => false, 'statusCode' => 401 ,'message' => 'something went wrong'], 401);
         }     
     }
 
     public function changePassword(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'new_password' => 'required|min:8',
+            'comfirm_password' => 'required|min:8',
+        ]);
+
+        if ($validator->fails()) {
+
+            $errors['message'] = [];
+            $data = explode(',', $validator->errors());
+
+            for ($i = 0; $i < count($validator->errors()); $i++) {
+                // return $data[$i];
+                $dk = explode('["', $data[$i]);
+                $ck = explode('"]', $dk[1]);
+                $errors['message'][$i] = $ck[0];
+            }
+            return response()->json(['status' => false, 'statusCode' => 401,  'error' => $errors], 401);
+        }
+
         try {   
             $user = User::where('id', Auth::user()->id)->first();
             if(! Hash::check($request->old_password,$user->password)){

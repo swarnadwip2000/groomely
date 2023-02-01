@@ -42,7 +42,7 @@ Groomely | Packages
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">DESCRIPTION</button>
 
-                    <button class="nav-link" id="nav-specification-tab" data-bs-toggle="tab" data-bs-target="#nav-specification" type="button" role="tab" aria-controls="nav-specification" aria-selected="false">SPECIFICATION</button>
+                    {{-- <button class="nav-link" id="nav-specification-tab" data-bs-toggle="tab" data-bs-target="#nav-specification" type="button" role="tab" aria-controls="nav-specification" aria-selected="false">SPECIFICATION</button> --}}
 
                     <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false">REVIEW</button>
                 </div>
@@ -128,7 +128,7 @@ Groomely | Packages
                             <div class="row align-items-center mb-3">
                                 <div class="col-xl-4 col-md-4 col-4">
                                     <div class="tab-img">
-                                        <img src="assets/images/tab-img.png">
+                                        <img src="{{asset('frontend_assets/images/tab-img.png')}}">
                                     </div>
                                 </div>
                                 <div class="col-xl-8 col-md-8 col-8">

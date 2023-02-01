@@ -30,7 +30,6 @@ class AuthController extends Controller
 
 
         if ($validator->fails()) {
-            $errors['status_code'] = 401;
             $errors['message'] = [];
             $data = explode(',', $validator->errors());
 
@@ -40,7 +39,7 @@ class AuthController extends Controller
                 $ck = explode('"]', $dk[1]);
                 $errors['message'][$i] = $ck[0];
             }
-            return response()->json(['error' => $errors, 'status' => false], 401);
+            return response()->json(['status' => false, 'statusCode' => 401,  'error' => $errors], 401);
         }
         try {
             $token_time = Carbon::now()->toDateTimeString();
@@ -51,22 +50,22 @@ class AuthController extends Controller
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;                        
                         Session::put('token_update_time',$token_time);                      
                         $data['user'] = $user->makeHidden('roles');
-                        return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
+                        return response()->json(['status' => true, 'statusCode' => 200 ,'data' => $data,  'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {
-                        return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
+                        return response()->json([ 'status' => false , 'statusCode' => 401, 'message' => 'Email id & password was invalid!'], 401);
                     }
                 } else {
                     if ($user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;
                         $data['user'] = $user->makeHidden('roles');
                         Session::put('token_update_time',$token_time);
-                        return response()->json(['data' => $data, 'status' => true, 'message' => 'Logged in successfully.'], $this->successStatus);
+                        return response()->json(['status' => true, 'statusCode' => 200 ,'data' => $data,  'message' => 'Logged in successfully.'], $this->successStatus);
                     } else {
-                        return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
+                        return response()->json([ 'status' => false, 'statusCode' => 401, 'message' => 'Email id & password was invalid!'], 401);
                     }
                 }
             } else {
-                return response()->json(['message' => 'Email id & password was invalid!', 'status' => false], 401);
+                return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'Email id & password was invalid!'], 401);
             }
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
@@ -91,7 +90,6 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $errors['status_code'] = 401;
             $errors['message'] = [];
             $data = explode(',', $validator->errors());
 
@@ -101,7 +99,7 @@ class AuthController extends Controller
                 $ck = explode('"]', $dk[1]);
                 $errors['message'][$i] = $ck[0];
             }
-            return response()->json(['error' => $errors, 'status' => false], 401);
+            return response()->json([ 'status' => false ,'statusCode' => 401, 'error' => $errors], 401);
         }
         try {
             $input = $request->all();
@@ -117,9 +115,9 @@ class AuthController extends Controller
                 $user->assignRole('BUSINESS_OWNER');
             }
             $data =  $user->makeHidden('roles', 'updated_at', 'created_at');
-            return response()->json(['data' => $data, 'status' => true, 'message' => 'Registered successfully'], $this->successStatus);
+            return response()->json(['status' => true, 'statusCode' => 200, 'data' => $data , 'message' => 'Registered successfully'], $this->successStatus);
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'Something went wrong!'], 401);
         }
     }
 }

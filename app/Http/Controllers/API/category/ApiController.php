@@ -25,13 +25,13 @@ class ApiController extends Controller
             $category = Category::select('id','name','slug','icon')->where('status',1)->get(); 
             if($category !='')
             {
-                return response()->json(['data' => $category, 'status' => true, 'message' => 'Category find successfully'], $this->successStatus);
+                return response()->json([ 'status' => true, 'statusCode' => 200, 'data' => $category, 'message' => 'Category find successfully'], $this->successStatus);
             }
             else{
-                return response()->json(['message' => 'Category not found!', 'status' => false], 401);
+                return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'Category not found!'], 401);
             }
         } catch (\Throwable $th) {
-            return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
+            return response()->json([ 'status' => false, 'statusCode' => 401, 'message' => 'Something went wrong!'], 401);
         }    
     }
 
@@ -41,13 +41,13 @@ class ApiController extends Controller
             $service = ServiceType::select('id','name','image')->get(); 
             if($service !='')
             {
-                return response()->json(['data' => $service, 'status' => true, 'message' => 'Servicetype find successfully'], $this->successStatus);
+                return response()->json(['status' => true, 'statusCode' => 200, 'data' => $service, 'message' => 'Servicetype find successfully'], $this->successStatus);
             }
             else{
-                return response()->json(['message' => 'Servicetype not found!', 'status' => false], 401);
+                return response()->json([ 'status' => false, 'statusCode' => 401, 'message' => 'Servicetype not found!'], 401);
             }
         } catch (Exception $e) {
-            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong'], 401);
         }
     }
 
@@ -58,13 +58,13 @@ class ApiController extends Controller
             $booking_time = BookingTime::select('id','time')->get();
             if($booking_time !='')
             {
-                return response()->json(['data' => $booking_time, 'status' => true, 'message' => 'Booking time find successfully'], $this->successStatus);
+                return response()->json(['status' => true, 'statusCode' => $this->successStatus, 'data' => $booking_time, 'message' => 'Booking time find successfully'], $this->successStatus);
             }
             else{
-                return response()->json(['message' => 'Bookingtimes not found!', 'status' => false], 401);
+                return response()->json([ 'status' => false,  'statusCode' => 401, 'message' => 'Bookingtimes not found!'], 401);
             }
         } catch (Exception $e) {
-            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+            return response()->json([ 'status' => false , 'statusCode' => 401, 'message' => 'something went wrong'], 401);
         }    
     }
 
@@ -78,10 +78,10 @@ class ApiController extends Controller
                 return response()->json(['data' => $service_list, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
             }
             else{
-                return response()->json(['message' => 'Service not found!', 'status' => false], 401);
+                return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
             }
         } catch (Exception $e) {
-            return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }        
 
     }

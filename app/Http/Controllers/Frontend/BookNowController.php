@@ -21,8 +21,7 @@ class BookNowController extends Controller
         $service = Service::findOrFail($id);
         $times = BookingTime::get();
         return view('frontend.book-now')->with(compact('service', 'times'));
-            
-       
+          
     }
 
     public function submitAppointment(Request $request)
