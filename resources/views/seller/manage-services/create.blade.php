@@ -124,7 +124,7 @@ Groomely | Manage Services Create
 
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image(Drag and drop multiple image)<span style="color:red">*<span></label>
+                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image(Drag and drop atleast 4 images)<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
                                             <input type="file" class="form-control dropzone" id="image-upload" name="image[]" multiple>
                                             @if($errors->has('image.*'))

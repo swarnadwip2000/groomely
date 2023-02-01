@@ -8,6 +8,7 @@ use App\Models\Service;
 use App\Models\ServiceImage;
 use App\Models\ServiceType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class ManageBookingController extends Controller
@@ -71,7 +72,16 @@ class ManageBookingController extends Controller
         $service->rate = $request->rate;
         $service->description = $request->description;
         $service->save();
-        if ($request->hasFile('image')) {
+
+
+
+
+        if ($request->hasFile('image')) {    
+            $request->validate([
+                'image' => 'array|min:4',
+                'image.*' => 'mimes:jpeg,jpg,png,gif|max:2048'
+            ]);
+          
             foreach ($request->image as  $value) {
                 $request->validate([
                     'image.*' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
@@ -158,7 +168,7 @@ class ManageBookingController extends Controller
 
     public function manageBookingUpdate(Request $request)
     {
-        // return $request->all();
+       
         $request->validate([
             'category_id' => 'required',
             'service_type_id' => 'required',
@@ -186,6 +196,10 @@ class ManageBookingController extends Controller
             ]);
         }
         if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'array|min:4',
+                'image.*' => 'mimes:jpeg,jpg,png,gif|max:2048'
+            ]);
             foreach ($request->image as  $value) {
                 $request->validate([
                     'image.*' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
