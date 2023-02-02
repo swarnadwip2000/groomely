@@ -58,7 +58,7 @@
         </li>
         <li class="{{ Request::is('admin/service-type*') ? 'mm-active' : '' }}">
             <a href="{{ route('service-type.index') }}">
-                <div class="parent-icon icon-color-12"><i class="fas fa-coins"></i>
+                <div class="parent-icon icon-color-12"><i class="fas fa-cut"></i>
                 </div>
                 <div class="menu-title">Service Type</div>
             </a>

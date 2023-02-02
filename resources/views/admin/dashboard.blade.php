@@ -114,6 +114,19 @@ Groomely | Dashboard
                                         </div>
                                         <div class="ms-auto">{{$count['gallery']}}</div>
                                     </li>
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="widgets-social bg-dribbble rounded-circle text-white"><i class="fas fa-cut"></i>
+                                            </div>
+                                            <div class="">
+                                                <a href="{{route('service-type.index')}}">
+                                                    <h6 class="mb-0">Services</h6>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">{{$count['service_type']}}</div>
+                                    </li>
                                 </ul>
                                 <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                                     <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -127,12 +140,12 @@ Groomely | Dashboard
                 </div>
             </div>
            
-     
+            <div class="row">
             <div class="col-6 col-lg-6 col-xl-6 d-flex">
                 <div class="card radius-15 w-100">
                     <div class="card-body">
                         <div class="card-title">
-                            <h4 class="mb-0">Barber transactions</h4>
+                            <h4 class="mb-0">Barber transactions statistics</h4>
                             <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -170px;">
                                 <form action="{{ route('admin.transaction.download') }}" method="post" >
                                     @csrf
@@ -154,14 +167,7 @@ Groomely | Dashboard
                         <div class="col-6 col-lg-6">
                         <input type="date" id="end_date" value="{{date('Y-m-d', strtotime('30 days'))}}" class="col-5 col-lg-5 form-control" readonly>
                         </div>
-                        {{-- <select id="years" class="form-control">
-                            @for ($i = $year; $i <= date('Y'); $i++)
-                                <option value="{{ $year }}"
-                                    @if ($year == date('Y')) selected="" @endif>
-                                    {{ $year }}</option>
-                                @php $year++ @endphp
-                            @endfor
-                        </select> --}}
+                    
                             
                             <div id="adminAjaxBarChart">
                                 @include('admin.admin-ajax-bar-chart')
@@ -170,6 +176,35 @@ Groomely | Dashboard
                     </div>
                 </div>
             </div>
+
+            <div class="col-6 col-lg-6 col-xl-6 d-flex">
+                <div class="card radius-15 w-100">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h4 class="mb-0">User registration statistics</h4>
+                            
+                        </div>
+                        <hr />
+                        @php
+                        $year = 2023;
+                        @endphp
+                        <select id="year" class="form-control">
+                        @for ($i = $year; $i <= date('Y'); $i++)
+                            <option value="{{ $year }}"
+                                @if ($year == date('Y')) selected="" @endif>
+                                {{ $year }}</option>
+                            @php $year++ @endphp
+                        @endfor
+                        </select>   
+                        
+                        <div id="ajaxLineChart">
+                            @include('admin.admin-ajax-line-chart')
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 
@@ -244,5 +279,34 @@ Groomely | Dashboard
 
     });
 </script>
+
+
+<script>
+        $('#year').on('change', function() {
+            var year = $(this).val();
+           
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'post',
+                url: '{{ route('admin.ajax-line-chart') }}',
+                data: {
+                    'year': year,
+                    '_token': '{{csrf_token()}}'
+                },
+                success: function(resp) {
+                    $('#ajaxLineChart').html(resp.view);
+                    console.log(resp);
+                },
+                error: function() {
+                    console.log('alert');
+                }
+            });
+            $('#yrr').val(year);
+        });
+    </script>
 
 @endpush

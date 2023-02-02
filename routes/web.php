@@ -95,6 +95,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/profile-update', [DashboardController::class, 'profileUpdate'])->name('admin.profile.update');
                 //admin ajax barchart
                 Route::post('/admin-ajax-bar-chart', [DashboardController::class, 'adminAjaxBarChart'])->name('admin.ajax-bar-chart');
+                Route::post('/admin-ajax-line-chart', [DashboardController::class, 'ajaxLineChart'])->name('admin.ajax-line-chart');
                 Route::get('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
                 Route::resource('customers', CustomerController::class);
