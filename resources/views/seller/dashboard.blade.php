@@ -94,7 +94,7 @@
         new Chart(document.getElementById("chart6"), {
             type: 'doughnut',
             data: {
-                labels: ['Completed', 'Cancelled', 'Accepted', 'Reshedule'],
+                labels: ['Completed', 'Cancelled', 'Accepted', 'Reschedule'],
                 datasets: [{
                     label: "Statistics",
                     backgroundColor: ["#22d922", "red", "blue", "#c9c94a"],
