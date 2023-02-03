@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Seller;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\User;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -70,7 +71,9 @@ class DashboardController extends Controller
             $query->where('user_id', Auth::user()->id);
         })->where('status', 'completed')->whereMonth('updated_at', '12')->whereYear('updated_at',date('Y'))->sum('amount');
 
-        return view('seller.dashboard')->with(compact('count','transaction'));
+        $seller_services = Service::where('user_id',Auth::user()->id)->get();
+
+        return view('seller.dashboard')->with(compact('count','transaction','seller_services'));
     }
 
     public function ajaxBarChart(Request $request)

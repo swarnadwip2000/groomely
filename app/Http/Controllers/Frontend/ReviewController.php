@@ -18,7 +18,7 @@ class ReviewController extends Controller
             if (Auth::user()->hasRole('USER')) {
                 $review = new Review;
                 $review->user_id = Auth::user()->id;
-                $review->service_id = '1';
+                $review->service_id = '3';
                 $review->comment = 'very good';
                 $review->rating = 4;
                 $review->save();    

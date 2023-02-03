@@ -43,7 +43,7 @@
                                         <div class="card radius-15">
                                             <div class="card-body">                                             
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Transaction History</h4>                                      
+                                                    <h4 class="mb-0">Transaction History Statistics</h4>                                      
                                                     <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -150px;">
                                                         <form action="{{ route('seller.transaction.download') }}" method="post" >
                                                             @csrf
@@ -77,8 +77,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-6 d-flex">
+                        <div class="card radius-15 w-100">
+                            <div class="card-body">
+                                <div class="row row-cols-1 row-cols-md-3 g-3">
+                                    <div class="col-12 col-lg-12 mx-auto">
+                                        <div class="card radius-15">
+                                            <div class="card-body">
+                                                <div class="card-title">
+                                                    <h4 class="mb-0">Reviews statistics</h4>
+                                                </div>
+                                                <hr />
+                                                <div class="card-title"></div>
+                                                <div class="chart-container2">
+                                                    <canvas id="reviewchart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,6 +133,35 @@
                     text: 'Statistics'
                 }
             }
+        });
+    </script>
+
+    <script>
+        new Chart(document.getElementById("reviewchart"), {
+            type: 'horizontalBar',
+            data: {
+                labels: [@foreach($seller_services as $seller_service) '{{$seller_service->name}}',  @endforeach],
+                datasets: [{
+                    label: 'Rating',
+                    backgroundColor: 'orange',
+                    data: [@foreach($seller_services as $seller_service) {{$seller_service->ratingService($seller_service['id'])}}, @endforeach],
+                    
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+            xAxes: [{
+                ticks: {
+                    min: 0 // Edit the value according to what you need
+                }
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+        }
+            }
+        
         });
     </script>
 

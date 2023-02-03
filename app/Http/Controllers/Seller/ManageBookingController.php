@@ -235,8 +235,8 @@ class ManageBookingController extends Controller
 
     public function reviews($id)
     {
-        // return $id;
-        $reviews = Review::Orderby('id','desc')->with('user')->get();
+       
+        $reviews = Review::where('service_id',$id)->Orderby('id','desc')->with('user')->get();
         return view('seller.manage-services.review.list')->with(compact('reviews'));
     }
 }
