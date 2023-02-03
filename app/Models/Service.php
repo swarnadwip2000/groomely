@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Review;
 
 class Service extends Model
 {
@@ -33,5 +34,14 @@ class Service extends Model
     {
         $image = ServiceImage::where('service_id', $id)->orderBy('id', 'desc')->first();
         return $image->slider_image;
+    }
+
+    public static function ratingService($id)
+    {
+        $total_user_rating = Review::where('service_id', $id)->count();
+        $sum_rating = Review::where('service_id', $id)->sum('rating');
+        $total_rating = ($sum_rating / $total_user_rating);
+        return $total_rating;
+      
     }
 }

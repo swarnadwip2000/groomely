@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Service;
 use App\Models\ServiceImage;
 use App\Models\ServiceType;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,7 @@ class ManageBookingController extends Controller
         }
         
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -72,9 +74,6 @@ class ManageBookingController extends Controller
         $service->rate = $request->rate;
         $service->description = $request->description;
         $service->save();
-
-
-
 
         if ($request->hasFile('image')) {    
             $request->validate([
@@ -232,5 +231,12 @@ class ManageBookingController extends Controller
     {
         ServiceImage::find($id)->delete();
         return response()->json(['message' => 'Image has been deleted successfully', 'status' => true]);
+    }
+
+    public function reviews($id)
+    {
+        // return $id;
+        $reviews = Review::Orderby('id','desc')->with('user')->get();
+        return view('seller.manage-services.review.list')->with(compact('reviews'));
     }
 }

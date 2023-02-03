@@ -122,6 +122,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 
                 Route::get('/business-owner/appointment/{id}', [BusinessOwnerController::class, 'appointmentList'])->name('appointments-details.show');
+                
                 Route::get('/customer-order', [CustomerController::class, 'customerOrder'])->name('customer-order.list');
                 Route::post('/customer-order-price', [CustomerController::class, 'customerOrderPrice'])->name('customer-order.edit-price');
 
@@ -192,6 +193,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::get('manage-services/manage-services-view/{id}', [ManageBookingController::class, 'view'])->name('manage-services.view');
         Route::post('/manage-services-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-services.update');
         Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-services.delete-image');
+        Route::get('manage-services/reviews/{id}',[ManageBookingController::class,'reviews'])->name('service-reviews.view');
 
         // Booking history
         Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');

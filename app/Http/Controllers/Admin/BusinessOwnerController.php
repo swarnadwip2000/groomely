@@ -168,4 +168,9 @@ class BusinessOwnerController extends Controller
         $user->save();
         return response()->json(['success'=>'Status change successfully.']);
     }
+
+    public function serviceReviews()
+    {
+        return "okk";
+    }
 }

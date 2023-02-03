@@ -44,6 +44,7 @@ Groomely | Manage Services
                                     <th>Service Type</th>
                                     <th>Rate($)</th>
                                     <th>Duration</th>
+                                    <th>Reviews</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -56,6 +57,20 @@ Groomely | Manage Services
                                     <td>{{$service['serviceType']['name']}}</td>
                                     <td>${{$service['rate']}}</td>
                                     <td>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</td>
+                                    <td>
+                                    (@php    
+                                    for ($i = 0; $i < 5; ++$i) {
+                                        echo '<i class="fa fa-star' ,
+                                            ($service->ratingService($service['id']) == $i + .5 ? '-half' : '') ,
+                                            ($service->ratingService($service['id']) <= $i ? '-o' : '') ,                                        
+                                            '" aria-hidden="true" style="color:orange"></i>';
+                                        echo "\n";
+                                    }
+                                    echo "\n";
+                                    @endphp)
+                                    <a href="{{route('service-reviews.view', $service->id)}}" style="border:none;background: none;" data-toggle="tooltip" data-placement="right" title="Click to show {{ $service['name'] }}'s all reviews"><i class="fa-solid fa-comments"></i></a>&nbsp;&nbsp;
+                                    </td>
+
                                     <td>
                                         <div class="button-switch">
                                             <input type="checkbox" id="switch-orange" class="switch toggle-class"
