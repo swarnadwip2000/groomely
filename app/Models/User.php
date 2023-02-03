@@ -84,7 +84,6 @@ class User extends Authenticatable
             $query->where('user_id', $id);
         })->sum('amount');
         
-
         return $amount;
     }
 }

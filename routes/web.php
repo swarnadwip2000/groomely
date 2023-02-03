@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
 use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
+use App\Http\Controllers\Frontend\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\BookingController;
@@ -82,6 +83,8 @@ Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])
 // Booking 
 Route::get('/book-now/{id}', [BookNowController::class, 'bookNow'])->name('book-now');
 Route::post('/submit-appointment', [BookNowController::class, 'submitAppointment'])->name('submit-appointment');
+
+
 
 /*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/
 Route::get('/admin', [AdminAuthController::class, 'admin'])->name('admin');
@@ -218,6 +221,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'preventBackHistory']
         Route::get('appointments/accept-appointment/{id}', [AppointmentController::class, 'acceptAppointment'])->name('user.appointment.accept');
         Route::get('appointments/view/{id}', [AppointmentController::class, 'view'])->name('appointments.view');
         Route::get('download-invoice/{id}', [AppointmentController::class, 'downloadInvoice'])->name('download.invoice');
+
+        //Review
+        Route::get('/review',[ReviewController::class, 'review']);
+        Route::get('/reviews',[ReviewController::class, 'view'])->name('reviews.view'); 
 
 });
 
