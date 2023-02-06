@@ -250,12 +250,45 @@
       .min_box a {
         font-size: 20px;
       }
-
+    .footer_menu_section ul{
+        display: block;
+        columns: 2;
+    }
+    .login_sec_left_text h2 {
+        font-size: 30px;
+    }
+    .img_part img {
+        height: 450px;
+    }
  }
 @media (max-width:375.98px){
     .footer_menu_section ul li a{
       font-size: 15px;  
       margin-left: 9px;
+    }
+    .box_abo{
+        padding:15px;
+    }
+    .min_box a {
+        font-size: 16px;
+        margin-left: 3px;
+    }
+    .min_box a img {
+        height: 24px;
+    }
+    #datepicker {
+    padding: 0px 0 20px 0;
+}
+   .ui-widget{
+       padding:10px;
+   } 
+    
+    #datepicker thead th {
+    font-size: 14px;
+        
+    }
+    a.ui-state-active{
+        padding:0 10px;
     }
     
 }

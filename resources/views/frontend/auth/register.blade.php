@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link href="{{asset('frontend_assets/auth_assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend_assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
-    <link href="{{asset('frontend_assets/auth_assets/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('frontend_assets/auth_assets/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend_assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend_assets/css/responsive.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Custom styles for this template -->
@@ -26,7 +26,7 @@
         @include('frontend.includes.header')
         <section class="login_sec reg-sec">
             <div class="login_sec_right_bg">
-                <img src="{{asset('frontend_assets/auth_assets/images/login-img.png')}}" alt="">
+                <img src="{{asset('frontend_assets/images/login-img.png')}}" alt="">
             </div>
             <div class="login_sec_wrap">
                 <div class="container-fluid">
@@ -193,8 +193,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script src="https://alexandrebuffet.fr/codepen/slider/slick-animation.min.js"></script>
-    <script src="{{asset('frontend_assets/auth_assets/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('frontend_assets/auth_assets/js/custom.js')}}"></script>
+    <script src="{{asset('frontend_assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('frontend_assets/js/custom.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         @if(Session::has('message'))
