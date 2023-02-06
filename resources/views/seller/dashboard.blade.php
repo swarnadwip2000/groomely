@@ -44,7 +44,7 @@
                                             <div class="card-body">                                             
                                                 <div class="card-title">
                                                     <h4 class="mb-0">Transaction history statistics</h4>                                      
-                                                    <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -150px;">
+                                                    <div class="col-md-6" >
                                                         <form action="{{ route('seller.transaction.download') }}" method="post" >
                                                             @csrf
                                                         <input type="hidden" name="year" id="yrr">                             

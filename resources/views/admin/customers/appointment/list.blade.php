@@ -32,7 +32,7 @@ Groomely | Customers - Appointments
                     <div class="card-title">
                         <div class="row">
                             <div class="col-md-6"><h4 class="mb-0">Appointment Details</h4></div>
-                            <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -540px;">
+                            <div class="col-md-6" style="display: inline-block;display:flex;justify-content:right;">
                                 <a href="{{ route('appointment.download.invoice') }}"><button class="btn btn-primary"> <i class="fas fa-download"></i> Download Appointment</button></a>
                             </div>
                         </div>
