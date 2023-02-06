@@ -215,19 +215,19 @@ Groomely | Packages
                             <div class="form-wrap">
                                     <div class="row">
                                         <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                            <input type="text" class="form-control" placeholder="FULL NAME" name="name" value="@if(Auth::check() && Auth::user()->hasRole('USER')) {{ Auth::user()->name }} @else {{old('name')}} @endif" >
+                                            <input type="text" class="form-control" placeholder="FULL NAME" name="name" @if(Auth::check() && Auth::user()->hasRole('USER'))  value="{{ Auth::user()->name }}"  @else value="{{old('name')}}" @endif >
                                             @if($errors->has('name'))
                                             <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
                                             @endif
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                            <input type="text" class="form-control" placeholder="EMAIL ADDRESS" name="email" value="@if(Auth::check() && Auth::user()->hasRole('USER')) {{ Auth::user()->email }} @else {{old('email')}} @endif" >
+                                            <input type="text" class="form-control" placeholder="EMAIL ADDRESS" name="email" @if(Auth::check() && Auth::user()->hasRole('USER')) value="{{ Auth::user()->email }}" @else  value="{{old('email')}}"  @endif>
                                             @if($errors->has('email'))
                                             <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
                                             @endif
                                         </div>
                                         <div class="col-xl-4 col-md-4 col-12 mb-3">
-                                            <input type="text" class="form-control" placeholder="PHONE NUMBER" name="phone" value="@if(Auth::check() && Auth::user()->hasRole('USER')) {{ Auth::user()->phone }} @else {{old('phone')}} @endif" >
+                                            <input type="text" class="form-control" placeholder="PHONE NUMBER" name="phone" @if(Auth::check() && Auth::user()->hasRole('USER')) value="{{ Auth::user()->phone }}" @else value="{{old('phone')}}" @endif >
                                             @if($errors->has('phone'))
                                             <div class="error" style="color:red;">{{ $errors->first('phone') }}</div>
                                             @endif
