@@ -89,12 +89,115 @@ Groomely | Footer Cms
                                             <div class="error" style="color:red;">{{ $errors->first('email') }}</div>
                                             @endif
                                         </div>
+
                                         
+                                            <div class="col-md-6">
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 1<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image1">
+                                                @if($errors->has('image1'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image1') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;" >
+                                                @if($footer->image1)
+                                                <a href="{{Storage::url($footer->image1)}}"  target="_blank">
+                                                <img src="{{ Storage::url($footer->image1) }}"  alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>  
                                         
+                                    
+
+                                        
+                                            <div class="col-md-6">
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 2<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image2">
+                                                @if($errors->has('image2'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image2') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;">
+                                                @if($footer->image2)
+                                                <a href="{{Storage::url($footer->image2)}}" target="_blank">
+                                                <img src="{{ Storage::url($footer->image2) }}" alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>  
+                                        
+                                    
+
+                                        
+                                            <div class="col-md-6">
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 3<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image3">
+                                                @if($errors->has('image3'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image3') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;">
+                                                @if($footer->image3)
+                                                <a href="{{Storage::url($footer->image3)}}" target="_blank">
+                                                <img src="{{ Storage::url($footer->image3) }}" alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>  
+                                       
+
+                                        
+                                            <div class="col-md-6">
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 4<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image4">
+                                                @if($errors->has('image4'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image4') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;">
+                                                @if($footer->image4)
+                                                <a href="{{Storage::url($footer->image4)}}" target="_blank">
+                                                <img src="{{ Storage::url($footer->image4) }}" alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>  
+                                        
+
+
+                                        
+                                            <div class="col-md-6" >
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 5<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image5">
+                                                @if($errors->has('image5'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image5') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;">
+                                                @if($footer->image5)
+                                                <a href="{{Storage::url($footer->image5)}}" target="_blank">
+                                                <img src="{{ Storage::url($footer->image5) }}" alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>
+    
+                                        
+
+                                        
+                                            <div class="col-md-6" >
+                                                <label for="inputEnterYourName" class="col-form-label"> Image 6<span style="color: red;">*</span></label>
+                                                <input type="file" class="form-control" id="inputEnterYourName"  name="image6">
+                                                @if($errors->has('image6'))
+                                                <div class="error" style="color:red;">{{ $errors->first('image6') }}</div>
+                                                @endif
+                                            </div>
+                                            
+                                            <div class="col-md-6" style="margin-top:15px;">
+                                                @if($footer->image6)
+                                                <a href="{{Storage::url($footer->image6)}}" target="_blank">
+                                                <img src="{{ Storage::url($footer->image6) }}" alt="" style="height: 150px; float:left; width: 50%;"></a>
+                                                @endif
+                                            </div>
                                     </div>
                                   
                                     
-                                    <div class="row" style="margin-top: 10px;">
+                                    <div class="row" style="margin-top: 15px;">
                                         <div class="col-sm-9">
                                             <button type="submit" class="btn btn-info px-5">Update</button>
                                         </div>

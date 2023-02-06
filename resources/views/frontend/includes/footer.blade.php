@@ -1,23 +1,42 @@
 @php
     use App\Models\FooterCms;
 
-    $footer_content = FooterCms::footer_contents();
-    $gallery_images = FooterCms::gallery_images();                                                                                                     
+    $footer_content = FooterCms::footer_contents(); 
+   
+    $gallery_images = FooterCms::gallery_images();    
+                                                                                                
 @endphp
 <section class="footer_section">
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-4">
                 <div class="footer_gallery">
-                        @foreach($gallery_images->chunk(3) as $item)
+                    
                     <div class="gallery_row d-flex">
-                        @foreach($item as $gallery_image)
+                        
                         <div class="single_gallery_img">
-                            <img src="{{Storage::url($gallery_image['image'])}}" class="img-fluid" />
+                            <img src="{{Storage::url($footer_content['image1'])}}" class="img-fluid" />
                         </div>
-                        @endforeach
+                        <div class="single_gallery_img">
+                            <img src="{{Storage::url($footer_content['image2'])}}" class="img-fluid" />
+                        </div>
+                        <div class="single_gallery_img">
+                            <img src="{{Storage::url($footer_content['image3'])}}" class="img-fluid" />
+                        </div>
                     </div>
-                    @endforeach
+                    <div class="gallery_row d-flex">
+                        <div class="single_gallery_img">
+                            <img src="{{Storage::url($footer_content['image4'])}}" class="img-fluid" />
+                        </div>
+                        <div class="single_gallery_img">
+                            <img src="{{Storage::url($footer_content['image5'])}}" class="img-fluid" />
+                        </div>
+                        <div class="single_gallery_img">
+                            <img src="{{Storage::url($footer_content['image6'])}}" class="img-fluid" />
+                        </div>
+                       
+                    </div>
+                    
                 </div>
             </div>
             <div class="col-md-4 col-lg-2">
@@ -37,7 +56,7 @@
                         <li><a href="{{route('home')}}">HOME</a></li>
                         <li><a href="{{route('about')}}">ABOUT US</a></li>
                         <li><a href="{{route('services')}}">SERVICES</a></li>
-                        <li><a href="{{route('best.sellers')}}">BEST SELLERS</a></li>
+                        <li><a href="#">BEST SELLERS</a></li>
                         <li><a href="{{route('blog')}}">BLOG</a></li>
                         <li><a href="{{route('gallery')}}">GALLERY</a></li>
                         <li><a href="{{route('contact')}}">CONTACT US</a></li>

@@ -226,6 +226,49 @@ class CmsController extends Controller
 
         $footerCms =  FooterCms::findOrFail($request->id);
         $footerCms->fill($validateData);
+        if ($request->hasfile('image1')) {
+            $request->validate([
+                'image1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image1 = $this->imageUpload($request->file('image1'), 'footer');
+           
+        }
+        if ($request->hasfile('image2')) {
+            $request->validate([
+                'image2' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image2 = $this->imageUpload($request->file('image2'), 'footer');
+           
+        }
+        
+        if ($request->hasfile('image3')) {
+            $request->validate([
+                'image3' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image3 = $this->imageUpload($request->file('image3'), 'footer');
+           
+        }
+        if ($request->hasfile('image4')) {
+            $request->validate([
+                'image4' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image4 = $this->imageUpload($request->file('image4'), 'footer');
+           
+        }
+        if ($request->hasfile('image5')) {
+            $request->validate([
+                'image5' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image5 = $this->imageUpload($request->file('image5'), 'footer');
+           
+        }
+        if ($request->hasfile('image6')) {
+            $request->validate([
+                'image6' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $footerCms->image6 = $this->imageUpload($request->file('image6'), 'footer');
+           
+        }
         $footerCms->save();
 
         return redirect()->back()->with('message', 'Footer page content has been updated successfully.');
