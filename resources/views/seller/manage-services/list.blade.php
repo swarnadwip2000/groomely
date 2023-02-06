@@ -58,6 +58,9 @@ Groomely | Manage Services
                                     <td>${{$service['rate']}}</td>
                                     <td>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</td>
                                     <td>
+                                    @if($service->ratingService($service['id']) =='')
+                                    no reviews available
+                                    @else
                                     (@php    
                                     for ($i = 0; $i < 5; ++$i) {
                                         echo '<i class="fa fa-star' ,
@@ -69,6 +72,7 @@ Groomely | Manage Services
                                     echo "\n";
                                     @endphp)
                                     <a href="{{route('service-reviews.view', $service->id)}}" style="border:none;background: none;" data-toggle="tooltip" data-placement="right" title="Click to show {{ $service['name'] }}'s all reviews"><i class="fa-solid fa-comments"></i></a>&nbsp;&nbsp;
+                                    @endif
                                     </td>
 
                                     <td>

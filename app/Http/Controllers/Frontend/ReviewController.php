@@ -15,13 +15,17 @@ class ReviewController extends Controller
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Please login first to drop the Review!!');
         } else {
+            
             if (Auth::user()->hasRole('USER')) {
+                
                 $review = new Review;
                 $review->user_id = Auth::user()->id;
-                $review->service_id = '3';
+                $review->service_id = 2;
                 $review->comment = 'very good';
                 $review->rating = 4;
-                $review->save();    
+                $review->save(); 
+                
+
             }
             return back();
         }

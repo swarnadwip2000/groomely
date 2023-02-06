@@ -20,7 +20,7 @@
                                         <div class="card radius-15">
                                             <div class="card-body">
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Booking History statistics</h4>
+                                                    <h4 class="mb-0">Booking history statistics</h4>
                                                 </div>
                                                 <hr />
                                                 <div class="card-title"></div>
@@ -43,7 +43,7 @@
                                         <div class="card radius-15">
                                             <div class="card-body">                                             
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Transaction History Statistics</h4>                                      
+                                                    <h4 class="mb-0">Transaction history statistics</h4>                                      
                                                     <div class="col-md-6" style="align: right; position: absolute; top: 8px; right: -150px;">
                                                         <form action="{{ route('seller.transaction.download') }}" method="post" >
                                                             @csrf
@@ -88,7 +88,7 @@
                                         <div class="card radius-15">
                                             <div class="card-body">
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Reviews statistics</h4>
+                                                    <h4 class="mb-0">Review statistics</h4>
                                                 </div>
                                                 <hr />
                                                 <div class="card-title"></div>

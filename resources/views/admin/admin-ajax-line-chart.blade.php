@@ -20,7 +20,7 @@ data: {
                     {{ $customer['september'] }}, {{ $customer['october'] }},
                     {{ $customer['november'] }}, {{ $customer['december'] }},
                 ],
-                borderWidth: 2
+                borderWidth: 1
               },
 
               {
