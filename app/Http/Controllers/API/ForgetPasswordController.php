@@ -27,6 +27,8 @@ class ForgetPasswordController extends Controller
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
         ]);
 
+        
+
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors(), 'status' => false], 401);
             }

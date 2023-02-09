@@ -44,15 +44,18 @@ class ProfileController extends Controller
     public function changePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'new_password' => 'required|min:8',
-            'comfirm_password' => 'required|min:8',
+            'old_password'    => 'required|min:8|password',
+            'new_password' => 'required|min:8|different:old_password',
+            'comfirm_password' => 'required|min:8|same:new_password', 
+        
+        ],[
+            'old_password.password'=> 'Old password is not correct',
         ]);
 
         if ($validator->fails()) {
 
             $errors['message'] = [];
             $data = explode(',', $validator->errors());
-
             for ($i = 0; $i < count($validator->errors()); $i++) {
                 // return $data[$i];
                 $dk = explode('["', $data[$i]);
@@ -62,28 +65,15 @@ class ProfileController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401,  'error' => $errors], 401);
         }
 
-        try {   
-            $user = User::where('id', Auth::user()->id)->first();
-            if(! Hash::check($request->old_password,$user->password)){
-                return response()->json(['message' => 'Your old password does not matched' , 'status' => false], 401);
-            }else{
-                if($request->old_password == $request->new_password)
-                {
-                    return response()->json(['message' => "Old password and New password should be different" , 'status' => false], 401);
-                }else{
-                    if($request->new_password == $request->comfirm_password)
-                    {
-                        $user->password = Hash::make($request->new_password);
-                        $now_time = Carbon::now()->toDateTimeString();   
-                        $user->password_update_time = $now_time;
-                        $user->update();
-                        return response()->json(['message' => 'Password changed successfully' , 'status' => true, 'data' => $user], 200);
-                    }
-                    else{
-                        return response()->json(['message' => "New password and Confirm password doesn't matched" , 'status' => false], 401);
-                    } 
-                }       
-            }
+        $user = User::where('id', Auth::user()->id)->first();
+        try {           
+            
+            $user->password = Hash::make($request->new_password);
+            $now_time = Carbon::now()->toDateTimeString();   
+            $user->password_update_time = $now_time;
+            $user->update();
+            return response()->json(['message' => 'Password changed successfully' , 'status' => true, 'data' => $user], 200);
+             
         } catch (Exception $e) {
             return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
         }       
