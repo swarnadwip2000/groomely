@@ -68,7 +68,7 @@ class ApiController extends Controller
         }    
     }
 
-    public function servicedetails()
+    public function servicelist()
     {
         // return "okkk";
         try {
@@ -84,5 +84,34 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }        
 
+    }
+
+    public function servicedetails(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'service_id'     => 'required',
+        ]);
+        if ($validator->fails()) {
+            $errors['status_code'] = 401;
+            $errors['message'] = [];
+            $data = explode(',', $validator->errors());
+
+            for ($i = 0; $i < count($validator->errors()); $i++) {
+                // return $data[$i];
+                $dk = explode('["', $data[$i]);
+                $ck = explode('"]', $dk[1]);
+                $errors['message'][$i] = $ck[0];
+            }
+            return response()->json(['error' => $errors, 'status' => false], 401);
+        }
+        $service_detail = Service::with('user','images')->where('id',$request->service_id)->first();
+        if($service_detail !='')
+        {
+            return response()->json(['data' => $service_detail, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+        }
+        else{
+            return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
+        }
+    
     }
 }
