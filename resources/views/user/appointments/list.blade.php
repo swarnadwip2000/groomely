@@ -52,6 +52,7 @@ Groomely | Appointment List
                                     <th>Amount</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th>Review</th>
                                 </tr>
                             </thead>
                             <tbody>
