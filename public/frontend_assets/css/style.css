@@ -2374,10 +2374,38 @@ select:-webkit-autofill {
     color: #000;
   }
   
-  
   .fa {
     font-size: 2rem;
   }
+  
+  
+  /*BEST SELLERS*/
+  .best-seller{
+     padding: 50px 0px; 
+  }
+  .best-seller .best-seller-img{
+    padding: 40px 20px;
+    box-shadow: 10px 25px 50px rgb(0 0 0 / 13%);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 215px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 /*---*/
 /* RESPONSIVE CSS
   -------------------------------------------------- */
@@ -2493,7 +2521,7 @@ select:-webkit-autofill {
     }
 
     .img_part {
-        padding: 0px;
+        padding: 30px;
         position: relative;
         margin-right: 0%;
     }

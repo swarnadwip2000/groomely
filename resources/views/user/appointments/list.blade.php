@@ -81,6 +81,9 @@ Groomely | Appointment List
                                     <td align="center">
                                         <a href="{{route('appointments.view', ['id'=>$appointment->id])}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                     </td>
+                                    <td align="center">
+                                        <a href="javascript:void(0);"><i class="fa-solid fa-comments review_1"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -93,6 +96,58 @@ Groomely | Appointment List
     </div>
     <!--end page-content-wrapper-->
 </div>
+
+<!--Modal-->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade review_1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <div class="review-text">
+          <h2>Review here</h2> 
+         <form>
+               <textarea id="w3review" name="w3review" rows="4" cols="60">
+               </textarea>
+               <div class="rating rating2"><!--
+            	--><a href="#5" title="Give 5 stars">★</a><!--
+            	--><a href="#4" title="Give 4 stars">★</a><!--
+            	--><a href="#3" title="Give 3 stars">★</a><!--
+            	--><a href="#2" title="Give 2 stars">★</a><!--
+            	--><a href="#1" title="Give 1 star">★</a>
+            </div>
+               
+               
+               <!--<div class="review-rating">-->
+               <!--  <ul>-->
+               <!--      <li><i class="fa-solid fa-star"></i></li>-->
+               <!--      <li><i class="fa-solid fa-star"></i></li>-->
+               <!--      <li><i class="fa-solid fa-star"></i></li>-->
+               <!--      <li><i class="fa-solid fa-star"></i></li>-->
+               <!--      <li><i class="fa-solid fa-star"></i></li>-->
+               <!--  </ul>   -->
+               <!--</div>-->
+         </form>  
+       </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 @endsection
 
 @push('scripts')

@@ -4809,6 +4809,76 @@ ul.icons li span {
 	margin: auto;
 
 }
+/*Review-Modal*/
+.review-text{
+   text-align: center; 
+}
+.review-text h2{
+  font-size: 25px;  
+}
+.review-text .review-rating ul li{
+  display: inline-block;  
+}
+.review-text .review-rating ul li i{
+   color: #fbbe05; 
+}
+.review_1 .modal-header {
+  background: #d5a353;
+  color: #fff;  
+}
+.review_1 form textarea{
+  width: 100%;
+  height: 100px;   
+}
+
+
+
+.review_1 .rating {
+			width: 226px;
+			margin: 0 auto 0em;
+			font-size: 40px;
+			overflow:hidden;
+		}
+.review_1 .rating input {
+  float: right;
+  opacity: 0;
+  position: absolute;
+}
+.review_1 .rating a,
+    .review_1 .rating label {
+			float:right;
+			color: #aaa;
+			text-decoration: none;
+			-webkit-transition: color .4s;
+			-moz-transition: color .4s;
+			-o-transition: color .4s;
+			transition: color .4s;
+		}
+.review_1 .rating label:hover ~ label,
+.review_1 .rating input:focus ~ label,
+.review_1 .rating label:hover,
+		.review_1 .rating a:hover,
+		.review_1 .rating a:hover ~ a,
+		.review_1 .rating a:focus,
+		.review_1 .rating a:focus ~ a		{
+			color: orange;
+			cursor: pointer;
+		}
+		.review_1 .rating2 {
+			direction: rtl;
+		}
+		.review_1 .rating2 a {
+			float:none
+		}
+
+
+
+
+
+
+
+
+
 
 /*Switcher*/
 .btn-switcher {
