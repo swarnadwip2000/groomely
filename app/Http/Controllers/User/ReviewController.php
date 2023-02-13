@@ -1,17 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
     //
     public function submitReview(Request $request)
     {
+        $request->validate([
+            'review' => 'required',
+            'rating' => 'required'
+            
+        ]);
         $check_review = Review::where('appointment_id',$request->appointment_id)->where('service_id',$request->service_id)->first();
         if($check_review != '')
         {

@@ -17,7 +17,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
 use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
-use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\User\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
 use App\Http\Controllers\Seller\BookingController;
