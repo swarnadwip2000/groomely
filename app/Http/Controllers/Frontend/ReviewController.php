@@ -16,7 +16,7 @@ class ReviewController extends Controller
         if($check_review != '')
         {
             $check_review->comment = $request->review;
-            $check_review->rating = $request->rate;
+            $check_review->rating = $request->rating;
             $check_review->update();
 
         }else{
@@ -25,7 +25,7 @@ class ReviewController extends Controller
             $review->user_id = $request->user_id;       
             $review->service_id = $request->service_id;
             $review->comment = $request->review;
-            $review->rating = $request->rate;
+            $review->rating = $request->rating;
             $review->save(); 
         }    
 
