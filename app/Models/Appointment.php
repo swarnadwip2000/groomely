@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Appointment extends Model
 {
     use HasFactory;
@@ -23,7 +24,7 @@ class Appointment extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    
     public function invoices()
     {
         return $this->hasMany(Invoice::class)->orderBy('id', 'desc');
@@ -33,4 +34,16 @@ class Appointment extends Model
     {
         $this->attributes['booking_date'] = date('m/d/Y', strtotime($value));
     }
+
+    public static function getRating($id)
+    {
+        $get_rating  = Review::where('appointment_id',$id)->first();
+        if($get_rating != '')
+        {
+            return $get_rating;
+        }
+    }
+
+   
+   
 }

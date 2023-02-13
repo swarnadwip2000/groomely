@@ -10,25 +10,27 @@ use Illuminate\Support\Facades\Auth;
 class ReviewController extends Controller
 {
     //
-    public function review()
+    public function submitReview(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Please login first to drop the Review!!');
-        } else {
-            
-            if (Auth::user()->hasRole('USER')) {
-                
-                $review = new Review;
-                $review->user_id = Auth::user()->id;
-                $review->service_id = 2;
-                $review->comment = 'very good';
-                $review->rating = 4;
-                $review->save(); 
-                
+        $check_review = Review::where('appointment_id',$request->appointment_id)->where('service_id',$request->service_id)->first();
+        if($check_review != '')
+        {
+            $check_review->comment = $request->review;
+            $check_review->rating = $request->rate;
+            $check_review->update();
 
-            }
-            return back();
-        }
+        }else{
+            $review = new Review;
+            $review->appointment_id = $request->appointment_id;
+            $review->user_id = $request->user_id;       
+            $review->service_id = $request->service_id;
+            $review->comment = $request->review;
+            $review->rating = $request->rate;
+            $review->save(); 
+        }    
+
+        return back()->with('message', 'Thank you for your valuable review');
+                       
     }
 
     public function view()

@@ -9,6 +9,7 @@ use App\Models\Gallery;
 use App\Models\HomeCms;
 use App\Models\Service;
 use App\Models\ServiceCms;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
@@ -19,7 +20,16 @@ class CmsController extends Controller
         $categories = Category::where('status', 1)->get();
         $services = Service::where('status', 1)->orderBy('id', 'desc')->get();
         $homeCms = HomeCms::first();
-        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms'));
+        
+        
+        $appointment = Appointment::Orderby('id','desc')->with('service')->get();
+        foreach($appointment as $val)
+        {
+            $sum = Appointment::where('service_id',$val->service_id)->sum('amount');
+            $val->setAttribute('sum',$sum);
+        }
+        
+        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','appointment'));
     }
 
     public function about()

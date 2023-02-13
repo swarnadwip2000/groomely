@@ -4870,7 +4870,9 @@ ul.icons li span {
 		.review_1 .rating2 a {
 			float:none
 		}
-
+		.review_1 .active_1{
+			color: #fbbe05!important;
+       }
 
 
 

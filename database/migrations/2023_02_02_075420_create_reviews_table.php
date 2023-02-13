@@ -15,6 +15,7 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->string('comment')->nullable();

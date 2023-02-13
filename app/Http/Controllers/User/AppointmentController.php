@@ -19,7 +19,6 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointments = Appointment::where('user_id', Auth::user()->id)->get();
-
         return view('user.appointments.list')->with(compact('appointments'));
     }
 

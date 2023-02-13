@@ -225,7 +225,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'preventBackHistory']
         Route::get('download-invoice/{id}', [AppointmentController::class, 'downloadInvoice'])->name('download.invoice');
 
         //Review
-        Route::get('/review',[ReviewController::class, 'review']);
+        Route::post('/review',[ReviewController::class, 'submitReview'])->name('user.review');
         Route::get('/reviews',[ReviewController::class, 'view'])->name('reviews.view'); 
 
 });

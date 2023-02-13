@@ -4,7 +4,100 @@ Groomely | Appointment List
 @endsection
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
+<style>
+    .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+        position:absolute;
+        display: none;
+        }
+        .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+        }
+        .rated:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+        content: '★ ';
+        }
+        .rate > input:checked ~ label {
+        color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+        }
+        .star-rating-complete{
+           color: #c59b08;
+        }
+        .rating-container .form-control:hover, .rating-container .form-control:focus{
+        background: #fff;
+        border: 1px solid #ced4da;
+        }
+        .rating-container textarea:focus, .rating-container input:focus {
+        color: #000;
+        }
+        .rated {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+        }
+        .rated:not(:checked) > input {
+        position:absolute;
+        display: none;
+        }
+        .rated:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ffc700;
+        }
+        .rated:not(:checked) > label:before {
+        content: '★ ';
+        }
+        .rated > input:checked ~ label {
+        color: #ffc700;
+        }
+        .rated:not(:checked) > label:hover,
+        .rated:not(:checked) > label:hover ~ label {
+        color: #deb217;
+        }
+        .rated > input:checked + label:hover,
+        .rated > input:checked + label:hover ~ label,
+        .rated > input:checked ~ label:hover,
+        .rated > input:checked ~ label:hover ~ label,
+        .rated > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+        }
+</style>  
 @endpush
+
+
 
 @section('content')
 <div class="page-wrapper">
@@ -82,71 +175,88 @@ Groomely | Appointment List
                                     <td align="center">
                                         <a href="{{route('appointments.view', ['id'=>$appointment->id])}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                     </td>
+                                    @if($appointment['status'] == 'completed')
                                     <td align="center">
-                                        <a href="javascript:void(0);"><i class="fa-solid fa-comments review_1"  data-bs-toggle="modal" data-bs-target="#exampleModal"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:void(0);"><i class="fa-solid fa-comments review_1"  data-bs-toggle="modal" data-bs-target="#exampleModal{{$appointment['id']}}"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
+                                    @else
+                                    <td align="center">
+                                        <a href="javascript:void(0);" style="color: grey" data-toggle="tooltip" data-placement="right" title="You must complete the service"><i class="fa-solid fa-comments review_1"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    @endif
                                 </tr>
+                                
+                              
+                                <!-- Modal -->
+                                <div class="modal fade review_1" id="exampleModal{{$appointment['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('user.review') }}" method="post">
+                                        @csrf
+                                        <div class="modal-body">
+                                        <div class="review-text">
+                                            <h2>Review here</h2> 
+                                            <input type="hidden" name="appointment_id" value="{{$appointment['id']}}" >                                     
+                                            <input type="hidden" name="service_id" value="{{$appointment['service_id']}}" >
+                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}" >                                   
+                                            <textarea id="w3review" name="review" rows="4" cols="60" >@if(isset($appointment->getRating($appointment['id'])->comment)){{ $appointment->getRating($appointment['id'])->comment }} @endif</textarea>
+                                            <input type="hidden" id="user_rate{{$appointment['id']}}" name="rate"> 
+                                            
+                                        <div class="rating rating2">  
+                                            {{-- @if(isset($appointment->getRating($appointment['id'])->rating)) 
+                                            @for($i=1; $i <= $appointment->getRating($appointment['id'])->rating; $i++)
+                                            <a class="active_1" href="#1" onclick="userrating(1,{{$appointment['id']}})" title="Give 1 star">★</a>  
+                                            @endfor
+                                            @else                                                                               
+                                            <a href="#5" onclick="userrating(5,{{$appointment['id']}})" title="Give 5 stars">★</a> 
+                                            <a href="#4" onclick="userrating(4,{{$appointment['id']}})" title="Give 4 stars">★</a>
+                                            <a href="#3" onclick="userrating(3,{{$appointment['id']}})" title="Give 3 stars">★</a>
+                                            <a href="#2" onclick="userrating(2,{{$appointment['id']}})" title="Give 2 stars">★</a>
+                                            <a href="#1" onclick="userrating(1,{{$appointment['id']}})" title="Give 1 star">★</a> 
+                                            @endif                                              --}}
+                                        <div class="col">
+                                            <div class="rate">
+                                                @if(isset($appointment->getRating($appointment['id'])->rating))
+                                                @for($i=1; $i <= $appointment->getRating($appointment['id'])->rating; $i++)
+                                                <input type="radio" id="star5" checked class="rate" name="rating" value="5"/>
+                                                <label for="star5" title="text">5 stars</label>
+                                                @endfor
+                                                <input type="radio" id="star4" class="rate" name="rating" value="4"/>
+                                                <label for="star4" title="text">4 stars</label>
+                                                <input type="radio" id="star3" class="rate" name="rating" value="3"/>
+                                                <label for="star3" title="text">3 stars</label>
+                                                <input type="radio" id="star2" class="rate" name="rating" value="2">
+                                                <label for="star2" title="text">2 stars</label>
+                                                <input type="radio" id="star1" class="rate" name="rating" value="1"/>
+                                                <label for="star1" title="text">1 star</label>
+                                                @else
+                                                @endif
+                                            </div>                                                                                                                         
+                                        </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>  
+                                    </div>
+                                    </div>
+                                </div>
+                                <!--end modal -->
                                 @endforeach
-                            </tbody>
+                                </tbody>
 
-                        </table>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--end page-content-wrapper-->
         </div>
-    </div>
-    <!--end page-content-wrapper-->
-</div>
-
-<!--Modal-->
-<!-- Button trigger modal -->
-
-<!-- Modal -->
-<div class="modal fade review_1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       <div class="review-text">
-          <h2>Review here</h2> 
-         <form>
-               <textarea id="w3review" name="w3review" rows="4" cols="60">
-               </textarea>
-               <div class="rating rating2"><!--
-            	--><a href="#5" title="Give 5 stars">★</a><!--
-            	--><a href="#4" title="Give 4 stars">★</a><!--
-            	--><a href="#3" title="Give 3 stars">★</a><!--
-            	--><a href="#2" title="Give 2 stars">★</a><!--
-            	--><a href="#1" title="Give 1 star">★</a>
-            </div>
-               
-               
-               <!--<div class="review-rating">-->
-               <!--  <ul>-->
-               <!--      <li><i class="fa-solid fa-star"></i></li>-->
-               <!--      <li><i class="fa-solid fa-star"></i></li>-->
-               <!--      <li><i class="fa-solid fa-star"></i></li>-->
-               <!--      <li><i class="fa-solid fa-star"></i></li>-->
-               <!--      <li><i class="fa-solid fa-star"></i></li>-->
-               <!--  </ul>   -->
-               <!--</div>-->
-         </form>  
-       </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
 
 
 @endsection
@@ -188,4 +298,11 @@ Groomely | Appointment List
 				})
 		});
 </script>
+
+<script>
+    function userrating(id,sid)
+    {
+        $('#user_rate'+sid).val(id);
+    }
+    </script>
 @endpush

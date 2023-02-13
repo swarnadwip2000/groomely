@@ -34,7 +34,7 @@
                 </li>
                 <li class="{{Request::is('user/reviews*') ? 'mm-active' : ''}}">
                     <a href="{{route('reviews.view')}}">
-                        <div class="parent-icon icon-color-5"><i class="fa-solid fa-comments"></i>
+                        <div class="parent-icon icon-color-4"><i class="fa-solid fa-comments"></i>
                         </div>
                         <div class="menu-title">Reviews</div>
                     </a>

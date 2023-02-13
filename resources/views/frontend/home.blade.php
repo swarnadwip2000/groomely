@@ -202,10 +202,13 @@ Groomely | HOME
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="best_seller_list">
+                    @foreach($appointment as $vall)
+                    
                     <div class="single_seller">
                         <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
                     </div>
-                    <div class="single_seller">
+                    @endforeach
+                    {{-- <div class="single_seller">
                         <img src="{{asset('frontend_assets/images/best_seller2.png')}}" />
                     </div>
                     <div class="single_seller">
@@ -219,7 +222,7 @@ Groomely | HOME
                     </div>
                     <div class="single_seller">
                         <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
