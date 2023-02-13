@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\HomeCms;
 use App\Models\Service;
+use App\Models\User;
 use App\Models\ServiceCms;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
@@ -20,16 +21,20 @@ class CmsController extends Controller
         $categories = Category::where('status', 1)->get();
         $services = Service::where('status', 1)->orderBy('id', 'desc')->get();
         $homeCms = HomeCms::first();
-        
-        
-        $appointment = Appointment::Orderby('id','desc')->with('service')->get();
-        foreach($appointment as $val)
+
+        $detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        foreach($shop as $vall)
         {
-            $sum = Appointment::where('service_id',$val->service_id)->sum('amount');
-            $val->setAttribute('sum',$sum);
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            $shop_detail[] = $detail;
+            
         }
+        $details = collect($shop_detail)->sortByDesc('total');
         
-        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','appointment'));
+        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details'));
     }
 
     public function about()

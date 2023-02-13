@@ -202,27 +202,13 @@ Groomely | HOME
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="best_seller_list">
-                    @foreach($appointment as $vall)
+                    @foreach($details as $vall)
                     
                     <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
+                        <img src="{{ Storage::url($vall['image']) }}" />
                     </div>
                     @endforeach
-                    {{-- <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller2.png')}}" />
-                    </div>
-                    <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller3.png')}}" />
-                    </div>
-                    <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller4.png')}}" />
-                    </div>
-                    <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller1.png')}}" />
-                    </div>
-                    <div class="single_seller">
-                        <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
-                    </div> --}}
+                    
                 </div>
             </div>
         </div>

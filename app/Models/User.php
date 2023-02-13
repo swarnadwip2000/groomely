@@ -62,6 +62,26 @@ class User extends Authenticatable
         return $count;
     }
 
+    public function service()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function appointment()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+
+    public static function appointmentsSum($id)
+    {
+        $sum = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
+            $query->where('user_id', $id);
+        })->sum('amount');
+
+        return $sum;
+    }
+
     public static function appontmentDetails($id)
     {
         $detail = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
