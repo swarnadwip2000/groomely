@@ -19,10 +19,11 @@ class CmsController extends Controller
     {
         $servicesCms = ServiceCms::orderby('id','desc')->get();
         $categories = Category::where('status', 1)->get();
-        $services = Service::where('status', 1)->orderBy('id', 'desc')->get();
+        $services = Service::where('status', 1)->with('review')->orderBy('id', 'desc')->get();
         $homeCms = HomeCms::first();
 
         $detail=[];
+        $shop_detail=[];
         $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
         foreach($shop as $vall)
         {

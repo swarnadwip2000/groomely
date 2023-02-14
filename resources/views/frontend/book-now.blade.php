@@ -62,7 +62,7 @@ Groomely | Packages
                                     <div class="tab-text">
                                         <h4>{{$service['name']}}</h4>
                                         <span>{{$service['user']['name']}}</span>
-                                        <h5><i class="fa-solid fa-star"></i>4.84 (209.2K) </h5>
+                                        <h5>@if($service->ratingService($service['id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['id'])}} ({{$service->review()->count()}})@endif</h5>
                                     </div>
                                 </div>
                             </div>

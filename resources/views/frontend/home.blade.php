@@ -146,7 +146,7 @@ Groomely | HOME
                         <div class="white_box_pack">
                             <h4>{{$service['name']}}</h4>
                             <h5>{{$service['user']['shop_name']}}</h5>
-                            <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
+                            <p class="star">@if($service->ratingService($service['id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['id'])}} ({{$service->review()->count()}})@endif</p>
                             <div class="d-flex align-items-center py-2">
                                 <div class="price">${{$service['rate']}}</div>
                                 <p><i class="fa-regular fa-clock"></i>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</p>

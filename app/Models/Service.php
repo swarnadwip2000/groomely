@@ -35,6 +35,11 @@ class Service extends Model
         return $this->hasMany(ServiceImage::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public static function singleImage($id)
     {
         $image = ServiceImage::where('service_id', $id)->orderBy('id', 'desc')->first();

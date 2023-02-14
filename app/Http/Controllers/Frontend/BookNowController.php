@@ -18,7 +18,7 @@ class BookNowController extends Controller
     {
         
         $id = base64_decode($id);
-        $service = Service::findOrFail($id);
+        $service = Service::where('id',$id)->with('review')->first();
         $times = BookingTime::get();
         return view('frontend.book-now')->with(compact('service', 'times'));
           
