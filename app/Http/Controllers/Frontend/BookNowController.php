@@ -7,6 +7,7 @@ use App\Mail\BookAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\Service;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -19,8 +20,9 @@ class BookNowController extends Controller
         
         $id = base64_decode($id);
         $service = Service::where('id',$id)->with('review')->first();
+        $reviews = Review::where('service_id',$id)->with('user')->get();
         $times = BookingTime::get();
-        return view('frontend.book-now')->with(compact('service', 'times'));
+        return view('frontend.book-now')->with(compact('service', 'times','reviews'));
           
     }
 

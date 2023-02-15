@@ -63,7 +63,7 @@ Groomely | About us
     </div>
 </section>
 
-<section class="seller_section">
+<!--<section class="seller_section">
     <div class="container">
         <div class="row align-items-center ">
             <div class="col-lg-12">
@@ -98,7 +98,7 @@ Groomely | About us
             </div>
         </div>
     </div>
-</section>
+</section> -->
 @endsection
 
 @push('script')

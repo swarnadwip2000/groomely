@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutCms;
+use App\Models\BestSellerCms;
 use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\HomeCms;
@@ -30,10 +31,14 @@ class CmsController extends Controller
             
             $detail['image'] = $vall['profile_picture'];
             $detail['total'] = User::appointmentsSum($vall->id);
-            $shop_detail[] = $detail;
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
         }
         $details = collect($shop_detail)->sortByDesc('total');
+        
         
         return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details'));
     }
@@ -52,7 +57,24 @@ class CmsController extends Controller
 
     public function bestSellers()
     {
-        return view('frontend.best-sellers');
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
+
+        return view('frontend.best-sellers',compact('details','bestSellerCms'));
     }
 
     public function gallery()

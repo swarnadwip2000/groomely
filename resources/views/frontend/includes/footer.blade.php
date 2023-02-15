@@ -56,7 +56,7 @@
                         <li><a href="{{route('home')}}">HOME</a></li>
                         <li><a href="{{route('about')}}">ABOUT US</a></li>
                         <li><a href="{{route('services')}}">SERVICES</a></li>
-                        <li><a href="#">BEST SELLERS</a></li>
+                        <li><a href="{{route('best.sellers')}}">BEST SELLERS</a></li>
                         <li><a href="{{route('blog')}}">BLOG</a></li>
                         <li><a href="{{route('gallery')}}">GALLERY</a></li>
                         <li><a href="{{route('contact')}}">CONTACT US</a></li>

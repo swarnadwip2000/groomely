@@ -135,6 +135,7 @@ class DashboardController extends Controller
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,' . Auth::user()->id,
             'phone'    => 'required|numeric|min:10',
             'shop_name'    => 'required',
+            'profile_picture' => 'required',
         ]);
 
         $data = User::find(Auth::user()->id);

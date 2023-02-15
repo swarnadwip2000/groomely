@@ -43,8 +43,10 @@ Groomely | Packages
                     <button class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-description" aria-selected="true">DESCRIPTION</button>
 
                     {{-- <button class="nav-link" id="nav-specification-tab" data-bs-toggle="tab" data-bs-target="#nav-specification" type="button" role="tab" aria-controls="nav-specification" aria-selected="false">SPECIFICATION</button> --}}
-
+                    
+                    @if(count($reviews)>0)
                     <button class="nav-link" id="nav-review-tab" data-bs-toggle="tab" data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review" aria-selected="false">REVIEW</button>
+                    @endif
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -121,43 +123,51 @@ Groomely | Packages
                         </div>
                     </div>
                 </div>
-
-                <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
+                
+                
+                <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">                   
                     <div class="row justify-content-between align-items-center">
-                        <div class="col-xl-6 col-md-6 col-12">
-                            <div class="row align-items-center mb-3">
-                                <div class="col-xl-4 col-md-4 col-4">
-                                    <div class="tab-img">
-                                        <img src="{{ asset('frontend_assets/images/tab-img.png') }}">
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-md-8 col-8">
-                                    <div class="tab-text">
-                                        <h4>Haircut + Beard + Massage</h4>
-                                        <span>ABCD Barber House</span>
-                                        <h5><i class="fa-solid fa-star"></i>4.84 (209.2K) </h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-3 col-7">
-                            <div class="tab-list">
-                                <ul>
-                                    <li><i class="fa-solid fa-check"></i>Men's Haircut</li>
-                                    <li><i class="fa-solid fa-check"></i>Beard Shape & Style</li>
-                                    <li><i class="fa-solid fa-check"></i>10 min Head Massage</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-3 col-5">
-                            <div class="tab-list-right">
-                                <h4><i class="fa-regular fa-clock"></i>3 hr 5 mins</h4>
-                                <h3>$115</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <div class="col-xl-12 col-md-12 col-12">
+                            <div class="comment-section">
+                                <div class="review">
+                                  <h2 class="R-title">Comments</h2>
+                                    <div class="comment-section_sec">                                 
+                                    @foreach($reviews as $review)
+                                        <div class="media media-review">
+                                            <div class="media-user">
+                                                <div class="media_user_img">
+                                                @if(!$review['user']['profile_picture'])
+                                                <img src="{{asset('admin_assets/images/avatars/avatar-1.png')}}"  alt="" />
+                                                @else
+                                                <img src="{{Storage::url($review['user']['profile_picture'])}}" alt="">
+                                                @endif
+                                                </div>
+                                            </div>
+                                            <div class="media-body">
+                                            <div class="M-flex">
+                                              <h2 class="title"><span> {{$review['user']['name']}} </span>{{date('d M, Y',strtotime($review['updated_at']))}}</h2>
+                                              <div class="rating-row">
 
+
+                                               
+                                                <ul>
+                                                @for($i = 0; $i < 5; $i++)    
+                                                  <li class=""><i class="fa-solid fa-star{{ $review['rating'] <= $i ? '-o' : '' }}"></i></li>
+                                                @endfor  
+                                                  
+                                                </ul>
+                                              </div>
+                                            </div>
+                                            <div class="description">{{ $review['comment'] }}</div>
+                                            </div>
+                                        </div>
+                                    @endforeach                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
             </div>
         </div>
     </div>
