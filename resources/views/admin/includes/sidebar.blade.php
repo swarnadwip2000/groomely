@@ -104,6 +104,9 @@
                         href="{{ route('home.cms') }}"><i class="bx bx-right-arrow-alt"></i>Home Page</a>
                 <li class="{{ Request::is('admin/cms/about-cms*') ? 'mm-active' : '' }}"> <a class=""
                         href="{{ route('about.cms') }}"><i class="bx bx-right-arrow-alt"></i>About Us Page</a>
+                <li class="{{ Request::is('admin/cms/best-sellers-cms*') ? 'mm-active' : '' }}"> <a class=""
+                        href="{{ route('best-seller.cms') }}"><i class="bx bx-right-arrow-alt"></i>Best Seller Page</a>
+                </li>
                 <li class="{{ Request::is('admin/cms/service-cms*') ? 'mm-active' : '' }}"> <a class=""
                         href="{{ route('service.cms') }}"><i class="bx bx-right-arrow-alt"></i>Service Page</a>
                 </li>

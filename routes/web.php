@@ -156,6 +156,8 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::post('/home-cms/store', [AdminCmsController::class, 'homeCmsStore'])->name('home-cms.store');
                         Route::get('/about-cms', [AdminCmsController::class, 'aboutCms'])->name('about.cms');
                         Route::post('/about-cms/store', [AdminCmsController::class, 'aboutCmsStore'])->name('about-cms.store');
+                        Route::get('/best-sellers-cms', [AdminCmsController::class, 'BestSellerCms'])->name('best-seller.cms');
+                        Route::post('/best-sellers-cms/store', [AdminCmsController::class, 'BestSellerCmsStore'])->name('best-seller-cms.store');
                         Route::get('/service-cms', [AdminCmsController::class, 'serviceCms'])->name('service.cms');
                         Route::get('/service-cms/create', [AdminCmsController::class, 'serviceCmsCreate'])->name('service-cms.create');
                         Route::post('/service-cms/store', [AdminCmsController::class, 'serviceCmsStore'])->name('service-cms.store');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AboutCms;
 use App\Models\ContactUsCms;
+use App\Models\BestSellerCms;
 use App\Models\FooterCms;
 use App\Models\HomeCms;
 use App\Models\ServiceCms;
@@ -120,6 +121,37 @@ class CmsController extends Controller
         $aboutCms->save();
 
         return redirect()->back()->with('message', 'About us page content has been updated successfully.');
+    }
+
+    public function BestSellerCms()
+    {
+        $best_seller = BestSellerCms::first();
+        return view('admin.cms.best-seller-cms')->with(compact('best_seller'));
+    }
+
+    public function BestSellerCmsStore(Request $request)
+    { 
+        $validateData =  $request->validate([
+            'banner_name' => 'required',
+            'section_title' => 'required',
+            'section_description' => 'required',
+        ]);  
+        
+        $update_bestseller = BestSellerCms::findOrFail($request->id);
+        $update_bestseller->fill($validateData); 
+        $update_bestseller->banner_name = $request->banner_name;
+        $update_bestseller->section_title = $request->section_title;
+        $update_bestseller->section_description = $request->section_description;
+        if ($request->hasfile('banner_img')) {
+            $request->validate([
+                'banner_img' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $update_bestseller->banner_img = $this->imageUpload($request->file('banner_img'), 'best_seller');
+        }
+
+        $update_bestseller->save();
+        
+        return redirect()->back()->with('message', 'Best seller page content has been updated successfully.');
     }
 
     public function serviceCms()

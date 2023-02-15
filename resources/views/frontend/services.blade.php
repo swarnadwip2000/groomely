@@ -48,32 +48,21 @@ Groomely | SERVICES
                 <div class="row align-items-center ">
                     <div class="col-lg-12">
                         <div class="heading_hp text-center">
-                            <h2>Our BEST SELLERS</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices<br> risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                            <h2>{{$bestSellerCms['section_title']}}</h2>
+                            <p>{{$bestSellerCms['section_description']}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-12">
                         <div class="best_seller_list">
+                            @foreach($details as $vall)
+                    
                             <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
+                                <img src="{{ Storage::url($vall['image']) }}" />
                             </div>
-                            <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller2.png')}}" />
-                            </div>
-                            <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller3.png')}}" />
-                            </div>
-                            <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller4.png')}}" />
-                            </div>
-                            <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller1.png')}}" />
-                            </div>
-                            <div class="single_seller">
-                                <img src="{{asset('frontend_assets/images/best_seller.png')}}" />
-                            </div>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>

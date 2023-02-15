@@ -38,21 +38,53 @@ class CmsController extends Controller
             
         }
         $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
         
-        
-        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details'));
+        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details','bestSellerCms'));
     }
 
     public function about()
     {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
         $aboutCms = AboutCms::first();
-        return view('frontend.about')->with(compact('aboutCms'));
+        return view('frontend.about')->with(compact('aboutCms','details','bestSellerCms'));
     }
 
     public function services()
     {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $servicesCms = ServiceCms::orderby('id', 'desc')->get();
-        return view('frontend.services')->with(compact('servicesCms'));
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.services')->with(compact('servicesCms','details','bestSellerCms'));
     }
 
     public function bestSellers()
@@ -79,8 +111,24 @@ class CmsController extends Controller
 
     public function gallery()
     {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $galleries = Gallery::all();
-        return view('frontend.gallery')->with(compact('galleries'));
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.gallery')->with(compact('galleries','details','bestSellerCms'));
     }
 
     public function package()

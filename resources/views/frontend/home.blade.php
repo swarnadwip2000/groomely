@@ -194,8 +194,8 @@ Groomely | HOME
         <div class="row align-items-center ">
             <div class="col-lg-12">
                 <div class="heading_hp text-center">
-                    <h2>Our BEST SELLERS</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices<br> risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                    <h2>{{$bestSellerCms['section_title']}}</h2>
+                    <p>{{$bestSellerCms['section_description']}}</p>
                 </div>
             </div>
         </div>

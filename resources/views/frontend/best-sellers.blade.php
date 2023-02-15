@@ -24,14 +24,7 @@
 
     <section class="best-seller">
         <div class="container">
-            <div class="row align-items-center ">
-                <div class="col-lg-12">
-                    <div class="heading_hp text-center">
-                        <h2>{{ $bestSellerCms['section_title'] }}</h2>
-                        <p>{{ $bestSellerCms['section_description'] }}</p></br>
-                    </div>
-                </div>
-            </div>
+            
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
                 @foreach ($details as $vall)
                     <div class="col mb-4">
