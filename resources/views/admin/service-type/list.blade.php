@@ -32,7 +32,7 @@ Groomely | Service Type List
                             <div class="col-md-6">
                                 <h4 class="mb-0">Service Type Details</h4>
                             </div>
-                            <div class="col-md-6"><a href="{{route('service-type.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add category</button></a></div>
+                            <div class="col-md-6"><a href="{{route('service-type.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add service type</button></a></div>
                         </div>
                     </div>
 
@@ -45,6 +45,8 @@ Groomely | Service Type List
                                     <th>Icon</th>
                                     <th>Status</th>
                                     <th>Action</th>
+                                    <th>Additional Service</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +68,10 @@ Groomely | Service Type List
                                         <a href="{{route('service-type.show', $serviceType->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                         <a href="{{route('service-type.delete', $serviceType->id)}}" onclick="return confirm('Are you sure to delete this service type?')"><i class="fas fa-trash"></i></a>
                                     </td>
+                                    <td align="center">
+                                        <a href="{{route('additional-service.index', $serviceType['id'])}}" class="btn btn-primary">Go >></a> &nbsp;&nbsp;
+                                    </td>    
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>

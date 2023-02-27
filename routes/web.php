@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ServiceTypeController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
@@ -109,12 +110,17 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('blog-category', BlogCategoryController::class);
                 Route::resource('gallery', GalleryController::class);
                 Route::resource('service-type', ServiceTypeController::class);
+                
                 Route::resource('admin', AdminController::class);
                 //admin 
                 Route::get('/admin/edit/{id}', [AdminController::class, 'adminEdit'])->name('admin.edits');
                 Route::get('/admin-delete/{id}', [AdminController::class, 'delete'])->name('admin.destroys');
                 Route::post('/admin-update', [AdminController::class, 'update'])->name('admin.updates');
 
+                Route::get('/service-type/additional-service/create/{id}', [ServiceCategoryController::class, 'create'])->name('additional-service.create');
+                Route::post('/service-type/add-additional-service', [ServiceCategoryController::class, 'store'])->name('additional-service.store');
+                Route::get('/service-type/additional-service/{id}', [ServiceCategoryController::class, 'index'])->name('additional-service.index');
+                Route::post('/service-type/update-additional-service/', [ServiceCategoryController::class, 'update'])->name('additional-service.update');
                 
                 Route::get('appointment-download-invoice', [CustomerController::class, 'downloadAppointmentInvoice'])->name('appointment.download.invoice');
                 // Route::get('pdfview',array('as'=>'pdfview','uses'=>'CustomerController@downloadAppointmentInvoice'));   
