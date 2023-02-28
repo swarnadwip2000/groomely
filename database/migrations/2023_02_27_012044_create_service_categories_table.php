@@ -17,6 +17,7 @@ class CreateServiceCategoriesTable extends Migration
             $table->id();
             $table->foreignId('service_type_id')->nullable()->references('id')->on('service_types')->onDelete('cascade');
             $table->string('name')->nullable();
+            $table->tinyInteger('status')->default(true);
             $table->timestamps();
             
         });

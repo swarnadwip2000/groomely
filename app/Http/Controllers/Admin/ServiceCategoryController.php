@@ -13,15 +13,16 @@ class ServiceCategoryController extends Controller
     public function index($id)
     {
         
-        $service_type = $id;
-        $additional_services = ServiceCategory::where('service_type_id', $service_type)->Orderby('id','desc')->get();
-        return view('admin.additional-service.index',compact('additional_services','service_type'));
+        // $service_type = $id;
+        $service_type = ServiceType::where('id', $id)->first();
+        $additional_services = ServiceCategory::where('service_type_id', $id)->Orderby('id','desc')->get();
+        return view('admin.service-type.additional-service.list',compact('additional_services','service_type'));
     }
     public function create($id)
     {
 
         $service_type = ServiceType::where('id', $id)->first();
-        return view('admin.additional-service.create', compact('service_type'));
+        return view('admin.service-type.additional-service.create', compact('service_type'));
 
     }
 
@@ -42,9 +43,28 @@ class ServiceCategoryController extends Controller
 
     public function update(Request $request)
     {
-        
-        $update_additional_service = ServiceCategory::where('id', $request->id)->update([
-            'name' => $request->name
+
+        // return $request;
+        $update_additional_service = ServiceCategory::where('service_type_id', $request->service_typeId)->where('id', $request->addiitional_serviceId)->update([
+            'name' => $request->additional_service
         ]);
+
+        return redirect()->back()->with('message', 'Additional Service Updated Successfully');
+    }
+
+    public function delete($id)
+    {
+        
+        $delete_additional_service = ServiceCategory::where('id', $id)->delete();
+        return redirect()->back()->with('message', 'Additional Service Deleted Successfully');
+    }
+
+    public function changeAdditionalServiceStatus(Request $request)
+    {
+        return $request;
+        $additional_service = ServiceCategory::where('id', $request->id)->first();
+        $additional_service->status = $request->status;
+        $additional_service->save();
+        return response()->json(['message' => 'Additional Service status change successfully.', 'status' => true]);
     }
 }

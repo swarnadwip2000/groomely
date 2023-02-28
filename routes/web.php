@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CmsController as AdminCmsController;
 use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
@@ -121,9 +122,15 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::post('/service-type/add-additional-service', [ServiceCategoryController::class, 'store'])->name('additional-service.store');
                 Route::get('/service-type/additional-service/{id}', [ServiceCategoryController::class, 'index'])->name('additional-service.index');
                 Route::post('/service-type/update-additional-service/', [ServiceCategoryController::class, 'update'])->name('additional-service.update');
+                Route::get('/service-type/delete-additional-service/{id}', [ServiceCategoryController::class, 'delete'])->name('additional-service.delete');
+                Route::get('/changeAdditionalServiceStatus', [ServiceCategoryController::class, 'changeAdditionalServiceStatus'])->name('admin.additional-service.change-status');
                 
                 Route::get('appointment-download-invoice', [CustomerController::class, 'downloadAppointmentInvoice'])->name('appointment.download.invoice');
                 // Route::get('pdfview',array('as'=>'pdfview','uses'=>'CustomerController@downloadAppointmentInvoice'));   
+                Route::resource('service', ServiceController::class);
+                Route::get('/edit-service/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+                Route::get('/delete-service/{id}', [ServiceController::class, 'delete'])->name('service.delete');
+                Route::get('service-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service');
                 
                 Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 
@@ -156,6 +163,8 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/changeServiceTypeStatus', [ServiceTypeController::class, 'changeServiceTypeStatus'])->name('admin.service-type.change-status');
                 Route::get('/service-type-delete/{id}', [ServiceTypeController::class, 'delete'])->name('service-type.delete');
                 Route::post('/service-type-update', [ServiceTypeController::class, 'serviceTypeUpdate'])->name('admin.service-type.update');
+
+                
 
                 Route::group(['prefix'=>'cms'], function(){
                         Route::get('/home-cms', [AdminCmsController::class, 'homeCms'])->name('home.cms');

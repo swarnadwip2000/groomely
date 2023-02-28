@@ -145,7 +145,7 @@ Groomely | HOME
                         <div class="top_pack">Package</div>
                         <div class="white_box_pack">
                             <h4>{{$service['name']}}</h4>
-                            <h5>{{$service['user']['shop_name']}}</h5>
+                            
                             <p class="star">@if($service->ratingService($service['id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['id'])}} ({{$service->review()->count()}})@endif</p>
                             <div class="d-flex align-items-center py-2">
                                 <div class="price">${{$service['rate']}}</div>

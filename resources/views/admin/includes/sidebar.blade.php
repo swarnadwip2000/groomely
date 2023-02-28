@@ -56,13 +56,22 @@
                 <div class="menu-title">Category</div>
             </a>
         </li>
-        <li class="{{ Request::is('admin/service-type*') ? 'mm-active' : '' }}">
-            <a href="{{ route('service-type.index') }}">
+        <li>
+            <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-12"><i class="fas fa-cut"></i>
                 </div>
-                <div class="menu-title">Service Type</div>
+                <div class="menu-title">Service</div>
             </a>
+
+            <ul>
+                <li class="{{ Request::is('admin/service-type*') ? 'mm-active' : '' }}"> <a class=""
+                    href="{{ route('service-type.index') }}"><i class="bx bx-right-arrow-alt"></i>Type</a>
+                <li class="{{ Request::is('admin/service*') ? 'mm-active' : '' }}"> <a class=""
+                    href="{{ route('service.index') }}"><i class="bx bx-right-arrow-alt"></i>Manage</a>
+                </li>
+            </ul>
         </li>
+        
         <li class="menu-label">Others</li>
         <li>
             <a class="has-arrow" href="javascript:;">

@@ -15,12 +15,8 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->string('rate')->nullable();
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');        
             $table->string('duration')->nullable();
-            $table->string('image')->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(true);
             $table->timestamps();
