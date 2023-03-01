@@ -15,6 +15,7 @@ class AddServiceIdToServicesTable extends Migration
     {
         Schema::table('services', function (Blueprint $table) {
             $table->foreignId('additional_service_id')->after('service_type_id')->nullable()->references('id')->on('service_categories')->onDelete('cascade');
+            
         });
     }
 

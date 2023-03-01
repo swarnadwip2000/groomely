@@ -27,7 +27,7 @@ Groomely | Service Create
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('service.index')}}">Service</a>
+                            <li class="breadcrumb-item"><a href="{{route('services.index')}}">Service</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
@@ -35,7 +35,7 @@ Groomely | Service Create
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('service.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('services.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ Groomely | Service Create
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('service.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('services.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
@@ -82,7 +82,7 @@ Groomely | Service Create
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name<span style="color:red">*<span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Additional Service<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
                                             <select name="additional_service_id"  id="additional-service-dropdown" class="form-control">
                                                 

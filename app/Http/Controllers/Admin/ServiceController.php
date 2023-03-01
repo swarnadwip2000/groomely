@@ -15,7 +15,7 @@ class ServiceController extends Controller
     //
     public function index()
     {
-        $services = Service::Orderby('id','desc')->with('category','serviceType','service_category')->get();
+        $services = Service::Orderby('id','desc')->with('category','serviceType','additionalService')->get();
         return view('admin.service.list',compact('services'));
     }
 
@@ -40,6 +40,7 @@ class ServiceController extends Controller
             'category_id.required' => 'Please select a category.',
             'service_type_id.required' => 'Please select a service type.'
         ]);
+
 
         $service = new Service;
         $service->category_id = $request->category_id;
@@ -69,7 +70,7 @@ class ServiceController extends Controller
             }
         }
 
-        return redirect()->route('service.index')->with('message', 'Service has been added successfully');
+        return redirect()->route('services.index')->with('message', 'Service has been added successfully');
     }
 
     public function additionalService(Request $request){
@@ -83,12 +84,70 @@ class ServiceController extends Controller
         $categories = Category::where('status', 1)->get();
         $serviceTypes = ServiceType::where('status', 1)->get();
         $additionalServices = ServiceCategory::where('status', 1)->get();
-        $Service = Service::with('category','serviceType','service_category')->findOrFail($id);
+        $Service = Service::with('category','serviceType','images')->findOrFail($id);
         return view('admin.service.edit')->with(compact('Service','categories','serviceTypes','additionalServices'));
     }
 
-    public function delete()
+    public function updateService(Request $request)
     {
+        
+        $request->validate([
+            'category_id' => 'required',
+            'service_type_id' => 'required',
+            'additional_service_id' => 'required',
+            'duration' => 'required',
+            'description' => 'required',
+        ], [
+            'category_id.required' => 'Please select a category.',
+            'service_type_id.required' => 'Please select a service type.',
+            'additional_service_id.required' => 'Please select a additional service.'
+        ]);
 
+        $service = Service::findOrFail($request->serviceId);
+        $service->category_id = $request->category_id;
+        $service->service_type_id = $request->service_type_id;
+        $service->additional_service_id = $request->additional_service_id;
+        $service->duration = $request->duration;
+        $service->description = $request->description;
+        $service->save();
+        $count = ServiceImage::where('service_id', $service->id)->count();
+        if ($count == 0) {
+            $request->validate([
+                'image' => 'required',
+            ]);
+        }
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'array|min:4',
+                'image.*' => 'mimes:jpeg,jpg,png,gif|max:2048'
+            ]);
+            foreach ($request->image as  $value) {
+                $request->validate([
+                    'image.*' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                ]);
+                $serviceImage = new ServiceImage();
+                $file = $value;
+                $filename = date('YmdHi') . $file->getClientOriginalName();
+                $image_path = $value->store('service', 'public');
+                $serviceImage->slider_image = $image_path;
+                $serviceImage->service_id = $service->id;
+                $serviceImage->save();
+            }
+        }
+
+        return redirect()->route('service.index')->with('message', 'Service has been updated successfully');
+
+    }
+
+    public function delete($id)
+    {
+        Service::findOrFail($id)->delete();
+        return redirect()->back()->with('error', 'Service has been deleted!');
+    }
+
+    public function additionalServiceId(Request $request){
+        
+      return  $get_service = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->first();
+        return response()->json(['data' => $get_service]);
     }
 }

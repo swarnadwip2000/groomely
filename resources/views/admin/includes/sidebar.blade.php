@@ -66,8 +66,9 @@
             <ul>
                 <li class="{{ Request::is('admin/service-type*') ? 'mm-active' : '' }}"> <a class=""
                     href="{{ route('service-type.index') }}"><i class="bx bx-right-arrow-alt"></i>Type</a>
-                <li class="{{ Request::is('admin/service*') ? 'mm-active' : '' }}"> <a class=""
-                    href="{{ route('service.index') }}"><i class="bx bx-right-arrow-alt"></i>Manage</a>
+                </li>
+                <li class="{{ Request::is('admin/services*') ? 'mm-active' : '' }}"> <a class=""
+                    href="{{ route('services.index') }}"><i class="bx bx-right-arrow-alt"></i>Manage</a>
                 </li>
             </ul>
         </li>

@@ -32,7 +32,7 @@ Groomely | Service List
                             <div class="col-md-6">
                                 <h4 class="mb-0">Service Details</h4>
                             </div>
-                            <div class="col-md-6"><a href="{{route('service.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add service</button></a></div>
+                            <div class="col-md-6"><a href="{{route('services.create')}}" style="float: right;"><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add service</button></a></div>
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@ Groomely | Service List
                                 <tr>
                                     <th>Category</th>
                                     <th>Service Type</th>
-                                    <th>Name</th>
+                                    <th>Additional Service</th>
                                     <th>Duration</th>
                                     <th>Description</th>
                                     <th>Action</th>
@@ -55,12 +55,12 @@ Groomely | Service List
                                 <tr>
                                     <td>{{$service->category->name}}</td>
                                     <td>{{$service->serviceType->name}}</td>
-                                    <td>{{$service->serviceType->name}}</td>  
+                                    <td>{{$service->additionalService->name}}</td>  
                                     <td>{{$service->duration}}</td>
                                     <td>{{$service->description}}</td>
                                     <td>
                                         <a href="{{route('service.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
-                                        <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure to delete this service type?')"><i class="fas fa-trash"></i></button></a>
+                                        <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></button></a>
                                     </td>
                                 </tr>
                                 @endforeach

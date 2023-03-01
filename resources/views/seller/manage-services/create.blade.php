@@ -3,15 +3,7 @@
 Groomely | Manage Services Create
 @endsection
 @push('styles')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-<style type="text/css">
-    .bootstrap-timepicker-meridian,
-    .meridian-column {
-        display: none;
-    }
-</style>
+
 @endpush
 
 @section('content')
@@ -53,89 +45,58 @@ Groomely | Manage Services Create
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Category<span style="color:red">*<span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <select name="category_id" id="" class="form-control">
-                                                <option value="">Select A Category</option>
-                                                @foreach($categories as $category)
-                                                <option value="{{$category['id']}}">{{$category['name']}}</option>
+                                            <select name="service_id" id="additionalServiceId" class="form-control" onchange="serviceChange()">
+                                                @foreach($services as $service)
+                                                 <option value="{{$service->id}}" selected>{{$service->additionalService->name}}</option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('category_id'))
                                             <div class="error" style="color:red;">{{ $errors->first('category_id') }}</div>
                                             @endif
                                         </div>
-
                                     </div>
+
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Type<span style="color:red">*<span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Category Name</label>
                                         <div class="col-sm-9">
-                                            <select name="service_type_id" id="" class="form-control">
-                                                <option value="">Select A Service Type</option>
-                                                @foreach($serviceTypes as $serviceType)
-                                                <option value="{{$serviceType['id']}}">{{$serviceType['name']}}</option>
-                                                @endforeach
-                                            </select>
-                                            @if($errors->has('service_type_id'))
-                                            <div class="error" style="color:red;">{{ $errors->first('service_type_id') }}</div>
-                                            @endif
+                                            <input type="text" class="form-control" id="categoryName"  readonly>
                                         </div>
-
                                     </div>
+
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name<span style="color:red">*<span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Type</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Your Name">
-                                            @if($errors->has('name'))
-                                            <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
-                                            @endif
+                                            <input type="text" class="form-control" id="serviceTypeName"  readonly>
                                         </div>
-
                                     </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Duration</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="duration" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Description</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="description" readonly>
+                                        </div>
+                                    </div>
+                                                                
                                     <div class="row mb-3">
                                         <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Rate<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('rate')}}" name="rate" placeholder="Rate($)">
+                                            <input type="text" class="form-control" id="inputPhoneNo2"  name="rate" placeholder="Rate($)">
                                             @if($errors->has('rate'))
                                             <div class="error" style="color:red;">{{ $errors->first('rate') }}</div>
                                             @endif
                                         </div>
 
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Duration<span style="color:red">*<span></label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="timepicker" value="{{old('duration')}}" name="duration" placeholder="Duration">
-                                            @if($errors->has('duration'))
-                                            <div class="error" style="color:red;">{{ $errors->first('duration') }}</div>
-                                            @endif
-                                        </div>
-
-                                    </div>
                                    
-                                    <div class="row mb-3">
-                                        <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Description<span style="color:red">*<span></label>
-                                        <div class="col-sm-9">
-                                            <textarea name="description" id="editor1" class="form-control" cols="30" rows="10">{{old('description')}}</textarea>
-                                            @if($errors->has('description'))
-                                            <div class="error" style="color:red;">{{ $errors->first('description') }}</div>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image(Drag and drop atleast 4 images)<span style="color:red">*<span></label>
-                                        <div class="col-sm-9">
-                                            <input type="file" class="form-control dropzone" id="image-upload" name="image[]" multiple>
-                                            @if($errors->has('image.*'))
-                                            <div class="error" style="color:red;">{{ $errors->first('image.*') }}</div>
-                                            @endif
-                                            @if($errors->has('image'))
-                                            <div class="error" style="color:red;">{{ $errors->first('image') }}</div>
-                                            @endif
-                                        </div>
-
-                                    </div>
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
@@ -156,21 +117,51 @@ Groomely | Manage Services Create
 @endsection
 
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        $('#timepicker').timepicker({
-            showMeridian: false,
-            showInputs: true
+
+
+<script>
+    $(document).ready ( function(){
+        var service_id = $('#additionalServiceId').val();
+        
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{route("seller.manage-services.get-service-details")}}',
+            data: {
+                'additional_service_id': service_id    
+            },
+            success: function(data) {
+                $('#categoryName').val(data.detail.category.name);
+                $('#serviceTypeName').val(data.detail.service_type.name);
+                $('#duration').val(data.detail.duration);
+                $('#description').val(data.detail.description);    
+            }
         });
+    
     });
 </script>
-<script type="text/javascript">
-    Dropzone.options.imageUpload = {
-        maxFilesize: 1,
-        acceptedFiles: ".jpeg,.jpg,.png,.gif"
-    };
+
+<script>
+
+
+   function serviceChange(){
+            var service_id = $('#additionalServiceId').val();
+            
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '{{route("seller.manage-services.get-service-details")}}',
+                data: {
+                    'additional_service_id': service_id    
+                },
+                success: function(data) {
+                    $('#categoryName').val(data.detail.category.name);
+                    $('#serviceTypeName').val(data.detail.service_type.name);
+                    $('#duration').val(data.detail.duration);
+                    $('#description').val(data.detail.description);    
+                }
+            });
+    }
+    
 </script>
 @endpush

@@ -127,10 +127,12 @@ Route::group(['prefix' => 'admin'], function () {
                 
                 Route::get('appointment-download-invoice', [CustomerController::class, 'downloadAppointmentInvoice'])->name('appointment.download.invoice');
                 // Route::get('pdfview',array('as'=>'pdfview','uses'=>'CustomerController@downloadAppointmentInvoice'));   
-                Route::resource('service', ServiceController::class);
-                Route::get('/edit-service/{id}', [ServiceController::class, 'edit'])->name('service.edit');
-                Route::get('/delete-service/{id}', [ServiceController::class, 'delete'])->name('service.delete');
-                Route::get('service-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service');
+                Route::resource('services', ServiceController::class);
+                Route::get('/services-edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+                Route::get('/services-delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
+                Route::get('services-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service');  
+                Route::get('additional-services-id', [ServiceController::class, 'additionalServiceId'])->name('admin.service.get-additional-service-id');
+                Route::post('/services-update', [ServiceController::class, 'updateService'])->name('admin.service.update');
                 
                 Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 
@@ -211,6 +213,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::post('/manage-services-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-services.update');
         Route::get('/deleteImage/{id}', [ManageBookingController::class, 'deleteImage'])->name('manage-services.delete-image');
         Route::get('manage-services/reviews/{id}',[ManageBookingController::class,'reviews'])->name('service-reviews.view');
+        Route::get('/manage-servicesDetails',[ManageBookingController::class,'serviceDetails'])->name('seller.manage-services.get-service-details');
 
         // Booking history
         Route::get('booking-history/booking-history-view/{id}', [BookingController::class, 'view'])->name('booking-history.view');

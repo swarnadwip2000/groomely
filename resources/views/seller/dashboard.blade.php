@@ -112,7 +112,7 @@
 @push('scripts')
     <script src="{{ asset('admin_assets/plugins/chartjs/js/Chart.min.js') }}"></script>
     <script src="{{ asset('admin_assets/plugins/chartjs/js/chartjs-custom.js') }}"></script>
-    <script>
+    {{-- <script>
         // chart 6
         new Chart(document.getElementById("chart6"), {
             type: 'doughnut',
@@ -153,7 +153,7 @@
                 scales: {
             xAxes: [{
                 ticks: {
-                    min: 0 // Edit the value according to what you need
+                    min: 0 
                 }
             }],
             yAxes: [{
@@ -200,5 +200,5 @@
                 $('#pdf').hide();
             } 
         });
-    </script>
+    </script> --}}
 @endpush

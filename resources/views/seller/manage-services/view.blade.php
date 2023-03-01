@@ -36,12 +36,13 @@ Groomely | View Services details
                                 <div class="card shadow-none mb-0 ">
                                     
                                     <div class="row">
-                                        <div class="col-md-12 m-1"><b>Category Name:- </b>{{$booking['category']['name']}}</div>
-                                        <div class="col-md-12 m-1"><b>Name:-</b>{{$booking['name']}}</div>
-                                        <div class="col-md-12 m-1"><b>Rate:- </b>${{$booking['rate']}}</div>
-                                        <div class="col-md-12 m-1"><b> Duration:- </b>Duration:-  {{date('h',strtotime($booking['duration']))}} hr {{date('i',strtotime($booking['duration']))}} mins</div>
-                                        <div class="col-md-12 m-1"><b>Description:- </b>{!! $booking['description'] !!}</div>
-                                        <div class="col-md-12 m-1"><b>Image Preview:- </b> <div style="display: flex;">@foreach($booking['images'] as $image) <div class="m-4"><img src="{{Storage::url($image['slider_image'])}}" alt="" style="height: 100px; width:100px;"></div>  @endforeach</div></div>
+                                        <div class="col-md-12 m-1"><b>Category Name:- </b>{{$sellerService['service']['category']['name']}}</div>
+                                        <div class="col-md-12 m-1"><b>Service Type Name:-</b>{{$sellerService['service']['serviceType']['name']}}</div>
+                                        <div class="col-md-12 m-1"><b>Additional Service :- </b>{{$sellerService['service']['additionalService']['name']}}</div>
+                                        <div class="col-md-12 m-1"><b>Rating :- </b>${{$sellerService['rate']}}</div>
+                                        <div class="col-md-12 m-1"><b>Duration:- </b>Duration:-  {{date('h',strtotime($sellerService['duration']))}} hr {{date('i',strtotime($sellerService['duration']))}} mins</div>
+                                        <div class="col-md-12 m-1"><b>Description:- </b>{!! $sellerService['description'] !!}</div>
+                                        
                                     </div>
                                 </div>
                             </div>
