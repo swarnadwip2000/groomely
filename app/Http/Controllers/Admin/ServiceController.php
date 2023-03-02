@@ -148,8 +148,10 @@ class ServiceController extends Controller
     }
 
     public function additionalServiceId(Request $request){
-        
-        $get_service = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->with('additionalService')->first();
+        $get_service=[];
+        $services['services'] = ServiceCategory::where('service_type_id', $request->service_type_id)->where('status',1)->get();
+        $services['single_service'] = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->with('additionalService')->first();
+        $get_service= $services;
         return response()->json(['data' => $get_service]);
     }
 
@@ -160,3 +162,5 @@ class ServiceController extends Controller
         return response()->json(['message'=>'Image has been deleted.']);
     }
 }
+
+?>

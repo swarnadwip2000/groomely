@@ -47,7 +47,7 @@ Groomely | Manage Services Create
 
                                     <input type="text" name="seller_serviceId" value="{{$sellerService->id}}" hidden>
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service<span style="color:red">*<span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service</label>
                                            
                                         <div class="col-sm-9">
                                             <select name="service_id" id="additionalServiceId" class="form-control" onchange="serviceChange()" readonly>

@@ -279,17 +279,20 @@ Groomely | Service Edit
 $.ajax({
     type: "GET",
     dataType: "json",
-    url: '{{route("admin.service.get-additional-service")}}',
+    url: '{{route("admin.service.get-additional-service-id")}}',
     data: {
         'service_type_id': service_type_id,
         'service_id': service_id
     },
     success: function(resp) {
-        // console.log(resp.data);  
-            $("#additional-service-dropdown").append('<option value="' + this.additional_service.id +','+ this.additional_service.name +'"' '>' + this.additional_service.name + '</option>');
+        $.each(resp.data, function(key, value) {
+        alert(value.services.id);
+                
+          $("#additional-service-dropdown").append('<option value="' +value.services.id+'"' + 
+                   ((value.id+','+value.emp_type === lastSelectedEmpId) ? 'selected="selected"' : '') +
+                   '>' + value.services.name + '</option>');  
 
-
-            
+    });        
     }
     });
     });

@@ -149,6 +149,7 @@ Groomely | Additional Service List
         var status = $(this).prop('checked') == true ? 1 : 0;
         var additional_service_id = $(this).data('id');
         
+        
 
         $.ajax({
             type: "GET",
@@ -156,7 +157,7 @@ Groomely | Additional Service List
             url: '{{route("admin.additional-service.change-status")}}',
             data: {
                 'status': status,
-                'service_type_id': additional_service_id
+                'additional_service_id': additional_service_id
             },
             success: function(resp) {
                 console.log(resp.success)

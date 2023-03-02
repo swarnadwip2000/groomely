@@ -7,6 +7,7 @@ use App\Mail\ResheduleAppointmentMail;
 use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\ExtraService;
+use App\Models\SellerService;
 use App\Models\Invoice;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -96,13 +97,12 @@ class BookingController extends Controller
 
     public function view($id)
     {
-        $count = Appointment::where(['id' => $id])->whereHas('service', function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        })->count();
+        
+        $count = Appointment::where('id',$id)->count();
 
         if ($count > 0) {
-            $appointment = Appointment::findOrFail($id);
-            $services = Service::where('user_id', Auth::user()->id)->get();
+            $appointment = Appointment::where('id',$id)->with('service')->first();
+            $services = SellerService::where('user_id', Auth::user()->id)->get();
             $extraServices = ExtraService::where('appointment_id', $id)->get();
             return view('seller.booking-history.view')->with(compact('appointment', 'services', 'extraServices'));
         } else {

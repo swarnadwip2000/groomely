@@ -66,7 +66,7 @@
                                                     <h5><u>Service Details</u></h5>
                                                 </div>
                                                 <div class="col-md-12 m-1"><b>Service Name:-</b>
-                                                    {{ $appointment['service']['name'] }}</div>
+                                                    {{ $appointment['service']['additionalService']['name'] }}</div>
                                                 <div class="col-md-12 m-1"><b>Service Category:-</b>
                                                     {{ $appointment['service']['category']['name'] }}</div>
                                                 <div class="col-md-12 m-1"><b>Duration:-
@@ -107,8 +107,8 @@
                                                         <select name="service_id" id="service_id" class="form-control">
                                                             <option value="">Select A Service</option>
                                                             @foreach ($services as $service)
-                                                                <option value="{{ $service['id'] }}">
-                                                                    {{ $service['name'] }}</option>
+                                                                <option value="{{ $service['service']['id'] }}">
+                                                                    {{ $service['service']['additionalService']['name'] }}</option>
                                                             @endforeach
                                                         </select>
                                                         <div><span id="service_error" style="color : red;"></span></div>

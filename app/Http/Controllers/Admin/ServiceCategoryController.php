@@ -61,10 +61,10 @@ class ServiceCategoryController extends Controller
 
     public function changeAdditionalServiceStatus(Request $request)
     {
-        return $request;
-        $additional_service = ServiceCategory::where('id', $request->id)->first();
+        
+        $additional_service = ServiceCategory::where('id', $request->additional_service_id)->first();
         $additional_service->status = $request->status;
-        $additional_service->save();
+        $additional_service->update();
         return response()->json(['message' => 'Additional Service status change successfully.', 'status' => true]);
     }
 }
