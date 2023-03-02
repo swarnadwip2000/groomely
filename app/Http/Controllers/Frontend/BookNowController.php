@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\Service;
 use App\Models\Review;
+use App\Models\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -19,15 +20,18 @@ class BookNowController extends Controller
     {
         
         $id = base64_decode($id);
-        $service = Service::where('id',$id)->with('review')->first();
+        // $service = Service::where('id',$id)->with('review')->first();
+        $service = Service::where('id',$id)->with('additionalService')->first();
+        $shops = SellerService::where('service_id',$id)->with('user')->get();
         $reviews = Review::where('service_id',$id)->with('user')->get();
         $times = BookingTime::get();
-        return view('frontend.book-now')->with(compact('service', 'times','reviews'));
+        return view('frontend.book-now')->with(compact('service', 'times','reviews','shops'));
           
     }
 
     public function submitAppointment(Request $request)
     {
+       
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Please login first to booked the appointment!!');
         } else {
@@ -48,6 +52,7 @@ class BookNowController extends Controller
                 }
                 $appointment = new Appointment;
                 $appointment->user_id = Auth::user()->id;
+                $appointment->seller_id = $request->seller_id;
                 $appointment->service_id = $request->service_id;
                 $appointment->booking_date = $request->booking_date;
                 $appointment->amount = $request->amount;
@@ -67,5 +72,14 @@ class BookNowController extends Controller
             }
         }
     } 
+
+    public function servicePrice(Request $request)
+    {
+        
+        $get_price = SellerService::where('user_id',$request->seller_id)->where('service_id',$request->service_id)->first();
+        return response()->json(['data' => $get_price]);
+    }
+
+    
 }
  

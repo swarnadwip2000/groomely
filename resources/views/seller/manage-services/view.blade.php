@@ -40,8 +40,8 @@ Groomely | View Services details
                                         <div class="col-md-12 m-1"><b>Service Type Name:-</b>{{$sellerService['service']['serviceType']['name']}}</div>
                                         <div class="col-md-12 m-1"><b>Additional Service :- </b>{{$sellerService['service']['additionalService']['name']}}</div>
                                         <div class="col-md-12 m-1"><b>Rating :- </b>${{$sellerService['rate']}}</div>
-                                        <div class="col-md-12 m-1"><b>Duration:- </b>Duration:-  {{date('h',strtotime($sellerService['duration']))}} hr {{date('i',strtotime($sellerService['duration']))}} mins</div>
-                                        <div class="col-md-12 m-1"><b>Description:- </b>{!! $sellerService['description'] !!}</div>
+                                        <div class="col-md-12 m-1"><b>Duration:- </b>{{date('h',strtotime($sellerService['service']['duration']))}} hr {{date('i',strtotime($sellerService['service']['duration']))}} mins</div>
+                                        <div class="col-md-12 m-1"><b>Description:- </b>{!! $sellerService['service']['description'] !!}</div>
                                         
                                     </div>
                                 </div>

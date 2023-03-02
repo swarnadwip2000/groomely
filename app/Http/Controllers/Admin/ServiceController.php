@@ -27,7 +27,7 @@ class ServiceController extends Controller
         return view('admin.service.create',compact('categories','additionalServices','serviceTypes'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request)    
     {
         $request->validate([
             'category_id' => 'required',
@@ -73,11 +73,7 @@ class ServiceController extends Controller
         return redirect()->route('services.index')->with('message', 'Service has been added successfully');
     }
 
-    public function additionalService(Request $request){
-
-        $get_service = ServiceCategory::where('service_type_id', $request->service_type_id)->where('status',1)->get();
-        return response()->json(['data' => $get_service]);
-    }
+    
 
     public function edit($id)
     {
@@ -135,7 +131,7 @@ class ServiceController extends Controller
             }
         }
 
-        return redirect()->route('service.index')->with('message', 'Service has been updated successfully');
+        return redirect()->route('services.index')->with('message', 'Service has been updated successfully');
 
     }
 
@@ -145,9 +141,22 @@ class ServiceController extends Controller
         return redirect()->back()->with('error', 'Service has been deleted!');
     }
 
+    public function additionalService(Request $request){
+
+        $get_service = ServiceCategory::where('service_type_id', $request->service_type_id)->where('status',1)->get();
+        return response()->json(['data' => $get_service]);
+    }
+
     public function additionalServiceId(Request $request){
         
-      return  $get_service = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->first();
+        $get_service = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->with('additionalService')->first();
         return response()->json(['data' => $get_service]);
+    }
+
+    public function deleteServiceImage($id)
+    {
+        
+        ServiceImage::find($id)->delete();
+        return response()->json(['message'=>'Image has been deleted.']);
     }
 }

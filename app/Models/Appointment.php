@@ -24,6 +24,21 @@ class Appointment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function seller()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function bookingTime()
+    {
+        return $this->belongsTo(BookingTime::class);
+    }
+
+    public function sellerService()
+    {
+        return $this->belongsTo(SellerService::class);
+    }
     
     public function invoices()
     {

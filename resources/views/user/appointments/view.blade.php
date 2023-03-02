@@ -71,20 +71,20 @@
                                                 <h5><u>Barber Details</u></h5>
                                             </div>
                                             <div class="col-md-12 m-1"><b>Shop Name:-</b>
-                                                {{ $appointment['service']['user']['shop_name'] }}</div>
+                                                {{ $appointment['seller']['shop_name'] }}</div>
                                             <div class="col-md-12 m-1"><b>Barber Name:-</b>
-                                                {{ $appointment['service']['user']['name'] }}</div>
+                                                {{ $appointment['seller']['name'] }}</div>
                                             <div class="col-md-12 m-1"><b>Barber Email:- </b>
-                                                {{ $appointment['service']['user']['email'] }}</div>
+                                                {{ $appointment['seller']['email'] }}</div>
                                             <div class="col-md-12 m-1"><b> Barber Phone Number:- </b>
-                                                {{ $appointment['service']['user']['phone'] }}</div>
+                                                {{ $appointment['seller']['phone'] }}</div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="col-md-12 m-1">
                                                 <h5><u>Service Details</u></h5>
                                             </div>
                                             <div class="col-md-12 m-1"><b>Service Name:-</b>
-                                                {{ $appointment['service']['name'] }}</div>
+                                                {{ $appointment['service']['additionalService'] ['name']}}</div>
                                             <div class="col-md-12 m-1"><b>Service Category:-</b>
                                                 {{ $appointment['service']['category']['name'] }}</div>
                                             <div class="col-md-12 m-1"><b>Duration:- </b>

@@ -4,7 +4,7 @@
 @section('title')
     Groomely | Packages
 @endsection
-@push('style')
+@push('styles')
 @endpush
 
 
@@ -110,5 +110,5 @@
     </section>
 @endsection
 
-@push('script')
+@push('scripts')
 @endpush

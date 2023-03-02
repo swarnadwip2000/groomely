@@ -4,7 +4,7 @@
 @section('title')
 Groomely | BLOG
 @endsection
-@push('style')
+@push('styles')
 @endpush
 
 
@@ -91,5 +91,5 @@ Groomely | BLOG
 </section>
 @endsection
 
-@push('script')
+@push('scripts')
 @endpush

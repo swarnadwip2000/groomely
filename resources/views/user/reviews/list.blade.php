@@ -51,7 +51,7 @@
                                 <tbody>
                                     @foreach ($reviews as $review)
                                         <tr>                                         
-                                            <td>{{ $review['service']['name'] }}</td>
+                                            <td>{{ $review['service']['additionalService']['name'] }}</td>
                                             <td>{{ $review['comment'] }}</td>
                                             <td>@php
                                                 $rating = $review['rating'];

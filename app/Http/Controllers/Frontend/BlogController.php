@@ -14,23 +14,23 @@ class BlogController extends Controller
     public function blog()
     {
         $blogs = Blog::where('status', 1)->get();
-        $detail=[];
-        $shop_detail=[];
-        $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        foreach($shop as $vall)
-        {
+        // $detail=[];
+        // $shop_detail=[];
+        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
+        // foreach($shop as $vall)
+        // {
             
-            $detail['image'] = $vall['profile_picture'];
-            $detail['total'] = User::appointmentsSum($vall->id);
-            if($detail['total'] > 0)
-            {
-                $shop_detail[] = $detail;
-            }
+        //     $detail['image'] = $vall['profile_picture'];
+        //     $detail['total'] = User::appointmentsSum($vall->id);
+        //     if($detail['total'] > 0)
+        //     {
+        //         $shop_detail[] = $detail;
+        //     }
             
-        }
-        $details = collect($shop_detail)->sortByDesc('total');
+        // }
+        // $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
-        return view('frontend.blog')->with(compact('blogs','details','bestSellerCms'));
+        return view('frontend.blog')->with(compact('blogs','bestSellerCms'));
     }
 
     public function blogDetails($blogslug, $slug, $id)

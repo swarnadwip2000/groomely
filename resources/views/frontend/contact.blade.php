@@ -4,7 +4,7 @@
 @section('title')
 Groomely | CONTACT US
 @endsection
-@push('style')
+@push('styles')
 @endpush
 
 
@@ -128,5 +128,5 @@ Groomely | CONTACT US
 </section>
 @endsection
 
-@push('script')
+@push('scripts')
 @endpush

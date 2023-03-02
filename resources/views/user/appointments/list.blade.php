@@ -171,15 +171,17 @@
                                 <tbody>
                                     @foreach ($appointments as $appointment)
                                         <tr>
-                                            <td>{{ $appointment['service']['user']['shop_name'] }}</td>
-                                            <td>{{ $appointment['service']['user']['name'] }}</td>
-                                            <td>{{ $appointment['service']['user']['email'] }}</td>
-                                            <td>{{ $appointment['service']['user']['phone'] }}</td>
-                                            <td>{{ date('d M, Y', strtotime($appointment['booking_date'])) }}</td>
-                                            <td>{{ $appointment['bookTime']['time'] }}</td>
-                                            <td>{{ date('h', strtotime($appointment['service']['duration'])) }} hr
-                                                {{ date('i', strtotime($appointment['service']['duration'])) }} mins</td>
-                                            <td>${{ $appointment['amount'] }}</td>
+                                            <td>{{ $appointment->seller->shop_name }}</td>
+                                            <td>{{ $appointment->seller->name }}</td>
+                                            <td>{{ $appointment->seller->email }}</td>
+                                            <td>{{ $appointment->seller->phone }}</td>
+                                            <td>{{ date('d M, Y', strtotime($appointment->booking_date)) }}</td>
+                                            <td>{{ $appointment->bookingTime->time }}</td>
+                                            <td>{{ date('h', strtotime($appointment->service->duration)) }} hr
+                                                {{ date('i', strtotime($appointment->service->duration)) }} mins
+                                            </td>
+                                            <td>${{ $appointment->amount }}</td>
+                                            
                                             <td style="text-align: center;">
                                                 @if ($appointment['status'] == 'process')
                                                     <p

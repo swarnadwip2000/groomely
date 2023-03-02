@@ -75,9 +75,9 @@ Groomely | Booking History
                                         @endif
                                     </td>
                                     <td align="center">
-                                        <a title="View booking" href="{{route('booking-history.view', $appointment->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
+                                        <a title="View booking" href="{{route('booking-history.view', $appointment['id'])}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                         @if($appointment['status'] == 'completed')
-                                        <a title="Send Invoice" data-route="{{route('seller.send-invoice', $appointment->id)}}" href="javascript:void(0);" id="send-invoice"><i class="fa fa-paper-plane"></i></a>&nbsp;&nbsp;
+                                        <a title="Send Invoice" data-route="{{route('seller.send-invoice', $appointment['id'])}}" href="javascript:void(0);" id="send-invoice"><i class="fa fa-paper-plane"></i></a>&nbsp;&nbsp;
                                         @endif
                                     </td>
                                 </tr>

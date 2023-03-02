@@ -42,11 +42,11 @@
                                 <font style="color:#000; font-weight: 400; width:100%; display: inline-block;">Invoice
                                     Date : {{ date('d M, Y', strtotime('today')) }}</font>
                                 <font style="color:#000; font-weight: 400; width:100%; display: inline-block;">Barber
-                                    Name : {{ $appointment['service']['user']['name'] }}</font>
+                                    Name : {{ $appointment['seller']['name'] }}</font>
                                 <font style="color:#000; font-weight: 400; width:100%; display: inline-block;">Barber
-                                    Email : {{ $appointment['service']['user']['email'] }}</font>
+                                    Email : {{ $appointment['seller']['email'] }}</font>
                                 <font style="color:#000; font-weight: 400; width:100%; display: inline-block;">Barber
-                                    Phone : {{ $appointment['service']['user']['phone'] }}</font>
+                                    Phone : {{ $appointment['seller']['phone'] }}</font>
                             </td>
 
                             <td style="vertical-align:middle; padding: 15px;">

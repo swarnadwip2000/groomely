@@ -4,7 +4,7 @@
 @section('title')
 Groomely | Packages {{$category['name']}}
 @endsection
-@push('style')
+@push('styles')
 @endpush
 
 
@@ -104,5 +104,5 @@ Groomely | Packages {{$category['name']}}
 </section>
 @endsection
 
-@push('script')
+@push('scripts')
 @endpush

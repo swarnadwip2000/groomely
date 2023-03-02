@@ -122,15 +122,16 @@ Groomely | Manage Services
 <script>
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0;
-        var user_id = $(this).data('id');
+        var seller_service = $(this).data('id');
+       
 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/seller/changeManageBookingStatus',
+            url: '/seller/changeSellerServiceStatus',
             data: {
                 'status': status,
-                'user_id': user_id
+                'seller_service': seller_service
             },
             success: function(resp) {
                 console.log(resp.success)

@@ -257,6 +257,20 @@ Groomely | Service Edit
 </script>
 
 <script>
+    $('.remove-image').on('click', function() {
+        var id = $(this).attr('data-id');
+        // alert(id);
+        $.ajax({
+            url: '/admin/deleteServiceImage/' + id,
+            type: 'get',
+            success: function(response) {
+                $('#'+id).hide();
+            }
+        });
+    });
+</script>
+
+<script>
     $(document).ready ( function(){
     var service_type_id = $('#serviceType').val();
     var service_id = $('#service_id').val();
@@ -265,20 +279,19 @@ Groomely | Service Edit
 $.ajax({
     type: "GET",
     dataType: "json",
-    url: '{{route("admin.service.get-additional-service-id")}}',
+    url: '{{route("admin.service.get-additional-service")}}',
     data: {
         'service_type_id': service_type_id,
         'service_id': service_id
     },
     success: function(resp) {
-        // console.log(resp.data);
-       
-        
-            $("#additional-service-dropdown").append('<option value="' + this
-                .id +
-                '">' + this + '</option>');
+        // console.log(resp.data);  
+            $("#additional-service-dropdown").append('<option value="' + this.additional_service.id +','+ this.additional_service.name +'"' '>' + this.additional_service.name + '</option>');
+
+
+            
     }
-});
+    });
     });
 
 </script>

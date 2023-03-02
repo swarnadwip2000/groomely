@@ -18,7 +18,7 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::where('user_id', Auth::user()->id)->get();
+        $appointments = Appointment::where('user_id', Auth::user()->id)->with('seller','service')->get();
         return view('user.appointments.list')->with(compact('appointments'));
     }
 
@@ -125,8 +125,8 @@ class AppointmentController extends Controller
 
     public function view($id)
     {
-
-        $count = Appointment::where(['id' => $id, 'user_id' => Auth::user()->id])->count();
+        
+       $count = Appointment::where(['id' => $id, 'user_id' => Auth::user()->id])->count();
 
         if ($count > 0) {
             $appointment = Appointment::findOrFail($id);

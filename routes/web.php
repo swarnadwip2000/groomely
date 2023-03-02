@@ -85,6 +85,7 @@ Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])
 // Booking 
 Route::get('/book-now/{id}', [BookNowController::class, 'bookNow'])->name('book-now');
 Route::post('/submit-appointment', [BookNowController::class, 'submitAppointment'])->name('submit-appointment');
+Route::get('/service-price', [BookNowController::class, 'servicePrice'])->name('book-now.service-price');
 
 
 
@@ -133,6 +134,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('services-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service');  
                 Route::get('additional-services-id', [ServiceController::class, 'additionalServiceId'])->name('admin.service.get-additional-service-id');
                 Route::post('/services-update', [ServiceController::class, 'updateService'])->name('admin.service.update');
+                Route::get('/deleteServiceImage/{id}', [ServiceController::class, 'deleteServiceImage'])->name('admin.deleteServiceImage');
                 
                 Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 
@@ -208,6 +210,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
 
         // Manage Booking
         Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('seller.manage-services.change-status');
+        Route::get('/changeSellerServiceStatus', [ManageBookingController::class, 'changeSellerServiceStatus'])->name('seller.seller-services.change-status');
         Route::get('/manage-services-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-services.delete');
         Route::get('manage-services/manage-services-view/{id}', [ManageBookingController::class, 'view'])->name('manage-services.view');
         Route::post('/manage-services-update', [ManageBookingController::class, 'manageBookingUpdate'])->name('seller.manage-services.update');

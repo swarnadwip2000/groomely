@@ -4,7 +4,7 @@
 @section('title')
 Groomely | Packages
 @endsection
-@push('style')
+@push('styles')
 @endpush
 
 
@@ -62,9 +62,17 @@ Groomely | Packages
                                 </div>
                                 <div class="col-xl-8 col-md-8 col-8">
                                     <div class="tab-text">
-                                        <h4>{{$service['name']}}</h4>
-                                        <span>{{$service['user']['name']}}</span>
-                                        <h5>@if($service->ratingService($service['id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['id'])}} ({{$service->review()->count()}})@endif</h5>
+                                        <h4>{{$service->additionalService->name}}</h4>
+                                        <div class="drop_1">
+                                            <select class="form-select shop" aria-label="Default select example" id="seller_id">                                          
+                                                @foreach($shops as $shop)                                           
+                                                <option value="{{ $shop->user->id }}" selected>{{ $shop->user->shop_name }}</option>                                             
+                                                @endforeach  
+                                            </select>                                          
+                                        </div>
+                                        <input type="hidden" id="serviceId" value="{{$service['id']}}">
+                                        <!--<span>{{$service['name']}}</span>-->
+                                        {{-- <h5>@if($service->ratingService($service['id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['id'])}} ({{$service->review()->count()}})@endif</h5> --}}
                                     </div>
                                 </div>
                             </div>
@@ -82,13 +90,13 @@ Groomely | Packages
                         <div class="col-xl-2 col-lg-3 col-md-3 col-5">
                             <div class="tab-list-right">
                                 <h4><i class="fa-regular fa-clock"></i>{{date('h',strtotime($service['duration']))}} hr {{date('i',strtotime($service['duration']))}} mins</h4>
-                                <h3>${{$service['rate']}}</h3>
+                                <h3 >$<span id="service-price"></span></h3>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="nav-specification" role="tabpanel" aria-labelledby="nav-specification-tab">
+                {{-- <div class="tab-pane fade" id="nav-specification" role="tabpanel" aria-labelledby="nav-specification-tab">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-xl-6 col-md-6 col-12">
                             <div class="row align-items-center mb-3">
@@ -122,7 +130,7 @@ Groomely | Packages
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 
                 
                 <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">                   
@@ -172,14 +180,16 @@ Groomely | Packages
         </div>
     </div>
 </section>
-<section class="book-app-calender">
-    <div class="container">
+
+<section class="book-app-calender slot_booking" >
+    <div class="container" >
         <div class="book-app-head">
-            <h2>book an appointment</h2>
+            <h2>book a slot</h2>
         </div>
         <form action="{{route('submit-appointment')}}" method="post">
             @csrf
-            <input type="hidden" name="service_id" value="{{$service['id']}}">
+            <input type="hidden"  name="service_id" value="{{$service['id']}}">
+            <input type="hidden"  name="seller_id" id="sellerId">
             <div class="book-app-main">
                 <div class="row">
                     <div class="col-xl-12">
@@ -191,7 +201,7 @@ Groomely | Packages
                                 <div class="date-wrap">
                                     <div id="datepicker"></div>
                                 <input type="hidden" name="booking_date" id="booking-date" value="{{ date('m/d/Y') }}">
-                                <input type="hidden" name="amount" id="" value="{{$service['rate']}}">
+                                <input type="hidden" name="amount" id="service_amount" >
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -258,11 +268,73 @@ Groomely | Packages
 </section>
 @endsection
 
-@push('script')
+@push('scripts')
+
+
 <script>
-    $('.sdf').on('click', function() {
-        var date = $('#datepicker').val();
-        $('#booking-date').val(date)
+    // $('.slot_booking').hide();
+    $(document).ready(function() {
+            $('.shop').on('change', function() {
+                $('.slot_booking').show();
+            });
+        });
+    </script>
+    <script>
+        $('.sdf').on('click', function() {
+            var date = $('#datepicker').val();
+            $('#booking-date').val(date)
+        });
+    </script>
+
+    <script>
+
+        $(document).ready(function() {
+           var seller =  $('#seller_id').val();
+           var service =  $('#serviceId').val();
+           $('#sellerId').val(seller);
+           $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '{{route("book-now.service-price")}}',
+                data: {
+                    'seller_id': seller,
+                    'service_id': service
+                },
+                success: function(resp) {
+                    
+                        $('#service-price').html(resp.data.rate);   
+                        $('#service_amount').val(resp.data.rate);          
+                }
+                });
+               
+        });
+    </script>
+
+<script>
+
+    $(document).ready(function() {
+        $('#seller_id').on('change', function() {
+            var seller =  $('#seller_id').val();
+            var service =  $('#serviceId').val();
+            
+            $('#sellerId').val(seller);
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: '{{route("book-now.service-price")}}',
+                data: {
+                    'seller_id': seller,
+                    'service_id': service
+                },
+                success: function(resp) {
+                    
+                        $('#service-price').html(resp.data.rate);  
+                        $('#service_amount').val(resp.data.rate);      
+                }
+                });
+        });
+       
     });
 </script>
+
 @endpush

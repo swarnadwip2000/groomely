@@ -24,9 +24,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::orderBy('booking_date', 'asc')->with('service')->whereHas('service', function ($query) {
-            $query->where('user_id', Auth::user()->id);
-        })->get();
+        $appointments = Appointment::orderBy('booking_date', 'asc')->with('service')->get();
         return view('seller.booking-history.list')->with(compact('appointments'));
     }
 
@@ -191,6 +189,7 @@ class BookingController extends Controller
 
     public function sendInvoice($id)
     {
+        
         $appointment = Appointment::findOrFail($id);
         $extraServices = ExtraService::where('appointment_id', $id)->get();
         $data = [

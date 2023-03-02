@@ -24,7 +24,7 @@ class ManageBookingController extends Controller
     public function index()
     {
         if (Auth::user()->shop_name) {
-            $services = SellerService::where('user_id', Auth::user()->id)->where('status',1)->with('service')->get();
+            $services = SellerService::where('user_id', Auth::user()->id)->Orderby('id','desc')->with('service')->get();
             
             return view('seller.manage-services.list')->with(compact('services'));
         } else {
@@ -70,12 +70,17 @@ class ManageBookingController extends Controller
             'service_id.required' => 'Please select a service.',
             'rate.required' => 'Please enter rate.'
         ]);
+        $check_barberService = SellerService::where('service_id',$request->service_id)->where('user_id',Auth::user()->id)->count();
+        if($check_barberService > 0){
+            return redirect()->back()->with('error', 'This service already added.');
+        }else{
 
         $barber_service = new SellerService;
         $barber_service->user_id = Auth::user()->id;
         $barber_service->service_id = $request->service_id;
         $barber_service->rate = $request->rate;
         $barber_service->save();
+        }
 
         return redirect()->route('manage-services.index')->with('message', 'Seller service has been added successfully');
     }
@@ -88,27 +93,19 @@ class ManageBookingController extends Controller
      */
     public function show($id)
     {
-        return $id;
-        // $count = Service::where(['user_id' => Auth::user()->id, 'id' => $id])->count();
-        // if ($count > 0) {
-        //     $categories = Category::where('status', 1)->orderBy('id', 'desc')->get();
-        //     $service = Service::findOrFail($id);
-        //     $serviceTypes = ServiceType::where('status', 1)->get();
-        //     return view('seller.manage-services.edit')->with(compact('categories', 'service', 'serviceTypes'));
-        // } else {
-        //     return redirect()->back();
-        // }
+       
+        $services = Service::Orderby('id', 'desc')->with('additionalService')->get();
+        $sellerService = SellerService::where('id',$id)->with('service')->first();
+        return view('seller.manage-services.edit',compact('sellerService','services'));
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+        
+        
+
     }
 
     /**
@@ -131,8 +128,8 @@ class ManageBookingController extends Controller
 
     public function delete($id)
     {
-        Service::findOrFail($id)->delete();
-        return redirect()->back()->with('error', 'Booking has been deleted!');
+        SellerService::findOrFail($id)->delete();
+        return redirect()->back()->with('error', 'Services has been deleted!');
     }
 
     public function changeManageBookingStatus(Request $request)
@@ -145,58 +142,30 @@ class ManageBookingController extends Controller
 
     public function manageBookingUpdate(Request $request)
     {
-       
+        
         $request->validate([
-            'category_id' => 'required',
-            'service_type_id' => 'required',
-            'name' => 'required',
+            'seller_serviceId' => 'required',
+            'service_id' => 'required',
             'rate' => 'required|numeric',
-            'duration' => 'required',
-            'description' => 'required',
         ], [
-            'category_id.required' => 'Please select a category.',
-            'service_type_id.required' => 'Please select a service type.'
+            'service_id.required' => 'Please select a service.'
+            
         ]);
 
-        $service = Service::findOrFail($request->id);
-        $service->name = $request->name;
-        $service->category_id = $request->category_id;
-        $service->service_type_id = $request->service_type_id;
-        $service->duration = $request->duration;
-        $service->rate = $request->rate;
-        $service->description = $request->description;
-        $service->save();
-        $count = ServiceImage::where('service_id', $service->id)->count();
-        if ($count == 0) {
-            $request->validate([
-                'image' => 'required',
-            ]);
-        }
-        if ($request->hasFile('image')) {
-            $request->validate([
-                'image' => 'array|min:4',
-                'image.*' => 'mimes:jpeg,jpg,png,gif|max:2048'
-            ]);
-            foreach ($request->image as  $value) {
-                $request->validate([
-                    'image.*' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
-                ]);
-                $serviceImage = new ServiceImage();
-                $file = $value;
-                $filename = date('YmdHi') . $file->getClientOriginalName();
-                $image_path = $value->store('service', 'public');
-                $serviceImage->slider_image = $image_path;
-                $serviceImage->service_id = $service->id;
-                $serviceImage->save();
-            }
-        }
+        
+
+        $update_barber_service = SellerService::where('id',$request->seller_serviceId)->where('user_id',Auth::user()->id)->first();
+        $update_barber_service->service_id = $request->service_id;
+        $update_barber_service->rate = $request->rate;
+        $update_barber_service->update();
+        
 
         return redirect()->route('manage-services.index')->with('message', 'Booking has been updated successfully.');
     }
 
     public function view($id)
     {   
-        $sellerService = SellerService::where('id',$id)->where('status',1)->with('service')->first();
+        $sellerService = SellerService::where('id',$id)->with('service')->first();
         return view('seller.manage-services.view',compact('sellerService'));
        
     }
@@ -211,6 +180,15 @@ class ManageBookingController extends Controller
     {  
         $reviews = Review::where('service_id',$id)->Orderby('id','desc')->with('user')->get();
         return view('seller.manage-services.review.list')->with(compact('reviews'));
+    }
+
+    public function changeSellerServiceStatus(Request $request)
+    {
+        
+        $sellerService = SellerService::find($request->seller_service);
+        $sellerService->status = $request->status;
+        $sellerService->save();
+        return response()->json(['success' => 'Status change successfully.']);
     }
 
     
