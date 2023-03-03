@@ -146,7 +146,7 @@
                                                 @foreach ($extraServices as $key => $extraService)
                                                     <tr>
                                                         <th scope="row">{{ $key + 1 }}</th>
-                                                        <td>{{ $extraService['service']['name'] }}</td>
+                                                        <td>{{ $extraService['service']['additionalService']['name'] }}</td>
                                                         <td>{{ $extraService['service']['category']['name'] }}</td>
                                                         <td>{{ date('h', strtotime($extraService['service']['duration'])) }} hr
                                                             {{ date('i', strtotime($extraService['service']['duration'])) }} mins</td>

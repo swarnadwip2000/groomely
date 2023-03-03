@@ -112,7 +112,7 @@
 @push('scripts')
     <script src="{{ asset('admin_assets/plugins/chartjs/js/Chart.min.js') }}"></script>
     <script src="{{ asset('admin_assets/plugins/chartjs/js/chartjs-custom.js') }}"></script>
-    {{-- <script>
+    <script>
         // chart 6
         new Chart(document.getElementById("chart6"), {
             type: 'doughnut',
@@ -136,15 +136,15 @@
         });
     </script>
 
-    <script>
+ <script>
         new Chart(document.getElementById("reviewchart"), {
             type: 'horizontalBar',
             data: {
-                labels: [@foreach($seller_services as $seller_service) '{{$seller_service->name}}',  @endforeach],
+                labels: [@foreach($seller_services as $seller_service) '{{$seller_service->service->additionalService->name}}',  @endforeach],
                 datasets: [{
                     label: 'Rating',
                     backgroundColor: 'orange',
-                    data: [@foreach($seller_services as $seller_service) {{$seller_service->ratingService($seller_service['id'])}}, @endforeach],
+                    data: [1,2],
                     
                     borderWidth: 1
                 }]
@@ -163,7 +163,7 @@
             }
         
         });
-    </script>
+    </script> 
 
     <script>
         $('#year').on('change', function() {
@@ -200,5 +200,5 @@
                 $('#pdf').hide();
             } 
         });
-    </script> --}}
+    </script>
 @endpush

@@ -51,16 +51,5 @@ class Service extends Model
         return $image->slider_image;
     }
 
-    public static function ratingService($id)
-    {
-        $total_user_rating = Review::where('service_id', $id)->count();
-        if($total_user_rating > 0)
-        {
-        $sum_rating = Review::where('service_id', $id)->sum('rating');
-        $total_rating = ($sum_rating / $total_user_rating);
-        return $total_rating;
-        }
-      
-    }
-
+   
 }

@@ -1,4 +1,4 @@
-{{-- <canvas id="sellerChart"></canvas>
+<canvas id="sellerChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     new Chart(document.getElementById("sellerChart"), {
@@ -29,4 +29,4 @@
         }
 
     });
-</script> --}}
+</script> 
