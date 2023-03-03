@@ -56,7 +56,7 @@ Groomely | Service List
                                     <td>{{$service->category->name}}</td>
                                     <td>{{$service->serviceType->name}}</td>
                                     <td>{{$service->additionalService->name}}</td>  
-                                    <td>{{$service->duration}}</td>
+                                    <td>{{date('h',strtotime($service->duration))}} hr {{date('i',strtotime($service->duration))}} mins</td>
                                     <td>{!! Str::limit($service->description, 60, ' ...') !!}
                                         
                                     </td>
