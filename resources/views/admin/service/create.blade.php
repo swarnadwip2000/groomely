@@ -148,6 +148,7 @@ Groomely | Service Create
 <script>
     $('.service_type').change(function() {  
         var service_type_id = $('#serviceType').val();
+        
 
         $.ajax({
             type: "GET",

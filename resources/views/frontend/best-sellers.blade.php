@@ -26,13 +26,13 @@
         <div class="container">
             
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
-                {{-- @foreach ($details as $vall)
+                @foreach ($details as $vall)
                     <div class="col mb-4">
                         <div class="best-seller-img-box">
                             <img src="{{ Storage::url($vall['image']) }}" />
                         </div>
                     </div>
-                @endforeach --}}
+                @endforeach
             </div>
         </div>
     </section>

@@ -60,7 +60,7 @@
                                 @foreach ($business_owners->appontmentDetails($business_owners['id']) as $business_owner)
                                     <tr>                                        
                                         <td>{{$business_owner['name']}}</td>
-                                        <td>{{$business_owner->service['name']}}</td>
+                                        <td>{{$business_owner->service->additionalService->name}}</td>
                                         <td>{{$business_owner['email']}}</td>
                                         <td>{{$business_owner['phone']}}</td>
                                         <td>{{$business_owner['booking_date']}}</td>

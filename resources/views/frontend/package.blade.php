@@ -40,24 +40,23 @@
                             <div class="feature_box">
                                 <div class="top_pack">Package</div>
                                 <div class="white_box_pack">
-                                    <h4>{{ $service['name'] }}</h4>
-                                    <h5>{{ $service['shop_name'] }}</h5>
-                                    <p class="star"><i class="fa-solid fa-star"></i> 4.84 (209.2K)</p>
+                                    <h4>{{$service->service->additionalService->name}}</h4>
+                                    
+                                    <p class="star">@if($service->ratingService($service['service_id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['service_id'])}} ({{$service->service->review()->count()}})@endif</p>
                                     <div class="d-flex align-items-center py-2">
-                                        <div class="price">${{ $service['rate'] }}</div>
+                                        <div class="price"></div>
                                         <p><i class="fa-regular fa-clock"></i>
-                                            {{ date('h', strtotime($service['duration'])) }} hr
-                                            {{ date('i', strtotime($service['duration'])) }} mins</p>
+                                            {{ date('h', strtotime($service['service']['duration'])) }} hr
+                                            {{ date('i', strtotime($service['service']['duration'])) }} mins</p>
                                     </div>
                                     <ul>
                                         <!-- <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
                                 <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
                                 <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
-                                        <li>{{ substr($service['description'], 0, 55) }}...</li>
+                                        <li>{{ substr($service->service->description, 0, 55) }}...</li>
                                     </ul>
-                                    <a href="{{ route('book-now', base64_encode($service['id'])) }}"
-                                        class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp"
-                                        href="book-an-appointment.html"><span>BOOK NOW</span></a>
+                                    <a href="{{route('book-now', base64_encode($service['service_id']))}}"
+                                        class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp"><span>BOOK NOW</span></a>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +65,7 @@
                     <p>There is no packages..</p>
                 @endif
             </div>
-            {!! $services->links() !!}
+            {{-- {!! $services->links() !!} --}}
         </div>
     </section>
 
@@ -76,33 +75,20 @@
             <div class="row align-items-center ">
                 <div class="col-lg-12">
                     <div class="heading_hp text-center">
-                        <h2>Our BEST SELLERS</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices<br> risus nisi
-                            ullamcorper aenean dignissim odio tincidunt.</p>
+                        <h2>{{$bestSellerCms['section_title']}}</h2>
+                        <p>{{$bestSellerCms['section_description']}}</p>
                     </div>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-md-12">
                     <div class="best_seller_list">
+                        @foreach($details as $vall)
+                        
                         <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller.png') }}" />
+                            <img src="{{ Storage::url($vall['image']) }}" />
                         </div>
-                        <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller2.png') }}" />
-                        </div>
-                        <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller3.png') }}" />
-                        </div>
-                        <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller4.png') }}" />
-                        </div>
-                        <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller1.png') }}" />
-                        </div>
-                        <div class="single_seller">
-                            <img src="{{ asset('frontend_assets/images/best_seller.png') }}" />
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

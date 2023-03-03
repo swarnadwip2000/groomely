@@ -56,9 +56,7 @@ class User extends Authenticatable
 
     public static function appointmentsCount($id)
     {
-        $count = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
-            $query->where('user_id', $id);
-        })->count();
+        $count = Appointment::where('seller_id',$id)->where('status', 'completed')->count();
         return $count;
     }
 
@@ -75,34 +73,26 @@ class User extends Authenticatable
 
     public static function appointmentsSum($id)
     {
-        $sum = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
-            $query->where('user_id', $id);
-        })->sum('amount');
+        $sum = Appointment::where('seller_id',$id)->where('status', 'completed')->sum('amount');
 
         return $sum;
     }
 
     public static function appontmentDetails($id)
     {
-        $detail = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
-            $query->where('user_id', $id);
-        })->get();
+        $detail = Appointment::where('seller_id',$id)->where('status', 'completed')->get();
         return $detail;
     }
 
     public static function totalAmount($id)
     {
-        $amount = Appointment::with('service')->where('status', 'completed')->wherehas('service', function($query) use($id){
-            $query->where('user_id', $id);
-        })->sum('amount');
+        $amount = Appointment::where('seller_id',$id)->where('status', 'completed')->sum('amount');
         return $amount;
     }
     public static function totalAmountByMonth($id, $sdate, $ldate)
     {
         // dd($years);
-        $amount = Appointment::with('service')->where('status', 'completed')->whereBetween('updated_at', [$sdate, $ldate])->wherehas('service', function($query) use($id){
-            $query->where('user_id', $id);
-        })->sum('amount');
+        $amount = Appointment::where('seller_id',$id)->where('status', 'completed')->whereBetween('updated_at', [$sdate, $ldate])->sum('amount');
         
         return $amount;
     }

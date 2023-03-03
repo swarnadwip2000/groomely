@@ -196,7 +196,7 @@ Groomely | Service Edit
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-info px-5">Create</button>
+                                            <button type="submit" class="btn btn-info px-5">Update</button>
                                         </div>
                                     </div>
                                 </div>
@@ -276,25 +276,23 @@ Groomely | Service Edit
     var service_id = $('#service_id').val();
    
 
-$.ajax({
-    type: "GET",
-    dataType: "json",
-    url: '{{route("admin.service.get-additional-service-id")}}',
-    data: {
-        'service_type_id': service_type_id,
-        'service_id': service_id
-    },
-    success: function(resp) {
-        $.each(resp.data, function(key, value) {
-        alert(value.services.id);
-                
-          $("#additional-service-dropdown").append('<option value="' +value.services.id+'"' + 
-                   ((value.id+','+value.emp_type === lastSelectedEmpId) ? 'selected="selected"' : '') +
-                   '>' + value.services.name + '</option>');  
-
-    });        
-    }
-    });
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '{{route("admin.service.get-additional-service-id")}}',
+        data: {
+            'service_type_id': service_type_id,
+            'service_id': service_id
+        },
+        success: function(resp) {
+           
+            $.each(resp.data1, function(key, value) {   
+               
+                $("#additional-service-dropdown").append('<option value="' + value.id +'" ' + (value.id === resp.data.additional_service_id ? 'selected="selected"' : '') + '>' + value.name + '</option>');
+                });
+        
+            }
+        });
     });
 
 </script>

@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12 col-lg-12 col-xl-6 d-flex">
                         <div class="card radius-15 w-100">
                             <div class="card-body">
@@ -102,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!--end page-content-wrapper-->
@@ -136,34 +136,34 @@
         });
     </script>
 
- <script>
-        new Chart(document.getElementById("reviewchart"), {
-            type: 'horizontalBar',
-            data: {
-                labels: [@foreach($seller_services as $seller_service) '{{$seller_service->service->additionalService->name}}',  @endforeach],
-                datasets: [{
-                    label: 'Rating',
-                    backgroundColor: 'orange',
-                    data: [1,2],
+//  <script>
+//         new Chart(document.getElementById("reviewchart"), {
+//             type: 'horizontalBar',
+//             data: {
+//                 labels: [@foreach($seller_services as $seller_service) '{{$seller_service->service->additionalService->name}}',  @endforeach],
+//                 datasets: [{
+//                     label: 'Rating',
+//                     backgroundColor: 'orange',
+//                     data: [1,2],
                     
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-            xAxes: [{
-                ticks: {
-                    min: 0 
-                }
-            }],
-            yAxes: [{
-                stacked: true
-            }]
-        }
-            }
+//                     borderWidth: 1
+//                 }]
+//             },
+//             options: {
+//                 scales: {
+//             xAxes: [{
+//                 ticks: {
+//                     min: 0 
+//                 }
+//             }],
+//             yAxes: [{
+//                 stacked: true
+//             }]
+//         }
+//             }
         
-        });
-    </script> 
+//         });
+//     </script> 
 
     <script>
         $('#year').on('change', function() {

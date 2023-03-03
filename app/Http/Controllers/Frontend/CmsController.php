@@ -26,18 +26,18 @@ class CmsController extends Controller
 
         $detail=[];
         $shop_detail=[];
-        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        // foreach($shop as $vall)
-        // {
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
             
-        //     $detail['image'] = $vall['profile_picture'];
-        //     $detail['total'] = User::appointmentsSum($vall->id);
-        //     if($detail['total'] > 0)
-        //     {
-        //         $shop_detail[] = $detail;
-        //     }
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
-        // }
+        }
         $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
         
@@ -47,103 +47,136 @@ class CmsController extends Controller
     public function about()
     {
        
-        // $detail=[];
-        // $shop_detail=[];
-        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        // foreach($shop as $vall)
-        // {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
             
-        //     $detail['image'] = $vall['profile_picture'];
-        //     $detail['total'] = User::appointmentsSum($vall->id);
-        //     if($detail['total'] > 0)
-        //     {
-        //         $shop_detail[] = $detail;
-        //     }
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
-        // }
-        // $details = collect($shop_detail)->sortByDesc('total');
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
         $aboutCms = AboutCms::first();
-        return view('frontend.about')->with(compact('aboutCms','bestSellerCms'));
+        return view('frontend.about')->with(compact('aboutCms','bestSellerCms','details'));
     }
 
     public function services()
     {
-        // $detail=[];
-        // $shop_detail=[];
-        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        // foreach($shop as $vall)
-        // {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
             
-        //     $detail['image'] = $vall['profile_picture'];
-        //     $detail['total'] = User::appointmentsSum($vall->id);
-        //     if($detail['total'] > 0)
-        //     {
-        //         $shop_detail[] = $detail;
-        //     }
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
-        // }
-        // $details = collect($shop_detail)->sortByDesc('total');
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $servicesCms = ServiceCms::orderby('id', 'desc')->get();
         $bestSellerCms = BestSellerCms::first();
-        return view('frontend.services')->with(compact('servicesCms','bestSellerCms'));
+        return view('frontend.services')->with(compact('servicesCms','bestSellerCms','details'));
     }
 
     public function bestSellers()
     {
-        // $detail=[];
-        // $shop_detail=[];
-        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        // foreach($shop as $vall)
-        // {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
             
-        //     $detail['image'] = $vall['profile_picture'];
-        //     $detail['total'] = User::appointmentsSum($vall->id);
-        //     if($detail['total'] > 0)
-        //     {
-        //         $shop_detail[] = $detail;
-        //     }
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
-        // }
-        // $details = collect($shop_detail)->sortByDesc('total');
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
 
-        return view('frontend.best-sellers',compact('bestSellerCms'));
+        return view('frontend.best-sellers',compact('bestSellerCms','details'));
     }
 
     public function gallery()
     {
-        // $detail=[];
-        // $shop_detail=[];
-        // $shop = User::role('BUSINESS_OWNER')->with('service.appointment')->get();
-        // foreach($shop as $vall)
-        // {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
             
-        //     $detail['image'] = $vall['profile_picture'];
-        //     $detail['total'] = User::appointmentsSum($vall->id);
-        //     if($detail['total'] > 0)
-        //     {
-        //         $shop_detail[] = $detail;
-        //     }
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
             
-        // }
-        // $details = collect($shop_detail)->sortByDesc('total');
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
         $galleries = Gallery::all();
         $bestSellerCms = BestSellerCms::first();
-        return view('frontend.gallery')->with(compact('galleries','bestSellerCms'));
+        return view('frontend.gallery')->with(compact('galleries','bestSellerCms','details'));
     }
 
     public function package()
     {
-        $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
-        return view('frontend.package')->with(compact('services'));
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        // $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
+        $services = SellerService::where('status', 1)->orderBy('id', 'desc')->with('service')->get()->unique('service_id');
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.package')->with(compact('services','details','bestSellerCms'));
     }
 
     public function serviceCategory($slug, $id)
     {
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
         $services = Service::where(['category_id'=>$id, 'status'=>1])->orderBy('id', 'desc')->paginate(20);
         $category = Category::findOrFail($id);
-        return view('frontend.category')->with(compact('services', 'category'));
+        return view('frontend.category')->with(compact('services', 'category','details'));
     }
 
 }

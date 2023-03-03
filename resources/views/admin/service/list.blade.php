@@ -57,7 +57,9 @@ Groomely | Service List
                                     <td>{{$service->serviceType->name}}</td>
                                     <td>{{$service->additionalService->name}}</td>  
                                     <td>{{$service->duration}}</td>
-                                    <td>{{$service->description}}</td>
+                                    <td>{!! Str::limit($service->description, 60, ' ...') !!}
+                                        
+                                    </td>
                                     <td>
                                         <a href="{{route('service.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
                                         <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></button></a>

@@ -76,12 +76,12 @@ Groomely | About us
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="best_seller_list">
-                    {{-- @foreach($details as $vall)
+                    @foreach($details as $vall)
                     
                     <div class="single_seller">
                         <img src="{{ Storage::url($vall['image']) }}" />
                     </div>
-                    @endforeach --}}
+                    @endforeach
                     
                 </div>
             </div>
