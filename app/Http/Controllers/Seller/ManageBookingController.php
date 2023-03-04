@@ -43,7 +43,7 @@ class ManageBookingController extends Controller
      */
     public function create()
     {
-        $services = Service::Orderby('id', 'desc')->with('additionalService')->get();
+        $services = Service::Orderby('id', 'desc')->where('status',1)->with('additionalService')->get();
         return view('seller.manage-services.create')->with(compact('services'));
     }
 

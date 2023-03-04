@@ -24,7 +24,7 @@
 
     <section class="best-seller">
         <div class="container">
-            
+            @if(count($details)>0)
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5">
                 @foreach ($details as $vall)
                     <div class="col mb-4">
@@ -34,6 +34,9 @@
                     </div>
                 @endforeach
             </div>
+            @else
+            <h3>No data found......</h3>
+            @endif
         </div>
     </section>
 @endsection

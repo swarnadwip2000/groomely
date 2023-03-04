@@ -161,6 +161,15 @@ class ServiceController extends Controller
         ServiceImage::find($id)->delete();
         return response()->json(['message'=>'Image has been deleted.']);
     }
+
+    public function changeServiceStatus(Request $request)
+    {
+        
+        $service = Service::find($request->service_id);
+        $service->status = $request->status;
+        $service->save();
+        return response()->json(['success' => 'Status change successfully.']);
+    }
 }
 
 ?>

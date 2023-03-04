@@ -65,12 +65,23 @@
                                             <td>{{ $business_owner['email'] }}</td>
                                             <td>{{ $business_owner['phone'] }}</td>
                                             <td>{{ $business_owner['zipcode'] }}</td>
-                                            <td><a href="{{ route('appointments-details.show', $business_owner->id) }}">
+                                            <td>
+                                            @if($business_owner->appointmentsCount($business_owner['id']) > 0)
+                                            <a href="{{ route('appointments-details.show', $business_owner->id) }}">
                                                 <button type="button" style="border:none;background: none;" data-toggle="tooltip" data-placement="right" title="Click to show {{ $business_owner['name'] }}'s appontments">
                                                 {{ $business_owner->appointmentsCount($business_owner['id']) }} </button></a>
+                                            @else
+                                            No appointments available
+                                            @endif
                                             </td>
                                             
-                                            <td>${{$business_owner->totalAmount($business_owner['id'])}}</td>
+                                            <td>
+                                            @if($business_owner->totalAmount($business_owner['id']) > 0)
+                                            ${{$business_owner->totalAmount($business_owner['id'])}}
+                                            @else
+                                            No transaction available
+                                            @endif
+                                            </td>
                                             <td>
                                                 <div class="button-switch">
                                                     <input type="checkbox" id="switch-orange" class="switch toggle-class"

@@ -46,6 +46,7 @@ Groomely | Service List
                                     <th>Additional Service</th>
                                     <th>Duration</th>
                                     <th>Description</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                     
                                 </tr>
@@ -57,8 +58,15 @@ Groomely | Service List
                                     <td>{{$service->serviceType->name}}</td>
                                     <td>{{$service->additionalService->name}}</td>  
                                     <td>{{date('h',strtotime($service->duration))}} hr {{date('i',strtotime($service->duration))}} mins</td>
-                                    <td>{!! Str::limit($service->description, 60, ' ...') !!}
-                                        
+                                    <td>{!! Str::limit($service->description, 60, ' ...') !!}</td>
+                                    <td>
+                                        <div class="button-switch">
+                                            <input type="checkbox" id="switch-orange" class="switch toggle-class"
+                                                data-id="{{ $service['id'] }}"
+                                                {{ $service['status'] ? 'checked' : '' }} />
+                                            <label for="switch-orange" class="lbl-off"></label>
+                                            <label for="switch-orange" class="lbl-on"></label>
+                                        </div>
                                     </td>
                                     <td>
                                         <a href="{{route('service.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
@@ -100,15 +108,15 @@ Groomely | Service List
 <script>
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0;
-        var service_type_id = $(this).data('id');
+        var service_id = $(this).data('id');
 
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '{{route("admin.service-type.change-status")}}',
+            url: '{{route("admin.service.change-status")}}',
             data: {
                 'status': status,
-                'service_type_id': service_type_id
+                'service_id': service_id
             },
             success: function(resp) {
                 console.log(resp.success)
