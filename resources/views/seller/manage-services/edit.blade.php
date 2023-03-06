@@ -104,7 +104,7 @@ Groomely | Manage Services Create
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
-                                            <button type="submit" class="btn btn-info px-5">Create</button>
+                                            <button type="submit" class="btn btn-info px-5">Update</button>
                                         </div>
                                     </div>
                                 </div>

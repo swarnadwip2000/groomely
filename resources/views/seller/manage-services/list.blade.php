@@ -57,7 +57,7 @@ Groomely | Manage Services
                                     <td>{{$service['service']['additionalService']['name']}}</td>
                                     <td>${{$service['rate']}}</td>
                                     <td>{{date('h',strtotime($service['service']['duration']))}} hr {{date('i',strtotime($service['service']['duration']))}} mins</td>
-                                    {{-- <td>
+                                    <td>
                                     @if($service->ratingService($service['id']) =='')
                                     no reviews available
                                     @else
@@ -73,7 +73,7 @@ Groomely | Manage Services
                                     @endphp)
                                     <a href="{{route('service-reviews.view', $service->id)}}" style="border:none;background: none;" data-toggle="tooltip" data-placement="right" title="Click to show {{ $service['name'] }}'s all reviews"><i class="fa-solid fa-comments"></i></a>&nbsp;&nbsp;
                                     @endif
-                                    </td> --}}
+                                    </td> 
 
                                     <td>
                                         <div class="button-switch">
