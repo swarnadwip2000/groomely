@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\BookingTime;
 use App\Models\ServiceType;
 use App\Models\Service;
+use App\Models\SellerService;
+use App\Models\Review;
 use Exception;
 
 
@@ -38,7 +40,7 @@ class ApiController extends Controller
     public function servicetype()
     {
         try {
-            $service = ServiceType::select('id','name','image')->get(); 
+            $service = ServiceType::select('id','name','image')->where('status',1)->get(); 
             if($service !='')
             {
                 return response()->json(['status' => true, 'statusCode' => 200, 'data' => $service, 'message' => 'Servicetype find successfully'], $this->successStatus);
@@ -104,7 +106,7 @@ class ApiController extends Controller
             }
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
-        $service_detail = Service::with('user','images')->where('id',$request->service_id)->first();
+        $service_detail = Service::with('images','additionalService')->where('id',$request->service_id)->first();
         if($service_detail !='')
         {
             return response()->json(['data' => $service_detail, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
@@ -113,5 +115,44 @@ class ApiController extends Controller
             return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
         }
     
+    }
+
+    public function popularServices()
+    {
+        try {
+            $services = Service::where('status',1)->where('popular_services',1)->with('additionalService')->get();
+            if($services !='')
+            {
+                $value=[];
+                $val=[];
+                foreach($services as $service)
+                { 
+                    $value['id'] = $service['id'];
+                    $value['name'] = $service['additionalService']['name'];
+                    $value['duration'] = $service['duration'];
+                    $value['description'] = $service['description'];
+                    $value['review'] = Review::where('service_id',$service->id)->count();
+                    $total_rating=0;
+                    if($value['review'] > 0)
+                    {
+                        $sum_rating = Review::where('service_id', $service->id)->sum('rating');
+                        $total_rating = ($sum_rating / $value['review']);
+                    }
+                    $value['rating'] = $total_rating;
+                    $seller_exit = SellerService::where('service_id',$service->id)->where('status',1)->count();
+                    if($seller_exit > 0)
+                    {
+                        $val[] = $value;
+                    }    
+                }
+                $popular_services = collect($val);
+                return response()->json(['data' => $popular_services, 'status' => true, 'message' => 'Popular service find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Popular service not found!'], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
+        }        
     }
 }

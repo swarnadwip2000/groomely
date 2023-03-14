@@ -10,6 +10,7 @@ use App\Http\Controllers\API\User\ProfileController;
 use App\Http\Controllers\API\category\ApiController;
 use App\Http\Controllers\API\Appointment\AppointmentController;
 use App\Http\Controllers\API\GoogleSocialiteController;
+use App\Http\Controllers\API\Home\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,9 +72,15 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('types', [ApiController::class, 'servicetype']);
         Route::get('list', [ApiController::class, 'servicelist']);
         Route::get('details', [ApiController::class, 'servicedetails']);
+        Route::get('populars', [ApiController::class, 'popularServices']);
     });
 
     Route::group(['prefix' => 'appointment'], function () {
         Route::get('booking-times', [ApiController::class, 'bookingtimes']);
     });
+
+    Route::group(['prefix' => 'home'], function () {
+        Route::post('list', [HomeController::class, 'servicelist']);
+    });
+
 });

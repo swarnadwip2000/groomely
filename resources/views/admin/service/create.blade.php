@@ -55,7 +55,7 @@ Groomely | Service Create
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Category<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <select name="category_id" id="" class="form-control" >
+                                            <select name="category_id" id="categoryId" class="form-control category">
                                                 <option value="">Select A Category</option>
                                                 @foreach($categories as $category)
                                                 <option value="{{$category['id']}}">{{$category['name']}}</option>
@@ -70,11 +70,8 @@ Groomely | Service Create
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Type<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <select name="service_type_id" id="serviceType" class="form-control service_type" onchange="serviceType()" >
-                                                <option value="" selected disabled>Select A Service Type</option>
-                                                @foreach($serviceTypes as $serviceType)
-                                                <option value="{{$serviceType['id']}}">{{$serviceType['name']}}</option>
-                                                @endforeach
+                                            <select name="service_type_id" id="serviceType" class="form-control service_type">
+                                                
                                             </select>
                                             @if($errors->has('service_type_id'))
                                             <div class="error" style="color:red;">{{ $errors->first('service_type_id') }}</div>
@@ -169,6 +166,35 @@ Groomely | Service Create
                 });
             }
         });
+    });
+</script>
+
+
+<script>
+    
+    $('.category').change(function() {  
+        var category = $('#categoryId').val();
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{route("admin.service.get-service-type")}}',
+            data: {
+                'category': category
+            },
+            success: function(resp) {
+                // console.log(resp.data);
+
+                $('#serviceType').html('<option value="">Select Service Type</option>');
+                $.each(resp.data, function(key, value) {
+                
+                    $("#serviceType").append('<option value="' + value
+                        .id +
+                        '">' + value.name + '</option>');
+                });
+            }
+        });
+
+       
     });
 </script>
 

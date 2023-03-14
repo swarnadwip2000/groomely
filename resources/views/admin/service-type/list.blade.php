@@ -41,17 +41,18 @@ Groomely | Service Type List
                         <table id="example" class="dd table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Category Name</th>
+                                    <th>Service Type</th>
                                     <th>Icon</th>
                                     <th>Status</th>
                                     <th>Action</th>
-                                    <th>Additional Service</th>
-                                    
+                                    <th>Additional Service</th>                                 
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($serviceTypes as $serviceType)
                                 <tr>
+                                    <td>{{$serviceType['category']['name']}}</td>
                                     <td>{{$serviceType['name']}}</td>
                                     <td><a href="{{Storage::url($serviceType['image'])}}" target="_blank">
                                         <img src="{{Storage::url($serviceType['image'])}}" alt=""></a></td>
@@ -66,7 +67,9 @@ Groomely | Service Type List
                                     </td>
                                     <td align="center">
                                         <a href="{{route('service-type.show', $serviceType->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
+                                        @if($serviceType->main == 0)
                                         <a href="{{route('service-type.delete', $serviceType->id)}}" onclick="return confirm('Are you sure to delete this service type?')"><i class="fas fa-trash"></i></a>
+                                        @endif
                                     </td>
                                     <td align="center">
                                         <a href="{{route('additional-service.index', $serviceType['id'])}}" class="btn btn-primary">Go >></a> &nbsp;&nbsp;

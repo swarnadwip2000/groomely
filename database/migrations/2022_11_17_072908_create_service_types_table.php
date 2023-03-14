@@ -15,9 +15,11 @@ class CreateServiceTypesTable extends Migration
     {
         Schema::create('service_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');  
             $table->string('name')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('status')->default(true);
+            $table->tinyInteger('main')->default(false);
             $table->timestamps();
         });
     }

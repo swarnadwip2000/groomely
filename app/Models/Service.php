@@ -63,5 +63,10 @@ class Service extends Model
       
     }
 
+    public function SellerService()
+    {
+        return $this->hasMany(SellerService::class);
+    }
+
    
 }

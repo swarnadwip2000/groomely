@@ -44,7 +44,7 @@ class AuthController extends Controller
         try {
             $token_time = Carbon::now()->toDateTimeString();
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                $user = User::where('email', $request->email)->select('id', 'name', 'email','status')->first();
+                $user = User::where('email', $request->email)->select('id', 'name', 'email','phone','zipcode','status')->first();
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;                        
@@ -83,12 +83,16 @@ class AuthController extends Controller
     {
         // return $request;
         $validator = Validator::make($request->all(), [
-            'name'     => 'required',
-            'email'    => 'required|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:users|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'phone' => 'required|unique:users',
+            'zipcode'  => 'required|numeric',
             'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|same:password', 
             'user_type' => 'required|in:USER,BUSINESS_OWNER',
         ]);
-
+       
         if ($validator->fails()) {
             $errors['message'] = [];
             $data = explode(',', $validator->errors());
@@ -104,8 +108,10 @@ class AuthController extends Controller
         try {
             $input = $request->all();
             $user = new User;
-            $user->name = $input['name'];
+            $user->name = $input['first_name'] . " " . $input['last_name'];
             $user->email = $input['email'];
+            $user->phone = $input['phone'];
+            $user->zipcode = $input['zipcode'];
             $user->password = bcrypt($input['password']);
             $user->status = true;
             $user->save();

@@ -19,6 +19,7 @@ class CreateServicesTable extends Migration
             $table->string('duration')->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(true);
+            $table->tinyInteger('popular_services')->default(false);         
             $table->timestamps();
         });
     }

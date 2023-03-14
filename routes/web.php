@@ -131,11 +131,14 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::resource('services', ServiceController::class);
                 Route::get('/services-edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
                 Route::get('/services-delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
-                Route::get('services-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service');  
+                Route::get('services-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service'); 
+                Route::get('getServiceType', [ServiceController::class, 'getServiceType'])->name('admin.service.get-service-type');  
                 Route::get('additional-services-id', [ServiceController::class, 'additionalServiceId'])->name('admin.service.get-additional-service-id');
                 Route::post('/services-update', [ServiceController::class, 'updateService'])->name('admin.service.update');
                 Route::get('/deleteServiceImage/{id}', [ServiceController::class, 'deleteServiceImage'])->name('admin.deleteServiceImage');
                 Route::get('/changeServiceStatus', [ServiceController::class, 'changeServiceStatus'])->name('admin.service.change-status');
+                Route::get('/changePopuplarServiceStatus', [ServiceController::class, 'changePopuplarServiceStatus'])->name('admin.service.popular-service');
+                
                 
                 Route::post('/admin-seller-transaction', [DashboardController::class, 'transactionDownload'])->name('admin.transaction.download');
 

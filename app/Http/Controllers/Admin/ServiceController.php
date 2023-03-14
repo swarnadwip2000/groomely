@@ -28,7 +28,8 @@ class ServiceController extends Controller
     }
 
     public function store(Request $request)    
-    {
+    { 
+       
         $request->validate([
             'category_id' => 'required',
             'service_type_id' => 'required',
@@ -141,6 +142,12 @@ class ServiceController extends Controller
         return redirect()->back()->with('error', 'Service has been deleted!');
     }
 
+    public function getServiceType(Request $request)
+    {
+        $get_service_type = ServiceType::where('category_id', $request->category)->where('status',1)->get();
+        return response()->json(['data' => $get_service_type]);
+    }
+
     public function additionalService(Request $request){
 
         $get_service = ServiceCategory::where('service_type_id', $request->service_type_id)->where('status',1)->get();
@@ -169,6 +176,15 @@ class ServiceController extends Controller
         $service->status = $request->status;
         $service->save();
         return response()->json(['success' => 'Status change successfully.']);
+    }
+
+    public function changePopuplarServiceStatus(Request $request)
+    {
+            
+            $service = Service::find($request->service_id);
+            $service->popular_services = $request->popular_service;
+            $service->save();
+            return response()->json(['success' => 'Status change successfully.']);
     }
 }
 

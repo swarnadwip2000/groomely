@@ -15,7 +15,7 @@ class ServiceTypeController extends Controller
      */
     public function index()
     {
-        $serviceTypes = ServiceType::orderby('id', 'desc')->get();
+        $serviceTypes = ServiceType::orderby('id', 'desc')->with('category')->get();
         return view('admin.service-type.list')->with(compact('serviceTypes'));
     }
 
@@ -40,6 +40,7 @@ class ServiceTypeController extends Controller
         $request->validate([
             'name' => 'required',
             'image' => 'required',
+            
         ]);
 
         $serviceType = new ServiceType();

@@ -47,7 +47,11 @@ Groomely | Service Type Edit
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name</label>
                                         <div class="col-sm-9">
+                                            @if($serviceType['main'] == 0)
                                             <input type="text" class="form-control" id="inputEnterYourName" value="{{$serviceType['name']}}" name="name" placeholder="Enter Your Name">
+                                            @else
+                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{$serviceType['name']}}" name="name" placeholder="Enter Your Name" readonly>
+                                            @endif
                                             @if($errors->has('name'))
                                             <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
                                             @endif

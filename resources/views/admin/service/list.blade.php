@@ -47,6 +47,7 @@ Groomely | Service List
                                     <th>Duration</th>
                                     <th>Description</th>
                                     <th>Status</th>
+                                    <th>Popular Services</th>
                                     <th>Action</th>
                                     
                                 </tr>
@@ -69,9 +70,19 @@ Groomely | Service List
                                         </div>
                                     </td>
                                     <td>
+                                        <div class="button-switch">
+                                            <input type="checkbox" id="switch-orange" class="switch popular-service"
+                                                data-id="{{ $service['id'] }}"
+                                                {{ $service['popular_services'] ? 'checked' : '' }} />
+                                            <label for="switch-orange" class="lbl-off"></label>
+                                            <label for="switch-orange" class="lbl-on"></label>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <a href="{{route('service.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
                                         <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></button></a>
                                     </td>
+                                    
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -116,6 +127,26 @@ Groomely | Service List
             url: '{{route("admin.service.change-status")}}',
             data: {
                 'status': status,
+                'service_id': service_id
+            },
+            success: function(resp) {
+                console.log(resp.success)
+            }
+        });
+    });
+</script>
+
+<script>
+    $('.popular-service').change(function() {
+        var popular_service = $(this).prop('checked') == true ? 1 : 0;
+        var service_id = $(this).data('id');
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{route("admin.service.popular-service")}}',
+            data: {
+                'popular_service': popular_service,
                 'service_id': service_id
             },
             success: function(resp) {
