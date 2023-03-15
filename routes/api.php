@@ -72,7 +72,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'service'], function () {
         Route::get('types', [ApiController::class, 'servicetype']);
         Route::get('list', [ApiController::class, 'servicelist']);
-        Route::get('details', [ApiController::class, 'servicedetails']);
+        Route::post('details', [ApiController::class, 'servicedetails']);
         Route::get('populars', [ApiController::class, 'popularServices']);
     });
 
@@ -82,6 +82,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['prefix' => 'home'], function () {
         Route::post('list', [HomeController::class, 'servicelist']);
+        Route::post('best-sellers', [HomeController::class, 'bestSeller']);
     });
 
 });

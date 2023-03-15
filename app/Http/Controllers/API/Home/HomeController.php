@@ -58,5 +58,30 @@ class HomeController extends Controller
         }       
     }
 
+    public function bestSeller()
+    {
+        try {
+            $detail=[];
+            $shop_detail=[];
+            $detail_price=[];
+            $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+            foreach($shop as $vall)
+            {
+                
+                $detail['image'] = $vall['profile_picture'];
+                $detail_price['total'] = User::appointmentsSum($vall->id);
+                if($detail_price['total'] > 0)
+                {
+                    $shop_detail[] = $detail;
+                }
+                
+            }
+            $details = collect($shop_detail)->sortByDesc('total');
+            return response()->json(['data' => $details, 'status' => true, 'message' => 'Best seller find successfully'], $this->successStatus);
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
+        }      
+    }
+
    
 }
