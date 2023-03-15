@@ -113,13 +113,13 @@ class DashboardController extends Controller
     public function downloadTransaction(Request $request)
     {
         // return $request;
-        $transactions = Appointment::with('service')->whereHas('service', function($query){
-            $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereYear('updated_at',$request->year)->get();
+        // $transactions = Appointment::with('service')->whereHas('service', function($query){
+        //     $query->where('user_id', Auth::user()->id);
+        // })->where('status', 'completed')->whereYear('updated_at',$request->year)->get();
 
-        $sum = Appointment::with('service')->whereHas('service', function($query){
-            $query->where('user_id', Auth::user()->id);
-        })->where('status', 'completed')->whereYear('updated_at',$request->year)->get()->sum('amount');
+        $transactions= Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->get();
+
+        $sum = Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->get()->sum('amount');
 
         $pdf = PDF::loadView('seller.transactionPDF',array('transactions' => $transactions, 'sum' => $sum));
     

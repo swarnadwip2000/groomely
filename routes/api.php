@@ -66,6 +66,7 @@ Route::group(['prefix' => 'v1'], function () {
     //
     Route::group(['prefix' => 'category'], function () {
         Route::get('list', [ApiController::class, 'category']);
+        Route::post('service-types', [ApiController::class, 'serviceTypes']);
     });
 
     Route::group(['prefix' => 'service'], function () {
