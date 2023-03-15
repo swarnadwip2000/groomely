@@ -102,7 +102,7 @@ Groomely | Service Edit
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Category<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
-                                            <select name="category_id" id="" class="form-control" >
+                                            <select name="category_id" id="categoryId" class="form-control category" >
                                                 <option value="">Select A Category</option>
                                                 @foreach($categories as $category)
                                                 <option value="{{$category['id']}}" @if($Service['category_id']==$category['id']) selected @endif>{{$category['name']}}</option>
@@ -118,10 +118,10 @@ Groomely | Service Edit
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service Type<span style="color:red">*<span></label>
                                         <div class="col-sm-9">
                                             <select name="service_type_id" id="serviceType" class="form-control service_type" onchange="serviceType()" >
-                                                <option value="" selected disabled>Select A Service Type</option>
+                                                {{-- <option value="" selected disabled>Select A Service Type</option>
                                                 @foreach($serviceTypes as $serviceType)
                                                 <option value="{{$serviceType['id']}}" @if($Service['service_type_id']==$serviceType['id']) selected @endif>{{$serviceType['name']}}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                             @if($errors->has('service_type_id'))
                                             <div class="error" style="color:red;">{{ $errors->first('service_type_id') }}</div>
@@ -272,16 +272,14 @@ Groomely | Service Edit
 
 <script>
     $(document).ready ( function(){
-    var service_type_id = $('#serviceType').val();
+    // var service_type_id = $('#serviceType').val();
     var service_id = $('#service_id').val();
-   
-
+    // alert(service_id);
     $.ajax({
         type: "GET",
         dataType: "json",
         url: '{{route("admin.service.get-additional-service-id")}}',
         data: {
-            'service_type_id': service_type_id,
             'service_id': service_id
         },
         success: function(resp) {
@@ -289,6 +287,61 @@ Groomely | Service Edit
             $.each(resp.data1, function(key, value) {   
                
                 $("#additional-service-dropdown").append('<option value="' + value.id +'" ' + (value.id === resp.data.additional_service_id ? 'selected="selected"' : '') + '>' + value.name + '</option>');
+                });
+        
+            }
+        });
+    });
+
+</script>
+
+<script>
+    
+    $('.category').change(function() {  
+        var category = $('#categoryId').val();
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '{{route("admin.service.get-service-type")}}',
+            data: {
+                'category': category
+            },
+            success: function(resp) {
+                // console.log(resp.data);
+
+                $('#serviceType').html('<option value="">Select Service Type</option>');
+                $.each(resp.data, function(key, value) {
+                
+                    $("#serviceType").append('<option value="' + value
+                        .id +
+                        '">' + value.name + '</option>');
+                });
+            }
+        });
+
+       
+    });
+</script>
+
+<script>
+    $(document).ready ( function(){
+    var category_id = $('#categoryId').val();
+    var service_id = $('#service_id').val();
+   
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: '{{route("admin.service.get-editServiceType")}}',
+        data: {
+            'category_id': category_id,
+            'service_id': service_id
+        },
+        success: function(resp) {
+           
+            $.each(resp.data1, function(key, value) {   
+               
+                $("#serviceType").append('<option value="' + value.id +'" ' + (value.id === resp.data.service_type_id ? 'selected="selected"' : '') + '>' + value.name + '</option>');
                 });
         
             }

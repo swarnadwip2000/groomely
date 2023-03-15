@@ -134,6 +134,7 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('services-category', [ServiceController::class, 'additionalService'])->name('admin.service.get-additional-service'); 
                 Route::get('getServiceType', [ServiceController::class, 'getServiceType'])->name('admin.service.get-service-type');  
                 Route::get('additional-services-id', [ServiceController::class, 'additionalServiceId'])->name('admin.service.get-additional-service-id');
+                Route::get('editServiceType', [ServiceController::class, 'editServiceType'])->name('admin.service.get-editServiceType');
                 Route::post('/services-update', [ServiceController::class, 'updateService'])->name('admin.service.update');
                 Route::get('/deleteServiceImage/{id}', [ServiceController::class, 'deleteServiceImage'])->name('admin.deleteServiceImage');
                 Route::get('/changeServiceStatus', [ServiceController::class, 'changeServiceStatus'])->name('admin.service.change-status');

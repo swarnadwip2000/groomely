@@ -156,11 +156,22 @@ class ServiceController extends Controller
 
     public function additionalServiceId(Request $request){
         
-        $services = ServiceCategory::where('service_type_id', $request->service_type_id)->where('status',1)->get();
-        $get_service = Service::where('id', $request->service_id)->where('service_type_id', $request->service_type_id)->with('additionalService')->first();
+        $get_service = Service::where('id', $request->service_id)->with('additionalService')->first();
+        $get_servic_type =  $get_service->service_type_id;
+        $service_type = ServiceCategory::where('service_type_id',$get_servic_type)->where('status',1)->get();
+       
         
-        return response()->json(['data' => $get_service, 'data1' => $services]);
+        return response()->json(['data' => $get_service, 'data1' => $service_type]);
     }
+
+    public function editServiceType(Request $request)
+    {
+        $get_service_type = ServiceType::where('category_id', $request->category_id)->where('status',1)->get();
+        $get_service = Service::where('id', $request->service_id)->where('category_id', $request->category_id)->first();
+
+        return response()->json(['data' => $get_service, 'data1' => $get_service_type]);
+    }
+
 
     public function deleteServiceImage($id)
     {

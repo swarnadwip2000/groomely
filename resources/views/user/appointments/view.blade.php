@@ -84,6 +84,7 @@
                                                 <h5><u>Service Details</u></h5>
                                             </div>
                                             <div class="col-md-12 m-1"><b>Service Name:-</b>
+                                             
                                                 {{ $appointment['service']['additionalService'] ['name']}}</div>
                                             <div class="col-md-12 m-1"><b>Service Category:-</b>
                                                 {{ $appointment['service']['category']['name'] }}</div>
