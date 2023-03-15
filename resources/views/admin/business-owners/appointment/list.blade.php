@@ -63,7 +63,7 @@
                                         <td>{{$business_owner->service->additionalService->name}}</td>
                                         <td>{{$business_owner['email']}}</td>
                                         <td>{{$business_owner['phone']}}</td>
-                                        <td>{{$business_owner['booking_date']}}</td>
+                                        <td>{{date('d M, Y',strtotime($business_owner['booking_date']))}}</td>
                                         <td>${{$business_owner['amount']}}</td>
                                          
                                     </tr>

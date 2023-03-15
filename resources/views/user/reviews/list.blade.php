@@ -74,4 +74,18 @@
 @endsection
 
 @push('scripts')
+<script>
+     $('#example').DataTable({
+            "aaSorting": [],
+            "columnDefs": [{
+                    "orderable": false,
+                    "targets": [0]
+                },
+                {
+                    "orderable": true,
+                    "targets": [1]
+                }
+            ]
+        });
+</script>
 @endpush
