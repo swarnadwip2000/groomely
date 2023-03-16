@@ -111,17 +111,17 @@ Groomely | HOME
         <div class="row align-items-center">
             <div class="col-lg-4">
                 <a href="">
-                    <img src="{{asset('frontend_assets/images/off_bnr.jpg')}}" />
+                    <img src="{{ Storage::url($homeCms['middle_banner_1']) }}" />
                 </a>
             </div>
             <div class="col-lg-4">
                 <a href="">
-                    <img src="{{asset('frontend_assets/images/off_bnr1.jpg')}}" />
+                    <img src="{{ Storage::url($homeCms['middle_banner_2']) }}" />
                 </a>
             </div>
             <div class="col-lg-4">
                 <a href="">
-                    <img src="{{asset('frontend_assets/images/off_bnr2.jpg')}}" />
+                    <img src="{{ Storage::url($homeCms['middle_banner_3']) }}" />
                 </a>
             </div>
         </div>

@@ -64,6 +64,27 @@ class CmsController extends Controller
             $homeCms->section_5_img = $this->imageUpload($request->file('section_5_img'), 'home');
         }
 
+        if ($request->hasfile('middle_banner_1')) {
+            $request->validate([
+                'middle_banner_1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $homeCms->middle_banner_1 = $this->imageUpload($request->file('middle_banner_1'), 'home');
+        }
+
+        if ($request->hasfile('middle_banner_2')) {
+            $request->validate([
+                'middle_banner_2' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $homeCms->middle_banner_2 = $this->imageUpload($request->file('middle_banner_2'), 'home');
+        }
+
+        if ($request->hasfile('middle_banner_3')) {
+            $request->validate([
+                'middle_banner_3' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $homeCms->middle_banner_3 = $this->imageUpload($request->file('middle_banner_3'), 'home');
+        }
+
         $homeCms->save();
         return redirect()->back()->with('message', 'Home page content has been updated successfully.');
         

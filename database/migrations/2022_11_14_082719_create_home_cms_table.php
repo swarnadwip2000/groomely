@@ -25,7 +25,10 @@ class CreateHomeCmsTable extends Migration
             $table->text('section_2_description')->nullable();
             $table->string('section_2_img')->nullable();
             $table->string('section_3_title')->nullable();
-            $table->text('section_3_description')->nullable();
+            $table->text('section_3_description')->nullable();  
+            $table->string('middle_banner_1')->nullable();
+            $table->string('middle_banner_2')->nullable();
+            $table->string('middle_banner_3')->nullable();
             $table->string('section_4_title')->nullable();
             $table->text('section_4_description')->nullable();
             $table->string('section_5_title')->nullable();

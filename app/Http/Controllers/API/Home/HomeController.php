@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\ServiceType;
 use App\Models\Service;
 use App\Models\SellerService;
+use App\Models\HomeCms;
 use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,6 +19,7 @@ class HomeController extends Controller
     public $successStatus = 200;
     public function servicelist(Request $request)
     {
+        
         $validator = Validator::make($request->all(), [
             'service_name'     => 'required',
         ]);
@@ -35,24 +37,22 @@ class HomeController extends Controller
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
         
-        $service_name = $request->service_name;    
-        
-        $service = SellerService::where('status',1)->select('service_id')->with('service','service.additionalService:id,name','service.images')->whereHas('service', function($query) use($service_name){
-            $query->whereHas('serviceType', function($query) use($service_name){
-                $query->where('name', $service_name);
-            });
-        })->groupBy('service_id')->get();
-
-        if($service !='')
-        {
-            return response()->json(['data' => $service, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
-        }
-        else{
-            return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
-        }
-
-        try {
-            return response()->json(['data' => $service, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+        try{
+            $service_name = $request->service_name;    
+            
+            $service = SellerService::where('status',1)->select('service_id')->with('service','service.additionalService:id,name','service.images')->whereHas('service', function($query) use($service_name){
+                $query->whereHas('serviceType', function($query) use($service_name){
+                    $query->where('name', $service_name);
+                });
+            })->groupBy('service_id')->get();
+            
+            if($service !='')
+            { 
+                return response()->json(['data' => $service, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
+            }
         } catch (Exception $e) {
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }       
@@ -81,6 +81,18 @@ class HomeController extends Controller
         } catch (Exception $e) {
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }      
+    }
+
+    public function banner()
+    {
+        $banner = HomeCms::select('middle_banner_1','middle_banner_2','middle_banner_3')->first();
+        if($banner !='')
+        {
+            return response()->json(['data' => $banner, 'status' => true, 'message' => 'Banner find successfully'], $this->successStatus);
+        }
+        else{
+            return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Banner not found!'], 401);
+        }
     }
 
    

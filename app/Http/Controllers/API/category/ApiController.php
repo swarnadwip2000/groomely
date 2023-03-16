@@ -175,4 +175,36 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         } 
     }
+
+    public function servicelistByServiceType(Request $request)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'service_type'     => 'required',
+        ]);
+
+        try {
+            $Allservices = Service::where('service_type_id',$request->service_type)->where('status',1)->with('additionalService','images')->get();
+            $value=[];
+            $val=[];
+            foreach($Allservices as $service)
+            { 
+                $seller_exit = SellerService::where('service_id',$service->id)->where('status',1)->count();
+                if($seller_exit > 0)
+                {
+                    $val[] = $service;
+                }    
+            }
+            $service = collect($val);
+            if($service !='')
+            {
+                return response()->json(['data' => $service, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+            }
+            else{
+                return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
+            }
+        } catch (Exception $e) {
+            return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
+        }
+    }
 }

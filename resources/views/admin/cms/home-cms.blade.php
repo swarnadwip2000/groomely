@@ -148,6 +148,61 @@ Groomely | Home Cms
                                         </div>
                                     </div>
                                     <hr>
+
+                                    <label for="inputEnterYourName" class="col-form-label"><h5>Middle Banner Section:- </h5></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputEnterYourName" class="col-form-label">Banner 1 <span style="color: red;">*</span></label>
+                                            <input type="file" class="form-control" id="inputEnterYourName" value="{{ $home['middle_banner_1'] }}" name="middle_banner_1">
+                                            @if($errors->has('middle_banner_1'))
+                                            <div class="error" style="color:red;">{{ $errors->first('middle_banner_1') }}</div>
+                                            @endif
+                                        </div>
+                                        
+                                        <div class="col-md-6" >
+                                            @if($home->middle_banner_1)
+                                            <a href="{{Storage::url($home->middle_banner_1)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->middle_banner_1) }}" alt="" style="height: 150px; float:right; width: 100%;"></a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    </br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputEnterYourName" class="col-form-label">Banner 2 <span style="color: red;">*</span></label>
+                                            <input type="file" class="form-control" id="inputEnterYourName" value="{{ $home['middle_banner_2'] }}" name="middle_banner_2">
+                                            @if($errors->has('middle_banner_2'))
+                                            <div class="error" style="color:red;">{{ $errors->first('middle_banner_2') }}</div>
+                                            @endif
+                                        </div>
+                                        
+                                        <div class="col-md-6" >
+                                            @if($home->middle_banner_2)
+                                            <a href="{{Storage::url($home->middle_banner_2)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->middle_banner_2) }}" alt="" style="height: 150px; float:right; width: 100%;"></a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    </br>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="inputEnterYourName" class="col-form-label">Banner 2 <span style="color: red;">*</span></label>
+                                            <input type="file" class="form-control" id="inputEnterYourName" value="{{ $home['middle_banner_3'] }}" name="middle_banner_3">
+                                            @if($errors->has('middle_banner_3'))
+                                            <div class="error" style="color:red;">{{ $errors->first('middle_banner_3') }}</div>
+                                            @endif
+                                        </div>
+                                        
+                                        <div class="col-md-6" >
+                                            @if($home->middle_banner_3)
+                                            <a href="{{Storage::url($home->middle_banner_3)}}" target="_blank">
+                                            <img src="{{ Storage::url($home->middle_banner_3) }}" alt="" style="height: 150px; float:right; width: 100%;"></a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <hr>
+
+
                                     <label for="inputEnterYourName" class="col-form-label"><h5>Section 4:- </h5></label>
                                     <div class="row">
                                         <div class="col-md-6">
