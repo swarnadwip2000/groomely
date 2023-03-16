@@ -120,11 +120,11 @@
                 "aaSorting": [],
                 "columnDefs": [{
                         "orderable": false,
-                        "targets": [4, 5]
+                        "targets": [7, 8]
                     },
                     {
                         "orderable": true,
-                        "targets": [0, 1, 2, 3]
+                        "targets": [0, 1, 2, 3,4,5,6]
                     }
                 ]
             });

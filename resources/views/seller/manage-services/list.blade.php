@@ -44,7 +44,7 @@ Groomely | Manage Services
                                     <th>Service</th>
                                     <th>Rate($)</th>
                                     <th>Duration</th>
-                                    {{-- <th>Reviews</th> --}}
+                                    <th>Reviews</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -109,11 +109,11 @@ Groomely | Manage Services
         "aaSorting": [],
         "columnDefs": [{
                 "orderable": false,
-                "targets": [4,5]
+                "targets": [5,6,7]
             },
             {
                 "orderable": true,
-                "targets": [0,1, 2, 3,]
+                "targets": [0,1, 2, 3,4]
             }
         ]
     });

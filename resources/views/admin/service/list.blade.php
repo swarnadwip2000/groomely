@@ -105,11 +105,11 @@ Groomely | Service List
             "aaSorting": [],
             "columnDefs": [{
                 "orderable": false,
-                "targets": [1,2,3]
+                "targets": [5,6,7]
             },
             {
                 "orderable": true,
-                "targets": [0]
+                "targets": [0,1,2,3,4]
             }
         ]
         });

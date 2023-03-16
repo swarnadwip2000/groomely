@@ -150,11 +150,11 @@ Groomely | Customers - Appointments
             "aaSorting": [],
             "columnDefs": [{
                 "orderable": false,
-                "targets": [ 4, 5]
+                "targets": [5]
             },
             {
                 "orderable": true,
-                "targets": [0,1,2,3]
+                "targets": [0,1,2,3,4]
             }
         ]
         });

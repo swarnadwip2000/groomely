@@ -101,11 +101,11 @@ Groomely | Booking History
         "aaSorting": [],
         "columnDefs": [{
                 "orderable": false,
-                "targets": [6, 7]
+                "targets": [7]
             },
             {
                 "orderable": true,
-                "targets": [0,1, 2, 3, 4, 5]
+                "targets": [0,1, 2, 3, 4, 5,6]
             }
         ]
     });

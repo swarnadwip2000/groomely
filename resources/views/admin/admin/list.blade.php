@@ -79,11 +79,11 @@ Groomely | Admin List
             "aaSorting": [],
             "columnDefs": [{
                 "orderable": false,
-                "targets": [ 2,3,4]
+                "targets": [3]
             },
             {
                 "orderable": true,
-                "targets": [0,1]
+                "targets": [0,1,2]
             }
         ]
         });

@@ -97,11 +97,11 @@ Groomely | Service Type List
             "aaSorting": [],
             "columnDefs": [{
                 "orderable": false,
-                "targets": [1,2,3]
+                "targets": [2,3,4,5]
             },
             {
                 "orderable": true,
-                "targets": [0]
+                "targets": [0,1]
             }
         ]
         });
