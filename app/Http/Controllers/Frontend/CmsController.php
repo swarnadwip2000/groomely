@@ -174,7 +174,15 @@ class CmsController extends Controller
         }
         $details = collect($shop_detail)->sortByDesc('total');
         // $services = SellerService::where('status', 1)->orderBy('id','desc')->paginate(20);
-        $services = Service::where(['category_id'=>$id, 'status'=>1])->orderBy('id', 'desc')->paginate(20);
+        // $services = Service::where(['category_id'=>$id, 'status'=>1])->orderBy('id', 'desc')->paginate(20);
+
+        $services = SellerService::where('status',1)->with('service','service.additionalService:id,name','service.images')->whereHas('service', function($query) use($id){
+            $query->whereHas('category', function($query) use($id){
+                $query->where('id', $id);
+            });
+        })->paginate(20);
+        // dd($services);
+
         $category = Category::findOrFail($id);
         $bestSellerCms = BestSellerCms::first();
         return view('frontend.category')->with(compact('services', 'category','details','bestSellerCms'));
