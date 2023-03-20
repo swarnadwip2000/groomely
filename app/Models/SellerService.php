@@ -30,9 +30,5 @@ class SellerService extends Model
       
     }
 
-   
-
-
-
 
 }

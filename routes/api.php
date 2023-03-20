@@ -46,6 +46,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::group(['prefix' => 'booking'], function () {
             Route::post('create', [AppointmentController::class, 'bookingcreate']);
+            Route::post('list', [AppointmentController::class, 'bookinglist']);
         });
     });
 

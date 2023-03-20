@@ -106,7 +106,8 @@ class ApiController extends Controller
             }
             return response()->json(['error' => $errors, 'status' => false], 401);
         }
-        $service_detail = Service::with('images','additionalService')->where('id',$request->service_id)->first();
+        
+        $service_detail = Service::with('images','additionalService','SellerService','SellerService.user:id,shop_name')->select('id','duration','description','additional_service_id')->where('id',$request->service_id)->first();
         if($service_detail !='')
         {
             return response()->json(['data' => $service_detail, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
@@ -120,29 +121,16 @@ class ApiController extends Controller
     public function popularServices()
     {
         try {
-            $services = Service::where('status',1)->where('popular_services',1)->with('additionalService')->get();
+            $services = Service::where('status',1)->where('popular_services',1)->with('additionalService','review')->get();
             if($services !='')
-            {
-                $value=[];
+            {              
                 $val=[];
                 foreach($services as $service)
-                { 
-                    $value['id'] = $service['id'];
-                    $value['name'] = $service['additionalService']['name'];
-                    $value['duration'] = $service['duration'];
-                    $value['description'] = $service['description'];
-                    $value['review'] = Review::where('service_id',$service->id)->count();
-                    $total_rating=0;
-                    if($value['review'] > 0)
-                    {
-                        $sum_rating = Review::where('service_id', $service->id)->sum('rating');
-                        $total_rating = ($sum_rating / $value['review']);
-                    }
-                    $value['rating'] = $total_rating;
+                {                    
                     $seller_exit = SellerService::where('service_id',$service->id)->where('status',1)->count();
                     if($seller_exit > 0)
                     {
-                        $val[] = $value;
+                        $val[] = $service;
                     }    
                 }
                 $popular_services = collect($val);
@@ -182,23 +170,19 @@ class ApiController extends Controller
         $validator = Validator::make($request->all(), [
             'service_type'     => 'required',
         ]);
-
+        
         try {
-            $Allservices = Service::where('service_type_id',$request->service_type)->where('status',1)->with('additionalService','images')->get();
-            $value=[];
-            $val=[];
-            foreach($Allservices as $service)
-            { 
-                $seller_exit = SellerService::where('service_id',$service->id)->where('status',1)->count();
-                if($seller_exit > 0)
-                {
-                    $val[] = $service;
-                }    
-            }
-            $service = collect($val);
-            if($service !='')
+            $service_type = $request->service_type;
+            // $Allservices = Service::where('service_type_id',$request->service_type)->where('status',1)->with('additionalService','images','SellerService')->get();
+            $Allservices = SellerService::where('status',1)->with('service','service.additionalService:id,name','service.images','service.SellerService','service.review')->whereHas('service', function($query) use($service_type){
+                $query->whereHas('serviceType', function($query) use($service_type){
+                    $query->where('service_type_id', $service_type)->where('status',1);
+                });
+            })->groupBy('service_id')->get();
+           
+            if($Allservices !='')
             {
-                return response()->json(['data' => $service, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
+                return response()->json(['data' => $Allservices, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
             }
             else{
                 return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service not found!'], 401);
