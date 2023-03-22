@@ -19,8 +19,22 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name'     => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ]);
         try {   
             $user = User::where('id', Auth::user()->id)->first();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            if($request->password !=''){
+                $user->password	 = bcrypt($request->password);
+
+                $now_time = Carbon::now()->toDateTimeString();   
+                $user->password_update_time = $now_time;
+            }
             if ($request->hasFile('profile_picture')) {
                 
                 $validator = Validator::make($request->all(), [
@@ -35,7 +49,7 @@ class ProfileController extends Controller
                 $user->profile_picture = $image_path;
             }
             $user->save();
-            return response()->json(['status' => true,'statusCode' => 200, 'data' => $user, 'message' => 'Profile picture updated successfully'], $this->successStatus);
+            return response()->json(['status' => true,'statusCode' => 200, 'data' => $user, 'message' => 'Profile updated successfully'], $this->successStatus);
         } catch (Exception $e) {
             return response()->json([ 'status' => false, 'statusCode' => 401 ,'message' => 'something went wrong'], 401);
         }     

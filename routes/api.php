@@ -47,7 +47,14 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'booking'], function () {
             Route::post('create', [AppointmentController::class, 'bookingcreate']);
             Route::post('list', [AppointmentController::class, 'bookinglist']);
+            Route::post('details', [AppointmentController::class, 'bookingDetails']);
+
+            Route::group(['prefix' => 'review'], function () {
+                Route::post('submit', [AppointmentController::class, 'reviewSubmit']);
+            });
         });
+
+        
     });
 
     //seller
