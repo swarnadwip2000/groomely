@@ -21,8 +21,8 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'     => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
+            'email' => 'required|email|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
+            'phone' => 'required|numeric|min:10',
         ]);
         try {   
             $user = User::where('id', Auth::user()->id)->first();

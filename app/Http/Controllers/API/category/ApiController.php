@@ -91,7 +91,7 @@ class ApiController extends Controller
     public function servicedetails(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'service_id'     => 'required',
+            'service_id'     => 'required|numeric|gt:0',
         ]);
         if ($validator->fails()) {
             $errors['status_code'] = 401;
@@ -147,7 +147,7 @@ class ApiController extends Controller
     public function serviceTypes(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'category_id'     => 'required',
+            'category_id'     => 'required|numeric|gt:0',
         ]);
 
         try {

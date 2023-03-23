@@ -20,11 +20,11 @@ class AppointmentController extends Controller
     {
        
         $validator = Validator::make($request->all(), [
-            'service_id'     => 'required',
-            'seller_id' => 'required',
+            'service_id'     => 'required|numeric|gt:0',
+            'seller_id' => 'required|numeric|gt:0',
             'booking_date' => 'required',
             'amount' => 'required',
-            'booking_time_id' => 'required',
+            'booking_time_id' => 'required|numeric|gt:0',
         ]);
 
         if ($validator->fails()) {
@@ -87,7 +87,7 @@ class AppointmentController extends Controller
     public function bookingDetails(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'appointment_id'     => 'required',
+            'appointment_id'     => 'required|numeric|gt:0',
         ]);
 
         if ($validator->fails()) {
@@ -122,8 +122,8 @@ class AppointmentController extends Controller
     public function reviewSubmit(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'appointment_id'     => 'required',
-            'service_id'     => 'required',
+            'appointment_id'     => 'required|numeric|gt:0',
+            'service_id'     => 'required|numeric|gt:0',
             'comment'     => 'required',
             "rating" => "required|numeric|min:1|max:5",
         ]);
