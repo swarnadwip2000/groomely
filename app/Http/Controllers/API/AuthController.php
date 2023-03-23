@@ -44,7 +44,7 @@ class AuthController extends Controller
         try {
             $token_time = Carbon::now()->toDateTimeString();
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                $user = User::where('email', $request->email)->select('id', 'name', 'email','phone','zipcode','status')->first();
+                $user = User::where('email', $request->email)->select('id', 'name', 'email','phone','zipcode','status','profile_picture')->first();
                 if ($request->user_type == 'USER') {
                     if ($user->hasRole('USER') && $user->status == 1 ) {
                         $data['auth_token'] = $user->createToken('accessToken')->accessToken;                        
