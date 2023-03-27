@@ -103,7 +103,7 @@
                             <td
                                 style="vertical-align:middle; padding: 07px 15px; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                 <font style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                    {{ $appointment['service']['name'] }}</font>
+                                    {{ $appointment['service']['additionalService']['name'] }}</font>
                             </td>
                             <td
                                 style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
@@ -119,7 +119,7 @@
                             <td
                                 style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                 <font style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                    {{ $appointment['service']['rate'] }}</font>
+                                    ${{ $appointment['amount'] }}</font>
                             </td>
                         </tr>
                         @if (count($extraServices) > 0)
@@ -142,7 +142,7 @@
                                         style="vertical-align:middle; padding: 07px 15px; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                         <font
                                             style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                            {{ $extraService['service']['name'] }}</font>
+                                            {{ $extraService['service']['additionalService']['name'] }}</font>
                                     </td>
                                     <td
                                         style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
@@ -182,9 +182,9 @@
                                 <font
                                     style=" font-size:16px;color: #2022e2;font-weight: 600; width:100%; display: inline-block;">
                                    @if (count($extraServices) > 0)
-								   ${{ $appointment['service']['rate'] +  $extraRate }}
+								   ${{ $appointment['amount'] +  $extraRate }}
 									@else
-									${{ $appointment['service']['rate'] }}
+									${{ $appointment['amount'] }}
 								   @endif </font>
                             </td>
                         </tr>

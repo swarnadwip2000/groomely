@@ -2583,10 +2583,63 @@ select:-webkit-autofill {
   color: #fff;
   background-color: #D5A353;
 }
-option:hover{
-  color: #000!important;
-  background-color: #fff!important;
+
+select option:hover {
+  background: #ff0000;
 }
+
+::selection, select:focus::-ms-value {
+  background-color: #ff0000;
+  color: #000;
+}
+
+option:checked {
+  background-color: #ff0000;
+  color: #000;
+}
+
+option:checked:hover, select:focus option:checked:hover {
+  background-color: #ff0000;
+  color: #000;
+}
+.our_shop{
+    position:relative;
+}
+.our_shop:before{
+    content:'';
+    background: var(--heading-color);
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:45%;
+}
+.our_shop_bg{
+    background:#fff;
+    padding:30px;
+    width:100%;
+    box-shadow: 0 6px 22px rgb(0 0 0 / 10%);
+    position:relative;
+    border-radius: 15px;
+}
+.our_shop_bg span{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+.our_shop_bg span img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+.our_shop_bg .slid{
+    padding:0 15px;
+    text-align:center;
+}
+
 
 
 

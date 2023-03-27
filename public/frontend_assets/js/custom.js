@@ -145,6 +145,44 @@ $('.img_slide').slick({
     }
   ]
 });
+$('.our_shop_slid').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  centerMode: true,
+  arrows: false,
+  dots: false,
+  speed: 300,
+  centerPadding: '0px',
+  infinite: true,
+  autoplaySpeed: 5000,
+  autoplay: true,
+  prevArrow: '<div class="slick-nav prev-arrow"><i class="fa-regular fa-arrow-right"></i></div>',
+	nextArrow: '<div class="slick-nav next-arrow"><i class="fa-light fa-arrow-right"></i></div>',
+
+  responsive: [
+    {
+      breakpoint: 769,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+
+
+
 				
 var events = [
   { Title: "Breakfast with Mom", Date: new Date("11/13/2012") },

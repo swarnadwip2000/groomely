@@ -106,6 +106,39 @@ Groomely | HOME
         </div>
     </div>
 </section>
+<div class="our_shop">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="our_shop_bg">
+                    <div class="row align-items-center ">
+                        <div class="col-lg-12">
+                            <div class="heading_hp text-center">
+                                <h2>Our Shops</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="our_shop_slid">
+                    
+                    @foreach($our_shops as $shop) 
+                    <a href="{{route('shop.services',$shop['user']['id'])}}">
+                        <div class="slid">
+                            <div class="shop_slid">
+                                <span><img src="{{ Storage::url($shop['user']['profile_picture']) }}" /></span>
+                                <h5>{{ $shop['user']['shop_name'] }}</h5>
+                            </div>
+                        </div>
+                    </a>    
+                    @endforeach  
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
 <section class="off_banner_sec">
     <div class="container-fluid">
         <div class="row align-items-center">

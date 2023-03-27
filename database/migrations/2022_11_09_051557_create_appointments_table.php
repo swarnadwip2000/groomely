@@ -22,7 +22,6 @@ class CreateAppointmentsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('booking_date')->nullable();
-            $table->string('booking_time_id')->nullable();
             $table->string('amount')->nullable();
             $table->enum('status',['accepted','cancelled','reshedule','process','completed'])->default('process');
             $table->timestamps();
