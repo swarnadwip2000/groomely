@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        @if( $appointment['status'] != 'completed')
+                        @if( $appointment['status'] != 'completed' && $appointment['status'] != 'cancelled')
                         <div class="col-md-12">
                             <div class="col-md-12 m-1">
                                 <div style="float: right">

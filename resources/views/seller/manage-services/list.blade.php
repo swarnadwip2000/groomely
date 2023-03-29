@@ -128,7 +128,7 @@ Groomely | Manage Services
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/seller/changeSellerServiceStatus',
+            url: "{{ route('seller.seller-services.change-status') }}",
             data: {
                 'status': status,
                 'seller_service': seller_service

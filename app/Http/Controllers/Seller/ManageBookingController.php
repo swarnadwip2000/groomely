@@ -132,14 +132,6 @@ class ManageBookingController extends Controller
         return redirect()->back()->with('error', 'Services has been deleted!');
     }
 
-    public function changeManageBookingStatus(Request $request)
-    {
-        // $user = Service::find($request->user_id);
-        // $user->status = $request->status;
-        // $user->save();
-        // return response()->json(['success' => 'Status change successfully.']);
-    }
-
     public function manageBookingUpdate(Request $request)
     {
         

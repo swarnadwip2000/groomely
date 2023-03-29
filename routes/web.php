@@ -215,7 +215,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::resource('booking-history', BookingController::class);
 
         // Manage Booking
-        Route::get('/changeManageBookingStatus', [ManageBookingController::class, 'changeManageBookingStatus'])->name('seller.manage-services.change-status');
+        
         Route::get('/changeSellerServiceStatus', [ManageBookingController::class, 'changeSellerServiceStatus'])->name('seller.seller-services.change-status');
         Route::get('/manage-services-delete/{id}', [ManageBookingController::class, 'delete'])->name('manage-services.delete');
         Route::get('manage-services/manage-services-view/{id}', [ManageBookingController::class, 'view'])->name('manage-services.view');

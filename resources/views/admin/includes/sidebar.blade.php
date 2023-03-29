@@ -19,10 +19,10 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.index') }}">
+            <a href="{{ route('admin.index') }}">              
                 <div class="parent-icon icon-color-1"><i class="bx bx-group"></i>
                 </div>
-                <div class="menu-title">Manage Admins</div>
+                <div class="menu-title">Manage Admins</div>           
             </a>
         </li>
         <li class="menu-label">User Management</li>

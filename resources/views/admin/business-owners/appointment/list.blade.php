@@ -99,23 +99,5 @@
 
         });
     </script>
-    <script>
-        $('.toggle-class').change(function() {
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var user_id = $(this).data('id');
-
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '{{ route('admin.business-owner.change-status') }}',
-                data: {
-                    'status': status,
-                    'user_id': user_id
-                },
-                success: function(resp) {
-                    console.log(resp.success)
-                }
-            });
-        });
-    </script>
+   
 @endpush

@@ -122,14 +122,16 @@ Groomely | HOME
                     <div class="our_shop_slid">
                     
                     @foreach($our_shops as $shop) 
-                    <a href="{{route('shop.services',$shop['user']['id'])}}">
+                    
                         <div class="slid">
                             <div class="shop_slid">
+                                <a href="{{route('shop.services',$shop['user']['id'])}}">
                                 <span><img src="{{ Storage::url($shop['user']['profile_picture']) }}" /></span>
+                                </a>    
                                 <h5>{{ $shop['user']['shop_name'] }}</h5>
                             </div>
                         </div>
-                    </a>    
+                    
                     @endforeach  
                     </div>
                 </div>

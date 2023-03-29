@@ -193,7 +193,7 @@ class BookingController extends Controller
     {
         
         $appointment = Appointment::findOrFail($id);
-        $extraServices = ExtraService::where('appointment_id', $id)->get();
+        $extraServices = ExtraService::where('appointment_id', $id)->with('appointment')->get();
         $data = [
             'appointment' => $appointment,
             'extraServices' => $extraServices

@@ -139,7 +139,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: '{{ route('admin.business-owner.change-status') }}',
+                url: "{{ route('admin.business-owner.change-status') }}",
                 data: {
                     'status': status,
                     'user_id': user_id

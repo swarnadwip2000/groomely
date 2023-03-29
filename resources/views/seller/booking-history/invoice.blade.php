@@ -162,7 +162,7 @@
                                         style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                         <font
                                             style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                            {{ $extraService['service']['rate'] }}</font>
+                                            ${{ $appointment['amount'] }}</font>
                                     </td>
                                 </tr>
                             @endforeach

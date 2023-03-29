@@ -101,7 +101,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: '/seller/changeManageBookingStatus',
+                url: '{{ route("seller.manage-services.change-status") }}',
                 data: {
                     'status': status,
                     'user_id': user_id
