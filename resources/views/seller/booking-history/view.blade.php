@@ -73,6 +73,9 @@
                                                     </b>{{ date('h', strtotime($appointment['service']['duration'])) }} hr
                                                     {{ date('i', strtotime($appointment['service']['duration'])) }} mins
                                                 </div>
+                                                <div class="col-md-12 m-1"><b>Rate:-
+                                                    </b>${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -140,6 +143,7 @@
                                                     <th scope="col">Service Name</th>
                                                     <th scope="col">Service Category</th>
                                                     <th scope="col">Duration</th>
+                                                    <th scope="col">Rate</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -150,6 +154,7 @@
                                                         <td>{{ $extraService['service']['category']['name'] }}</td>
                                                         <td>{{ date('h', strtotime($extraService['service']['duration'])) }} hr
                                                             {{ date('i', strtotime($extraService['service']['duration'])) }} mins</td>
+                                                        <td>${{ $extraService->extraServicePrice($extraService['service_id'],Auth::user()->id) }}     
                                                     </tr>
                                                 @endforeach
                                             </tbody>

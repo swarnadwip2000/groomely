@@ -119,7 +119,7 @@
                             <td
                                 style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                 <font style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                    ${{ $appointment['amount'] }}</font>
+                                    ${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}</font>
                             </td>
                         </tr>
                         @if (count($extraServices) > 0)
@@ -135,7 +135,7 @@
 							@endphp
                             @foreach ($extraServices as $extraService)
 							@php
-								$extraRate += $extraService['service']['rate']
+								$extraRate += $extraService->extraServicePrice($extraService['service_id'],Auth::user()->id);
 							@endphp
                                 <tr>
                                     <td
@@ -162,7 +162,7 @@
                                         style="vertical-align:middle; padding: 07px 15px;text-align: center; border-bottom: 1px solid #f2f2f2; border-right:1px solid #f2f2f2;">
                                         <font
                                             style="color: #757575;font-weight: 400; width:100%; display: inline-block;">
-                                            ${{ $appointment['amount'] }}</font>
+                                            ${{ $extraService->extraServicePrice($extraService['service_id'],Auth::user()->id) }}</font>
                                     </td>
                                 </tr>
                             @endforeach
@@ -182,8 +182,6 @@
                                 <font
                                     style=" font-size:16px;color: #2022e2;font-weight: 600; width:100%; display: inline-block;">
                                    @if (count($extraServices) > 0)
-								   ${{ $appointment['amount'] +  $extraRate }}
-									@else
 									${{ $appointment['amount'] }}
 								   @endif </font>
                             </td>

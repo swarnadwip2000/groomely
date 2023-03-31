@@ -69,12 +69,12 @@
             </ul>
         </li>
         
-        <li class="menu-label">Orders</li>
+        <li class="menu-label">Appointments</li>
         <li class="{{ Request::is('admin/customers-order*') ? 'mm-active' : '' }}">
             <a href="{{ route('customer-order.list') }}">
                 <div class="parent-icon icon-color-4"><i class="fas fa-tag"></i>
                 </div>
-                <div class="menu-title">Customer Orders</div>
+                <div class="menu-title">Customer Appointments</div>
             </a>
         </li>
         

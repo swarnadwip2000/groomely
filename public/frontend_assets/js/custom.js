@@ -13,7 +13,7 @@ $('.slider').slick({
   dots: false,
 	prevArrow: '<div class="slick-nav prev-arrow"><i></i><svg><use xlink:href="#circle"></svg></div>',
 	nextArrow: '<div class="slick-nav next-arrow"><i></i><svg><use xlink:href="#circle"></svg></div>',
-}).slickAnimation();
+});
 
 
 

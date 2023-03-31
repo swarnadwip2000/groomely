@@ -17,12 +17,12 @@ Groomely | HOME
             </div>
             <div class="slide__content">
                 <div class="slide__content--headings text-center">
-                    <span class="animated top_titel" data-animation-in="fadeInUp" data-delay-in="0.3">{{ $homeCms['banner_content_1'] }} </span>
-                    <h2 class="animated title" data-animation-in="fadeInUp">{{ $homeCms['banner_content_2'] }} </h2>
+                    <span class="animated top_titel">{{ $homeCms['banner_content_1'] }} </span>
+                    <h2 class="animated title" >{{ $homeCms['banner_content_2'] }} </h2>
                     <!-- <p class="animated top-title" data-animation-in="fadeInUp" data-delay-in="0.3">BARBERSHOP</p> -->
                     <div class="hero-text mb-3">
                         <form action="/">
-                            <div class="hero-form-input" data-animation-in="fadeInUp" data-delay-in="0.3" style="opacity: 0; animation-delay: 0.3s;">
+                            <div class="hero-form-input">
                                 <input class="hero-email-input" type="email" placeholder="SEARCH HERE" required="" tabindex="0">
                                 <button class="hero-form-submit" type="submit" tabindex="0"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
@@ -119,10 +119,9 @@ Groomely | HOME
                             </div>
                         </div>
                     </div>
-                    <div class="our_shop_slid">
-                    
+                    @if(count($our_shops)>0) 
+                    <div class="our_shop_slid">                                 
                     @foreach($our_shops as $shop) 
-                    
                         <div class="slid">
                             <div class="shop_slid">
                                 <a href="{{route('shop.services',$shop['user']['id'])}}">
@@ -131,9 +130,9 @@ Groomely | HOME
                                 <h5>{{ $shop['user']['shop_name'] }}</h5>
                             </div>
                         </div>
-                    
-                    @endforeach  
+                    @endforeach 
                     </div>
+                    @endif 
                 </div>
             </div>
         </div>

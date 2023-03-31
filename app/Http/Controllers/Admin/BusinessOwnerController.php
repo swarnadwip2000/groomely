@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\SellerService;
 use App\Models\Appointment;
 use App\Models\Service;
 
@@ -163,9 +164,11 @@ class BusinessOwnerController extends Controller
 
     public function changeBusinessOwnerStatus(Request $request)
     {
-        $user = User::find($request->user_id);
-        $user->status = $request->status;
-        $user->save();
+        $partner_status = User::find($request->user_id);
+        $partner_status->status = $request->status;
+        $partner_status->save();
+
+        $partner_service_status = SellerService::where('user_id', $request->user_id)->update(['status'=>$request->status]);
         return response()->json(['success'=>'Status change successfully.']);
     }
 

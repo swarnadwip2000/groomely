@@ -13,7 +13,8 @@
     <div class="">
         <img src="{{public_path('frontend_assets/images/black2.jpg')}}" style="width: 120px; height: 80px; align-items: center; padding: 5px; position: relative;">
        
-        <h3>Appointment Details:</h3>
+        <h3>Transaction Details:</h3>
+        @if($transactions->count() > 0)
         <table style="width:100%">
             <thead>
                 <tr>
@@ -39,11 +40,10 @@
                 </tr>
             </tbody>
         </table>
-
-        
-      
-
-        
+        @else
+        <h5>No Transaction Found...</h5>
+        @endif
+    
     </div>
     
 </body>

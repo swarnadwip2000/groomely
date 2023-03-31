@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\ExtraService;
 use App\Models\BookingTime;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
@@ -126,11 +127,13 @@ class AppointmentController extends Controller
     public function view($id)
     {
         
-       $count = Appointment::where(['id' => $id, 'user_id' => Auth::user()->id])->count();
-
+        $count = Appointment::where(['id' => $id, 'user_id' => Auth::user()->id])->count();
         if ($count > 0) {
             $appointment = Appointment::findOrFail($id);
-            return view('user.appointments.view')->with(compact('appointment'));
+            $seller_id = $appointment->seller_id;
+            $extraServices = ExtraService::where('appointment_id', $id)->with('service')->get();
+
+            return view('user.appointments.view')->with(compact('appointment','extraServices','seller_id'));
         } else {
             return redirect()->back();
         }

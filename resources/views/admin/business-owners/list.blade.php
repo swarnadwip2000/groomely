@@ -95,7 +95,7 @@
                                                 <a href="{{ route('business-owner.show', $business_owner->id) }}"><i
                                                         class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                                 <a href="{{ route('business-owner.delete', $business_owner->id) }}"
-                                                    onclick="return confirm('Are you sure you want to delete this business-owner?')"><i
+                                                    onclick="return confirm('Are you sure you want to delete this partner?')"><i
                                                         class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

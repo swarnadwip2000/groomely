@@ -59,6 +59,11 @@ class Appointment extends Model
         }
     }
 
-   
+    public static function appointmentServicePrice($service,$seller)
+    {
+        $rating  = SellerService::where('service_id', $service)->where('user_id',$seller)->first();
+        return $rating->rate;
+    }
+      
    
 }

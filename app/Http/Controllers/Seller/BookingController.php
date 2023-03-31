@@ -193,10 +193,11 @@ class BookingController extends Controller
     {
         
         $appointment = Appointment::findOrFail($id);
-        $extraServices = ExtraService::where('appointment_id', $id)->with('appointment')->get();
+        $extraServices = ExtraService::where('appointment_id', $id)->get();
         $data = [
             'appointment' => $appointment,
-            'extraServices' => $extraServices
+            'extraServices' => $extraServices,
+            'seller' => Auth::user()->id,
         ];
         $options['isHtml5ParserEnabled'] = true;
         $options['isRemoteEnabled'] = true;

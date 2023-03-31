@@ -13,4 +13,11 @@ class ExtraService extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+    public static function extraServicePrice($service,$seller)
+    {
+        $rating  = SellerService::where('service_id', $service)->where('user_id',$seller)->first();
+        return $rating->rate;
+      
+    } 
 }

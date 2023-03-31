@@ -61,7 +61,7 @@
                                                 {{ date('d M, Y', strtotime($appointment['booking_date'])) }}</div>
                                             <div class="col-md-12 m-1"><b>appointment time:- </b>
                                                 {{ $appointment['bookTime']['time'] }}</div>
-                                            <div class="col-md-12 m-1"><b>Amount:- </b> ${{ $appointment['amount'] }}
+                                            <div class="col-md-12 m-1"><b>Total Amount:- </b> ${{ $appointment['amount'] }}
                                             </div>
                                             <div class="col-md-12 m-1"><b>Staus:- </b> {{ $appointment['status'] }}
                                             </div>
@@ -92,12 +92,48 @@
                                                 {{ date('h', strtotime($appointment['service']['duration'])) }} hr
                                                 {{ date('i', strtotime($appointment['service']['duration'])) }} mins
                                             </div>
+                                            <div class="col-md-12 m-1"><b>Rate:- </b>
+                                                ${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}</div>
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="card radius-15">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4 class="mb-0">Extra Services</h4>
+                    </div>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Service Name</th>
+                                    <th scope="col">Service Category</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($extraServices as $key =>$service)
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td>{{ $service->service->additionalService['name'] }}</td>
+                                    <td>{{ $service->service->category['name'] }}</td>
+                                    <td>{{ date('h', strtotime($service->service->duration)) }} hr {{ date('i', strtotime($service->service->duration)) }} mins</td>
+                                    <td>${{ $service->extraServicePrice($service['service_id'],$seller_id) }}</td>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
