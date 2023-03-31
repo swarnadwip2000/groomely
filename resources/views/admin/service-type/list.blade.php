@@ -68,7 +68,7 @@ Groomely | Service Type List
                                     <td align="center">
                                         <a href="{{route('service-type.show', $serviceType->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                         @if($serviceType->main == 0)
-                                        <a href="{{route('service-type.delete', $serviceType->id)}}" onclick="return confirm('Are you sure to delete this service type?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('service-type.delete', $serviceType->id)}}" onclick="return confirm('Are you sure you want to delete this service type?')"><i class="fas fa-trash"></i></a>
                                         @endif
                                     </td>
                                     <td align="center">

@@ -18,7 +18,7 @@ Groomely | Business Owners
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('business-owner.index')}}">Barbers</a>
+                            <li class="breadcrumb-item"><a href="{{route('business-owner.index')}}">Partners</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Edit</li>
                         </ol>
@@ -36,7 +36,7 @@ Groomely | Business Owners
             <!--end row-->
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Edit Barbers</h6>
+                    <h6 class="mb-0 text-uppercase">Edit Partner</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
@@ -76,9 +76,9 @@ Groomely | Business Owners
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zipcode<span style="color:red">*</span></label>
+                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zip Code<span style="color:red">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputAddress4" value="@if($business_owner['zipcode']) {{$business_owner['zipcode']}} @endif" name="zipcode" placeholder="Zip code">
+                                            <input type="text" class="form-control" id="inputAddress4" value="@if($business_owner['zipcode']) {{$business_owner['zipcode']}} @endif" name="zipcode" placeholder="Zip Code">
                                             @if($errors->has('zipcode'))
                                             <div class="error" style="color:red;">{{ $errors->first('zipcode') }}</div>
                                             @endif

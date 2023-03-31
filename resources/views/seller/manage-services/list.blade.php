@@ -87,7 +87,7 @@ Groomely | Manage Services
                                     <td align="center">
                                         <a href="{{route('manage-services.view', $service->id)}}"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;
                                         <a href="{{route('manage-services.show', $service->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('manage-services.delete', $service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('manage-services.delete', $service->id)}}" onclick="return confirm('Are you sure you want to delete this service?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

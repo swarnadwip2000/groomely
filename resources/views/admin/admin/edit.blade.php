@@ -83,8 +83,7 @@
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label for="inputPassword" class="col-sm-3 col-form-label">Password<span
-                                                    style="color:red">*<span></label>
+                                            <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
                                             <div class="col-sm-9">
                                                 <input type="password" class="form-control" id="inputPassword"
                                                     value="{{ old('password') }}" name="password" placeholder="Enter Password">

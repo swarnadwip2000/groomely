@@ -19,11 +19,13 @@
             </a>
         </li>
         <li>
+            <li class="{{ Request::is('admin/admin*') ? 'mm-active' : '' }}">
             <a href="{{ route('admin.index') }}">              
                 <div class="parent-icon icon-color-1"><i class="bx bx-group"></i>
                 </div>
                 <div class="menu-title">Manage Admins</div>           
             </a>
+            </li>
         </li>
         <li class="menu-label">User Management</li>
         <li class="{{ Request::is('admin/customers*') ? 'mm-active' : '' }}">
@@ -38,7 +40,7 @@
             <a href="{{ route('business-owner.index') }}">
                 <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
                 </div>
-                <div class="menu-title">Manage Barbers</div>
+                <div class="menu-title">Manage Partners</div>
             </a>
         </li>
         

@@ -81,10 +81,10 @@ class AuthController extends Controller
                 return redirect()->route('seller.dashboard');
             } else {
                 Auth::logout();
-                return redirect()->back()->with('error', 'Email id & password was invalid!');
+                return redirect()->back()->with('error', 'Invalid email or password!');
             }
         } else {
-            return redirect()->back()->with('error', 'Email id & password was invalid!');
+            return redirect()->back()->with('error', 'Invalid email or password!');
         }
     }
 

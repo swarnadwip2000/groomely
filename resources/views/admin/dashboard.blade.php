@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="">
                                                     <a href="{{ route('business-owner.index') }}">
-                                                        <h6 class="mb-0">Busuness Owners</h6>
+                                                        <h6 class="mb-0">Business Owners</h6>
                                                     </a>
 
                                                 </div>
@@ -151,7 +151,7 @@
                         <div class="card radius-15 w-100">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h4 class="mb-0">Barber transactions statistics</h4>
+                                    <h4 class="mb-0">Partner transactions statistics</h4>
                                     <div class="col-md-6">
                                         <form action="{{ route('admin.transaction.download') }}" method="post">
                                             @csrf

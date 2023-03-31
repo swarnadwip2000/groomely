@@ -42,7 +42,7 @@ Groomely | Customers
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Zipcode</th>
+                                    <th>Zip Code</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -65,7 +65,7 @@ Groomely | Customers
                                     </td>
                                     <td align="center">
                                         <a href="{{route('customers.show', $customer->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('customers.delete', $customer->id)}}" onclick="return confirm('Are you sure to delete this customer?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('customers.delete', $customer->id)}}" onclick="return confirm('Are you sure you want to delete this customer?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

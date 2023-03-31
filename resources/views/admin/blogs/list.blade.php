@@ -79,7 +79,7 @@ Groomely | Blogs
                                     </td>
                                     <td align="center">
                                         <a href="{{route('blogs.show', $blog->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('blogs.delete', $blog->id)}}" onclick="return confirm('Are you sure to delete this blog?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('blogs.delete', $blog->id)}}" onclick="return confirm('Are you sure you want to delete this blog?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

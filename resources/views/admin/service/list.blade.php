@@ -80,7 +80,7 @@ Groomely | Service List
                                     </td>
                                     <td>
                                         <a href="{{route('service.edit',$service->id)}}"><i class="fas fa-edit"></i></a>
-                                        <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure to delete this service?')"><i class="fas fa-trash"></i></button></a>
+                                        <a href="{{route('service.delete',$service->id)}}" onclick="return confirm('Are you sure you want to delete this service?')"><i class="fas fa-trash"></i></button></a>
                                     </td>
                                     
                                 </tr>

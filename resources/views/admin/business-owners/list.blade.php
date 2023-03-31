@@ -14,14 +14,14 @@
             <div class="page-content">
                 <!--breadcrumb-->
                 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                    <div class="breadcrumb-title pe-3">Manage Barbers</div>
+                    <div class="breadcrumb-title pe-3">Manage Partners</div>
                     <div class="ps-3">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i
                                             class="bx bx-home-alt"></i></a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Barbers</li>
+                                <li class="breadcrumb-item active" aria-current="page">Partners</li>
                             </ol>
                         </nav>
                     </div>
@@ -33,11 +33,11 @@
                         <div class="card-title">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="mb-0">Barbers Details</h4>
+                                    <h4 class="mb-0">Partners Details</h4>
                                 </div>
                                 <div class="col-md-6"><a href="{{ route('business-owner.create') }}"
                                         style="float: right;"><button type="button" class="btn btn-primary"><i
-                                                class="fas fa-plus"></i> Add Barbers</button></a></div>
+                                                class="fas fa-plus"></i> Add Partner</button></a></div>
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                                         <th>Shop Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
-                                        <th>Zipcode</th>
+                                        <th>Zip Code</th>
                                         <th>Complete Appointments</th>
                                         <th>Total Revenue</th>
                                         <th>Status</th>
@@ -95,7 +95,7 @@
                                                 <a href="{{ route('business-owner.show', $business_owner->id) }}"><i
                                                         class="fas fa-edit"></i></a> &nbsp;&nbsp;
                                                 <a href="{{ route('business-owner.delete', $business_owner->id) }}"
-                                                    onclick="return confirm('Are you sure to delete this business owner?')"><i
+                                                    onclick="return confirm('Are you sure you want to delete this business-owner?')"><i
                                                         class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>

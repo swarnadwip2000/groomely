@@ -38,14 +38,46 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         $blogCategories = BlogCategory::all();
         $recentBlogs = Blog::orderBy('id','desc')->where('status', 1)->get()->take(3);
-        return view('frontend.blog-details')->with(compact('blog','blogCategories','recentBlogs'));
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.blog-details')->with(compact('blog','blogCategories','recentBlogs','bestSellerCms','details'));
     }
 
     public function blogCategory($slug, $id)
     {
         $blogCategory = BlogCategory::find($id);
         $blogs = Blog::where(['blog_category_id'=>$id, 'status'=>1])->get();
-        return view('frontend.blog-category')->with(compact('blogs','blogCategory'));
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
+            
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }
+            
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.blog-category')->with(compact('blogs','blogCategory','bestSellerCms','details'));
     }
 
 }

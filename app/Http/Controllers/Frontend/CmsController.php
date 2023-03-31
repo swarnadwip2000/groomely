@@ -28,17 +28,16 @@ class CmsController extends Controller
         $shop_detail=[];
         $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
         foreach($shop as $vall)
-        {
-            
+        {  
             $detail['image'] = $vall['profile_picture'];
             $detail['total'] = User::appointmentsSum($vall->id);
             if($detail['total'] > 0)
             {
                 $shop_detail[] = $detail;
-            }
-            
+            }    
         }
         $our_shops = SellerService::where('status', 1)->orderBy('id', 'desc')->with('user')->get()->unique('user_id');
+        
         $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
         

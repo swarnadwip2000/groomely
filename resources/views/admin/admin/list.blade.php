@@ -55,7 +55,7 @@ Groomely | Admin List
                                     <td>{{$admin['phone']}}</td>
                                     <td align="center">
                                         <a href="{{route('admin.edits', $admin->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('admin.destroys', $admin->id)}}" onclick="return confirm('Are you sure to delete this admin?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('admin.destroys', $admin->id)}}" onclick="return confirm('Are you sure you want to delete this admin?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

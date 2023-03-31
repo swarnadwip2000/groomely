@@ -75,9 +75,9 @@ Groomely | Customers
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zipcode <span style="color:red">*</span></label>
+                                        <label for="inputAddress4" class="col-sm-3 col-form-label">Zip Code <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputAddress4" value="{{old('zipcode')}}" name="zipcode" placeholder="Zip code">
+                                            <input type="text" class="form-control" id="inputAddress4" value="{{old('zipcode')}}" name="zipcode" placeholder="Zip Code">
                                             @if($errors->has('zipcode'))
                                             <div class="error" style="color:red;">{{ $errors->first('zipcode') }}</div>
                                             @endif

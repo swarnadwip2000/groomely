@@ -51,7 +51,7 @@ Groomely | Blog Category
                                     <td>{{$category['slug']}}</td>
                                     <td align="center">
                                         <a href="{{route('blog-category.show', $category->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('blog-category.delete', $category->id)}}" onclick="return confirm('Are you sure to delete this category?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('blog-category.delete', $category->id)}}" onclick="return confirm('Are you sure you want to delete this blog category?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

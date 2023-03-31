@@ -146,7 +146,7 @@
                                 <div class="col-md-6">
                                     <h4 class="mb-0">Appointment List</h4>
                                 </div>
-                                <!-- <div class="col-md-6"><a href="{{ route('appointments.create') }}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Booking</button></a></div> -->
+                            <div class="col-md-6"><a href="{{ route('package') }}" style="float: right;" ><button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Add Appointment</button></a></div>
                             </div>
                         </div>
 

@@ -66,7 +66,7 @@ Groomely | Category List
                                     </td>
                                     <td align="center">
                                         <a href="{{route('category.show', $category->id)}}"><i class="fas fa-edit"></i></a> &nbsp;&nbsp;
-                                        <a href="{{route('category.delete', $category->id)}}" onclick="return confirm('Are you sure to delete this category?')"><i class="fas fa-trash"></i></a>
+                                        <a href="{{route('category.delete', $category->id)}}" onclick="return confirm('Are you sure you want to delete this category?')"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
