@@ -27,7 +27,7 @@ Groomely | Packages {{$category['name']}}
         <div class="row">
             <div class="col-lg-12 mb-5">
                 <div class="heading_hp text-center">
-                    <h2>PACKAGE</h2>
+                    <h2>SERVICE</h2>
                     <!-- <p>(Showing 1 – 9 Packages of {{$services->count()}} Packages)</p> -->
                 </div>
             </div>
@@ -37,10 +37,10 @@ Groomely | Packages {{$category['name']}}
         @foreach($services as $service)
             <div class="col-md-3">
                 <div class="feature_box">
-                    <div class="top_pack">Package</div>
+                    <div class="top_pack">Service</div>
                     <div class="white_box_pack">
                     <h4>{{$service['service']['additionalService']['name']}}</h4>
-                            {{-- <h5>{{$service['user']['shop_name']}}</h5> --}}
+                    <p>{{$service['service']['category']['name']}}</p>
                         <p class="star">@if($service->ratingService($service->service->id) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service->service->id)}} ({{$service->service->review()->count()}})@endif</p>
                         <div class="d-flex align-items-center py-2">
                             {{-- <div class="price">${{$service['rate']}}</div> --}}

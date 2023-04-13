@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\BookNowController;
 use App\Http\Controllers\Frontend\CmsController;
 use App\Http\Controllers\Frontend\ContactusController;
+use App\Http\Controllers\Frontend\ServiceSearchController;
 use App\Http\Controllers\User\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\ForgetPasswordController;
@@ -72,6 +73,7 @@ Route::get('/best-sellers', [CmsController::class, 'bestSellers'])->name('best.s
 Route::get('/gallery', [CmsController::class, 'gallery'])->name('gallery');
 Route::get('/package', [CmsController::class, 'package'])->name('package');
 Route::get('/service-category/{slug}/{id}', [CmsController::class, 'serviceCategory'])->name('service.category');
+Route::get('/shop-category/{slug}/{id}', [CmsController::class, 'shopCategory'])->name('shop.category');
 Route::get('/shop-servcies/{id}', [CmsController::class, 'shopServices'])->name('shop.services');
 
 // Contact us
@@ -87,6 +89,9 @@ Route::get('blog-category/{slug}/{id}', [BlogController::class, 'blogCategory'])
 Route::get('/book-now/{id}', [BookNowController::class, 'bookNow'])->name('book-now');
 Route::post('/submit-appointment', [BookNowController::class, 'submitAppointment'])->name('submit-appointment');
 Route::get('/service-price', [BookNowController::class, 'servicePrice'])->name('book-now.service-price');
+
+// service search
+Route::get('/service-search', [ServiceSearchController::class, 'serviceSearch'])->name('search.service');
 
 
 
@@ -197,8 +202,6 @@ Route::group(['prefix' => 'admin'], function () {
 
         });
 });
-
-
 
 /*-------------------------------------------------------- Business owner panel -----------------------------------------------------------------------*/
 

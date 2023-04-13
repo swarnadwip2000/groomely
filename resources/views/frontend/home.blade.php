@@ -21,9 +21,9 @@ Groomely | HOME
                     <h2 class="animated title" >{{ $homeCms['banner_content_2'] }} </h2>
                     <!-- <p class="animated top-title" data-animation-in="fadeInUp" data-delay-in="0.3">BARBERSHOP</p> -->
                     <div class="hero-text mb-3">
-                        <form action="/">
+                        <form action="{{ route('search.service') }}" method="get">
                             <div class="hero-form-input">
-                                <input class="hero-email-input" type="email" placeholder="SEARCH HERE" required="" tabindex="0">
+                                <input class="hero-text-input" type="text" placeholder="SEARCH SERVICE" name="service"  tabindex="0">
                                 <button class="hero-form-submit" type="submit" tabindex="0"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
@@ -45,13 +45,12 @@ Groomely | HOME
                 <div class="d-flex align-items-center justify-content-start">
                     @foreach($categories as $category)
                     <div class="min_box">
-                        <a href="{{route('service.category',['slug'=>$category->slug, 'id'=>$category->id])}}">
+                        <a href="{{route('shop.category',['slug'=>$category->slug, 'id'=>$category->id])}}">
                             <img src="{{Storage::url($category['icon'])}}" alt="" />
                             <p>{{$category['name']}}</p>
                         </a>
                     </div>
                     @endforeach
-                    
                 </div>
             </div>
         </div>
@@ -179,6 +178,7 @@ Groomely | HOME
                         <div class="top_pack">Package</div>
                         <div class="white_box_pack">
                             <h4>{{$service['service']['additionalService']['name']}}</h4>
+                            <p>{{$service['service']['category']['name']}}</p>
                             
                             <p class="star">@if($service->ratingService($service['service_id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['service_id'])}} ({{$service->service->review()->count()}})@endif</p>
                             <div class="d-flex align-items-center py-2">
@@ -189,7 +189,7 @@ Groomely | HOME
                                 <!-- <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
                                 <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
                                 <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
-                                <li>{{substr($service->service->description,0,90)}}...</li>
+                                <li>{{substr($service['service']['description'], 0, 90)}}...</li>
                             </ul>
                             <a href="{{route('book-now', base64_encode($service['service_id']))}}" class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp" href="book-an-appointment.html"><span>BOOK NOW</span></a>
                         </div>

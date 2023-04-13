@@ -139,15 +139,13 @@ class CmsController extends Controller
         $shop_detail=[];
         $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
         foreach($shop as $vall)
-        {
-            
+        { 
             $detail['image'] = $vall['profile_picture'];
             $detail['total'] = User::appointmentsSum($vall->id);
             if($detail['total'] > 0)
             {
                 $shop_detail[] = $detail;
-            }
-            
+            }   
         }
         $details = collect($shop_detail)->sortByDesc('total');
         // $services = Service::where('status', 1)->orderBy('id','desc')->paginate(20);
@@ -173,19 +171,41 @@ class CmsController extends Controller
             
         }
         $details = collect($shop_detail)->sortByDesc('total');
-        // $services = SellerService::where('status', 1)->orderBy('id','desc')->paginate(20);
-        // $services = Service::where(['category_id'=>$id, 'status'=>1])->orderBy('id', 'desc')->paginate(20);
-
         $services = SellerService::where('status',1)->with('service','service.additionalService:id,name','service.images')->whereHas('service', function($query) use($id){
             $query->whereHas('category', function($query) use($id){
                 $query->where('id', $id);
             });
         })->groupBy('service_id')->paginate(20);
         // dd($services);
-
         $category = Category::findOrFail($id);
         $bestSellerCms = BestSellerCms::first();
         return view('frontend.category')->with(compact('services', 'category','details','bestSellerCms'));
+    }
+
+    public function shopCategory($slug, $id)
+    { 
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }    
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $category = $id; 
+        $shops = SellerService::select('user_id')->with('user')->whereHas('service', function ($query) use ($category) {
+            $query->whereHas('category', function($query) use($category){
+                $query->where('category_id',$category);
+            });
+        })->groupby('user_id')->get();
+        $category = Category::findOrFail($id);
+        $bestSellerCms = BestSellerCms::first();
+        return view('frontend.shop-list')->with(compact('shops', 'category','details','bestSellerCms'));
     }
 
     public function shopServices($id)
@@ -195,20 +215,17 @@ class CmsController extends Controller
         $shop_detail=[];
         $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
         foreach($shop as $vall)
-        {
-            
+        {   
             $detail['image'] = $vall['profile_picture'];
             $detail['total'] = User::appointmentsSum($vall->id);
             if($detail['total'] > 0)
             {
                 $shop_detail[] = $detail;
-            }
-            
+            }   
         }
         $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
         $shop_name = User::findOrFail($id);
         return view('frontend.seller-shops')->with(compact('seller_services','details','bestSellerCms','shop_name'));
     }
-
 }
