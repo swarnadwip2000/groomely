@@ -176,7 +176,7 @@ class BookingController extends Controller
         $extraService->service_id = $request->service_id;
         $extraService->appointment_id = $request->appointment_id;
         $extraService->save();
-        $service = SellerService::where('service_id',$request->service_id)->first();
+        $service = SellerService::where('service_id',$request->service_id)->where('user_id',Auth::user()->id)->first();
         $appointment = Appointment::find($request->appointment_id);
         $appointment->amount = $appointment->amount + $service->rate;
         $appointment->save();
@@ -208,7 +208,7 @@ class BookingController extends Controller
         $data = new Invoice();
         $content = $pdf->download()->getOriginalContent();
         $filename = 'en'. $id . date('YmdHi').'.pdf';
-        Storage::put('public/invoice/'.$filename, $content);
+        Storage::put('invoice/'.$filename, $content);
         $data->file = 'invoice/'.$filename;
         $data->appointment_id = $id;
         $data->save();
