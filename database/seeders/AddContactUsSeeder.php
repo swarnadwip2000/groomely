@@ -17,9 +17,9 @@ class AddContactUsSeeder extends Seeder
         $data = new ContactUsCms();
         $data->title = 'Contact Us';
         $data->description = "Now we are engaged for some time, let's get connected";
-        $data->visit_us = '502 W SKELLY RD Haskell 74436 USA';
-        $data->call_us = '+1 561 318 3904';
-        $data->mail_us = 'charleshollis0088@gmail.com';
+        $data->visit_us = '3962 Circle Lake Drive Palm Beach FL 33417 USA';
+        $data->call_us = '+61-561 856 0151';
+        $data->mail_us = 'tino.moyongo@gmail.com';
         $data->save();
     }
 }

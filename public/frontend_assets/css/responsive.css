@@ -45,6 +45,15 @@
     .login_sec_right_bg img{
       object-fit: cover;  
     }
+      .price {
+       font-size: 22px!important;
+    }
+      .white_box_pack h4 {
+         font-size: 20px!important;
+    }
+    .hero-form-input .hero-text-input{
+        font-size:15px;
+    }
 }
 
 @media (max-width:1280px){
@@ -58,7 +67,6 @@
     font-size: 16px;
     margin-left: 30px;
   }
-  
 }
 
 @media (max-width:1024px){
@@ -98,7 +106,10 @@
  .single_foo_address span {
     margin-right: 10px;
 }
-    
+  
+  .best-seller {
+    padding: 50px 0px;
+}  
 }
 @media (max-width:821px){
     /* Home */
@@ -212,7 +223,25 @@
     .personal-details .book-slot-btn {
         margin-top: 25px;
     }
+    .price {
+      font-size: 19px!important;
+    }
 }
+@media (max-width:768px){
+   .price {
+      font-size: 19px!important;
+    }  
+    .white_box_pack ul {
+      min-height: 75px;
+   }
+   .white_box_pack h4 {
+     font-size: 18px!important;
+   }
+   .heading_hp h2 {
+    font-size: 40px;
+}
+}
+
 
 @media (max-width:767px){
     .logo_hdr img{
@@ -260,6 +289,44 @@
     .img_part img {
         height: 450px;
     }
+    .about_text{
+        padding-right:0;
+    }
+    .become_sell {
+        padding: 20px;
+    }
+    .abt_content{
+        padding-left:0;
+    }
+    .abt_content h2, .abt_content_type2 h2 {
+        font-size: 40px;
+    }
+    .cta_content h4 {
+        font-size: 35px;
+    }
+    .abt_img_type2 {
+        padding: 0 0 20px 0px;
+    }
+    .contact-left h2 {
+        font-size: 40px;
+    }
+    .img_part {
+        padding: 0;
+    }
+    .filters {
+        margin-bottom: 15px;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+    .filters ul {
+        display: flex;
+    }
+    .filters ul li{
+        margin-left:15px;
+    }
+    .login_sec_left {
+        height: auto;
+    }
  }
 @media (max-width:375.98px){
     .footer_menu_section ul li a{
@@ -290,17 +357,35 @@
     a.ui-state-active{
         padding:0 10px;
     }
-    
+    .contact-right {
+        padding: 15px;
+    }
+    .contact-us .con-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        margin-right: 11px;
+    }
+    .contact-us .con-text {
+        margin-top: 0;
+    }
+    .contact-us .con-text h3 {
+        margin-bottom: 0px;
+    }
+    .login_register a {
+        padding: 0 4px;
+        font-size: 14px;
+    }
 }
 @media (max-width:320.98px){
     .logo_hdr img {
-        height: 30px;
+        height: 39px;
     }
     .footer_menu_section ul li a{
-        font-size: 14px;  
+        font-size: 18px;  
         margin-left: 5px;
       }
       .footer_abt p{
-        font-size: 14px;
+        font-size: 15px;
       }
 }

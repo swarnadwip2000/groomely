@@ -1340,6 +1340,7 @@ h6 {
     border: none;
     width: 100%;
     color: var(--black-color);
+    font-size:15px;
 }
 
 .hero-form-submit {
@@ -2639,6 +2640,53 @@ option:checked:hover, select:focus option:checked:hover {
     padding:0 15px;
     text-align:center;
 }
+
+
+/*package filter*/
+.filters {
+    text-align: left;
+    margin-bottom: 30px;
+  }
+.filters ul {
+    padding: 0;
+  }
+.filters ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    position: relative;
+    font-size: 16px;
+    text-transform: uppercase;
+    background: #000000;
+    border-radius: 6px;
+    color: #fff;
+  }
+  .filters ul li span{
+    position: relative;
+    
+  }
+.filters ul li:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 100%;
+    background: var(--main-color);
+    transition: width 350ms ease-out;
+    top: 0;
+    width: 0;
+    left: 0;
+    border-radius: 6px;
+  }
+.filters ul li:hover:before {
+    width: calc(100% - 60px);
+    transition: width 350ms ease-out;
+    border-radius: 5px;
+  }
+.filters ul li.active:before {
+    width: 100%;
+    border-radius: 6px;
+  }
 
 
 

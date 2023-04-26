@@ -17,13 +17,13 @@ class AddCategoriesSeeder extends Seeder
     {
         Category::create([
             'name' => 'Women',
-            'slug' => 'women-hair-cut',
+            'slug' => 'women',
             'icon' => 'category/women-hair-cut.png',
         ]);
 
         Category::create([  
             'name' => "Men's",
-            'slug' => 'men-hair-cut',
+            'slug' => 'men',
             'icon' => 'category/men-hair-cut.png',
         ]);
 

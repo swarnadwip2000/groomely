@@ -33,38 +33,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @if (count($services) > 0)
-                    @foreach ($services as $service)
-                        <div class="col-md-3">
-                            <div class="feature_box">
-                                <div class="top_pack">Package</div>
-                                <div class="white_box_pack">
-                                    <h4>{{$service->service->additionalService->name}}</h4>
-                                    <p>{{$service->service->category->name}}</p>
-                                    
-                                    <p class="star">@if($service->ratingService($service['service_id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['service_id'])}} ({{$service->service->review()->count()}})@endif</p>
-                                    <div class="d-flex align-items-center py-2">
-                                        <div class="price"></div>
-                                        <p><i class="fa-regular fa-clock"></i>
-                                            {{ date('h', strtotime($service['service']['duration'])) }} hr
-                                            {{ date('i', strtotime($service['service']['duration'])) }} mins</p>
-                                    </div>
-                                    <ul>
-                                        <!-- <li><i class="fa-solid fa-check"></i> Men's Haircut</li>
-                                <li><i class="fa-solid fa-check"></i> Beard Shape & Style</li>
-                                <li><i class="fa-solid fa-check"></i> 10 min Head Massage</li> -->
-                                        <li>{{ substr($service->service->description, 0, 55) }}...</li>
-                                    </ul>
-                                    <a href="{{route('book-now', base64_encode($service['service_id']))}}"
-                                        class="buttonfx slidebottomleft animated" data-animation-in="fadeInUp"><span>BOOK NOW</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <p>There is no packages..</p>
-                @endif
+            <div class="filters">
+                <ul>
+                    <li class="active category" data-filter="*" data-id="all"><span>All</span></li>
+                    <li data-filter=".men" class="category" data-id="men"><span>Men</span></li>
+                    <li data-filter=".women" class="category" data-id="women"><span>Women</span></li>
+                    <li data-filter=".children" class="category" data-id="children"><span>Children</span></li>
+                </ul>
+            </div>
+            <div class="filters-content">
+               <div id="service_filter">@include('frontend.package-filter')</div>
             </div>
             {{-- {!! $services->links() !!} --}}
         </div>
@@ -98,4 +76,43 @@
 @endsection
 
 @push('scripts')
+<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js" id=""></script>
+<script>
+    $('.filters ul li').click(function(){
+$('.filters ul li').removeClass('active');
+$(this).addClass('active');
+
+var data = $(this).attr('data-filter');
+$grid.isotope({
+filter: data
+})
+});
+
+var $grid = $(".grid").isotope({
+itemSelector: ".all",
+percentPosition: true,
+masonry: {
+columnWidth: ".all"
+}
+});
+</script>
+<script>
+     $(document).ready(function() {
+        $('.category').on('click', function() {
+            var category = $(this).data('id');
+            $.ajax({
+                url: "{{ route('service-category.filter') }}",
+                type: "GET",
+                data: {
+                    category: category
+                },
+                success: function(data) {
+                    $('#service_filter').html(data.view);
+                }
+            });
+         
+     });
+    });
+
+</script>
 @endpush

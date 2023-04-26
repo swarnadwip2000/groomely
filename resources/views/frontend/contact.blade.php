@@ -90,8 +90,10 @@ Groomely | CONTACT US
                 <div class="col-xl-6 col-md-12">
                     <div class="contact-right">
                         <div class="contact-info d-flex justify-content-start align-items-start">
-                            <div class="con-icon">
-                                <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                <div class="con-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
                             </div>
                             <div class="con-text">
                                 <h3>VISIT US</h3>
@@ -99,8 +101,10 @@ Groomely | CONTACT US
                             </div>
                         </div>
                         <div class="contact-info d-flex justify-content-start align-items-start">
-                            <div class="con-icon">
-                                <i class="fa-solid fa-phone"></i>
+                            <div>
+                                <div class="con-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
                             </div>
                             <div class="con-text">
                                 <h3>CALL US</h3>
@@ -108,8 +112,10 @@ Groomely | CONTACT US
                             </div>
                         </div>
                         <div class="contact-info d-flex justify-content-start align-items-start">
-                            <div class="con-icon">
-                                <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <div class="con-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
                             </div>
                             <div class="con-text">
                                 <h3>MAIL US</h3>

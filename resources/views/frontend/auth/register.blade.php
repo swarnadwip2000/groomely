@@ -115,7 +115,7 @@
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Password</label>
                                                     <input type="password" id="txtPassword" name="password" class="form-control" autocomplete="off"/>
-                                                    <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
+                                                    <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye fa-eye-slash"></i></button>
 
                                                 </div>
                                                 @if($errors->has('password'))
@@ -126,7 +126,7 @@
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Confirm Password</label>
                                                     <input type="password" id="password-field" name="confirm_password" class="form-control" autocomplete="off"/>
-                                                    <button type="button" id="btnToggle1" class="toggle"><i id="eyeIcon1" toggle="#password-field" class="fa fa-eye"></i></button>
+                                                    <button type="button" id="btnToggle1" class="toggle"><i id="eyeIcon1" toggle="#password-field" class="fa fa-eye fa-eye-slash"></i></button>
                                                 </div>
                                                 @if($errors->has('confirm_password'))
                                                 <div class="error" style="color:red;">{{ $errors->first('confirm_password') }}</div>
@@ -167,11 +167,11 @@
         function togglePassword() {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                icon.classList.add("fa-eye-slash");
+                icon.classList.toggle("fa-eye-slash");
                 //toggle.innerHTML = 'hide';
             } else {
                 passwordInput.type = 'password';
-                icon.classList.remove("fa-eye-slash");
+                icon.classList.toggle("fa-eye-slash");
                 //toggle.innerHTML = 'show';
             }
         }
@@ -232,7 +232,7 @@
     <script>
         $("#eyeIcon1").click(function() {
 
-            $(this).toggleClass("fa-eye fa-eye-slash");
+            $(this).toggleClass("fa-eye-slash");
             var input = $($(this).attr("toggle"));
             if (input.attr("type") == "password") {
                 input.attr("type", "text");

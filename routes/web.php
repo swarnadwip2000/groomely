@@ -93,6 +93,9 @@ Route::get('/service-price', [BookNowController::class, 'servicePrice'])->name('
 // service search
 Route::get('/service-search', [ServiceSearchController::class, 'serviceSearch'])->name('search.service');
 
+// service category search
+Route::get('/service-category-search', [ServiceSearchController::class, 'serviceSerachByCategory'])->name('service-category.filter'); 
+
 
 
 /*--------------------------------------------------------------------   Admin Panel ---------------------------------------------------------*/

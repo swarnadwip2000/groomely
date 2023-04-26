@@ -69,7 +69,7 @@
                                                 <div class="position-relative">
                                                     <label for="txtPassword">Password</label>
                                                     <input type="password" id="txtPassword" name="password" class="form-control" name="txtPassword" />
-                                                    <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye"></i></button>
+                                                    <button type="button" id="btnToggle" class="toggle"><i id="eyeIcon" class="fa fa-eye fa-eye-slash"></i></button>
                                                 </div>
                                                 @if($errors->has('password'))
                                                 <div class="error" style="color:red;">{{ $errors->first('password') }}</div>
@@ -101,11 +101,11 @@
         function togglePassword() {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                icon.classList.add("fa-eye-slash");
+                icon.classList.toggle("fa-eye-slash");
                 //toggle.innerHTML = 'hide';
             } else {
                 passwordInput.type = 'password';
-                icon.classList.remove("fa-eye-slash");
+                icon.classList.toggle("fa-eye-slash");
                 //toggle.innerHTML = 'show';
             }
         }

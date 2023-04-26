@@ -25,7 +25,9 @@ class ChangeAppointmentsTableNameColumnType extends Migration
      */
     public function down()
     {
-        $table->dropForeign('appointments_booking_time_id_foreign');
-        $table->dropColumn('booking_time_id');
+        Schema::table('appointments', function (Blueprint $table) {
+            $table->dropForeign('appointments_booking_time_id_foreign');
+            $table->dropColumn('booking_time_id');
+        });
     }
 }

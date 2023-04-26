@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use App\Models\Category;
 use App\Models\SellerService;
 use App\Models\ServiceCategory;
 use App\Models\User;
@@ -57,5 +58,25 @@ class ServiceSearchController extends Controller
             else{
                 return redirect()->back();
             }
+    }
+
+    public function serviceSerachByCategory(Request $request)
+    {
+        // return $request;
+        $category = Category::where('slug',$request->category)->first();
+        if($category !='')
+        {
+            $category_id = $category->id; 
+            $services = SellerService::where('status',1)->with('service','service.additionalService:id,name','service.images')->whereHas('service', function($query) use($category_id){
+                $query->whereHas('category', function($query) use($category_id){
+                    $query->where('id', $category_id);
+                });
+            })->groupBy('service_id')->paginate(20);
+        }else{
+            $services = SellerService::where('status',1)->with('service','service.additionalService:id,name','service.images')->groupBy('service_id')->paginate(20);
+        }
+
+        return response()->json(['view'=>(String)View::make('frontend.package-filter')->with(compact('category','services'))]);
+     
     }
 }
