@@ -151,20 +151,26 @@
                         <div class="card radius-15 w-100">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h4 class="mb-0">Partner transactions statistics</h4>
-                                    <div class="col-md-6">
-                                        <form action="{{ route('admin.transaction.download') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="start_date" value="{{ date('Y-m-d') }}"
-                                                id="start_date1">
-                                            <input type="hidden" name="end_date"
-                                                value="{{ date('Y-m-d', strtotime('30 days')) }}" id="end_date1">
-                                            <a href="#">
-                                                <button class="btn btn-primary" type="submit"> <i
-                                                        class="fas fa-download"></i> Download Transaction</button></a>
-                                        </form>
-                                    </div>
+                                    <div class="trans-wrap d-flex justify-content-between">
+                                        <div class="trans">
+                                            <h4 class="mb-0">Partner transactions statistics</h4>
+                                        </div>
+                                        <div class="dwn-btn">
+                                            <form action="{{ route('admin.transaction.download') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="start_date" value="{{ date('Y-m-d') }}"
+                                                    id="start_date1">
+                                                <input type="hidden" name="end_date"
+                                                    value="{{ date('Y-m-d', strtotime('30 days')) }}" id="end_date1">
+                                                <a href="#">
+                                                    <button class="btn btn-primary" type="submit"> <i
+                                                            class="fas fa-download"></i> Download Transaction</button></a>
+                                            </form>
+                                        </div>
+                                    </div>    
                                 </div>
+
+                               
                                 <hr />
                                 <div class="row">
                                     @php

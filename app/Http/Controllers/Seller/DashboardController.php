@@ -117,9 +117,9 @@ class DashboardController extends Controller
         //     $query->where('user_id', Auth::user()->id);
         // })->where('status', 'completed')->whereYear('updated_at',$request->year)->get();
 
-        $transactions= Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->get();
+        $transactions= Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->where('seller_id', Auth::user()->id)->get();
 
-        $sum = Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->get()->sum('amount');
+        $sum = Appointment::where('status', 'completed')->whereYear('updated_at',$request->year)->where('seller_id', Auth::user()->id)->get()->sum('amount');
 
         $pdf = PDF::loadView('seller.transactionPDF',array('transactions' => $transactions, 'sum' => $sum));
     

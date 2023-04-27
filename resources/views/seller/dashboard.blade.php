@@ -3,6 +3,7 @@
     Groomely | Dashboard
 @endsection
 @push('styles')
+
 @endpush
 
 @section('content')
@@ -43,14 +44,18 @@
                                         <div class="card radius-15">
                                             <div class="card-body">                                             
                                                 <div class="card-title">
-                                                    <h4 class="mb-0">Transaction history statistics</h4>                                      
-                                                    <div class="col-md-6" >
-                                                        <form action="{{ route('seller.transaction.download') }}" method="post" >
-                                                            @csrf
-                                                        <input type="hidden" name="year" id="yrr">                             
-                                                        <a href="#"><button class="btn btn-primary" type="submit"> <i class="fas fa-download"></i> Download Transaction</button></a>
-                                                        </form>
-                                                    </div>                                      
+                                                    <div class="trans-wrap d-flex justify-content-between">
+                                                        <div class="trans">
+                                                            <h4 class="mb-0">Transaction history statistics</h4>
+                                                        </div>                                  
+                                                        <div class="dwn-btn">
+                                                            <form action="{{ route('seller.transaction.download') }}" method="post" >
+                                                                @csrf
+                                                            <input type="hidden" name="year" id="yrr">                             
+                                                            <a href="#"><button class="btn btn-primary" type="submit"> <i class="fas fa-download"></i> Download Transaction</button></a>
+                                                            </form>
+                                                        </div> 
+                                                    </div>                                     
                                                 </div>
                                                 <hr />
                                                 @php

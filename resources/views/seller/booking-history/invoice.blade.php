@@ -169,9 +169,10 @@
                         @endif
                     </tbody>
                 </table>
+                
                 <table width="800" style="width:800px; margin:0 auto;border:1px solid #f2f2f2; margin-top: 25px;">
                     <tbody>
-
+                         @if (count($extraServices) > 0)
                         <tr style="background-color: linear-gradient(45deg, #2022e2, #7739d1) !important; background-repeat:no-repeat;">
                             <td style="vertical-align:middle; padding: 07px 15px; border-right:1px solid #f2f2f2;">
                                 <font
@@ -181,13 +182,15 @@
                             <td style="vertical-align:middle; padding: 07px 15px;">
                                 <font
                                     style=" font-size:16px;color: #2022e2;font-weight: 600; width:100%; display: inline-block;">
-                                   @if (count($extraServices) > 0)
+                                  
 									${{ $appointment['amount'] }}
-								   @endif </font>
+								   </font>
                             </td>
                         </tr>
+                        @endif 
                     </tbody>
                 </table>
+                
                 <table width="800" style="width:800px; margin:0 auto; margin-top: 25px;">
                     <tbody>
                         <tr>
@@ -241,11 +244,11 @@
                                     Support</font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
-                                    +1 918 519 8362 <font style="color:#757575"></font>
+                                   +61-561 856 0151 <font style="color:#757575"></font>
                                 </font>
                                 <font
                                     style=" font-size:16px;color: #2c2c2c;font-weight: 600; width:100%; display: inline-block;">
-                                    support@groomely.com <font style="color:#757575">(Email)</font>
+                                    tino.moyongo@gmail.com<font style="color:#757575">(Email)</font>
                                 </font>
                                 <!-- <font style=" font-size:16px;color: #757575;font-weight: 600; width:100%; display: inline-block;"><a href="">https://supportz.flightmantra.com/login</a></font> -->
 

@@ -148,6 +148,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($extraServices as $key => $extraService)
+                                               
                                                     <tr>
                                                         <th scope="row">{{ $key + 1 }}</th>
                                                         <td>{{ $extraService['service']['additionalService']['name'] }}</td>

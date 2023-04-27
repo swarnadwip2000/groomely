@@ -19,7 +19,7 @@ class ExtraService extends Model
         $rating  = SellerService::where('service_id', $service)->where('user_id',$seller)->first();
         if($rating != '')
         {
-            return $rating->price;
+            return $rating->rate;
         } 
     } 
 }

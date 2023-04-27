@@ -5,7 +5,7 @@
                 <div class="feature_box">
                     <div class="top_pack">Package</div>
                     <div class="white_box_pack">
-                        <h4>{{ substr($service->service->additionalService->name, 0, 27) }}..</h4>
+                        <h4>{{ $service->service->additionalService->name }}</h4>
                         <p>{{$service->service->category->name}}</p>
                         
                         <p class="star">@if($service->ratingService($service['service_id']) !='')<i class="fa-solid fa-star"></i> {{$service->ratingService($service['service_id'])}} ({{$service->service->review()->count()}})@endif</p>

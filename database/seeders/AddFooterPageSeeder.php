@@ -21,8 +21,8 @@ class AddFooterPageSeeder extends Seeder
         $home->instagram_link = 'https://www.instagram.com/';
         $home->youtube_link = 'https://www.youtube.com/';
         // $home->address = '3962 Circle Lake Drive Palm Beach FL 33417 USA';
-        $home->phone = '+1 561 318 3904';
-        $home->email = 'support@groomely.com';
+        $home->phone = '+61-561 856 0151';
+        $home->email = 'tino.moyongo@gmail.com';
         $home->image1 = 'footer/gallery1.jpg';
         $home->image2 = 'footer/gallery2.jpg';
         $home->image3 = 'footer/gallery3.jpg';

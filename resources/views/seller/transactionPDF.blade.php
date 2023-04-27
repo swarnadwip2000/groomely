@@ -16,7 +16,8 @@
         <p> Name: {{Auth::user()->name}}</br>
             Shopname : {{Auth::user()->shop_name}}</br>
             Email: {{Auth::user()->email}}</p>
-        <h3 style="margin:1; padding:1;">Customer Details:</h3>
+        <h3 style="margin:1; padding:1;">Transaction Details:</h3>
+        @if($transactions->count() > 0)
         <table style="width:100%">
             <thead>
                 <tr>
@@ -42,12 +43,9 @@
                 </tr>
             </tbody>
         </table>
-
-        
-      
-
-        
+        @else
+        <h5>No Transaction Found...</h5>
+        @endif  
     </div>
-    
 </body>
 </html>

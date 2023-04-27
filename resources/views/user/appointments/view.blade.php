@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            
+            @if(count($extraServices)>0) 
             <div class="card radius-15">
                 <div class="card-body">
                     <div class="card-title">
@@ -137,6 +137,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
     <!--end page-content-wrapper-->
