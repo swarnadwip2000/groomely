@@ -208,7 +208,7 @@ class BookingController extends Controller
         $data = new Invoice();
         $content = $pdf->download()->getOriginalContent();
         $filename = 'en'. $id . date('YmdHi').'.pdf';
-        Storage::put('invoice/'.$filename, $content);
+        Storage::put('public/invoice/'.$filename, $content);
         $data->file = 'invoice/'.$filename;
         $data->appointment_id = $id;
         $data->save();
