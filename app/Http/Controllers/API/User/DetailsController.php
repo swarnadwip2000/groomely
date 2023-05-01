@@ -11,11 +11,40 @@ use Exception;
 class DetailsController extends Controller
 {
     public $successStatus = 200;
-    /** 
-     * User details api
+
+    /**
+     * Get Profile Details API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Profile found successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "johh@yopmail.com",
+     * "phone": "1234567890",
+     * "zipcode": "123456"
      * 
-     * @return \Illuminate\Http\Response 
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "Profile not found successfully."
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
      */
+
     public function details()
     {
         try {
@@ -31,6 +60,34 @@ class DetailsController extends Controller
             return response()->json(['message' => 'something went wrong' , 'status' => false], 401);
         }    
     }
+
+     /**
+     *  All User Details API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "name": "John Doe",
+     *           "email": "johh@yopmail.com",
+     *           "phone": "1234567890",
+     *           "zipcode": "123456",
+     *           "profile_picture": "http://127.0.0.1:8000/storage/profile_picture/1629796360.jpg"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+     */
 
     public function allUserDetails()
     {

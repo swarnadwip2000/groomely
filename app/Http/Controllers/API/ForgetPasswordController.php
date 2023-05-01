@@ -15,10 +15,35 @@ use Illuminate\Support\Str;
 class ForgetPasswordController extends Controller
 {
     public $successStatus = 200;
-    /** 
-     * forget password api 
+    
+    /**
+     * Forget Password API
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @bodyParam email string required Email
+     * @response {
+     *  "status": true,
+     *   "statusCode": 200,
+     *     "message": "OTP sent successfully."
+     *  }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The email field is required."
+     * ]
+     * }
+     * }
+     * @response 401 {
+     * "message": "Email not found!",
+     * "status": false
+     * }
+     * @response 401 {
+     * "message": "Email not found!",
+     * "status": false
+     * }
      * 
-     * @return \Illuminate\Http\Response 
      */
 
     public function forgetPassword(Request $request)
@@ -26,8 +51,6 @@ class ForgetPasswordController extends Controller
         $validator = Validator::make($request->all(), [
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
         ]);
-
-        
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors(), 'status' => false], 401);

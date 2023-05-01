@@ -16,10 +16,46 @@ class AuthController extends Controller
 {
     public $successStatus = 200;
     /** 
-     * login api 
+     * login Api 
      * 
      * @return \Illuminate\Http\Response 
+     * @bodyParam email string required email, must be unique.
+     * @bodyParam password string required password, must be 8 character long.
+     * @bodyParam user_type string required user_type, must be USER or BUSINESS_OWNER.
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Login successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "johh@yopmail.com",
+     * "phone": "1234567890",
+     * "zipcode": "123456",
+     * "status": 1,
+     *  "profile_picture": "http://127.0.0.1:8000/storage/seller/20210914121212image.jpg",
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The email field is required.",
+     * "The password field is required.",
+     * "The user type field is required."
+     * 
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
      */
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -75,9 +111,49 @@ class AuthController extends Controller
     }
 
     /** 
-     * Register api 
+     * Registration Api 
      * 
      * @return \Illuminate\Http\Response 
+     * @bodyParam first_name string required first_name.
+     * @bodyParam last_name string required last_name.
+     * @bodyParam email string required email, must be unique.
+     * @bodyParam password string required password, must be 8 character long.
+     * @bodyParam phone string required phone.
+     * @bodyParam zipcode string required zipcode.
+     * @bodyParam user_type string required user_type, must be USER or BUSINESS_OWNER.
+    
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Registration successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "johh@yopmail.com"
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The first_name field is required.",
+     * "The last_name field is required.",
+     * "The email type field is required.",
+     * "The email field is required.",
+     * "The password field is required.",
+     * "The user type field is required."
+     * 
+     * 
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
      */
     public function register(Request $request)
     {

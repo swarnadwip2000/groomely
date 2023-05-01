@@ -17,6 +17,35 @@ use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     public $successStatus = 200;
+
+    /**
+     *  Service List API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "name": "John Doe",
+     *           "email": "johh@yopmail.com",
+     *           "phone": "1234567890",
+     *           "zipcode": "123456",
+     *           "profile_picture": "https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */
+
     public function servicelist(Request $request)
     {
         
@@ -67,14 +96,12 @@ class HomeController extends Controller
             $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
             foreach($shop as $vall)
             {
-                
                 $detail['image'] = $vall['profile_picture'];
                 $detail_price['total'] = User::appointmentsSum($vall->id);
                 if($detail_price['total'] > 0)
                 {
                     $shop_detail[] = $detail;
-                }
-                
+                }   
             }
             $details = collect($shop_detail)->sortByDesc('total');
             return response()->json(['data' => $details, 'status' => true, 'message' => 'Best seller find successfully'], $this->successStatus);

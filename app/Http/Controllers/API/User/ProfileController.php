@@ -10,12 +10,50 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
-
-
-
 class ProfileController extends Controller
 {
     public $successStatus = 200;
+
+    
+    /**
+     * Profile Update API
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @bodyParam name string required name
+     * @bodyParam email file required User email
+     * @bodyParam phone string required phone
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "data": {
+     *     "id": 1,
+     *     "name": "John Doe",
+     *     "email": "john@yopmail.com",
+     *     "phone": "1234567890",
+     *     "zipcode": "123456",
+     *     "status": 1,
+     *     "profile_picture": "http://127.0.0.1:8000/storage/customer/2021-08-11-1628661381.jpg",
+     *     "created_at": "2023-03-15T06:15:27.000000Z",
+     *     "updated_at": "2023-04-25T06:57:45.000000Z"
+     * },
+     * "message": "Profile updated successfully"
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The name field is required.",
+     * "The email field is required.",
+     * "The phone field is required."
+     * ]
+     * }
+     * }
+     * @response 401 {
+     *  "message": "No detail found!",
+     * "status": false
+     * }
+     */ 
 
     public function updateProfile(Request $request)
     {
@@ -31,7 +69,6 @@ class ProfileController extends Controller
             $user->phone = $request->phone;
             if($request->password !=''){
                 $user->password	 = bcrypt($request->password);
-
                 $now_time = Carbon::now()->toDateTimeString();   
                 $user->password_update_time = $now_time;
             }
@@ -55,13 +92,39 @@ class ProfileController extends Controller
         }     
     }
 
+    
+    /**
+     * Change Password API
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @bodyParam old_password string required Old Password
+     * @bodyParam new_password string required New Password
+     * @bodyParam comfirm_password string required Confirm Password
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Password change successfully."
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The Old Password field is required.",
+     * "The New Password field is required.",
+     * "The Confirm Password field is required."
+     * ]
+     * }
+     * }
+     * 
+     */
+
     public function changePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'old_password'    => 'required|min:8|password',
             'new_password' => 'required|min:8|different:old_password',
             'comfirm_password' => 'required|min:8|same:new_password', 
-        
         ],[
             'old_password.password'=> 'Old password is not correct',
         ]);

@@ -21,6 +21,31 @@ use Illuminate\Support\Facades\Validator;
 class ApiController extends Controller
 {
     public $successStatus = 200;
+      /**
+     *  Category List API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "name": "Women",
+     *           "slug": "women",
+     *           "icon": "https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */
     public function category()
     {
         try {

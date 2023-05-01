@@ -1,0 +1,3939 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/users/register:
+    post:
+      summary: 'Registration Api'
+      operationId: registrationApi
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Registration successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Registration successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: first_name.
+                  example: aut
+                last_name:
+                  type: string
+                  description: last_name.
+                  example: quis
+                email:
+                  type: string
+                  description: 'email, must be unique.'
+                  example: orlando.keeling@example.net
+                phone:
+                  type: string
+                  description: phone.
+                  example: vero
+                zipcode:
+                  type: string
+                  description: zipcode.
+                  example: natus
+                password:
+                  type: string
+                  description: 'password, must be 8 character long.'
+                  example: vfuc$A_`2G>$OyB
+                confirm_password:
+                  type: string
+                  description: 'The value and <code>password</code> must match. Must be at least 8 characters.'
+                  example: inzpvpbrzixdwkikoconeualoydyxrrtvktixfhmxuhniwxfifdtirucezwvywegxrpusbzinsnuycrii
+                user_type:
+                  type: string
+                  description: 'user_type, must be USER or BUSINESS_OWNER.'
+                  example: excepturi
+              required:
+                - first_name
+                - last_name
+                - email
+                - phone
+                - zipcode
+                - password
+                - confirm_password
+                - user_type
+      security: []
+  /api/v1/users/login:
+    post:
+      summary: 'login Api'
+      operationId: loginApi
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Login successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                      status: 1
+                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Login successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+                          phone:
+                            type: string
+                            example: '1234567890'
+                          zipcode:
+                            type: string
+                            example: '123456'
+                          status:
+                            type: integer
+                            example: 1
+                          profile_picture:
+                            type: string
+                            example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'email, must be unique.'
+                  example: vtromp@example.org
+                password:
+                  type: string
+                  description: 'password, must be 8 character long.'
+                  example: ':I=dSx02zq/+'
+                user_type:
+                  type: string
+                  description: 'user_type, must be USER or BUSINESS_OWNER.'
+                  example: sed
+              required:
+                - email
+                - password
+                - user_type
+      security: []
+  /api/v1/users/forget-password:
+    post:
+      summary: 'Forget Password API'
+      operationId: forgetPasswordAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'OTP sent successfully.'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'OTP sent successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Email not found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'Email not found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email
+                  example: sauer.lucious@example.org
+              required:
+                - email
+      security: []
+  /api/v1/users/me:
+    post:
+      summary: 'Get Profile Details API'
+      operationId: getProfileDetailsAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Profile found successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Profile found successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+                          phone:
+                            type: string
+                            example: '1234567890'
+                          zipcode:
+                            type: string
+                            example: '123456'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/users/profile/update:
+    post:
+      summary: 'Profile Update API'
+      operationId: profileUpdateAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@yopmail.com
+                    phone: '1234567890'
+                    zipcode: '123456'
+                    status: 1
+                    profile_picture: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                    created_at: '2023-03-15T06:15:27.000000Z'
+                    updated_at: '2023-04-25T06:57:45.000000Z'
+                  message: 'Profile updated successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@yopmail.com
+                      phone:
+                        type: string
+                        example: '1234567890'
+                      zipcode:
+                        type: string
+                        example: '123456'
+                      status:
+                        type: integer
+                        example: 1
+                      profile_picture:
+                        type: string
+                        example: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                      created_at:
+                        type: string
+                        example: '2023-03-15T06:15:27.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2023-04-25T06:57:45.000000Z'
+                  message:
+                    type: string
+                    example: 'Profile updated successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+                  example: culpa
+                email:
+                  type: string
+                  format: binary
+                  description: 'User email'
+                phone:
+                  type: string
+                  description: phone
+                  example: consequatur
+              required:
+                - name
+                - email
+                - phone
+      security: []
+  /api/v1/users/profile/change-password:
+    post:
+      summary: 'Change Password API'
+      operationId: changePasswordAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Password change successfully.'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Password change successfully.'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'The Old Password field is required.'
+                      - 'The New Password field is required.'
+                      - 'The Confirm Password field is required.'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'The Old Password field is required.'
+                          - 'The New Password field is required.'
+                          - 'The Confirm Password field is required.'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  description: 'Old Password'
+                  example: eos
+                new_password:
+                  type: string
+                  description: 'New Password'
+                  example: in
+                comfirm_password:
+                  type: string
+                  description: 'Confirm Password'
+                  example: non
+              required:
+                - old_password
+                - new_password
+                - comfirm_password
+      security: []
+  /api/v1/users/booking/create:
+    post:
+      summary: ''
+      operationId: postApiV1UsersBookingCreate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: number
+                  description: ''
+                  example: 5456045.7
+                seller_id:
+                  type: number
+                  description: ''
+                  example: 1.57544
+                booking_date:
+                  type: string
+                  description: ''
+                  example: ut
+                amount:
+                  type: string
+                  description: ''
+                  example: voluptatum
+                booking_time_id:
+                  type: number
+                  description: ''
+                  example: 343418.9
+              required:
+                - service_id
+                - seller_id
+                - booking_date
+                - amount
+                - booking_time_id
+      security: []
+  /api/v1/users/booking/list:
+    post:
+      summary: ''
+      operationId: postApiV1UsersBookingList
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/users/booking/details:
+    post:
+      summary: ''
+      operationId: postApiV1UsersBookingDetails
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment_id:
+                  type: number
+                  description: ''
+                  example: 8532.9291
+              required:
+                - appointment_id
+      security: []
+  /api/v1/users/booking/review/submit:
+    post:
+      summary: ''
+      operationId: postApiV1UsersBookingReviewSubmit
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment_id:
+                  type: number
+                  description: ''
+                  example: 5.930324
+                service_id:
+                  type: number
+                  description: ''
+                  example: 405650.23704695
+                comment:
+                  type: string
+                  description: ''
+                  example: saepe
+                rating:
+                  type: number
+                  description: 'Must be at least 1. Must not be greater than 5.'
+                  example: 1
+              required:
+                - appointment_id
+                - service_id
+                - comment
+                - rating
+      security: []
+  /api/v1/sellers/me:
+    post:
+      summary: 'Get Seller Details API'
+      operationId: getSellerDetailsAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Seller Profile found successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                      shop_name: 'Shop Name'
+                      profile_picture: seller/20210914121212image.jpg
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Seller Profile found successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+                          phone:
+                            type: string
+                            example: '1234567890'
+                          zipcode:
+                            type: string
+                            example: '123456'
+                          shop_name:
+                            type: string
+                            example: 'Shop Name'
+                          profile_picture:
+                            type: string
+                            example: seller/20210914121212image.jpg
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/sellers/profile/update:
+    post:
+      summary: 'Seller Profile Update API'
+      operationId: sellerProfileUpdateAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@yopmail.com
+                    phone: '1234567890'
+                    zipcode: '123456'
+                    shop_name: 'Shop Name'
+                    status: 1
+                    profile_picture: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                    created_at: '2023-03-15T06:15:27.000000Z'
+                    updated_at: '2023-04-25T06:57:45.000000Z'
+                  message: 'Profile updated successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@yopmail.com
+                      phone:
+                        type: string
+                        example: '1234567890'
+                      zipcode:
+                        type: string
+                        example: '123456'
+                      shop_name:
+                        type: string
+                        example: 'Shop Name'
+                      status:
+                        type: integer
+                        example: 1
+                      profile_picture:
+                        type: string
+                        example: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                      created_at:
+                        type: string
+                        example: '2023-03-15T06:15:27.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2023-04-25T06:57:45.000000Z'
+                  message:
+                    type: string
+                    example: 'Profile updated successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: name
+                  example: corrupti
+                email:
+                  type: string
+                  format: binary
+                  description: 'User email'
+                phone:
+                  type: string
+                  description: phone
+                  example: sequi
+                shop_name:
+                  type: string
+                  description: ''
+                  example: voluptatem
+              required:
+                - name
+                - email
+                - phone
+                - shop_name
+      security: []
+  /api/v1/sellers/profile/delete:
+    delete:
+      summary: 'Delete Profile API'
+      operationId: deleteProfileAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@yopmail.com
+                    phone: '1234567890'
+                    zipcode: '123456'
+                    shop_name: 'Shop Name'
+                    status: 1
+                    profile_picture: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                    created_at: '2023-03-15T06:15:27.000000Z'
+                    updated_at: '2023-04-25T06:57:45.000000Z'
+                  message: 'Profile deleted successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@yopmail.com
+                      phone:
+                        type: string
+                        example: '1234567890'
+                      zipcode:
+                        type: string
+                        example: '123456'
+                      shop_name:
+                        type: string
+                        example: 'Shop Name'
+                      status:
+                        type: integer
+                        example: 1
+                      profile_picture:
+                        type: string
+                        example: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                      created_at:
+                        type: string
+                        example: '2023-03-15T06:15:27.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2023-04-25T06:57:45.000000Z'
+                  message:
+                    type: string
+                    example: 'Profile deleted successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'User not found.'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'User not found.'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/users:
+    get:
+      summary: 'All User Details API'
+      operationId: allUserDetailsAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: '1'
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        name: 'John Doe'
+                        email: johh@yopmail.com
+                        phone: '1234567890'
+                        zipcode: '123456'
+                        profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        name:
+                          type: string
+                          example: 'John Doe'
+                        email:
+                          type: string
+                          example: johh@yopmail.com
+                        phone:
+                          type: string
+                          example: '1234567890'
+                        zipcode:
+                          type: string
+                          example: '123456'
+                        profile_picture:
+                          type: string
+                          example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/auth/{provider}':
+    get:
+      summary: ''
+      operationId: getApiV1AuthProvider
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Driver [quia] not supported.'
+                  exception: InvalidArgumentException
+                  file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                  line: 109
+                  trace:
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                      line: 80
+                      function: createDriver
+                      class: Illuminate\Support\Manager
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
+                      line: 261
+                      function: driver
+                      class: Illuminate\Support\Manager
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
+                      line: 25
+                      function: __callStatic
+                      class: Illuminate\Support\Facades\Facade
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                      line: 54
+                      function: redirectToProvider
+                      class: App\Http\Controllers\API\GoogleSocialiteController
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 45
+                      function: callAction
+                      class: Illuminate\Routing\Controller
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 262
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 205
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 721
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 127
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 103
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 55
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 723
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 698
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 662
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 651
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 167
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php'
+                      line: 49
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\View\Middleware\ShareErrorsFromSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                      line: 52
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Fruitcake\Cors\HandleCors
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                      line: 121
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                      line: 64
+                      function: handleStatefulRequest
+                      class: Illuminate\Session\Middleware\StartSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Session\Middleware\StartSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 142
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 111
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 92
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 209
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 166
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 95
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 124
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 71
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 49
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 51
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 40
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 653
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 136
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Command\Command.php'
+                      line: 298
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 121
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 1040
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 301
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 171
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 94
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 129
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\artisan'
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'Driver [quia] not supported.'
+                  exception:
+                    type: string
+                    example: InvalidArgumentException
+                  file:
+                    type: string
+                    example: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                  line:
+                    type: integer
+                    example: 109
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                        line: 80
+                        function: createDriver
+                        class: Illuminate\Support\Manager
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
+                        line: 261
+                        function: driver
+                        class: Illuminate\Support\Manager
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
+                        line: 25
+                        function: __callStatic
+                        class: Illuminate\Support\Facades\Facade
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                        line: 54
+                        function: redirectToProvider
+                        class: App\Http\Controllers\API\GoogleSocialiteController
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 45
+                        function: callAction
+                        class: Illuminate\Routing\Controller
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 262
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 205
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 721
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 127
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 103
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 55
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 723
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 698
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 662
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 651
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 167
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php'
+                        line: 49
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\View\Middleware\ShareErrorsFromSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                        line: 52
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Fruitcake\Cors\HandleCors
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                        line: 121
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                        line: 64
+                        function: handleStatefulRequest
+                        class: Illuminate\Session\Middleware\StartSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Session\Middleware\StartSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 142
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 111
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 92
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 209
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 166
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 95
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 124
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 71
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 49
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 51
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 40
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 653
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 136
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Command\Command.php'
+                        line: 298
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 121
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 1040
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 301
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 171
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 94
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 129
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\artisan'
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+                      properties:
+                        file:
+                          type: string
+                          example: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                        line:
+                          type: integer
+                          example: 80
+                        function:
+                          type: string
+                          example: createDriver
+                        class:
+                          type: string
+                          example: Illuminate\Support\Manager
+                        type:
+                          type: string
+                          example: '->'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: provider
+        description: ''
+        example: quia
+        required: true
+        schema:
+          type: string
+  '/api/v1/auth/callback/{provider}':
+    get:
+      summary: 'Create a new controller instance.'
+      operationId: createANewControllerInstance
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Driver [in] not supported.'
+                  exception: InvalidArgumentException
+                  file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                  line: 109
+                  trace:
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                      line: 80
+                      function: createDriver
+                      class: Illuminate\Support\Manager
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
+                      line: 261
+                      function: driver
+                      class: Illuminate\Support\Manager
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
+                      line: 36
+                      function: __callStatic
+                      class: Illuminate\Support\Facades\Facade
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                      line: 54
+                      function: handleCallback
+                      class: App\Http\Controllers\API\GoogleSocialiteController
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 45
+                      function: callAction
+                      class: Illuminate\Routing\Controller
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 262
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 205
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 721
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 127
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 103
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 55
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 723
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 698
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 662
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 651
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 167
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 128
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php'
+                      line: 49
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\View\Middleware\ShareErrorsFromSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                      line: 52
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Fruitcake\Cors\HandleCors
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                      line: 121
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                      line: 64
+                      function: handleStatefulRequest
+                      class: Illuminate\Session\Middleware\StartSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 167
+                      function: handle
+                      class: Illuminate\Session\Middleware\StartSession
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 103
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 142
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 111
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 92
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 209
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 166
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 95
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 124
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 71
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 49
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 51
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 40
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 653
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 136
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Command\Command.php'
+                      line: 298
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 121
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 1040
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 301
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                      line: 171
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 94
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 129
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\xampp\htdocs\shreeja\groomely_backend\artisan'
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'Driver [in] not supported.'
+                  exception:
+                    type: string
+                    example: InvalidArgumentException
+                  file:
+                    type: string
+                    example: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                  line:
+                    type: integer
+                    example: 109
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                        line: 80
+                        function: createDriver
+                        class: Illuminate\Support\Manager
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
+                        line: 261
+                        function: driver
+                        class: Illuminate\Support\Manager
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
+                        line: 36
+                        function: __callStatic
+                        class: Illuminate\Support\Facades\Facade
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                        line: 54
+                        function: handleCallback
+                        class: App\Http\Controllers\API\GoogleSocialiteController
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 45
+                        function: callAction
+                        class: Illuminate\Routing\Controller
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 262
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 205
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 721
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 127
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 103
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 55
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 723
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 698
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 662
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 651
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 167
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 128
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\View\Middleware\ShareErrorsFromSession.php'
+                        line: 49
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\View\Middleware\ShareErrorsFromSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\fruitcake\laravel-cors\src\HandleCors.php'
+                        line: 52
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Fruitcake\Cors\HandleCors
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                        line: 121
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Session\Middleware\StartSession.php'
+                        line: 64
+                        function: handleStatefulRequest
+                        class: Illuminate\Session\Middleware\StartSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 167
+                        function: handle
+                        class: Illuminate\Session\Middleware\StartSession
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 103
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 142
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 111
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 92
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 209
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 166
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 95
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 124
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 71
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 49
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 51
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 40
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 653
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 136
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Command\Command.php'
+                        line: 298
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 121
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 1040
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 301
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\symfony\console\Application.php'
+                        line: 171
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 94
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 129
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\xampp\htdocs\shreeja\groomely_backend\artisan'
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+                      properties:
+                        file:
+                          type: string
+                          example: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
+                        line:
+                          type: integer
+                          example: 80
+                        function:
+                          type: string
+                          example: createDriver
+                        class:
+                          type: string
+                          example: Illuminate\Support\Manager
+                        type:
+                          type: string
+                          example: '->'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: provider
+        description: ''
+        example: in
+        required: true
+        schema:
+          type: string
+  /api/v1/category/list:
+    get:
+      summary: ''
+      operationId: getApiV1CategoryList
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: 1
+                      name: Women
+                      slug: women
+                      icon: category/women-hair-cut.png
+                    -
+                      id: 2
+                      name: "Men's"
+                      slug: men
+                      icon: category/men-hair-cut.png
+                    -
+                      id: 3
+                      name: Children
+                      slug: children
+                      icon: category/children.png
+                  message: 'Category find successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Women
+                        slug: women
+                        icon: category/women-hair-cut.png
+                      -
+                        id: 2
+                        name: "Men's"
+                        slug: men
+                        icon: category/men-hair-cut.png
+                      -
+                        id: 3
+                        name: Children
+                        slug: children
+                        icon: category/children.png
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Women
+                        slug:
+                          type: string
+                          example: women
+                        icon:
+                          type: string
+                          example: category/women-hair-cut.png
+                  message:
+                    type: string
+                    example: 'Category find successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/category/service-types:
+    post:
+      summary: ''
+      operationId: postApiV1CategoryServiceTypes
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: number
+                  description: ''
+                  example: 16430.1249041
+              required:
+                - category_id
+      security: []
+  /api/v1/service/types:
+    get:
+      summary: ''
+      operationId: getApiV1ServiceTypes
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: 1
+                      name: Styling
+                      image: service_type/styling.png
+                    -
+                      id: 2
+                      name: Spa
+                      image: service_type/spa.png
+                    -
+                      id: 3
+                      name: Women-haircutting
+                      image: service_type/styling.png
+                    -
+                      id: 4
+                      name: Trimming
+                      image: service_type/trimming.png
+                    -
+                      id: 5
+                      name: Shaving
+                      image: service_type/shaving.png
+                    -
+                      id: 6
+                      name: Package
+                      image: service_type/package.png
+                    -
+                      id: 7
+                      name: Haircutting
+                      image: service_type/haircutting.png
+                  message: 'Servicetype find successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Styling
+                        image: service_type/styling.png
+                      -
+                        id: 2
+                        name: Spa
+                        image: service_type/spa.png
+                      -
+                        id: 3
+                        name: Women-haircutting
+                        image: service_type/styling.png
+                      -
+                        id: 4
+                        name: Trimming
+                        image: service_type/trimming.png
+                      -
+                        id: 5
+                        name: Shaving
+                        image: service_type/shaving.png
+                      -
+                        id: 6
+                        name: Package
+                        image: service_type/package.png
+                      -
+                        id: 7
+                        name: Haircutting
+                        image: service_type/haircutting.png
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Styling
+                        image:
+                          type: string
+                          example: service_type/styling.png
+                  message:
+                    type: string
+                    example: 'Servicetype find successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/service/list:
+    get:
+      summary: ''
+      operationId: getApiV1ServiceList
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      category_id: 1
+                      service_type_id: 1
+                      additional_service_id: 13
+                      duration: '2:30'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T08:48:30.000000Z'
+                      updated_at: '2023-04-13T10:57:11.000000Z'
+                    -
+                      id: 2
+                      category_id: 1
+                      service_type_id: 2
+                      additional_service_id: 11
+                      duration: '2:30'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T08:51:20.000000Z'
+                      updated_at: '2023-04-13T10:57:19.000000Z'
+                    -
+                      id: 4
+                      category_id: 2
+                      service_type_id: 5
+                      additional_service_id: 5
+                      duration: '2:15'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T09:40:27.000000Z'
+                      updated_at: '2023-04-13T10:57:26.000000Z'
+                    -
+                      id: 5
+                      category_id: 2
+                      service_type_id: 6
+                      additional_service_id: 3
+                      duration: '1:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T09:41:10.000000Z'
+                      updated_at: '2023-03-31T10:17:37.000000Z'
+                    -
+                      id: 6
+                      category_id: 3
+                      service_type_id: 7
+                      additional_service_id: 1
+                      duration: '2:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-04-13T06:33:06.000000Z'
+                      updated_at: '2023-04-13T06:33:10.000000Z'
+                    -
+                      id: 7
+                      category_id: 3
+                      service_type_id: 7
+                      additional_service_id: 2
+                      duration: '1:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 0
+                      created_at: '2023-04-13T06:34:49.000000Z'
+                      updated_at: '2023-04-13T06:34:49.000000Z'
+                    -
+                      id: 8
+                      category_id: 2
+                      service_type_id: 6
+                      additional_service_id: 4
+                      duration: '3:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 0
+                      created_at: '2023-04-13T06:37:50.000000Z'
+                      updated_at: '2023-04-13T06:37:50.000000Z'
+                    -
+                      id: 9
+                      category_id: 2
+                      service_type_id: 5
+                      additional_service_id: 6
+                      duration: '2:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 0
+                      created_at: '2023-04-13T06:39:10.000000Z'
+                      updated_at: '2023-04-13T06:39:10.000000Z'
+                    -
+                      id: 10
+                      category_id: 1
+                      service_type_id: 2
+                      additional_service_id: 12
+                      duration: '2:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 0
+                      created_at: '2023-04-13T06:40:33.000000Z'
+                      updated_at: '2023-04-13T06:40:33.000000Z'
+                  status: true
+                  message: 'Service find successfully'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:48:30.000000Z'
+                        updated_at: '2023-04-13T10:57:11.000000Z'
+                      -
+                        id: 2
+                        category_id: 1
+                        service_type_id: 2
+                        additional_service_id: 11
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:51:20.000000Z'
+                        updated_at: '2023-04-13T10:57:19.000000Z'
+                      -
+                        id: 4
+                        category_id: 2
+                        service_type_id: 5
+                        additional_service_id: 5
+                        duration: '2:15'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T09:40:27.000000Z'
+                        updated_at: '2023-04-13T10:57:26.000000Z'
+                      -
+                        id: 5
+                        category_id: 2
+                        service_type_id: 6
+                        additional_service_id: 3
+                        duration: '1:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T09:41:10.000000Z'
+                        updated_at: '2023-03-31T10:17:37.000000Z'
+                      -
+                        id: 6
+                        category_id: 3
+                        service_type_id: 7
+                        additional_service_id: 1
+                        duration: '2:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-04-13T06:33:06.000000Z'
+                        updated_at: '2023-04-13T06:33:10.000000Z'
+                      -
+                        id: 7
+                        category_id: 3
+                        service_type_id: 7
+                        additional_service_id: 2
+                        duration: '1:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 0
+                        created_at: '2023-04-13T06:34:49.000000Z'
+                        updated_at: '2023-04-13T06:34:49.000000Z'
+                      -
+                        id: 8
+                        category_id: 2
+                        service_type_id: 6
+                        additional_service_id: 4
+                        duration: '3:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 0
+                        created_at: '2023-04-13T06:37:50.000000Z'
+                        updated_at: '2023-04-13T06:37:50.000000Z'
+                      -
+                        id: 9
+                        category_id: 2
+                        service_type_id: 5
+                        additional_service_id: 6
+                        duration: '2:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 0
+                        created_at: '2023-04-13T06:39:10.000000Z'
+                        updated_at: '2023-04-13T06:39:10.000000Z'
+                      -
+                        id: 10
+                        category_id: 1
+                        service_type_id: 2
+                        additional_service_id: 12
+                        duration: '2:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 0
+                        created_at: '2023-04-13T06:40:33.000000Z'
+                        updated_at: '2023-04-13T06:40:33.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        category_id:
+                          type: integer
+                          example: 1
+                        service_type_id:
+                          type: integer
+                          example: 1
+                        additional_service_id:
+                          type: integer
+                          example: 13
+                        duration:
+                          type: string
+                          example: '2:30'
+                        description:
+                          type: string
+                          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status:
+                          type: integer
+                          example: 1
+                        popular_services:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-03-27T08:48:30.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-04-13T10:57:11.000000Z'
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Service find successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/service/list-by-serviceType:
+    post:
+      summary: ''
+      operationId: postApiV1ServiceListByServiceType
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_type:
+                  type: string
+                  description: ''
+                  example: maxime
+              required:
+                - service_type
+      security: []
+  /api/v1/service/details:
+    post:
+      summary: ''
+      operationId: postApiV1ServiceDetails
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: number
+                  description: ''
+                  example: 125490094.9
+              required:
+                - service_id
+      security: []
+  /api/v1/service/populars:
+    get:
+      summary: ''
+      operationId: getApiV1ServicePopulars
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      category_id: 1
+                      service_type_id: 1
+                      additional_service_id: 13
+                      duration: '2:30'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T08:48:30.000000Z'
+                      updated_at: '2023-04-13T10:57:11.000000Z'
+                      additional_service:
+                        id: 13
+                        service_type_id: 1
+                        name: 'Hair starighning'
+                        status: 1
+                        created_at: '2023-03-27T08:47:47.000000Z'
+                        updated_at: '2023-03-27T08:47:47.000000Z'
+                      review:
+                        -
+                          id: 1
+                          appointment_id: 3
+                          user_id: 2
+                          service_id: 1
+                          comment: 'good service'
+                          rating: '4'
+                          created_at: '2023-04-27T04:51:35.000000Z'
+                          updated_at: '2023-04-27T04:51:35.000000Z'
+                    -
+                      id: 4
+                      category_id: 2
+                      service_type_id: 5
+                      additional_service_id: 5
+                      duration: '2:15'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T09:40:27.000000Z'
+                      updated_at: '2023-04-13T10:57:26.000000Z'
+                      additional_service:
+                        id: 5
+                        service_type_id: 5
+                        name: 'Stylist shaving'
+                        status: 1
+                        created_at: '2023-03-27T08:45:34.000000Z'
+                        updated_at: '2023-03-27T08:45:34.000000Z'
+                      review: []
+                    -
+                      id: 5
+                      category_id: 2
+                      service_type_id: 6
+                      additional_service_id: 3
+                      duration: '1:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T09:41:10.000000Z'
+                      updated_at: '2023-03-31T10:17:37.000000Z'
+                      additional_service:
+                        id: 3
+                        service_type_id: 6
+                        name: 'Shaving + Hair cutting + Massage'
+                        status: 1
+                        created_at: '2023-03-27T08:45:08.000000Z'
+                        updated_at: '2023-03-27T08:45:08.000000Z'
+                      review: []
+                    -
+                      id: 6
+                      category_id: 3
+                      service_type_id: 7
+                      additional_service_id: 1
+                      duration: '2:15'
+                      description: 'lorem ipsum dolor sit amet'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-04-13T06:33:06.000000Z'
+                      updated_at: '2023-04-13T06:33:10.000000Z'
+                      additional_service:
+                        id: 1
+                        service_type_id: 7
+                        name: 'Stylist Child Haircutting'
+                        status: 1
+                        created_at: '2023-03-27T08:44:47.000000Z'
+                        updated_at: '2023-03-27T08:44:47.000000Z'
+                      review: []
+                  status: true
+                  message: 'Popular service find successfully'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:48:30.000000Z'
+                        updated_at: '2023-04-13T10:57:11.000000Z'
+                        additional_service:
+                          id: 13
+                          service_type_id: 1
+                          name: 'Hair starighning'
+                          status: 1
+                          created_at: '2023-03-27T08:47:47.000000Z'
+                          updated_at: '2023-03-27T08:47:47.000000Z'
+                        review:
+                          -
+                            id: 1
+                            appointment_id: 3
+                            user_id: 2
+                            service_id: 1
+                            comment: 'good service'
+                            rating: '4'
+                            created_at: '2023-04-27T04:51:35.000000Z'
+                            updated_at: '2023-04-27T04:51:35.000000Z'
+                      -
+                        id: 4
+                        category_id: 2
+                        service_type_id: 5
+                        additional_service_id: 5
+                        duration: '2:15'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T09:40:27.000000Z'
+                        updated_at: '2023-04-13T10:57:26.000000Z'
+                        additional_service:
+                          id: 5
+                          service_type_id: 5
+                          name: 'Stylist shaving'
+                          status: 1
+                          created_at: '2023-03-27T08:45:34.000000Z'
+                          updated_at: '2023-03-27T08:45:34.000000Z'
+                        review: []
+                      -
+                        id: 5
+                        category_id: 2
+                        service_type_id: 6
+                        additional_service_id: 3
+                        duration: '1:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T09:41:10.000000Z'
+                        updated_at: '2023-03-31T10:17:37.000000Z'
+                        additional_service:
+                          id: 3
+                          service_type_id: 6
+                          name: 'Shaving + Hair cutting + Massage'
+                          status: 1
+                          created_at: '2023-03-27T08:45:08.000000Z'
+                          updated_at: '2023-03-27T08:45:08.000000Z'
+                        review: []
+                      -
+                        id: 6
+                        category_id: 3
+                        service_type_id: 7
+                        additional_service_id: 1
+                        duration: '2:15'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-04-13T06:33:06.000000Z'
+                        updated_at: '2023-04-13T06:33:10.000000Z'
+                        additional_service:
+                          id: 1
+                          service_type_id: 7
+                          name: 'Stylist Child Haircutting'
+                          status: 1
+                          created_at: '2023-03-27T08:44:47.000000Z'
+                          updated_at: '2023-03-27T08:44:47.000000Z'
+                        review: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        category_id:
+                          type: integer
+                          example: 1
+                        service_type_id:
+                          type: integer
+                          example: 1
+                        additional_service_id:
+                          type: integer
+                          example: 13
+                        duration:
+                          type: string
+                          example: '2:30'
+                        description:
+                          type: string
+                          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status:
+                          type: integer
+                          example: 1
+                        popular_services:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-03-27T08:48:30.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-04-13T10:57:11.000000Z'
+                        additional_service:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 13
+                            service_type_id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: 'Hair starighning'
+                            status:
+                              type: integer
+                              example: 1
+                            created_at:
+                              type: string
+                              example: '2023-03-27T08:47:47.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-03-27T08:47:47.000000Z'
+                        review:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              appointment_id: 3
+                              user_id: 2
+                              service_id: 1
+                              comment: 'good service'
+                              rating: '4'
+                              created_at: '2023-04-27T04:51:35.000000Z'
+                              updated_at: '2023-04-27T04:51:35.000000Z'
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              appointment_id:
+                                type: integer
+                                example: 3
+                              user_id:
+                                type: integer
+                                example: 2
+                              service_id:
+                                type: integer
+                                example: 1
+                              comment:
+                                type: string
+                                example: 'good service'
+                              rating:
+                                type: string
+                                example: '4'
+                              created_at:
+                                type: string
+                                example: '2023-04-27T04:51:35.000000Z'
+                              updated_at:
+                                type: string
+                                example: '2023-04-27T04:51:35.000000Z'
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Popular service find successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/appointment/booking-times:
+    get:
+      summary: ''
+      operationId: getApiV1AppointmentBookingTimes
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: 1
+                      time: '9:00 am - 10:00 am'
+                    -
+                      id: 2
+                      time: '10:00 am - 11:00 am'
+                    -
+                      id: 3
+                      time: '11:00 am - 12:00 pm'
+                    -
+                      id: 4
+                      time: '12:00 pm - 1:00 pm'
+                    -
+                      id: 5
+                      time: '1:00 pm - 2:00 pm'
+                    -
+                      id: 6
+                      time: '2:00 pm - 3:00 pm'
+                    -
+                      id: 7
+                      time: '3:00 pm - 4:00 pm'
+                    -
+                      id: 8
+                      time: '4:00 pm - 5:00 pm'
+                    -
+                      id: 9
+                      time: '5:00 pm - 6:00 pm'
+                    -
+                      id: 10
+                      time: '6:00 pm - 7:00 pm'
+                    -
+                      id: 11
+                      time: '7:00 pm - 8:00 pm'
+                  message: 'Booking time find successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        time: '9:00 am - 10:00 am'
+                      -
+                        id: 2
+                        time: '10:00 am - 11:00 am'
+                      -
+                        id: 3
+                        time: '11:00 am - 12:00 pm'
+                      -
+                        id: 4
+                        time: '12:00 pm - 1:00 pm'
+                      -
+                        id: 5
+                        time: '1:00 pm - 2:00 pm'
+                      -
+                        id: 6
+                        time: '2:00 pm - 3:00 pm'
+                      -
+                        id: 7
+                        time: '3:00 pm - 4:00 pm'
+                      -
+                        id: 8
+                        time: '4:00 pm - 5:00 pm'
+                      -
+                        id: 9
+                        time: '5:00 pm - 6:00 pm'
+                      -
+                        id: 10
+                        time: '6:00 pm - 7:00 pm'
+                      -
+                        id: 11
+                        time: '7:00 pm - 8:00 pm'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        time:
+                          type: string
+                          example: '9:00 am - 10:00 am'
+                  message:
+                    type: string
+                    example: 'Booking time find successfully'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/home/list:
+    post:
+      summary: 'Service List API'
+      operationId: serviceListAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: '1'
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        name: 'John Doe'
+                        email: johh@yopmail.com
+                        phone: '1234567890'
+                        zipcode: '123456'
+                        profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        name:
+                          type: string
+                          example: 'John Doe'
+                        email:
+                          type: string
+                          example: johh@yopmail.com
+                        phone:
+                          type: string
+                          example: '1234567890'
+                        zipcode:
+                          type: string
+                          example: '123456'
+                        profile_picture:
+                          type: string
+                          example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_name:
+                  type: string
+                  description: ''
+                  example: mollitia
+              required:
+                - service_name
+      security: []
+  /api/v1/home/best-sellers:
+    post:
+      summary: ''
+      operationId: postApiV1HomeBestSellers
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/home/banners:
+    post:
+      summary: ''
+      operationId: postApiV1HomeBanners
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
