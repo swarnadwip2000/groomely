@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
+
+/**
+ * @group Profile APIs
+ *
+ * APIs for Profile
+ */
+
 class ProfileController extends Controller
 {
     public $successStatus = 200;
@@ -32,7 +39,7 @@ class ProfileController extends Controller
      *     "phone": "1234567890",
      *     "zipcode": "123456",
      *     "status": 1,
-     *     "profile_picture": "http://127.0.0.1:8000/storage/customer/2021-08-11-1628661381.jpg",
+     *     "profile_picture": "customer/2021-08-11-1628661381.jpg",
      *     "created_at": "2023-03-15T06:15:27.000000Z",
      *     "updated_at": "2023-04-25T06:57:45.000000Z"
      * },

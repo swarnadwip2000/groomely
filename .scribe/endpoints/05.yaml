@@ -1,0 +1,389 @@
+name: 'Appointments APIs'
+description: |-
+
+  APIs for Appointments
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/create
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Booking Create Api'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      service_id:
+        name: service_id
+        description: service_id.
+        required: true
+        example: qui
+        type: string
+        custom: []
+      seller_id:
+        name: seller_id
+        description: seller_id.
+        required: true
+        example: voluptatibus
+        type: string
+        custom: []
+      booking_date:
+        name: booking_date
+        description: booking_date.
+        required: true
+        example: qui
+        type: string
+        custom: []
+      amount:
+        name: amount
+        description: amount.
+        required: true
+        example: placeat
+        type: string
+        custom: []
+      booking_time_id:
+        name: booking_time_id
+        description: booking_time_id.
+        required: true
+        example: magnam
+        type: string
+        custom: []
+    cleanBodyParameters:
+      service_id: qui
+      seller_id: voluptatibus
+      booking_date: qui
+      amount: placeat
+      booking_time_id: magnam
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Booking successfully.",
+          "data": {
+          "user": {
+          "id": 1,
+          "name": "John Doe",
+          "email": "johh@yopmail.com"
+          }
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The service_id field is required.",
+          "The seller_id field is required.",
+          "The booking_date type field is required.",
+          "The amount field is required.",
+          "The booking_time_id field is required."
+
+
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/list
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Booking List API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": "1",
+                    "time": "9:00 am - 10:00 am"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/details
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Booking Details API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      appointment_id:
+        name: appointment_id
+        description: ''
+        required: true
+        example: 307919.9841839
+        type: number
+        custom: []
+    cleanBodyParameters:
+      appointment_id: 307919.9841839
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Booking found successfully.",
+          "data": {
+          "user": {
+          "id": 1,
+          "name": "John Doe",
+          "email": "johh@yopmail.com",
+          "phone": "1234567890",
+          "zipcode": "123456"
+
+          }
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No booking found!."
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/review/submit
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Review Submit API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      appointment_id:
+        name: appointment_id
+        description: appointment_id
+        required: true
+        example: exercitationem
+        type: string
+        custom: []
+      service_id:
+        name: service_id
+        description: 'User service_id'
+        required: false
+        example: repudiandae
+        type: required
+        custom: []
+      comment:
+        name: comment
+        description: comment
+        required: true
+        example: nam
+        type: string
+        custom: []
+      rating:
+        name: rating
+        description: rating
+        required: true
+        example: velit
+        type: string
+        custom: []
+    cleanBodyParameters:
+      appointment_id: exercitationem
+      service_id: repudiandae
+      comment: nam
+      rating: velit
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "data": {
+              "id": 1,
+              "name": "John Doe",
+              "email": "john@yopmail.com",
+              "phone": "1234567890",
+              "zipcode": "123456",
+              "status": 1,
+              "profile_picture": "customer/2021-08-11-1628661381.jpg",
+              "created_at": "2023-03-15T06:15:27.000000Z",
+              "updated_at": "2023-04-25T06:57:45.000000Z"
+          },
+          "message": "Profile updated successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The appointment_id field is required.",
+          "The service_id field is required.",
+          "The comment field is required.",
+          "The rating field is required."
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+           "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

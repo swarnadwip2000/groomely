@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Session;
 
+/**
+ * @group Authentication APIs
+ *
+ * APIs for Authentication
+ */
+
 
 class AuthController extends Controller
 {
@@ -34,7 +40,7 @@ class AuthController extends Controller
      * "phone": "1234567890",
      * "zipcode": "123456",
      * "status": 1,
-     *  "profile_picture": "http://127.0.0.1:8000/storage/seller/20210914121212image.jpg",
+     *  "profile_picture": "customer/20210914121212image.jpg",
      * }
      * }
      * }

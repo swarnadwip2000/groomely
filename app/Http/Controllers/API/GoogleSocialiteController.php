@@ -12,23 +12,116 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use File;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @group Social Login APIs
+ *
+ * APIs for Social Login
+ */
+
+
 class GoogleSocialiteController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
     public $successStatus = 200;
+    /**
+     * Getting Strarted Api.
+     * @bodyParam provider string required provider, must be google or facebook.
+     * @return void
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Logged in successfully.",
+     * "data": {
+     * "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1N",
+     * "user_details": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "john@gmail.com",
+     * "email_verified_at": null,
+     * "phone": "1234567890",
+     * "zipcode": "123456",
+     * "status": 1,
+     * "profile_picture": "user/20210914121212image.jpg",
+     * "created_at": "2021-09-14T12:12:12.000000Z",
+     * "updated_at": "2021-09-14T12:12:12.000000Z",
+     * "deleted_at": null,
+     * "login_status": 1,
+     * "google_id": "1234567890",
+     * "social_type": "google"
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The provider field is required."
+     * ]
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+     */
+
     public function redirectToProvider($provider)
     {
         return Socialite::driver($provider)->stateless()->redirect();
     }
 
     /**
-     * Create a new controller instance.
-     *
+     * Social login Api.
+     * @bodyParam provider string required provider, must be google or facebook.
      * @return void
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Logged in successfully.",
+     * "data": {
+     * "auth_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1N",
+     * "user_details": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "john@gmail.com",
+     * "email_verified_at": null,
+     * "phone": "1234567890",
+     * "zipcode": "123456",
+     * "status": 1,
+     * "profile_picture": "user/20210914121212image.jpg",
+     * "created_at": "2021-09-14T12:12:12.000000Z",
+     * "updated_at": "2021-09-14T12:12:12.000000Z",
+     * "deleted_at": null,
+     * "login_status": 1,
+     * "google_id": "1234567890",
+     * "social_type": "google"
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The provider field is required."
+     * ]
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
      */
     public function handleCallback($provider)
     {

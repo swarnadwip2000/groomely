@@ -12,38 +12,48 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 
+/**
+ * @group Forget Password APIs
+ *
+ * APIs for Forget Password
+ */
+
 class ForgetPasswordController extends Controller
 {
     public $successStatus = 200;
     
     /**
      * Forget Password API
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     * @bodyParam email string required Email
+     * @bodyParam email string required email, must be unique.
      * @response {
-     *  "status": true,
-     *   "statusCode": 200,
-     *     "message": "OTP sent successfully."
-     *  }
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Email sent successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "john@gmail.com",
+     * "phone": "1234567890",
+     * "zipcode": "123456",
+     * "status": 1,
+     * "profile_picture": "customer/20210914121212image.jpg",
+     * }
+     * }
+     * }
      * @response 401 {
      * "status": false,
      * "statusCode": 401,
      * "error": {
      * "message": [
-     * "The email field is required."
+     * "The email field is required.",
+     * "The email must be a valid email address."
      * ]
      * }
      * }
      * @response 401 {
-     * "message": "Email not found!",
-     * "status": false
+     * "message": "Couldn't find your account!"
      * }
-     * @response 401 {
-     * "message": "Email not found!",
-     * "status": false
-     * }
-     * 
      */
 
     public function forgetPassword(Request $request)

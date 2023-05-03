@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Exception;
 
+/**
+ * @group User details APIs
+ *
+ * APIs for User details
+ */
+
+
 class DetailsController extends Controller
 {
     public $successStatus = 200;
@@ -74,7 +81,7 @@ class DetailsController extends Controller
      *           "email": "johh@yopmail.com",
      *           "phone": "1234567890",
      *           "zipcode": "123456",
-     *           "profile_picture": "http://127.0.0.1:8000/storage/profile_picture/1629796360.jpg"
+     *           "profile_picture": "profile_picture/1629796360.jpg"
      *       }
      *   ]
      * }

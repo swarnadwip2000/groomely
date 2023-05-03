@@ -9,6 +9,13 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+/**
+ * @group Seller details APIs
+ *
+ * APIs for Seller details
+ */
+
 class SellerController extends Controller
 {
     use SoftDeletes;
@@ -29,7 +36,7 @@ class SellerController extends Controller
      * "phone": "1234567890",
      * "zipcode": "123456",
      * "shop_name": "Shop Name",
-     * "profile_picture": "http://127.0.0.1:8000/storage/seller/20210914121212image.jpg",
+     * "profile_picture": "seller/20210914121212image.jpg",
      * }
      * }
      * }
@@ -82,7 +89,7 @@ class SellerController extends Controller
      *     "zipcode": "123456",
      *    "shop_name": "Shop Name",
      *     "status": 1,
-     *     "profile_picture": "http://127.0.0.1:8000/storage/seller/20210914121212image.jpg",
+     *     "profile_picture": "seller/20210914121212image.jpg",
      *     "created_at": "2023-03-15T06:15:27.000000Z",
      *     "updated_at": "2023-04-25T06:57:45.000000Z"
      * },
@@ -159,7 +166,7 @@ class SellerController extends Controller
      *              "zipcode": "123456",
      *              "shop_name": "Shop Name",
      *              "status": 1,
-     *              "profile_picture": "http://127.0.0.1:8000/storage/user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png",
+     *              "profile_picture": "user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png",
      *              "created_at": "2023-03-15T06:15:27.000000Z",
      *              "updated_at": "2023-04-25T06:57:45.000000Z"
      *       },

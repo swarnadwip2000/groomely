@@ -1,0 +1,703 @@
+name: 'Listing APIs'
+description: |-
+
+  APIs for Listing
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/category/list
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Category List API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": "1",
+                    "name": "Women",
+                    "slug": "women",
+                    "icon": "category/2021-05-12-1620813781.jpg"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/category/service-types
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Service Types Api'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      category_id:
+        name: category_id
+        description: 'Category Id'
+        required: true
+        example: deleniti
+        type: string
+        custom: []
+    cleanBodyParameters:
+      category_id: deleniti
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Service type find successfully",
+          "data": [
+          {
+                "id": 4,
+                "category_id": 2,
+                "name": "Trimming",
+                "image": "service_type/trimming.png",
+                "status": 1,
+                "main": 1,
+                "created_at": "2023-03-27T06:41:40.000000Z",
+                "updated_at": "2023-03-27T06:41:40.000000Z"
+            }
+          ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The category_id field is required.",
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/service/types
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Service Type API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": "1",
+                    "name": "Styling",
+                    "icon": "service_type/styling.png"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/service/list
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Service Listing API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": 1,
+                    "category_id": 1,
+                    "service_type_id": 1,
+                    "additional_service_id": 13,
+                    "duration": "2:30",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                    "status": 1,
+                    "popular_services": 1,
+                    "created_at": "2023-03-27T08:48:30.000000Z",
+                    "updated_at": "2023-04-13T10:57:11.000000Z"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/service/list-by-serviceType
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Service List by Service Types Api'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      service_type:
+        name: service_type
+        description: ''
+        required: true
+        example: libero
+        type: string
+        custom: []
+      category_id:
+        name: category_id
+        description: 'Category Id'
+        required: true
+        example: modi
+        type: string
+        custom: []
+    cleanBodyParameters:
+      service_type: libero
+      category_id: modi
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Service type find successfully",
+          "data": [
+          {
+                "id": 1,
+                "user_id": 3,
+                "service_id": 1,
+                "rate": "250",
+                "status": 1,
+                "created_at": "2023-03-27T09:42:02.000000Z",
+                "updated_at": "2023-03-31T10:12:19.000000Z",
+                "service": {
+                    "id": 1,
+                    "category_id": 1,
+                    "service_type_id": 1,
+                    "additional_service_id": 13,
+                    "duration": "2:30",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                    "status": 1,
+                    "popular_services": 1,
+                    "created_at": "2023-03-27T08:48:30.000000Z",
+                    "updated_at": "2023-04-13T10:57:11.000000Z",
+                    "additional_service": {
+                        "id": 13,
+                        "name": "Hair starighning"
+                    },
+                    "images": [
+                        {
+                            "id": 1,
+                           "service_id": 1,
+                            "slider_image": "service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg",
+                            "created_at": "2023-03-27T08:48:31.000000Z",
+                            "updated_at": "2023-03-27T08:48:31.000000Z"
+                        }
+                   ],
+                    "seller_service": [
+                        {
+                            "id": 1,
+                            "user_id": 3,
+                            "service_id": 1,
+                            "rate": "250",
+                            "status": 1,
+                            "created_at": "2023-03-27T09:42:02.000000Z",
+                            "updated_at": "2023-03-31T10:12:19.000000Z"
+                        }
+                    ],
+                     "review": [
+                        {
+                            "id": 1,
+                            "appointment_id": 3,
+                            "user_id": 2,
+                            "service_id": 1,
+                            "comment": "good service",
+                            "rating": "4",
+                           "created_at": "2023-04-27T04:51:35.000000Z",
+                            "updated_at": "2023-04-27T04:51:35.000000Z"
+                        }
+                    ]
+                    }
+                }
+           ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The category_id field is required.",
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/service/details
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Service Details API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      service_id:
+        name: service_id
+        description: ''
+        required: true
+        example: 30069686.772939
+        type: number
+        custom: []
+    cleanBodyParameters:
+      service_id: 30069686.772939
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Service found successfully.",
+          "data": {
+                   "id": 5,
+                   "duration": "1:15",
+                   "description": "lorem ipsum dolor sit amet",
+                   "additional_service_id": 3,
+                   "images": [
+                      {
+                           "id": 17,
+                           "service_id": 5,
+                           "slider_image": "service/oAFHFz3En6styJNLxwepcJCxVZhg3Q7bujyJaTsy.jpg",
+                           "created_at": "2023-03-27T09:41:10.000000Z",
+                           "updated_at": "2023-03-27T09:41:10.000000Z"
+                       }
+                   ],
+                   "additional_service": {
+                       "id": 3,
+                       "service_type_id": 6,
+                       "name": "Shaving + Hair cutting + Massage",
+                      "status": 1,
+                       "created_at": "2023-03-27T08:45:08.000000Z",
+                       "updated_at": "2023-03-27T08:45:08.000000Z"
+                   },
+                   "seller_service": [
+                       {
+                           "id": 6,
+                           "user_id": 6,
+                           "service_id": 5,
+                           "rate": "450",
+                           "status": 1,
+                           "created_at": "2023-04-13T06:45:16.000000Z",
+                           "updated_at": "2023-04-13T06:45:16.000000Z",
+                           "user": {
+                               "id": 6,
+                               "shop_name": "Diamond Shop"
+                           }
+                       }
+                   ]
+               }
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "Service not found successfully."
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/service/populars
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Popular service API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                "id": 1,
+                "category_id": 1,
+                "service_type_id": 1,
+                "additional_service_id": 13,
+                "duration": "2:30",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                "status": 1,
+                "popular_services": 1,
+                "created_at": "2023-03-27T08:48:30.000000Z",
+                "updated_at": "2023-04-13T10:57:11.000000Z",
+                "additional_service": {
+                     "id": 13,
+                    "service_type_id": 1,
+                    "name": "Hair starighning",
+                    "status": 1,
+                    "created_at": "2023-03-27T08:47:47.000000Z",
+                    "updated_at": "2023-03-27T08:47:47.000000Z"
+                },
+                "review": [
+                    {
+                        "id": 1,
+                        "appointment_id": 3,
+                        "user_id": 2,
+                        "service_id": 1,
+                        "comment": "good service",
+                        "rating": "4",
+                        "created_at": "2023-04-27T04:51:35.000000Z",
+                       "updated_at": "2023-04-27T04:51:35.000000Z"
+                    }
+                ]
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/appointment/booking-times
+    metadata:
+      groupName: 'Listing APIs'
+      groupDescription: |-
+
+        APIs for Listing
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Booking Time API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": "1",
+                    "time": "9:00 am - 10:00 am"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

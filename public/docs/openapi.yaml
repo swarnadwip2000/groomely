@@ -7,13 +7,53 @@ servers:
   -
     url: 'http://localhost'
 paths:
-  /api/user:
-    get:
-      summary: ''
-      operationId: getApiUser
+  /api/v1/users/booking/create:
+    post:
+      summary: 'Booking Create Api'
+      operationId: bookingCreateApi
       description: ''
       parameters: []
       responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Booking successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Booking successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
         401:
           description: ''
           content:
@@ -21,13 +61,323 @@ paths:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'No detail found!'
+                  status: false
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
       tags:
-        - Endpoints
+        - 'Appointments APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: string
+                  description: service_id.
+                  example: qui
+                seller_id:
+                  type: string
+                  description: seller_id.
+                  example: voluptatibus
+                booking_date:
+                  type: string
+                  description: booking_date.
+                  example: qui
+                amount:
+                  type: string
+                  description: amount.
+                  example: placeat
+                booking_time_id:
+                  type: string
+                  description: booking_time_id.
+                  example: magnam
+              required:
+                - service_id
+                - seller_id
+                - booking_date
+                - amount
+                - booking_time_id
+      security: []
+  /api/v1/users/booking/list:
+    post:
+      summary: 'Booking List API'
+      operationId: bookingListAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: '1'
+                      time: '9:00 am - 10:00 am'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        time: '9:00 am - 10:00 am'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        time:
+                          type: string
+                          example: '9:00 am - 10:00 am'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Appointments APIs'
+      security: []
+  /api/v1/users/booking/details:
+    post:
+      summary: 'Get Booking Details API'
+      operationId: getBookingDetailsAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Booking found successfully.'
+                  data:
+                    user:
+                      id: 1
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Booking found successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+                          phone:
+                            type: string
+                            example: '1234567890'
+                          zipcode:
+                            type: string
+                            example: '123456'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - 'Appointments APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment_id:
+                  type: number
+                  description: ''
+                  example: 307919.9841839
+              required:
+                - appointment_id
+      security: []
+  /api/v1/users/booking/review/submit:
+    post:
+      summary: 'Review Submit API'
+      operationId: reviewSubmitAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    id: 1
+                    name: 'John Doe'
+                    email: john@yopmail.com
+                    phone: '1234567890'
+                    zipcode: '123456'
+                    status: 1
+                    profile_picture: customer/2021-08-11-1628661381.jpg
+                    created_at: '2023-03-15T06:15:27.000000Z'
+                    updated_at: '2023-04-25T06:57:45.000000Z'
+                  message: 'Profile updated successfully'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: john@yopmail.com
+                      phone:
+                        type: string
+                        example: '1234567890'
+                      zipcode:
+                        type: string
+                        example: '123456'
+                      status:
+                        type: integer
+                        example: 1
+                      profile_picture:
+                        type: string
+                        example: customer/2021-08-11-1628661381.jpg
+                      created_at:
+                        type: string
+                        example: '2023-03-15T06:15:27.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2023-04-25T06:57:45.000000Z'
+                  message:
+                    type: string
+                    example: 'Profile updated successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - 'Appointments APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment_id:
+                  type: string
+                  description: appointment_id
+                  example: exercitationem
+                service_id:
+                  type: required
+                  description: 'User service_id'
+                  example: repudiandae
+                comment:
+                  type: string
+                  description: comment
+                  example: nam
+                rating:
+                  type: string
+                  description: rating
+                  example: velit
+              required:
+                - appointment_id
+                - comment
+                - rating
       security: []
   /api/v1/users/register:
     post:
@@ -93,7 +443,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Authentication APIs'
       requestBody:
         required: true
         content:
@@ -104,35 +454,35 @@ paths:
                 first_name:
                   type: string
                   description: first_name.
-                  example: aut
+                  example: ut
                 last_name:
                   type: string
                   description: last_name.
-                  example: quis
+                  example: quod
                 email:
                   type: string
                   description: 'email, must be unique.'
-                  example: orlando.keeling@example.net
+                  example: libbie98@example.com
                 phone:
                   type: string
                   description: phone.
-                  example: vero
+                  example: dignissimos
                 zipcode:
                   type: string
                   description: zipcode.
-                  example: natus
+                  example: asperiores
                 password:
                   type: string
                   description: 'password, must be 8 character long.'
-                  example: vfuc$A_`2G>$OyB
+                  example: ']BxzODVA7'
                 confirm_password:
                   type: string
                   description: 'The value and <code>password</code> must match. Must be at least 8 characters.'
-                  example: inzpvpbrzixdwkikoconeualoydyxrrtvktixfhmxuhniwxfifdtirucezwvywegxrpusbzinsnuycrii
+                  example: rgvjrzeegjnhtdfyyvcjxvulsswxnidizpjwookh
                 user_type:
                   type: string
                   description: 'user_type, must be USER or BUSINESS_OWNER.'
-                  example: excepturi
+                  example: culpa
               required:
                 - first_name
                 - last_name
@@ -153,59 +503,10 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  status: true
-                  statusCode: 200
-                  message: 'Login successfully.'
-                  data:
-                    user:
-                      id: 1
-                      name: 'John Doe'
-                      email: johh@yopmail.com
-                      phone: '1234567890'
-                      zipcode: '123456'
-                      status: 1
-                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
-                properties:
-                  status:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: 'Login successfully.'
-                  data:
-                    type: object
-                    properties:
-                      user:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                            example: 1
-                          name:
-                            type: string
-                            example: 'John Doe'
-                          email:
-                            type: string
-                            example: johh@yopmail.com
-                          phone:
-                            type: string
-                            example: '1234567890'
-                          zipcode:
-                            type: string
-                            example: '123456'
-                          status:
-                            type: integer
-                            example: 1
-                          profile_picture:
-                            type: string
-                            example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                type: string
+                example: "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Login successfully.\",\n\"data\": {\n\"user\": {\n\"id\": 1,\n\"name\": \"John Doe\",\n\"email\": \"johh@yopmail.com\",\n\"phone\": \"1234567890\",\n\"zipcode\": \"123456\",\n\"status\": 1,\n \"profile_picture\": \"customer/20210914121212image.jpg\",\n}\n}\n}"
         401:
           description: ''
           content:
@@ -223,7 +524,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Authentication APIs'
       requestBody:
         required: true
         content:
@@ -234,19 +535,41 @@ paths:
                 email:
                   type: string
                   description: 'email, must be unique.'
-                  example: vtromp@example.org
+                  example: zdaniel@example.org
                 password:
                   type: string
                   description: 'password, must be 8 character long.'
-                  example: ':I=dSx02zq/+'
+                  example: 'h`Dk0"Y#elnHngjz-x!K'
                 user_type:
                   type: string
                   description: 'user_type, must be USER or BUSINESS_OWNER.'
-                  example: sed
+                  example: qui
               required:
                 - email
                 - password
                 - user_type
+      security: []
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
       security: []
   /api/v1/users/forget-password:
     post:
@@ -292,7 +615,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Forget Password APIs'
       requestBody:
         required: true
         content:
@@ -303,14 +626,14 @@ paths:
                 email:
                   type: string
                   description: Email
-                  example: sauer.lucious@example.org
+                  example: vflatley@example.net
               required:
                 - email
       security: []
-  /api/v1/users/me:
-    post:
-      summary: 'Get Profile Details API'
-      operationId: getProfileDetailsAPI
+  /api/v1/category/list:
+    get:
+      summary: 'Category List API'
+      operationId: categoryListAPI
       description: ''
       parameters: []
       responses:
@@ -323,14 +646,100 @@ paths:
                 example:
                   status: true
                   statusCode: 200
-                  message: 'Profile found successfully.'
                   data:
-                    user:
-                      id: 1
-                      name: 'John Doe'
-                      email: johh@yopmail.com
-                      phone: '1234567890'
-                      zipcode: '123456'
+                    -
+                      id: '1'
+                      name: Women
+                      slug: women
+                      icon: category/2021-05-12-1620813781.jpg
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        name: Women
+                        slug: women
+                        icon: category/2021-05-12-1620813781.jpg
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        name:
+                          type: string
+                          example: Women
+                        slug:
+                          type: string
+                          example: women
+                        icon:
+                          type: string
+                          example: category/2021-05-12-1620813781.jpg
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Listing APIs'
+      security: []
+  /api/v1/category/service-types:
+    post:
+      summary: 'Service Types Api'
+      operationId: serviceTypesApi
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Service type find successfully'
+                  data:
+                    -
+                      id: 4
+                      category_id: 2
+                      name: Trimming
+                      image: service_type/trimming.png
+                      status: 1
+                      main: 1
+                      created_at: '2023-03-27T06:41:40.000000Z'
+                      updated_at: '2023-03-27T06:41:40.000000Z'
                 properties:
                   status:
                     type: boolean
@@ -340,28 +749,46 @@ paths:
                     example: 200
                   message:
                     type: string
-                    example: 'Profile found successfully.'
+                    example: 'Service type find successfully'
                   data:
-                    type: object
-                    properties:
-                      user:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                            example: 1
-                          name:
-                            type: string
-                            example: 'John Doe'
-                          email:
-                            type: string
-                            example: johh@yopmail.com
-                          phone:
-                            type: string
-                            example: '1234567890'
-                          zipcode:
-                            type: string
-                            example: '123456'
+                    type: array
+                    example:
+                      -
+                        id: 4
+                        category_id: 2
+                        name: Trimming
+                        image: service_type/trimming.png
+                        status: 1
+                        main: 1
+                        created_at: '2023-03-27T06:41:40.000000Z'
+                        updated_at: '2023-03-27T06:41:40.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 4
+                        category_id:
+                          type: integer
+                          example: 2
+                        name:
+                          type: string
+                          example: Trimming
+                        image:
+                          type: string
+                          example: service_type/trimming.png
+                        status:
+                          type: integer
+                          example: 1
+                        main:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-03-27T06:41:40.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-03-27T06:41:40.000000Z'
         401:
           description: ''
           content:
@@ -379,7 +806,706 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Listing APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: string
+                  description: 'Category Id'
+                  example: deleniti
+              required:
+                - category_id
+      security: []
+  /api/v1/service/types:
+    get:
+      summary: 'Service Type API'
+      operationId: serviceTypeAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: '1'
+                      name: Styling
+                      icon: service_type/styling.png
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        name: Styling
+                        icon: service_type/styling.png
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        name:
+                          type: string
+                          example: Styling
+                        icon:
+                          type: string
+                          example: service_type/styling.png
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Listing APIs'
+      security: []
+  /api/v1/service/list:
+    get:
+      summary: 'Service Listing API'
+      operationId: serviceListingAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: 1
+                      category_id: 1
+                      service_type_id: 1
+                      additional_service_id: 13
+                      duration: '2:30'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T08:48:30.000000Z'
+                      updated_at: '2023-04-13T10:57:11.000000Z'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:48:30.000000Z'
+                        updated_at: '2023-04-13T10:57:11.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        category_id:
+                          type: integer
+                          example: 1
+                        service_type_id:
+                          type: integer
+                          example: 1
+                        additional_service_id:
+                          type: integer
+                          example: 13
+                        duration:
+                          type: string
+                          example: '2:30'
+                        description:
+                          type: string
+                          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status:
+                          type: integer
+                          example: 1
+                        popular_services:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-03-27T08:48:30.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-04-13T10:57:11.000000Z'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Listing APIs'
+      security: []
+  /api/v1/service/list-by-serviceType:
+    post:
+      summary: 'Service List by Service Types Api'
+      operationId: serviceListByServiceTypesApi
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  message: 'Service type find successfully'
+                  data:
+                    -
+                      id: 1
+                      user_id: 3
+                      service_id: 1
+                      rate: '250'
+                      status: 1
+                      created_at: '2023-03-27T09:42:02.000000Z'
+                      updated_at: '2023-03-31T10:12:19.000000Z'
+                      service:
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:48:30.000000Z'
+                        updated_at: '2023-04-13T10:57:11.000000Z'
+                        additional_service:
+                          id: 13
+                          name: 'Hair starighning'
+                        images:
+                          -
+                            id: 1
+                            service_id: 1
+                            slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                            created_at: '2023-03-27T08:48:31.000000Z'
+                            updated_at: '2023-03-27T08:48:31.000000Z'
+                        seller_service:
+                          -
+                            id: 1
+                            user_id: 3
+                            service_id: 1
+                            rate: '250'
+                            status: 1
+                            created_at: '2023-03-27T09:42:02.000000Z'
+                            updated_at: '2023-03-31T10:12:19.000000Z'
+                        review:
+                          -
+                            id: 1
+                            appointment_id: 3
+                            user_id: 2
+                            service_id: 1
+                            comment: 'good service'
+                            rating: '4'
+                            created_at: '2023-04-27T04:51:35.000000Z'
+                            updated_at: '2023-04-27T04:51:35.000000Z'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  message:
+                    type: string
+                    example: 'Service type find successfully'
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        user_id: 3
+                        service_id: 1
+                        rate: '250'
+                        status: 1
+                        created_at: '2023-03-27T09:42:02.000000Z'
+                        updated_at: '2023-03-31T10:12:19.000000Z'
+                        service:
+                          id: 1
+                          category_id: 1
+                          service_type_id: 1
+                          additional_service_id: 13
+                          duration: '2:30'
+                          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                          status: 1
+                          popular_services: 1
+                          created_at: '2023-03-27T08:48:30.000000Z'
+                          updated_at: '2023-04-13T10:57:11.000000Z'
+                          additional_service:
+                            id: 13
+                            name: 'Hair starighning'
+                          images:
+                            -
+                              id: 1
+                              service_id: 1
+                              slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                              created_at: '2023-03-27T08:48:31.000000Z'
+                              updated_at: '2023-03-27T08:48:31.000000Z'
+                          seller_service:
+                            -
+                              id: 1
+                              user_id: 3
+                              service_id: 1
+                              rate: '250'
+                              status: 1
+                              created_at: '2023-03-27T09:42:02.000000Z'
+                              updated_at: '2023-03-31T10:12:19.000000Z'
+                          review:
+                            -
+                              id: 1
+                              appointment_id: 3
+                              user_id: 2
+                              service_id: 1
+                              comment: 'good service'
+                              rating: '4'
+                              created_at: '2023-04-27T04:51:35.000000Z'
+                              updated_at: '2023-04-27T04:51:35.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        user_id:
+                          type: integer
+                          example: 3
+                        service_id:
+                          type: integer
+                          example: 1
+                        rate:
+                          type: string
+                          example: '250'
+                        status:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-03-27T09:42:02.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-03-31T10:12:19.000000Z'
+                        service:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            category_id:
+                              type: integer
+                              example: 1
+                            service_type_id:
+                              type: integer
+                              example: 1
+                            additional_service_id:
+                              type: integer
+                              example: 13
+                            duration:
+                              type: string
+                              example: '2:30'
+                            description:
+                              type: string
+                              example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                            status:
+                              type: integer
+                              example: 1
+                            popular_services:
+                              type: integer
+                              example: 1
+                            created_at:
+                              type: string
+                              example: '2023-03-27T08:48:30.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-04-13T10:57:11.000000Z'
+                            additional_service:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 13
+                                name:
+                                  type: string
+                                  example: 'Hair starighning'
+                            images:
+                              type: array
+                              example:
+                                -
+                                  id: 1
+                                  service_id: 1
+                                  slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                                  created_at: '2023-03-27T08:48:31.000000Z'
+                                  updated_at: '2023-03-27T08:48:31.000000Z'
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  service_id:
+                                    type: integer
+                                    example: 1
+                                  slider_image:
+                                    type: string
+                                    example: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                                  created_at:
+                                    type: string
+                                    example: '2023-03-27T08:48:31.000000Z'
+                                  updated_at:
+                                    type: string
+                                    example: '2023-03-27T08:48:31.000000Z'
+                            seller_service:
+                              type: array
+                              example:
+                                -
+                                  id: 1
+                                  user_id: 3
+                                  service_id: 1
+                                  rate: '250'
+                                  status: 1
+                                  created_at: '2023-03-27T09:42:02.000000Z'
+                                  updated_at: '2023-03-31T10:12:19.000000Z'
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  user_id:
+                                    type: integer
+                                    example: 3
+                                  service_id:
+                                    type: integer
+                                    example: 1
+                                  rate:
+                                    type: string
+                                    example: '250'
+                                  status:
+                                    type: integer
+                                    example: 1
+                                  created_at:
+                                    type: string
+                                    example: '2023-03-27T09:42:02.000000Z'
+                                  updated_at:
+                                    type: string
+                                    example: '2023-03-31T10:12:19.000000Z'
+                            review:
+                              type: array
+                              example:
+                                -
+                                  id: 1
+                                  appointment_id: 3
+                                  user_id: 2
+                                  service_id: 1
+                                  comment: 'good service'
+                                  rating: '4'
+                                  created_at: '2023-04-27T04:51:35.000000Z'
+                                  updated_at: '2023-04-27T04:51:35.000000Z'
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  appointment_id:
+                                    type: integer
+                                    example: 3
+                                  user_id:
+                                    type: integer
+                                    example: 2
+                                  service_id:
+                                    type: integer
+                                    example: 1
+                                  comment:
+                                    type: string
+                                    example: 'good service'
+                                  rating:
+                                    type: string
+                                    example: '4'
+                                  created_at:
+                                    type: string
+                                    example: '2023-04-27T04:51:35.000000Z'
+                                  updated_at:
+                                    type: string
+                                    example: '2023-04-27T04:51:35.000000Z'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - 'Listing APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_type:
+                  type: string
+                  description: ''
+                  example: libero
+                category_id:
+                  type: string
+                  description: 'Category Id'
+                  example: modi
+              required:
+                - service_type
+                - category_id
+      security: []
+  /api/v1/service/details:
+    post:
+      summary: 'Get Service Details API'
+      operationId: getServiceDetailsAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Service found successfully.\",\n\"data\": {\n         \"id\": 5,\n         \"duration\": \"1:15\",\n         \"description\": \"lorem ipsum dolor sit amet\",\n         \"additional_service_id\": 3,\n         \"images\": [\n            {\n                 \"id\": 17,\n                 \"service_id\": 5,\n                 \"slider_image\": \"service/oAFHFz3En6styJNLxwepcJCxVZhg3Q7bujyJaTsy.jpg\",\n                 \"created_at\": \"2023-03-27T09:41:10.000000Z\",\n                 \"updated_at\": \"2023-03-27T09:41:10.000000Z\"\n             }\n         ],\n         \"additional_service\": {\n             \"id\": 3,\n             \"service_type_id\": 6,\n             \"name\": \"Shaving + Hair cutting + Massage\",\n            \"status\": 1,\n             \"created_at\": \"2023-03-27T08:45:08.000000Z\",\n             \"updated_at\": \"2023-03-27T08:45:08.000000Z\"\n         },\n         \"seller_service\": [\n             {\n                 \"id\": 6,\n                 \"user_id\": 6,\n                 \"service_id\": 5,\n                 \"rate\": \"450\",\n                 \"status\": 1,\n                 \"created_at\": \"2023-04-13T06:45:16.000000Z\",\n                 \"updated_at\": \"2023-04-13T06:45:16.000000Z\",\n                 \"user\": {\n                     \"id\": 6,\n                     \"shop_name\": \"Diamond Shop\"\n                 }\n             }\n         ]\n     }\n}\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No detail found!'
+                  status: false
+                properties:
+                  message:
+                    type: string
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
+      tags:
+        - 'Listing APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_id:
+                  type: number
+                  description: ''
+                  example: 30069686.772939
+              required:
+                - service_id
+      security: []
+  /api/v1/service/populars:
+    get:
+      summary: 'Popular service API'
+      operationId: popularServiceAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"status\": true,\n  \"statusCode\": 200,\n  \"data\": [\n      \"id\": 1,\n      \"category_id\": 1,\n      \"service_type_id\": 1,\n      \"additional_service_id\": 13,\n      \"duration\": \"2:30\",\n      \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur\",\n      \"status\": 1,\n      \"popular_services\": 1,\n      \"created_at\": \"2023-03-27T08:48:30.000000Z\",\n      \"updated_at\": \"2023-04-13T10:57:11.000000Z\",\n      \"additional_service\": {\n           \"id\": 13,\n          \"service_type_id\": 1,\n          \"name\": \"Hair starighning\",\n          \"status\": 1,\n          \"created_at\": \"2023-03-27T08:47:47.000000Z\",\n          \"updated_at\": \"2023-03-27T08:47:47.000000Z\"\n      },\n      \"review\": [\n          {\n              \"id\": 1,\n              \"appointment_id\": 3,\n              \"user_id\": 2,\n              \"service_id\": 1,\n              \"comment\": \"good service\",\n              \"rating\": \"4\",\n              \"created_at\": \"2023-04-27T04:51:35.000000Z\",\n             \"updated_at\": \"2023-04-27T04:51:35.000000Z\"\n          }\n      ]\n  ]\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Listing APIs'
+      security: []
+  /api/v1/appointment/booking-times:
+    get:
+      summary: 'Booking Time API'
+      operationId: bookingTimeAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      id: '1'
+                      time: '9:00 am - 10:00 am'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: '1'
+                        time: '9:00 am - 10:00 am'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        time:
+                          type: string
+                          example: '9:00 am - 10:00 am'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Listing APIs'
       security: []
   /api/v1/users/profile/update:
     post:
@@ -404,7 +1530,7 @@ paths:
                     phone: '1234567890'
                     zipcode: '123456'
                     status: 1
-                    profile_picture: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                    profile_picture: customer/2021-08-11-1628661381.jpg
                     created_at: '2023-03-15T06:15:27.000000Z'
                     updated_at: '2023-04-25T06:57:45.000000Z'
                   message: 'Profile updated successfully'
@@ -438,7 +1564,7 @@ paths:
                         example: 1
                       profile_picture:
                         type: string
-                        example: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                        example: customer/2021-08-11-1628661381.jpg
                       created_at:
                         type: string
                         example: '2023-03-15T06:15:27.000000Z'
@@ -465,7 +1591,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Profile APIs'
       requestBody:
         required: true
         content:
@@ -476,7 +1602,7 @@ paths:
                 name:
                   type: string
                   description: name
-                  example: culpa
+                  example: tempore
                 email:
                   type: string
                   format: binary
@@ -484,7 +1610,7 @@ paths:
                 phone:
                   type: string
                   description: phone
-                  example: consequatur
+                  example: minus
               required:
                 - name
                 - email
@@ -550,7 +1676,7 @@ paths:
                         items:
                           type: string
       tags:
-        - Endpoints
+        - 'Profile APIs'
       requestBody:
         required: true
         content:
@@ -561,133 +1687,19 @@ paths:
                 old_password:
                   type: string
                   description: 'Old Password'
-                  example: eos
+                  example: et
                 new_password:
                   type: string
                   description: 'New Password'
-                  example: in
+                  example: quia
                 comfirm_password:
                   type: string
                   description: 'Confirm Password'
-                  example: non
+                  example: quas
               required:
                 - old_password
                 - new_password
                 - comfirm_password
-      security: []
-  /api/v1/users/booking/create:
-    post:
-      summary: ''
-      operationId: postApiV1UsersBookingCreate
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                service_id:
-                  type: number
-                  description: ''
-                  example: 5456045.7
-                seller_id:
-                  type: number
-                  description: ''
-                  example: 1.57544
-                booking_date:
-                  type: string
-                  description: ''
-                  example: ut
-                amount:
-                  type: string
-                  description: ''
-                  example: voluptatum
-                booking_time_id:
-                  type: number
-                  description: ''
-                  example: 343418.9
-              required:
-                - service_id
-                - seller_id
-                - booking_date
-                - amount
-                - booking_time_id
-      security: []
-  /api/v1/users/booking/list:
-    post:
-      summary: ''
-      operationId: postApiV1UsersBookingList
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/users/booking/details:
-    post:
-      summary: ''
-      operationId: postApiV1UsersBookingDetails
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                appointment_id:
-                  type: number
-                  description: ''
-                  example: 8532.9291
-              required:
-                - appointment_id
-      security: []
-  /api/v1/users/booking/review/submit:
-    post:
-      summary: ''
-      operationId: postApiV1UsersBookingReviewSubmit
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                appointment_id:
-                  type: number
-                  description: ''
-                  example: 5.930324
-                service_id:
-                  type: number
-                  description: ''
-                  example: 405650.23704695
-                comment:
-                  type: string
-                  description: ''
-                  example: saepe
-                rating:
-                  type: number
-                  description: 'Must be at least 1. Must not be greater than 5.'
-                  example: 1
-              required:
-                - appointment_id
-                - service_id
-                - comment
-                - rating
       security: []
   /api/v1/sellers/me:
     post:
@@ -699,59 +1711,10 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  status: true
-                  statusCode: 200
-                  message: 'Seller Profile found successfully.'
-                  data:
-                    user:
-                      id: 1
-                      name: 'John Doe'
-                      email: johh@yopmail.com
-                      phone: '1234567890'
-                      zipcode: '123456'
-                      shop_name: 'Shop Name'
-                      profile_picture: seller/20210914121212image.jpg
-                properties:
-                  status:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: 'Seller Profile found successfully.'
-                  data:
-                    type: object
-                    properties:
-                      user:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                            example: 1
-                          name:
-                            type: string
-                            example: 'John Doe'
-                          email:
-                            type: string
-                            example: johh@yopmail.com
-                          phone:
-                            type: string
-                            example: '1234567890'
-                          zipcode:
-                            type: string
-                            example: '123456'
-                          shop_name:
-                            type: string
-                            example: 'Shop Name'
-                          profile_picture:
-                            type: string
-                            example: seller/20210914121212image.jpg
+                type: string
+                example: "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Seller Profile found successfully.\",\n\"data\": {\n\"user\": {\n\"id\": 1,\n\"name\": \"John Doe\",\n\"email\": \"johh@yopmail.com\",\n\"phone\": \"1234567890\",\n\"zipcode\": \"123456\",\n\"shop_name\": \"Shop Name\",\n\"profile_picture\": \"seller/20210914121212image.jpg\",\n}\n}\n}"
         401:
           description: ''
           content:
@@ -769,7 +1732,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Seller details APIs'
       security: []
   /api/v1/sellers/profile/update:
     post:
@@ -795,7 +1758,7 @@ paths:
                     zipcode: '123456'
                     shop_name: 'Shop Name'
                     status: 1
-                    profile_picture: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                    profile_picture: seller/20210914121212image.jpg
                     created_at: '2023-03-15T06:15:27.000000Z'
                     updated_at: '2023-04-25T06:57:45.000000Z'
                   message: 'Profile updated successfully'
@@ -832,7 +1795,7 @@ paths:
                         example: 1
                       profile_picture:
                         type: string
-                        example: user/GXQaUw5vXxNTXQ4YJ2qJNlJ2O9naz8KDHTJNRyvr.png
+                        example: seller/20210914121212image.jpg
                       created_at:
                         type: string
                         example: '2023-03-15T06:15:27.000000Z'
@@ -859,7 +1822,7 @@ paths:
                     type: boolean
                     example: false
       tags:
-        - Endpoints
+        - 'Seller details APIs'
       requestBody:
         required: true
         content:
@@ -870,7 +1833,7 @@ paths:
                 name:
                   type: string
                   description: name
-                  example: corrupti
+                  example: natus
                 email:
                   type: string
                   format: binary
@@ -878,11 +1841,11 @@ paths:
                 phone:
                   type: string
                   description: phone
-                  example: sequi
+                  example: amet
                 shop_name:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: pariatur
               required:
                 - name
                 - email
@@ -989,12 +1952,12 @@ paths:
                         items:
                           type: string
       tags:
-        - Endpoints
+        - 'Seller details APIs'
       security: []
-  /api/v1/users:
-    get:
-      summary: 'All User Details API'
-      operationId: allUserDetailsAPI
+  /api/v1/home/list:
+    post:
+      summary: 'Service List API'
+      operationId: serviceListAPI
       description: ''
       parameters: []
       responses:
@@ -1009,12 +1972,28 @@ paths:
                   statusCode: 200
                   data:
                     -
-                      id: '1'
-                      name: 'John Doe'
-                      email: johh@yopmail.com
-                      phone: '1234567890'
-                      zipcode: '123456'
-                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                      service_id: '1'
+                      service:
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'lorem ipsum dolor sit amet'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2021-09-14T12:12:12.000000Z'
+                        updated_at: '2021-09-14T12:12:12.000000Z'
+                        additional_service:
+                          id: 13
+                          name: 'Hair starighning'
+                        images:
+                          -
+                            id: 1
+                            service_id: 1
+                            slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                            created_at: '2023-03-27T08:48:31.000000Z'
+                            updated_at: '2023-03-27T08:48:31.000000Z'
                 properties:
                   status:
                     type: boolean
@@ -1026,33 +2005,103 @@ paths:
                     type: array
                     example:
                       -
-                        id: '1'
-                        name: 'John Doe'
-                        email: johh@yopmail.com
-                        phone: '1234567890'
-                        zipcode: '123456'
-                        profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                        service_id: '1'
+                        service:
+                          id: 1
+                          category_id: 1
+                          service_type_id: 1
+                          additional_service_id: 13
+                          duration: '2:30'
+                          description: 'lorem ipsum dolor sit amet'
+                          status: 1
+                          popular_services: 1
+                          created_at: '2021-09-14T12:12:12.000000Z'
+                          updated_at: '2021-09-14T12:12:12.000000Z'
+                          additional_service:
+                            id: 13
+                            name: 'Hair starighning'
+                          images:
+                            -
+                              id: 1
+                              service_id: 1
+                              slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                              created_at: '2023-03-27T08:48:31.000000Z'
+                              updated_at: '2023-03-27T08:48:31.000000Z'
                     items:
                       type: object
                       properties:
-                        id:
+                        service_id:
                           type: string
                           example: '1'
-                        name:
-                          type: string
-                          example: 'John Doe'
-                        email:
-                          type: string
-                          example: johh@yopmail.com
-                        phone:
-                          type: string
-                          example: '1234567890'
-                        zipcode:
-                          type: string
-                          example: '123456'
-                        profile_picture:
-                          type: string
-                          example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                        service:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            category_id:
+                              type: integer
+                              example: 1
+                            service_type_id:
+                              type: integer
+                              example: 1
+                            additional_service_id:
+                              type: integer
+                              example: 13
+                            duration:
+                              type: string
+                              example: '2:30'
+                            description:
+                              type: string
+                              example: 'lorem ipsum dolor sit amet'
+                            status:
+                              type: integer
+                              example: 1
+                            popular_services:
+                              type: integer
+                              example: 1
+                            created_at:
+                              type: string
+                              example: '2021-09-14T12:12:12.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2021-09-14T12:12:12.000000Z'
+                            additional_service:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 13
+                                name:
+                                  type: string
+                                  example: 'Hair starighning'
+                            images:
+                              type: array
+                              example:
+                                -
+                                  id: 1
+                                  service_id: 1
+                                  slider_image: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                                  created_at: '2023-03-27T08:48:31.000000Z'
+                                  updated_at: '2023-03-27T08:48:31.000000Z'
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  service_id:
+                                    type: integer
+                                    example: 1
+                                  slider_image:
+                                    type: string
+                                    example: service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg
+                                  created_at:
+                                    type: string
+                                    example: '2023-03-27T08:48:31.000000Z'
+                                  updated_at:
+                                    type: string
+                                    example: '2023-03-27T08:48:31.000000Z'
         401:
           description: ''
           content:
@@ -1082,12 +2131,138 @@ paths:
                         items:
                           type: string
       tags:
-        - Endpoints
+        - 'Service  APIs'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service_name:
+                  type: string
+                  description: ''
+                  example: quae
+              required:
+                - service_name
+      security: []
+  /api/v1/home/best-sellers:
+    post:
+      summary: 'Best Seller API'
+      operationId: bestSellerAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  statusCode: 200
+                  data:
+                    -
+                      image: user/2021-05-12-1620813781.jpg
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  statusCode:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    example:
+                      -
+                        image: user/2021-05-12-1620813781.jpg
+                    items:
+                      type: object
+                      properties:
+                        image:
+                          type: string
+                          example: user/2021-05-12-1620813781.jpg
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Service  APIs'
+      security: []
+  /api/v1/home/banners:
+    post:
+      summary: 'Best Seller API'
+      operationId: bestSellerAPI
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"status\": true,\n  \"statusCode\": 200,\n  \"data\": {\n     \"middle_banner_1\": \"home/middle_banner_1.jpg\",\n     \"middle_banner_2\": \"home/middle_banner_2.jpg\",\n    \"middle_banner_3\": \"home/middle_banner_3.jpg\"\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: false
+                  statusCode: 401
+                  error:
+                    message:
+                      - 'No detail found!'
+                properties:
+                  status:
+                    type: boolean
+                    example: false
+                  statusCode:
+                    type: integer
+                    example: 401
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: array
+                        example:
+                          - 'No detail found!'
+                        items:
+                          type: string
+      tags:
+        - 'Service  APIs'
       security: []
   '/api/v1/auth/{provider}':
     get:
-      summary: ''
-      operationId: getApiV1AuthProvider
+      summary: 'Getting Strarted Api.'
+      operationId: gettingStrartedApi
       description: ''
       parameters: []
       responses:
@@ -1098,7 +2273,7 @@ paths:
               schema:
                 type: object
                 example:
-                  message: 'Driver [quia] not supported.'
+                  message: 'Driver [optio] not supported.'
                   exception: InvalidArgumentException
                   file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
                   line: 109
@@ -1117,7 +2292,7 @@ paths:
                       type: '->'
                     -
                       file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
-                      line: 25
+                      line: 33
                       function: __callStatic
                       class: Illuminate\Support\Facades\Facade
                       type: '::'
@@ -1526,7 +2701,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: 'Driver [quia] not supported.'
+                    example: 'Driver [optio] not supported.'
                   exception:
                     type: string
                     example: InvalidArgumentException
@@ -1553,7 +2728,7 @@ paths:
                         type: '->'
                       -
                         file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
-                        line: 25
+                        line: 33
                         function: __callStatic
                         class: Illuminate\Support\Facades\Facade
                         type: '::'
@@ -1978,21 +3153,21 @@ paths:
                           type: string
                           example: '->'
       tags:
-        - Endpoints
+        - 'Social Login APIs'
       security: []
     parameters:
       -
         in: path
         name: provider
         description: ''
-        example: quia
+        example: optio
         required: true
         schema:
           type: string
   '/api/v1/auth/callback/{provider}':
     get:
-      summary: 'Create a new controller instance.'
-      operationId: createANewControllerInstance
+      summary: 'Social login Api.'
+      operationId: socialLoginApi
       description: ''
       parameters: []
       responses:
@@ -2003,7 +3178,7 @@ paths:
               schema:
                 type: object
                 example:
-                  message: 'Driver [in] not supported.'
+                  message: 'Driver [sit] not supported.'
                   exception: InvalidArgumentException
                   file: 'C:\xampp\htdocs\shreeja\groomely_backend\vendor\laravel\framework\src\Illuminate\Support\Manager.php'
                   line: 109
@@ -2022,7 +3197,7 @@ paths:
                       type: '->'
                     -
                       file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
-                      line: 36
+                      line: 44
                       function: __callStatic
                       class: Illuminate\Support\Facades\Facade
                       type: '::'
@@ -2431,7 +3606,7 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: 'Driver [in] not supported.'
+                    example: 'Driver [sit] not supported.'
                   exception:
                     type: string
                     example: InvalidArgumentException
@@ -2458,7 +3633,7 @@ paths:
                         type: '->'
                       -
                         file: 'C:\xampp\htdocs\shreeja\groomely_backend\app\Http\Controllers\API\GoogleSocialiteController.php'
-                        line: 36
+                        line: 44
                         function: __callStatic
                         class: Illuminate\Support\Facades\Facade
                         type: '::'
@@ -2883,21 +4058,21 @@ paths:
                           type: string
                           example: '->'
       tags:
-        - Endpoints
+        - 'Social Login APIs'
       security: []
     parameters:
       -
         in: path
         name: provider
         description: ''
-        example: in
+        example: sit
         required: true
         schema:
           type: string
-  /api/v1/category/list:
-    get:
-      summary: ''
-      operationId: getApiV1CategoryList
+  /api/v1/users/me:
+    post:
+      summary: 'Get Profile Details API'
+      operationId: getProfileDetailsAPI
       description: ''
       parameters: []
       responses:
@@ -2910,23 +4085,14 @@ paths:
                 example:
                   status: true
                   statusCode: 200
+                  message: 'Profile found successfully.'
                   data:
-                    -
+                    user:
                       id: 1
-                      name: Women
-                      slug: women
-                      icon: category/women-hair-cut.png
-                    -
-                      id: 2
-                      name: "Men's"
-                      slug: men
-                      icon: category/men-hair-cut.png
-                    -
-                      id: 3
-                      name: Children
-                      slug: children
-                      icon: category/children.png
-                  message: 'Category find successfully'
+                      name: 'John Doe'
+                      email: johh@yopmail.com
+                      phone: '1234567890'
+                      zipcode: '123456'
                 properties:
                   status:
                     type: boolean
@@ -2934,883 +4100,53 @@ paths:
                   statusCode:
                     type: integer
                     example: 200
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        name: Women
-                        slug: women
-                        icon: category/women-hair-cut.png
-                      -
-                        id: 2
-                        name: "Men's"
-                        slug: men
-                        icon: category/men-hair-cut.png
-                      -
-                        id: 3
-                        name: Children
-                        slug: children
-                        icon: category/children.png
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: Women
-                        slug:
-                          type: string
-                          example: women
-                        icon:
-                          type: string
-                          example: category/women-hair-cut.png
                   message:
                     type: string
-                    example: 'Category find successfully'
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/category/service-types:
-    post:
-      summary: ''
-      operationId: postApiV1CategoryServiceTypes
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category_id:
-                  type: number
-                  description: ''
-                  example: 16430.1249041
-              required:
-                - category_id
-      security: []
-  /api/v1/service/types:
-    get:
-      summary: ''
-      operationId: getApiV1ServiceTypes
-      description: ''
-      parameters: []
-      responses:
-        200:
+                    example: 'Profile found successfully.'
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: 'John Doe'
+                          email:
+                            type: string
+                            example: johh@yopmail.com
+                          phone:
+                            type: string
+                            example: '1234567890'
+                          zipcode:
+                            type: string
+                            example: '123456'
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  status: true
-                  statusCode: 200
-                  data:
-                    -
-                      id: 1
-                      name: Styling
-                      image: service_type/styling.png
-                    -
-                      id: 2
-                      name: Spa
-                      image: service_type/spa.png
-                    -
-                      id: 3
-                      name: Women-haircutting
-                      image: service_type/styling.png
-                    -
-                      id: 4
-                      name: Trimming
-                      image: service_type/trimming.png
-                    -
-                      id: 5
-                      name: Shaving
-                      image: service_type/shaving.png
-                    -
-                      id: 6
-                      name: Package
-                      image: service_type/package.png
-                    -
-                      id: 7
-                      name: Haircutting
-                      image: service_type/haircutting.png
-                  message: 'Servicetype find successfully'
+                  message: 'No detail found!'
+                  status: false
                 properties:
-                  status:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        name: Styling
-                        image: service_type/styling.png
-                      -
-                        id: 2
-                        name: Spa
-                        image: service_type/spa.png
-                      -
-                        id: 3
-                        name: Women-haircutting
-                        image: service_type/styling.png
-                      -
-                        id: 4
-                        name: Trimming
-                        image: service_type/trimming.png
-                      -
-                        id: 5
-                        name: Shaving
-                        image: service_type/shaving.png
-                      -
-                        id: 6
-                        name: Package
-                        image: service_type/package.png
-                      -
-                        id: 7
-                        name: Haircutting
-                        image: service_type/haircutting.png
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: Styling
-                        image:
-                          type: string
-                          example: service_type/styling.png
                   message:
                     type: string
-                    example: 'Servicetype find successfully'
+                    example: 'No detail found!'
+                  status:
+                    type: boolean
+                    example: false
       tags:
-        - Endpoints
+        - 'User details APIs'
       security: []
-  /api/v1/service/list:
+  /api/v1/users:
     get:
-      summary: ''
-      operationId: getApiV1ServiceList
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    -
-                      id: 1
-                      category_id: 1
-                      service_type_id: 1
-                      additional_service_id: 13
-                      duration: '2:30'
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T08:48:30.000000Z'
-                      updated_at: '2023-04-13T10:57:11.000000Z'
-                    -
-                      id: 2
-                      category_id: 1
-                      service_type_id: 2
-                      additional_service_id: 11
-                      duration: '2:30'
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T08:51:20.000000Z'
-                      updated_at: '2023-04-13T10:57:19.000000Z'
-                    -
-                      id: 4
-                      category_id: 2
-                      service_type_id: 5
-                      additional_service_id: 5
-                      duration: '2:15'
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T09:40:27.000000Z'
-                      updated_at: '2023-04-13T10:57:26.000000Z'
-                    -
-                      id: 5
-                      category_id: 2
-                      service_type_id: 6
-                      additional_service_id: 3
-                      duration: '1:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T09:41:10.000000Z'
-                      updated_at: '2023-03-31T10:17:37.000000Z'
-                    -
-                      id: 6
-                      category_id: 3
-                      service_type_id: 7
-                      additional_service_id: 1
-                      duration: '2:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-04-13T06:33:06.000000Z'
-                      updated_at: '2023-04-13T06:33:10.000000Z'
-                    -
-                      id: 7
-                      category_id: 3
-                      service_type_id: 7
-                      additional_service_id: 2
-                      duration: '1:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 0
-                      created_at: '2023-04-13T06:34:49.000000Z'
-                      updated_at: '2023-04-13T06:34:49.000000Z'
-                    -
-                      id: 8
-                      category_id: 2
-                      service_type_id: 6
-                      additional_service_id: 4
-                      duration: '3:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 0
-                      created_at: '2023-04-13T06:37:50.000000Z'
-                      updated_at: '2023-04-13T06:37:50.000000Z'
-                    -
-                      id: 9
-                      category_id: 2
-                      service_type_id: 5
-                      additional_service_id: 6
-                      duration: '2:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 0
-                      created_at: '2023-04-13T06:39:10.000000Z'
-                      updated_at: '2023-04-13T06:39:10.000000Z'
-                    -
-                      id: 10
-                      category_id: 1
-                      service_type_id: 2
-                      additional_service_id: 12
-                      duration: '2:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 0
-                      created_at: '2023-04-13T06:40:33.000000Z'
-                      updated_at: '2023-04-13T06:40:33.000000Z'
-                  status: true
-                  message: 'Service find successfully'
-                properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        category_id: 1
-                        service_type_id: 1
-                        additional_service_id: 13
-                        duration: '2:30'
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T08:48:30.000000Z'
-                        updated_at: '2023-04-13T10:57:11.000000Z'
-                      -
-                        id: 2
-                        category_id: 1
-                        service_type_id: 2
-                        additional_service_id: 11
-                        duration: '2:30'
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T08:51:20.000000Z'
-                        updated_at: '2023-04-13T10:57:19.000000Z'
-                      -
-                        id: 4
-                        category_id: 2
-                        service_type_id: 5
-                        additional_service_id: 5
-                        duration: '2:15'
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T09:40:27.000000Z'
-                        updated_at: '2023-04-13T10:57:26.000000Z'
-                      -
-                        id: 5
-                        category_id: 2
-                        service_type_id: 6
-                        additional_service_id: 3
-                        duration: '1:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T09:41:10.000000Z'
-                        updated_at: '2023-03-31T10:17:37.000000Z'
-                      -
-                        id: 6
-                        category_id: 3
-                        service_type_id: 7
-                        additional_service_id: 1
-                        duration: '2:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-04-13T06:33:06.000000Z'
-                        updated_at: '2023-04-13T06:33:10.000000Z'
-                      -
-                        id: 7
-                        category_id: 3
-                        service_type_id: 7
-                        additional_service_id: 2
-                        duration: '1:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 0
-                        created_at: '2023-04-13T06:34:49.000000Z'
-                        updated_at: '2023-04-13T06:34:49.000000Z'
-                      -
-                        id: 8
-                        category_id: 2
-                        service_type_id: 6
-                        additional_service_id: 4
-                        duration: '3:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 0
-                        created_at: '2023-04-13T06:37:50.000000Z'
-                        updated_at: '2023-04-13T06:37:50.000000Z'
-                      -
-                        id: 9
-                        category_id: 2
-                        service_type_id: 5
-                        additional_service_id: 6
-                        duration: '2:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 0
-                        created_at: '2023-04-13T06:39:10.000000Z'
-                        updated_at: '2023-04-13T06:39:10.000000Z'
-                      -
-                        id: 10
-                        category_id: 1
-                        service_type_id: 2
-                        additional_service_id: 12
-                        duration: '2:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 0
-                        created_at: '2023-04-13T06:40:33.000000Z'
-                        updated_at: '2023-04-13T06:40:33.000000Z'
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        category_id:
-                          type: integer
-                          example: 1
-                        service_type_id:
-                          type: integer
-                          example: 1
-                        additional_service_id:
-                          type: integer
-                          example: 13
-                        duration:
-                          type: string
-                          example: '2:30'
-                        description:
-                          type: string
-                          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status:
-                          type: integer
-                          example: 1
-                        popular_services:
-                          type: integer
-                          example: 1
-                        created_at:
-                          type: string
-                          example: '2023-03-27T08:48:30.000000Z'
-                        updated_at:
-                          type: string
-                          example: '2023-04-13T10:57:11.000000Z'
-                  status:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: 'Service find successfully'
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/service/list-by-serviceType:
-    post:
-      summary: ''
-      operationId: postApiV1ServiceListByServiceType
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                service_type:
-                  type: string
-                  description: ''
-                  example: maxime
-              required:
-                - service_type
-      security: []
-  /api/v1/service/details:
-    post:
-      summary: ''
-      operationId: postApiV1ServiceDetails
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                service_id:
-                  type: number
-                  description: ''
-                  example: 125490094.9
-              required:
-                - service_id
-      security: []
-  /api/v1/service/populars:
-    get:
-      summary: ''
-      operationId: getApiV1ServicePopulars
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data:
-                    -
-                      id: 1
-                      category_id: 1
-                      service_type_id: 1
-                      additional_service_id: 13
-                      duration: '2:30'
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T08:48:30.000000Z'
-                      updated_at: '2023-04-13T10:57:11.000000Z'
-                      additional_service:
-                        id: 13
-                        service_type_id: 1
-                        name: 'Hair starighning'
-                        status: 1
-                        created_at: '2023-03-27T08:47:47.000000Z'
-                        updated_at: '2023-03-27T08:47:47.000000Z'
-                      review:
-                        -
-                          id: 1
-                          appointment_id: 3
-                          user_id: 2
-                          service_id: 1
-                          comment: 'good service'
-                          rating: '4'
-                          created_at: '2023-04-27T04:51:35.000000Z'
-                          updated_at: '2023-04-27T04:51:35.000000Z'
-                    -
-                      id: 4
-                      category_id: 2
-                      service_type_id: 5
-                      additional_service_id: 5
-                      duration: '2:15'
-                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T09:40:27.000000Z'
-                      updated_at: '2023-04-13T10:57:26.000000Z'
-                      additional_service:
-                        id: 5
-                        service_type_id: 5
-                        name: 'Stylist shaving'
-                        status: 1
-                        created_at: '2023-03-27T08:45:34.000000Z'
-                        updated_at: '2023-03-27T08:45:34.000000Z'
-                      review: []
-                    -
-                      id: 5
-                      category_id: 2
-                      service_type_id: 6
-                      additional_service_id: 3
-                      duration: '1:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-03-27T09:41:10.000000Z'
-                      updated_at: '2023-03-31T10:17:37.000000Z'
-                      additional_service:
-                        id: 3
-                        service_type_id: 6
-                        name: 'Shaving + Hair cutting + Massage'
-                        status: 1
-                        created_at: '2023-03-27T08:45:08.000000Z'
-                        updated_at: '2023-03-27T08:45:08.000000Z'
-                      review: []
-                    -
-                      id: 6
-                      category_id: 3
-                      service_type_id: 7
-                      additional_service_id: 1
-                      duration: '2:15'
-                      description: 'lorem ipsum dolor sit amet'
-                      status: 1
-                      popular_services: 1
-                      created_at: '2023-04-13T06:33:06.000000Z'
-                      updated_at: '2023-04-13T06:33:10.000000Z'
-                      additional_service:
-                        id: 1
-                        service_type_id: 7
-                        name: 'Stylist Child Haircutting'
-                        status: 1
-                        created_at: '2023-03-27T08:44:47.000000Z'
-                        updated_at: '2023-03-27T08:44:47.000000Z'
-                      review: []
-                  status: true
-                  message: 'Popular service find successfully'
-                properties:
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        category_id: 1
-                        service_type_id: 1
-                        additional_service_id: 13
-                        duration: '2:30'
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T08:48:30.000000Z'
-                        updated_at: '2023-04-13T10:57:11.000000Z'
-                        additional_service:
-                          id: 13
-                          service_type_id: 1
-                          name: 'Hair starighning'
-                          status: 1
-                          created_at: '2023-03-27T08:47:47.000000Z'
-                          updated_at: '2023-03-27T08:47:47.000000Z'
-                        review:
-                          -
-                            id: 1
-                            appointment_id: 3
-                            user_id: 2
-                            service_id: 1
-                            comment: 'good service'
-                            rating: '4'
-                            created_at: '2023-04-27T04:51:35.000000Z'
-                            updated_at: '2023-04-27T04:51:35.000000Z'
-                      -
-                        id: 4
-                        category_id: 2
-                        service_type_id: 5
-                        additional_service_id: 5
-                        duration: '2:15'
-                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T09:40:27.000000Z'
-                        updated_at: '2023-04-13T10:57:26.000000Z'
-                        additional_service:
-                          id: 5
-                          service_type_id: 5
-                          name: 'Stylist shaving'
-                          status: 1
-                          created_at: '2023-03-27T08:45:34.000000Z'
-                          updated_at: '2023-03-27T08:45:34.000000Z'
-                        review: []
-                      -
-                        id: 5
-                        category_id: 2
-                        service_type_id: 6
-                        additional_service_id: 3
-                        duration: '1:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-03-27T09:41:10.000000Z'
-                        updated_at: '2023-03-31T10:17:37.000000Z'
-                        additional_service:
-                          id: 3
-                          service_type_id: 6
-                          name: 'Shaving + Hair cutting + Massage'
-                          status: 1
-                          created_at: '2023-03-27T08:45:08.000000Z'
-                          updated_at: '2023-03-27T08:45:08.000000Z'
-                        review: []
-                      -
-                        id: 6
-                        category_id: 3
-                        service_type_id: 7
-                        additional_service_id: 1
-                        duration: '2:15'
-                        description: 'lorem ipsum dolor sit amet'
-                        status: 1
-                        popular_services: 1
-                        created_at: '2023-04-13T06:33:06.000000Z'
-                        updated_at: '2023-04-13T06:33:10.000000Z'
-                        additional_service:
-                          id: 1
-                          service_type_id: 7
-                          name: 'Stylist Child Haircutting'
-                          status: 1
-                          created_at: '2023-03-27T08:44:47.000000Z'
-                          updated_at: '2023-03-27T08:44:47.000000Z'
-                        review: []
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        category_id:
-                          type: integer
-                          example: 1
-                        service_type_id:
-                          type: integer
-                          example: 1
-                        additional_service_id:
-                          type: integer
-                          example: 13
-                        duration:
-                          type: string
-                          example: '2:30'
-                        description:
-                          type: string
-                          example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
-                        status:
-                          type: integer
-                          example: 1
-                        popular_services:
-                          type: integer
-                          example: 1
-                        created_at:
-                          type: string
-                          example: '2023-03-27T08:48:30.000000Z'
-                        updated_at:
-                          type: string
-                          example: '2023-04-13T10:57:11.000000Z'
-                        additional_service:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              example: 13
-                            service_type_id:
-                              type: integer
-                              example: 1
-                            name:
-                              type: string
-                              example: 'Hair starighning'
-                            status:
-                              type: integer
-                              example: 1
-                            created_at:
-                              type: string
-                              example: '2023-03-27T08:47:47.000000Z'
-                            updated_at:
-                              type: string
-                              example: '2023-03-27T08:47:47.000000Z'
-                        review:
-                          type: array
-                          example:
-                            -
-                              id: 1
-                              appointment_id: 3
-                              user_id: 2
-                              service_id: 1
-                              comment: 'good service'
-                              rating: '4'
-                              created_at: '2023-04-27T04:51:35.000000Z'
-                              updated_at: '2023-04-27T04:51:35.000000Z'
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                example: 1
-                              appointment_id:
-                                type: integer
-                                example: 3
-                              user_id:
-                                type: integer
-                                example: 2
-                              service_id:
-                                type: integer
-                                example: 1
-                              comment:
-                                type: string
-                                example: 'good service'
-                              rating:
-                                type: string
-                                example: '4'
-                              created_at:
-                                type: string
-                                example: '2023-04-27T04:51:35.000000Z'
-                              updated_at:
-                                type: string
-                                example: '2023-04-27T04:51:35.000000Z'
-                  status:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: 'Popular service find successfully'
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/appointment/booking-times:
-    get:
-      summary: ''
-      operationId: getApiV1AppointmentBookingTimes
-      description: ''
-      parameters: []
-      responses:
-        200:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  status: true
-                  statusCode: 200
-                  data:
-                    -
-                      id: 1
-                      time: '9:00 am - 10:00 am'
-                    -
-                      id: 2
-                      time: '10:00 am - 11:00 am'
-                    -
-                      id: 3
-                      time: '11:00 am - 12:00 pm'
-                    -
-                      id: 4
-                      time: '12:00 pm - 1:00 pm'
-                    -
-                      id: 5
-                      time: '1:00 pm - 2:00 pm'
-                    -
-                      id: 6
-                      time: '2:00 pm - 3:00 pm'
-                    -
-                      id: 7
-                      time: '3:00 pm - 4:00 pm'
-                    -
-                      id: 8
-                      time: '4:00 pm - 5:00 pm'
-                    -
-                      id: 9
-                      time: '5:00 pm - 6:00 pm'
-                    -
-                      id: 10
-                      time: '6:00 pm - 7:00 pm'
-                    -
-                      id: 11
-                      time: '7:00 pm - 8:00 pm'
-                  message: 'Booking time find successfully'
-                properties:
-                  status:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  data:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        time: '9:00 am - 10:00 am'
-                      -
-                        id: 2
-                        time: '10:00 am - 11:00 am'
-                      -
-                        id: 3
-                        time: '11:00 am - 12:00 pm'
-                      -
-                        id: 4
-                        time: '12:00 pm - 1:00 pm'
-                      -
-                        id: 5
-                        time: '1:00 pm - 2:00 pm'
-                      -
-                        id: 6
-                        time: '2:00 pm - 3:00 pm'
-                      -
-                        id: 7
-                        time: '3:00 pm - 4:00 pm'
-                      -
-                        id: 8
-                        time: '4:00 pm - 5:00 pm'
-                      -
-                        id: 9
-                        time: '5:00 pm - 6:00 pm'
-                      -
-                        id: 10
-                        time: '6:00 pm - 7:00 pm'
-                      -
-                        id: 11
-                        time: '7:00 pm - 8:00 pm'
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        time:
-                          type: string
-                          example: '9:00 am - 10:00 am'
-                  message:
-                    type: string
-                    example: 'Booking time find successfully'
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/home/list:
-    post:
-      summary: 'Service List API'
-      operationId: serviceListAPI
+      summary: 'All User Details API'
+      operationId: allUserDetailsAPI
       description: ''
       parameters: []
       responses:
@@ -3830,7 +4166,7 @@ paths:
                       email: johh@yopmail.com
                       phone: '1234567890'
                       zipcode: '123456'
-                      profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                      profile_picture: profile_picture/1629796360.jpg
                 properties:
                   status:
                     type: boolean
@@ -3847,7 +4183,7 @@ paths:
                         email: johh@yopmail.com
                         phone: '1234567890'
                         zipcode: '123456'
-                        profile_picture: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                        profile_picture: profile_picture/1629796360.jpg
                     items:
                       type: object
                       properties:
@@ -3868,7 +4204,7 @@ paths:
                           example: '123456'
                         profile_picture:
                           type: string
-                          example: 'https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg'
+                          example: profile_picture/1629796360.jpg
         401:
           description: ''
           content:
@@ -3898,42 +4234,36 @@ paths:
                         items:
                           type: string
       tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                service_name:
-                  type: string
-                  description: ''
-                  example: mollitia
-              required:
-                - service_name
-      security: []
-  /api/v1/home/best-sellers:
-    post:
-      summary: ''
-      operationId: postApiV1HomeBestSellers
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/v1/home/banners:
-    post:
-      summary: ''
-      operationId: postApiV1HomeBanners
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
+        - 'User details APIs'
       security: []
 tags:
   -
+    name: 'Appointments APIs'
+    description: "\nAPIs for Appointments"
+  -
+    name: 'Authentication APIs'
+    description: "\nAPIs for Authentication"
+  -
     name: Endpoints
     description: ''
+  -
+    name: 'Forget Password APIs'
+    description: "\nAPIs for Forget Password"
+  -
+    name: 'Listing APIs'
+    description: "\nAPIs for Listing"
+  -
+    name: 'Profile APIs'
+    description: "\nAPIs for Profile"
+  -
+    name: 'Seller details APIs'
+    description: "\nAPIs for Seller details"
+  -
+    name: 'Service  APIs'
+    description: "\nAPIs for Services"
+  -
+    name: 'Social Login APIs'
+    description: "\nAPIs for Social Login"
+  -
+    name: 'User details APIs'
+    description: "\nAPIs for User details"

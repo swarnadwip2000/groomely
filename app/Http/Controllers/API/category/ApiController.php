@@ -13,9 +13,13 @@ use App\Models\Service;
 use App\Models\SellerService;
 use App\Models\Review;
 use Exception;
-
-
 use Illuminate\Support\Facades\Validator;
+
+/**
+ * @group Listing APIs
+ *
+ * APIs for Listing
+ */
 
 
 class ApiController extends Controller
@@ -32,7 +36,7 @@ class ApiController extends Controller
      *           "id": "1",
      *           "name": "Women",
      *           "slug": "women",
-     *           "icon": "https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg"
+     *           "icon": "category/2021-05-12-1620813781.jpg"
      *       }
      *   ]
      * }
@@ -61,6 +65,31 @@ class ApiController extends Controller
             return response()->json([ 'status' => false, 'statusCode' => 401, 'message' => 'Something went wrong!'], 401);
         }    
     }
+    
+      /**
+     * Service Type API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "name": "Styling",
+     *           "icon": "service_type/styling.png"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
 
     public function servicetype()
     {
@@ -77,6 +106,30 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong'], 401);
         }
     }
+
+    /**
+     * Booking Time API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "time": "9:00 am - 10:00 am"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
 
     public function bookingtimes()
     {
@@ -95,6 +148,39 @@ class ApiController extends Controller
         }    
     }
 
+
+      /**
+     * Service Listing API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": 1,
+     *           "category_id": 1,
+     *           "service_type_id": 1,
+     *           "additional_service_id": 13,
+     *           "duration": "2:30",
+     *           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *           "status": 1,
+     *           "popular_services": 1,
+     *           "created_at": "2023-03-27T08:48:30.000000Z",
+     *           "updated_at": "2023-04-13T10:57:11.000000Z"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
+
     public function servicelist()
     {
         // return "okkk";
@@ -112,6 +198,68 @@ class ApiController extends Controller
         }        
 
     }
+
+    /**
+      * Get Service Details API
+      * @return \Illuminate\Http\Response
+      * @response {
+      * "status": true,
+      * "statusCode": 200,
+      * "message": "Service found successfully.",
+      * "data": {
+      *          "id": 5,
+      *          "duration": "1:15",
+      *          "description": "lorem ipsum dolor sit amet",
+      *          "additional_service_id": 3,
+      *          "images": [
+      *             {
+      *                  "id": 17,
+      *                  "service_id": 5,
+      *                  "slider_image": "service/oAFHFz3En6styJNLxwepcJCxVZhg3Q7bujyJaTsy.jpg",
+      *                  "created_at": "2023-03-27T09:41:10.000000Z",
+      *                  "updated_at": "2023-03-27T09:41:10.000000Z"
+      *              }
+      *          ],
+      *          "additional_service": {
+      *              "id": 3,
+      *              "service_type_id": 6,
+      *              "name": "Shaving + Hair cutting + Massage",
+      *             "status": 1,
+      *              "created_at": "2023-03-27T08:45:08.000000Z",
+      *              "updated_at": "2023-03-27T08:45:08.000000Z"
+      *          },
+      *          "seller_service": [
+      *              {
+      *                  "id": 6,
+      *                  "user_id": 6,
+      *                  "service_id": 5,
+      *                  "rate": "450",
+      *                  "status": 1,
+      *                  "created_at": "2023-04-13T06:45:16.000000Z",
+      *                  "updated_at": "2023-04-13T06:45:16.000000Z",
+      *                  "user": {
+      *                      "id": 6,
+      *                      "shop_name": "Diamond Shop"
+      *                  }
+      *              }
+      *          ]    
+      *      }       
+      * }
+      * }
+      * @response 401 {
+      * "status": false,
+      * "statusCode": 401,
+      * "error": {
+      * "message": [
+      * "Service not found successfully."
+      * ]
+      *  }
+      * }
+      * @response 401 {
+      * "message": "No detail found!",
+      * "status": false
+      * }
+      */
 
     public function servicedetails(Request $request)
     {
@@ -143,6 +291,56 @@ class ApiController extends Controller
     
     }
 
+     /**
+     * Popular service API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       "id": 1,
+     *       "category_id": 1,
+     *       "service_type_id": 1,
+     *       "additional_service_id": 13,
+     *       "duration": "2:30",
+     *       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *       "status": 1,
+     *       "popular_services": 1,
+     *       "created_at": "2023-03-27T08:48:30.000000Z",
+     *       "updated_at": "2023-04-13T10:57:11.000000Z",
+     *       "additional_service": {
+     *            "id": 13,
+     *           "service_type_id": 1,
+     *           "name": "Hair starighning",
+     *           "status": 1,
+     *           "created_at": "2023-03-27T08:47:47.000000Z",
+     *           "updated_at": "2023-03-27T08:47:47.000000Z"
+     *       },
+     *       "review": [
+     *           {
+     *               "id": 1,
+     *               "appointment_id": 3,
+     *               "user_id": 2,
+     *               "service_id": 1,
+     *               "comment": "good service",
+     *               "rating": "4",
+     *               "created_at": "2023-04-27T04:51:35.000000Z",
+     *              "updated_at": "2023-04-27T04:51:35.000000Z"
+     *           }
+     *       ]
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */
+
     public function popularServices()
     {
         try {
@@ -169,6 +367,43 @@ class ApiController extends Controller
         }        
     }
 
+     /** 
+     * Service Types Api 
+     * 
+     * @return \Illuminate\Http\Response 
+     * @bodyParam category_id string required Category Id
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Service type find successfully",
+     * "data": [
+     * {
+     *       "id": 4,
+     *       "category_id": 2,
+     *       "name": "Trimming",
+     *       "image": "service_type/trimming.png",
+     *       "status": 1,
+     *       "main": 1,
+     *       "created_at": "2023-03-27T06:41:40.000000Z",
+     *       "updated_at": "2023-03-27T06:41:40.000000Z"
+     *   }
+     * ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The category_id field is required.",
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
+     */
+
     public function serviceTypes(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -188,6 +423,91 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         } 
     }
+
+    
+     /** 
+     * Service List by Service Types Api 
+     * 
+     * @return \Illuminate\Http\Response 
+     * @bodyParam category_id string required Category Id
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Service type find successfully",
+     * "data": [
+     * {
+     *       "id": 1,
+     *       "user_id": 3,
+     *       "service_id": 1,
+     *       "rate": "250",
+     *       "status": 1,
+     *       "created_at": "2023-03-27T09:42:02.000000Z",
+     *       "updated_at": "2023-03-31T10:12:19.000000Z",
+     *       "service": {
+     *           "id": 1,
+     *           "category_id": 1,
+     *           "service_type_id": 1,
+     *           "additional_service_id": 13,
+     *           "duration": "2:30",
+     *           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *           "status": 1,
+     *           "popular_services": 1,
+     *           "created_at": "2023-03-27T08:48:30.000000Z",
+     *           "updated_at": "2023-04-13T10:57:11.000000Z",
+     *           "additional_service": {
+     *               "id": 13,
+     *               "name": "Hair starighning"
+     *           },
+     *           "images": [
+     *               {
+     *                   "id": 1,
+     *                  "service_id": 1,
+     *                   "slider_image": "service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg",
+     *                   "created_at": "2023-03-27T08:48:31.000000Z",
+     *                   "updated_at": "2023-03-27T08:48:31.000000Z"
+     *               }
+     *          ],
+     *           "seller_service": [
+     *               {
+     *                   "id": 1,
+     *                   "user_id": 3,
+     *                   "service_id": 1,
+     *                   "rate": "250",
+     *                   "status": 1,
+     *                   "created_at": "2023-03-27T09:42:02.000000Z",
+     *                   "updated_at": "2023-03-31T10:12:19.000000Z"
+     *               }
+     *           ],
+     *            "review": [
+     *               {
+     *                   "id": 1,
+     *                   "appointment_id": 3,
+     *                   "user_id": 2,
+     *                   "service_id": 1,
+     *                   "comment": "good service",
+     *                   "rating": "4",
+     *                  "created_at": "2023-04-27T04:51:35.000000Z",
+     *                   "updated_at": "2023-04-27T04:51:35.000000Z"
+     *               }
+     *           ]
+     *           }
+     *       }           
+     *  ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The category_id field is required.",
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
+     */
 
     public function servicelistByServiceType(Request $request)
     {

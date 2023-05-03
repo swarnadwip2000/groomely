@@ -12,9 +12,58 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Appointments APIs
+ *
+ * APIs for Appointments
+ */
+
 class AppointmentController extends Controller
 {
     public $successStatus = 200;
+
+    /** 
+     * Booking Create Api 
+     * 
+     * @return \Illuminate\Http\Response 
+     * @bodyParam service_id string required service_id.
+     * @bodyParam seller_id string required seller_id.
+     * @bodyParam booking_date string required booking_date.
+     * @bodyParam amount string required amount.
+     * @bodyParam booking_time_id string required booking_time_id.
+    
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Booking successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "johh@yopmail.com"
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The service_id field is required.",
+     * "The seller_id field is required.",
+     * "The booking_date type field is required.",
+     * "The amount field is required.",
+     * "The booking_time_id field is required."
+     * 
+     * 
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
+     */
     
     public function bookingcreate(Request $request)
     {
@@ -67,6 +116,31 @@ class AppointmentController extends Controller
         }
     }
 
+      /**
+     * Booking List API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *           "id": "1",
+     *           "time": "9:00 am - 10:00 am"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
+
+
     public function bookinglist()
     {
         try {
@@ -83,6 +157,39 @@ class AppointmentController extends Controller
             return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);
         }   
     }
+
+    /**
+     * Get Booking Details API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "message": "Booking found successfully.",
+     * "data": {
+     * "user": {
+     * "id": 1,
+     * "name": "John Doe",
+     * "email": "johh@yopmail.com",
+     * "phone": "1234567890",
+     * "zipcode": "123456"
+     * 
+     * }
+     * }
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No booking found!."
+     * ]
+     *  }
+     * }
+     * @response 401 {
+     * "message": "No detail found!",
+     * "status": false
+     * }
+     */
 
     public function bookingDetails(Request $request)
     {
@@ -118,6 +225,49 @@ class AppointmentController extends Controller
         }   
 
     }
+
+    /**
+     * Review Submit API
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @bodyParam appointment_id string required appointment_id
+     * @bodyParam service_id  required User service_id
+     * @bodyParam comment string required comment
+     * @bodyParam rating string required rating
+     * 
+     * @response {
+     * "status": true,
+     * "statusCode": 200,
+     * "data": {
+     *     "id": 1,
+     *     "name": "John Doe",
+     *     "email": "john@yopmail.com",
+     *     "phone": "1234567890",
+     *     "zipcode": "123456",
+     *     "status": 1,
+     *     "profile_picture": "customer/2021-08-11-1628661381.jpg",
+     *     "created_at": "2023-03-15T06:15:27.000000Z",
+     *     "updated_at": "2023-04-25T06:57:45.000000Z"
+     * },
+     * "message": "Profile updated successfully"
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The appointment_id field is required.",
+     * "The service_id field is required.",
+     * "The comment field is required.",
+     * "The rating field is required."
+     * ]
+     * }
+     * }
+     * @response 401 {
+     *  "message": "No detail found!",
+     * "status": false
+     * }
+     */ 
 
     public function reviewSubmit(Request $request)
     {

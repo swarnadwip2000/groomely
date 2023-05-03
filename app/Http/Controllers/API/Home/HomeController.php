@@ -14,6 +14,12 @@ use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Validator;
 
 
+/**
+ * @group Service  APIs
+ *
+ * APIs for Services
+ */
+
 class HomeController extends Controller
 {
     public $successStatus = 200;
@@ -26,12 +32,32 @@ class HomeController extends Controller
      *   "statusCode": 200,
      *   "data": [
      *       {
-     *           "id": "1",
-     *           "name": "John Doe",
-     *           "email": "johh@yopmail.com",
-     *           "phone": "1234567890",
-     *           "zipcode": "123456",
-     *           "profile_picture": "https://cpscom-acb3c.firebaseio.com/user/2021-05-12-1620813781.jpg"
+     *           "service_id": "1",
+     *           "service": { 
+     *           "id": 1,
+     *           "category_id": 1,
+     *           "service_type_id": 1,
+     *           "additional_service_id": 13,
+     *           "duration": "2:30",
+     *           "description": "lorem ipsum dolor sit amet",
+     *           "status": 1,
+     *           "popular_services": 1,
+     *           "created_at": "2021-09-14T12:12:12.000000Z",
+     *           "updated_at": "2021-09-14T12:12:12.000000Z",
+     *           "additional_service": {
+     *              "id": 13,
+     *               "name": "Hair starighning"
+     *           },
+     *          "images": [
+                    {
+                        "id": 1,
+                        "service_id": 1,
+                        "slider_image": "service/XhIe7mjMDLasIGKWOjiXGYXk2pR3zGcSX5CytQjX.jpg",
+                        "created_at": "2023-03-27T08:48:31.000000Z",
+                        "updated_at": "2023-03-27T08:48:31.000000Z"
+                    }
+                ]     
+     *          }
      *       }
      *   ]
      * }
@@ -87,6 +113,30 @@ class HomeController extends Controller
         }       
     }
 
+     /**
+     *  Best Seller API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": [
+     *       {
+     *       
+     *           "image": "user/2021-05-12-1620813781.jpg"
+     *       }
+     *   ]
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
+
     public function bestSeller()
     {
         try {
@@ -109,6 +159,28 @@ class HomeController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }      
     }
+
+     /**
+     *  Best Seller API
+     * @return \Illuminate\Http\Response
+     * @response {
+     * "status": true,
+     *   "statusCode": 200,
+     *   "data": {
+     *      "middle_banner_1": "home/middle_banner_1.jpg",
+     *      "middle_banner_2": "home/middle_banner_2.jpg",
+     *     "middle_banner_3": "home/middle_banner_3.jpg"
+     * }
+     * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "No detail found!"
+     * ]
+     * }
+     * }
+    */ 
 
     public function banner()
     {
