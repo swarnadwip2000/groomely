@@ -1,57 +1,348 @@
-name: 'Profile APIs'
+name: 'Appointments APIs'
 description: |-
 
-  APIs for Profile
+  APIs for Appointments
 endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/users/profile/update
+    uri: api/v1/users/booking/create
     metadata:
-      groupName: 'Profile APIs'
+      groupName: 'Appointments APIs'
       groupDescription: |-
 
-        APIs for Profile
+        APIs for Appointments
       subgroup: ''
       subgroupDescription: ''
-      title: 'Profile Update API'
+      title: 'Booking Create Api'
       description: ''
       authenticated: false
       custom: []
     headers:
-      Content-Type: multipart/form-data
+      Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        name: name
-        description: name
+      service_id:
+        name: service_id
+        description: service_id.
         required: true
-        example: tempore
+        example: iste
         type: string
         custom: []
-      email:
-        name: email
-        description: 'User email'
+      seller_id:
+        name: seller_id
+        description: seller_id.
         required: true
-        example: null
-        type: file
+        example: fugiat
+        type: string
         custom: []
-      phone:
-        name: phone
-        description: phone
+      booking_date:
+        name: booking_date
+        description: booking_date.
         required: true
-        example: minus
+        example: aspernatur
+        type: string
+        custom: []
+      amount:
+        name: amount
+        description: amount.
+        required: true
+        example: asperiores
+        type: string
+        custom: []
+      booking_time_id:
+        name: booking_time_id
+        description: booking_time_id.
+        required: true
+        example: ullam
         type: string
         custom: []
     cleanBodyParameters:
-      name: tempore
-      phone: minus
-    fileParameters:
-      email: null
+      service_id: iste
+      seller_id: fugiat
+      booking_date: aspernatur
+      amount: asperiores
+      booking_time_id: ullam
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Booking successfully",
+          "data": {
+          "id": 1,
+          "user_id": 1,
+          "seller_id": 1,
+          "service_id": 1,
+          "name": "John Doe",
+          "email": "john@gmail.com",
+           "phone": "1234567890",
+          "booking_date": "2021-09-30",
+          "booking_time_id": 1,
+          "amount": "100",
+          "status": 0,
+          "created_at": "2021-09-30T11:25:00.000000Z",
+          "updated_at": "2021-09-30T11:25:00.000000Z"
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The service id field is required.",
+          "The seller id field is required.",
+          "The booking date field is required.",
+          "The amount field is required.",
+          "The booking time id field is required."
+           ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The service id must be a number greater than 0.",
+          "The seller id must be a number greater than 0.",
+          "The booking time id must be a number greater than 0."
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/list
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Booking List API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+            "statusCode": 200,
+            "data": [
+                {
+                    "id": "1",
+                    "time": "9:00 am - 10:00 am"
+                }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No detail found!"
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/details
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get Booking Details API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      appointment_id:
+        name: appointment_id
+        description: ''
+        required: true
+        example: 102970.0
+        type: number
+        custom: []
+    cleanBodyParameters:
+      appointment_id: 102970.0
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Booking found successfully.",
+          "data": {
+          "user": {
+          "id": 1,
+          "name": "John Doe",
+          "email": "johh@yopmail.com",
+          "phone": "1234567890",
+          "zipcode": "123456"
+
+          }
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "No booking found!."
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/booking/review/submit
+    metadata:
+      groupName: 'Appointments APIs'
+      groupDescription: |-
+
+        APIs for Appointments
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Review Submit API'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      appointment_id:
+        name: appointment_id
+        description: appointment_id
+        required: true
+        example: aut
+        type: string
+        custom: []
+      service_id:
+        name: service_id
+        description: 'User service_id'
+        required: false
+        example: eligendi
+        type: required
+        custom: []
+      comment:
+        name: comment
+        description: comment
+        required: true
+        example: distinctio
+        type: string
+        custom: []
+      rating:
+        name: rating
+        description: rating
+        required: true
+        example: laboriosam
+        type: string
+        custom: []
+    cleanBodyParameters:
+      appointment_id: aut
+      service_id: eligendi
+      comment: distinctio
+      rating: laboriosam
+    fileParameters: []
     responses:
       -
         status: 200
@@ -83,9 +374,10 @@ endpoints:
           "statusCode": 401,
           "error": {
           "message": [
-          "The name field is required.",
-          "The email field is required.",
-          "The phone field is required."
+          "The appointment_id field is required.",
+          "The service_id field is required.",
+          "The comment field is required.",
+          "The rating field is required."
           ]
           }
           }
@@ -98,90 +390,6 @@ endpoints:
           {
            "message": "No detail found!",
           "status": false
-          }
-        headers: []
-        description: ''
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/users/profile/change-password
-    metadata:
-      groupName: 'Profile APIs'
-      groupDescription: |-
-
-        APIs for Profile
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Change Password API'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      old_password:
-        name: old_password
-        description: 'Old Password'
-        required: true
-        example: et
-        type: string
-        custom: []
-      new_password:
-        name: new_password
-        description: 'New Password'
-        required: true
-        example: quia
-        type: string
-        custom: []
-      comfirm_password:
-        name: comfirm_password
-        description: 'Confirm Password'
-        required: true
-        example: quas
-        type: string
-        custom: []
-    cleanBodyParameters:
-      old_password: et
-      new_password: quia
-      comfirm_password: quas
-    fileParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-          "status": true,
-          "statusCode": 200,
-          "message": "Password change successfully."
-          }
-        headers: []
-        description: ''
-        custom: []
-      -
-        status: 401
-        content: |-
-          {
-          "status": false,
-          "statusCode": 401,
-          "error": {
-          "message": [
-          "The Old Password field is required.",
-          "The New Password field is required.",
-          "The Confirm Password field is required."
-          ]
-          }
           }
         headers: []
         description: ''

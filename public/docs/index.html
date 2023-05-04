@@ -98,16 +98,6 @@
                             </li>
                                                                         </ul>
                             </ul>
-                    <ul id="tocify-header-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
-                </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">GET api/user</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
                     <ul id="tocify-header-forget-password-apis" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="forget-password-apis">
                     <a href="#forget-password-apis">Forget Password APIs</a>
@@ -124,10 +114,10 @@
                 </li>
                                     <ul id="tocify-subheader-listing-apis" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="listing-apis-GETapi-v1-category-list">
-                                <a href="#listing-apis-GETapi-v1-category-list">Category List API</a>
+                                <a href="#listing-apis-GETapi-v1-category-list">Category API</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="listing-apis-POSTapi-v1-category-service-types">
-                                <a href="#listing-apis-POSTapi-v1-category-service-types">Service Types Api</a>
+                                <a href="#listing-apis-POSTapi-v1-category-service-types">Service Types By Category Api</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="listing-apis-GETapi-v1-service-types">
                                 <a href="#listing-apis-GETapi-v1-service-types">Service Type API</a>
@@ -190,7 +180,7 @@
                                 <a href="#service-apis-POSTapi-v1-home-best-sellers">Best Seller API</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="service-apis-POSTapi-v1-home-banners">
-                                <a href="#service-apis-POSTapi-v1-home-banners">Best Seller API</a>
+                                <a href="#service-apis-POSTapi-v1-home-banners">Banner API</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -229,7 +219,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 3, 2023</li>
+        <li>Last updated: May 4, 2023</li>
     </ul>
 </div>
 
@@ -268,11 +258,11 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"service_id\": \"qui\",
-    \"seller_id\": \"voluptatibus\",
-    \"booking_date\": \"qui\",
-    \"amount\": \"placeat\",
-    \"booking_time_id\": \"magnam\"
+    \"service_id\": \"iste\",
+    \"seller_id\": \"fugiat\",
+    \"booking_date\": \"aspernatur\",
+    \"amount\": \"asperiores\",
+    \"booking_time_id\": \"ullam\"
 }"
 </code></pre></div>
 
@@ -288,11 +278,11 @@ const headers = {
 };
 
 let body = {
-    "service_id": "qui",
-    "seller_id": "voluptatibus",
-    "booking_date": "qui",
-    "amount": "placeat",
-    "booking_time_id": "magnam"
+    "service_id": "iste",
+    "seller_id": "fugiat",
+    "booking_date": "aspernatur",
+    "amount": "asperiores",
+    "booking_time_id": "ullam"
 };
 
 fetch(url, {
@@ -312,13 +302,21 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
-    &quot;message&quot;: &quot;Booking successfully.&quot;,
+    &quot;message&quot;: &quot;Booking successfully&quot;,
     &quot;data&quot;: {
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;email&quot;: &quot;johh@yopmail.com&quot;
-        }
+        &quot;id&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;seller_id&quot;: 1,
+        &quot;service_id&quot;: 1,
+        &quot;name&quot;: &quot;John Doe&quot;,
+        &quot;email&quot;: &quot;john@gmail.com&quot;,
+        &quot;phone&quot;: &quot;1234567890&quot;,
+        &quot;booking_date&quot;: &quot;2021-09-30&quot;,
+        &quot;booking_time_id&quot;: 1,
+        &quot;amount&quot;: &quot;100&quot;,
+        &quot;status&quot;: 0,
+        &quot;created_at&quot;: &quot;2021-09-30T11:25:00.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2021-09-30T11:25:00.000000Z&quot;
     }
 }</code>
  </pre>
@@ -332,11 +330,11 @@ fetch(url, {
     &quot;statusCode&quot;: 401,
     &quot;error&quot;: {
         &quot;message&quot;: [
-            &quot;The service_id field is required.&quot;,
-            &quot;The seller_id field is required.&quot;,
-            &quot;The booking_date type field is required.&quot;,
+            &quot;The service id field is required.&quot;,
+            &quot;The seller id field is required.&quot;,
+            &quot;The booking date field is required.&quot;,
             &quot;The amount field is required.&quot;,
-            &quot;The booking_time_id field is required.&quot;
+            &quot;The booking time id field is required.&quot;
         ]
     }
 }</code>
@@ -347,8 +345,15 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;No detail found!&quot;,
-    &quot;status&quot;: false
+    &quot;status&quot;: false,
+    &quot;statusCode&quot;: 401,
+    &quot;error&quot;: {
+        &quot;message&quot;: [
+            &quot;The service id must be a number greater than 0.&quot;,
+            &quot;The seller id must be a number greater than 0.&quot;,
+            &quot;The booking time id must be a number greater than 0.&quot;
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -428,10 +433,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="service_id"                data-endpoint="POSTapi-v1-users-booking-create"
-               value="qui"
+               value="iste"
                data-component="body">
     <br>
-<p>service_id. Example: <code>qui</code></p>
+<p>service_id. Example: <code>iste</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>seller_id</code></b>&nbsp;&nbsp;
@@ -439,10 +444,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="seller_id"                data-endpoint="POSTapi-v1-users-booking-create"
-               value="voluptatibus"
+               value="fugiat"
                data-component="body">
     <br>
-<p>seller_id. Example: <code>voluptatibus</code></p>
+<p>seller_id. Example: <code>fugiat</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>booking_date</code></b>&nbsp;&nbsp;
@@ -450,10 +455,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="booking_date"                data-endpoint="POSTapi-v1-users-booking-create"
-               value="qui"
+               value="aspernatur"
                data-component="body">
     <br>
-<p>booking_date. Example: <code>qui</code></p>
+<p>booking_date. Example: <code>aspernatur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -461,10 +466,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="amount"                data-endpoint="POSTapi-v1-users-booking-create"
-               value="placeat"
+               value="asperiores"
                data-component="body">
     <br>
-<p>amount. Example: <code>placeat</code></p>
+<p>amount. Example: <code>asperiores</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>booking_time_id</code></b>&nbsp;&nbsp;
@@ -472,10 +477,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="booking_time_id"                data-endpoint="POSTapi-v1-users-booking-create"
-               value="magnam"
+               value="ullam"
                data-component="body">
     <br>
-<p>booking_time_id. Example: <code>magnam</code></p>
+<p>booking_time_id. Example: <code>ullam</code></p>
         </div>
         </form>
 
@@ -635,7 +640,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"appointment_id\": 307919.9841839
+    \"appointment_id\": 102970
 }"
 </code></pre></div>
 
@@ -651,7 +656,7 @@ const headers = {
 };
 
 let body = {
-    "appointment_id": 307919.9841839
+    "appointment_id": 102970
 };
 
 fetch(url, {
@@ -785,10 +790,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="appointment_id"                data-endpoint="POSTapi-v1-users-booking-details"
-               value="307919.9841839"
+               value="102970"
                data-component="body">
     <br>
-<p>Example: <code>307919.9841839</code></p>
+<p>Example: <code>102970</code></p>
         </div>
         </form>
 
@@ -809,10 +814,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"appointment_id\": \"exercitationem\",
-    \"service_id\": \"repudiandae\",
-    \"comment\": \"nam\",
-    \"rating\": \"velit\"
+    \"appointment_id\": \"aut\",
+    \"service_id\": \"eligendi\",
+    \"comment\": \"distinctio\",
+    \"rating\": \"laboriosam\"
 }"
 </code></pre></div>
 
@@ -828,10 +833,10 @@ const headers = {
 };
 
 let body = {
-    "appointment_id": "exercitationem",
-    "service_id": "repudiandae",
-    "comment": "nam",
-    "rating": "velit"
+    "appointment_id": "aut",
+    "service_id": "eligendi",
+    "comment": "distinctio",
+    "rating": "laboriosam"
 };
 
 fetch(url, {
@@ -970,10 +975,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="appointment_id"                data-endpoint="POSTapi-v1-users-booking-review-submit"
-               value="exercitationem"
+               value="aut"
                data-component="body">
     <br>
-<p>appointment_id Example: <code>exercitationem</code></p>
+<p>appointment_id Example: <code>aut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>service_id</code></b>&nbsp;&nbsp;
@@ -981,10 +986,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="service_id"                data-endpoint="POSTapi-v1-users-booking-review-submit"
-               value="repudiandae"
+               value="eligendi"
                data-component="body">
     <br>
-<p>User service_id Example: <code>repudiandae</code></p>
+<p>User service_id Example: <code>eligendi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -992,10 +997,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="comment"                data-endpoint="POSTapi-v1-users-booking-review-submit"
-               value="nam"
+               value="distinctio"
                data-component="body">
     <br>
-<p>comment Example: <code>nam</code></p>
+<p>comment Example: <code>distinctio</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>rating</code></b>&nbsp;&nbsp;
@@ -1003,10 +1008,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="rating"                data-endpoint="POSTapi-v1-users-booking-review-submit"
-               value="velit"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>rating Example: <code>velit</code></p>
+<p>rating Example: <code>laboriosam</code></p>
         </div>
         </form>
 
@@ -1031,14 +1036,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"ut\",
-    \"last_name\": \"quod\",
-    \"email\": \"libbie98@example.com\",
-    \"phone\": \"dignissimos\",
-    \"zipcode\": \"asperiores\",
-    \"password\": \"]BxzODVA7\",
-    \"confirm_password\": \"rgvjrzeegjnhtdfyyvcjxvulsswxnidizpjwookh\",
-    \"user_type\": \"culpa\"
+    \"first_name\": \"quam\",
+    \"last_name\": \"qui\",
+    \"email\": \"ilene.rath@example.org\",
+    \"phone\": \"amet\",
+    \"zipcode\": \"autem\",
+    \"password\": \"jgW5{\\/[\\/?,jDBe}h\",
+    \"confirm_password\": \"xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt\",
+    \"user_type\": \"excepturi\"
 }"
 </code></pre></div>
 
@@ -1054,14 +1059,14 @@ const headers = {
 };
 
 let body = {
-    "first_name": "ut",
-    "last_name": "quod",
-    "email": "libbie98@example.com",
-    "phone": "dignissimos",
-    "zipcode": "asperiores",
-    "password": "]BxzODVA7",
-    "confirm_password": "rgvjrzeegjnhtdfyyvcjxvulsswxnidizpjwookh",
-    "user_type": "culpa"
+    "first_name": "quam",
+    "last_name": "qui",
+    "email": "ilene.rath@example.org",
+    "phone": "amet",
+    "zipcode": "autem",
+    "password": "jgW5{\/[\/?,jDBe}h",
+    "confirm_password": "xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt",
+    "user_type": "excepturi"
 };
 
 fetch(url, {
@@ -1079,15 +1084,16 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: true,
-    &quot;statusCode&quot;: 200,
-    &quot;message&quot;: &quot;Registration successfully.&quot;,
-    &quot;data&quot;: {
-        &quot;user&quot;: {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;email&quot;: &quot;johh@yopmail.com&quot;
-        }
+&quot;status&quot;: true,
+&quot;statusCode&quot;: 200,
+&quot;message&quot;: &quot;Registration successfully.&quot;,
+&quot;data&quot;: {
+     &quot;id&quot;: 1,
+     &quot;name&quot;: &quot;John Doe&quot;,
+     &quot;email&quot;: &quot;johh@yopmail.com&quot;,
+     &quot;phone&quot;: &quot;1234567890&quot;,
+     &quot;zipcode&quot;: &quot;123456&quot;,
+     &quot;status&quot;: 1,
     }
 }</code>
  </pre>
@@ -1103,7 +1109,7 @@ fetch(url, {
         &quot;message&quot;: [
             &quot;The first_name field is required.&quot;,
             &quot;The last_name field is required.&quot;,
-            &quot;The email type field is required.&quot;,
+            &quot;The email format is invalid.&quot;,
             &quot;The email field is required.&quot;,
             &quot;The password field is required.&quot;,
             &quot;The user type field is required.&quot;
@@ -1198,10 +1204,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="first_name"                data-endpoint="POSTapi-v1-users-register"
-               value="ut"
+               value="quam"
                data-component="body">
     <br>
-<p>first_name. Example: <code>ut</code></p>
+<p>first_name. Example: <code>quam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
@@ -1209,10 +1215,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="last_name"                data-endpoint="POSTapi-v1-users-register"
-               value="quod"
+               value="qui"
                data-component="body">
     <br>
-<p>last_name. Example: <code>quod</code></p>
+<p>last_name. Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -1220,10 +1226,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-v1-users-register"
-               value="libbie98@example.com"
+               value="ilene.rath@example.org"
                data-component="body">
     <br>
-<p>email, must be unique. Example: <code>libbie98@example.com</code></p>
+<p>email, must be unique. Example: <code>ilene.rath@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -1231,10 +1237,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone"                data-endpoint="POSTapi-v1-users-register"
-               value="dignissimos"
+               value="amet"
                data-component="body">
     <br>
-<p>phone. Example: <code>dignissimos</code></p>
+<p>phone. Example: <code>amet</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>zipcode</code></b>&nbsp;&nbsp;
@@ -1242,10 +1248,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="zipcode"                data-endpoint="POSTapi-v1-users-register"
-               value="asperiores"
+               value="autem"
                data-component="body">
     <br>
-<p>zipcode. Example: <code>asperiores</code></p>
+<p>zipcode. Example: <code>autem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1253,10 +1259,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-v1-users-register"
-               value="]BxzODVA7"
+               value="jgW5{/[/?,jDBe}h"
                data-component="body">
     <br>
-<p>password, must be 8 character long. Example: <code>]BxzODVA7</code></p>
+<p>password, must be 8 character long. Example: <code>jgW5{/[/?,jDBe}h</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirm_password</code></b>&nbsp;&nbsp;
@@ -1264,10 +1270,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="confirm_password"                data-endpoint="POSTapi-v1-users-register"
-               value="rgvjrzeegjnhtdfyyvcjxvulsswxnidizpjwookh"
+               value="xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt"
                data-component="body">
     <br>
-<p>The value and <code>password</code> must match. Must be at least 8 characters. Example: <code>rgvjrzeegjnhtdfyyvcjxvulsswxnidizpjwookh</code></p>
+<p>The value and <code>password</code> must match. Must be at least 8 characters. Example: <code>xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_type</code></b>&nbsp;&nbsp;
@@ -1275,10 +1281,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_type"                data-endpoint="POSTapi-v1-users-register"
-               value="culpa"
+               value="excepturi"
                data-component="body">
     <br>
-<p>user_type, must be USER or BUSINESS_OWNER. Example: <code>culpa</code></p>
+<p>user_type, must be USER or BUSINESS_OWNER. Example: <code>excepturi</code></p>
         </div>
         </form>
 
@@ -1299,9 +1305,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"zdaniel@example.org\",
-    \"password\": \"h`Dk0\\\"Y#elnHngjz-x!K\",
-    \"user_type\": \"qui\"
+    \"email\": \"albin.leuschke@example.com\",
+    \"password\": \"*|=a\\/r8Wp3TXCO(X\\\"p\",
+    \"user_type\": \"itaque\"
 }"
 </code></pre></div>
 
@@ -1317,9 +1323,9 @@ const headers = {
 };
 
 let body = {
-    "email": "zdaniel@example.org",
-    "password": "h`Dk0\"Y#elnHngjz-x!K",
-    "user_type": "qui"
+    "email": "albin.leuschke@example.com",
+    "password": "*|=a\/r8Wp3TXCO(X\"p",
+    "user_type": "itaque"
 };
 
 fetch(url, {
@@ -1337,20 +1343,19 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-&quot;status&quot;: true,
-&quot;statusCode&quot;: 200,
-&quot;message&quot;: &quot;Login successfully.&quot;,
-&quot;data&quot;: {
-&quot;user&quot;: {
-&quot;id&quot;: 1,
-&quot;name&quot;: &quot;John Doe&quot;,
-&quot;email&quot;: &quot;johh@yopmail.com&quot;,
-&quot;phone&quot;: &quot;1234567890&quot;,
-&quot;zipcode&quot;: &quot;123456&quot;,
-&quot;status&quot;: 1,
- &quot;profile_picture&quot;: &quot;customer/20210914121212image.jpg&quot;,
-}
-}
+    &quot;status&quot;: true,
+    &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Login successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;John Doe&quot;,
+            &quot;email&quot;: &quot;johh@yopmail.com&quot;,
+            &quot;phone&quot;: &quot;1234567890&quot;,
+            &quot;zipcode&quot;: &quot;123456&quot;,
+            &quot;status&quot;: 1
+        }
+    }
 }</code>
  </pre>
             <blockquote>
@@ -1457,10 +1462,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-v1-users-login"
-               value="zdaniel@example.org"
+               value="albin.leuschke@example.com"
                data-component="body">
     <br>
-<p>email, must be unique. Example: <code>zdaniel@example.org</code></p>
+<p>email, must be unique. Example: <code>albin.leuschke@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1468,10 +1473,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-v1-users-login"
-               value="h`Dk0"Y#elnHngjz-x!K"
+               value="*|=a/r8Wp3TXCO(X"p"
                data-component="body">
     <br>
-<p>password, must be 8 character long. Example: <code>h</code>Dk0&quot;Y#elnHngjz-x!K`</p>
+<p>password, must be 8 character long. Example: <code>*|=a/r8Wp3TXCO(X"p</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_type</code></b>&nbsp;&nbsp;
@@ -1479,141 +1484,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_type"                data-endpoint="POSTapi-v1-users-login"
-               value="qui"
+               value="itaque"
                data-component="body">
     <br>
-<p>user_type, must be USER or BUSINESS_OWNER. Example: <code>qui</code></p>
+<p>user_type, must be USER or BUSINESS_OWNER. Example: <code>itaque</code></p>
         </div>
         </form>
-
-                <h1 id="endpoints">Endpoints</h1>
-
-    
-
-                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-user">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/user" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-user">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
-set-cookie: laravel_session=pB3G5kDz0jSt7EU3g5YzIofM8Zl59DrqQGizxIE5; expires=Wed, 03-May-2023 14:07:23 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-user" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-user"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-user" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-user" data-method="GET"
-      data-path="api/user"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-user"
-                    onclick="tryItOut('GETapi-user');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-user"
-                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-user"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/user</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="GETapi-user"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-               name="Accept"                data-endpoint="GETapi-user"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
 
                 <h1 id="forget-password-apis">Forget Password APIs</h1>
 
@@ -1636,7 +1512,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"vflatley@example.net\"
+    \"email\": \"lbins@example.net\"
 }"
 </code></pre></div>
 
@@ -1652,7 +1528,7 @@ const headers = {
 };
 
 let body = {
-    "email": "vflatley@example.net"
+    "email": "lbins@example.net"
 };
 
 fetch(url, {
@@ -1672,21 +1548,11 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
-    &quot;message&quot;: &quot;OTP sent successfully.&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: false,
-    &quot;statusCode&quot;: 401,
-    &quot;error&quot;: {
-        &quot;message&quot;: [
-            &quot;The email field is required.&quot;
-        ]
+    &quot;message&quot;: &quot;Please! check your mail.&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;John Doe&quot;,
+        &quot;email&quot;: &quot;john@gmail.com&quot;
     }
 }</code>
  </pre>
@@ -1696,8 +1562,13 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Email not found!&quot;,
-    &quot;status&quot;: false
+&quot;status&quot;: false,
+&quot;statusCode&quot;: 401,
+&quot;error&quot;: {
+     &quot;message&quot;: [
+           &quot;The email field is required.&quot;,
+            &quot;The email must be a valid email address.&quot;
+      ]
 }</code>
  </pre>
             <blockquote>
@@ -1706,8 +1577,21 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Email not found!&quot;,
-    &quot;status&quot;: false
+&quot;error&quot;: {
+      &quot;message&quot;: {
+           &quot;The email format is invalid.&quot;
+       }
+ }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+     &quot;message&quot;: &quot;Couldn&#039;t find your account!&quot;
+     &quot;status&quot;: false
 }</code>
  </pre>
     </span>
@@ -1787,10 +1671,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-v1-users-forget-password"
-               value="vflatley@example.net"
+               value="lbins@example.net"
                data-component="body">
     <br>
-<p>Email Example: <code>vflatley@example.net</code></p>
+<p>email. Example: <code>lbins@example.net</code></p>
         </div>
         </form>
 
@@ -1798,7 +1682,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     <p>APIs for Listing</p>
 
-                                <h2 id="listing-apis-GETapi-v1-category-list">Category List API</h2>
+                                <h2 id="listing-apis-GETapi-v1-category-list">Category API</h2>
 
 <p>
 </p>
@@ -1842,12 +1726,19 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Category find successfully.&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: &quot;1&quot;,
             &quot;name&quot;: &quot;Women&quot;,
             &quot;slug&quot;: &quot;women&quot;,
-            &quot;icon&quot;: &quot;category/2021-05-12-1620813781.jpg&quot;
+            &quot;icon&quot;: &quot;category/women-hair-cut.png&quot;
+        },
+        {
+            &quot;id&quot;: &quot;2&quot;,
+            &quot;name&quot;: &quot;Men&#039;s&quot;,
+            &quot;slug&quot;: &quot;men&quot;,
+            &quot;icon&quot;: &quot;category/men-hair-cut.png&quot;
         }
     ]
 }</code>
@@ -1939,7 +1830,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="listing-apis-POSTapi-v1-category-service-types">Service Types Api</h2>
+                    <h2 id="listing-apis-POSTapi-v1-category-service-types">Service Types By Category Api</h2>
 
 <p>
 </p>
@@ -1956,7 +1847,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"category_id\": \"deleniti\"
+    \"category_id\": \"non\"
 }"
 </code></pre></div>
 
@@ -1972,7 +1863,7 @@ const headers = {
 };
 
 let body = {
-    "category_id": "deleniti"
+    "category_id": "non"
 };
 
 fetch(url, {
@@ -2003,6 +1894,16 @@ fetch(url, {
             &quot;main&quot;: 1,
             &quot;created_at&quot;: &quot;2023-03-27T06:41:40.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-03-27T06:41:40.000000Z&quot;
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;category_id&quot;: 2,
+            &quot;name&quot;: &quot;Shaving&quot;,
+            &quot;image&quot;: &quot;service_type/shaving.png&quot;,
+            &quot;status&quot;: 1,
+            &quot;main&quot;: 1,
+            &quot;created_at&quot;: &quot;2023-03-27T06:41:40.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-03-27T06:41:40.000000Z&quot;
         }
     ]
 }</code>
@@ -2016,9 +1917,9 @@ fetch(url, {
 &quot;status&quot;: false,
 &quot;statusCode&quot;: 401,
 &quot;error&quot;: {
-&quot;message&quot;: [
-&quot;The category_id field is required.&quot;,
-]
+     &quot;message&quot;: [
+             &quot;The category_id field is required.&quot;,
+     ]
  }
 }</code>
  </pre>
@@ -2109,10 +2010,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="category_id"                data-endpoint="POSTapi-v1-category-service-types"
-               value="deleniti"
+               value="non"
                data-component="body">
     <br>
-<p>Category Id Example: <code>deleniti</code></p>
+<p>Category Id Example: <code>non</code></p>
         </div>
         </form>
 
@@ -2160,11 +2061,17 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Servicetype find successfully.&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: &quot;1&quot;,
             &quot;name&quot;: &quot;Styling&quot;,
             &quot;icon&quot;: &quot;service_type/styling.png&quot;
+        },
+        {
+            &quot;id&quot;: &quot;2&quot;,
+            &quot;name&quot;: &quot;Spa&quot;,
+            &quot;icon&quot;: &quot;service_type/spa.png&quot;
         }
     ]
 }</code>
@@ -2300,6 +2207,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Services find successfully.&quot;,
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
@@ -2308,6 +2216,18 @@ fetch(url, {
             &quot;additional_service_id&quot;: 13,
             &quot;duration&quot;: &quot;2:30&quot;,
             &quot;description&quot;: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur&quot;,
+            &quot;status&quot;: 1,
+            &quot;popular_services&quot;: 1,
+            &quot;created_at&quot;: &quot;2023-03-27T08:48:30.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-04-13T10:57:11.000000Z&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;category_id&quot;: 1,
+            &quot;service_type_id&quot;: 1,
+            &quot;additional_service_id&quot;: 14,
+            &quot;duration&quot;: &quot;2:30&quot;,
+            &quot;description&quot;: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam&quot;,
             &quot;status&quot;: 1,
             &quot;popular_services&quot;: 1,
             &quot;created_at&quot;: &quot;2023-03-27T08:48:30.000000Z&quot;,
@@ -2420,8 +2340,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"service_type\": \"libero\",
-    \"category_id\": \"modi\"
+    \"service_type\": \"quas\",
+    \"category_id\": \"quos\"
 }"
 </code></pre></div>
 
@@ -2437,8 +2357,8 @@ const headers = {
 };
 
 let body = {
-    "service_type": "libero",
-    "category_id": "modi"
+    "service_type": "quas",
+    "category_id": "quos"
 };
 
 fetch(url, {
@@ -2622,10 +2542,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="service_type"                data-endpoint="POSTapi-v1-service-list-by-serviceType"
-               value="libero"
+               value="quas"
                data-component="body">
     <br>
-<p>Example: <code>libero</code></p>
+<p>Example: <code>quas</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>category_id</code></b>&nbsp;&nbsp;
@@ -2633,10 +2553,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="category_id"                data-endpoint="POSTapi-v1-service-list-by-serviceType"
-               value="modi"
+               value="quos"
                data-component="body">
     <br>
-<p>Category Id Example: <code>modi</code></p>
+<p>Category Id Example: <code>quos</code></p>
         </div>
         </form>
 
@@ -2657,7 +2577,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"service_id\": 30069686.772938732
+    \"service_id\": 68802286.5
 }"
 </code></pre></div>
 
@@ -2673,7 +2593,7 @@ const headers = {
 };
 
 let body = {
-    "service_id": 30069686.772938732
+    "service_id": 68802286.5
 };
 
 fetch(url, {
@@ -2837,10 +2757,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="service_id"                data-endpoint="POSTapi-v1-service-details"
-               value="30069686.772939"
+               value="68802286.5"
                data-component="body">
     <br>
-<p>Example: <code>30069686.772939</code></p>
+<p>Example: <code>68802286.5</code></p>
         </div>
         </form>
 
@@ -3057,6 +2977,10 @@ fetch(url, {
         {
             &quot;id&quot;: &quot;1&quot;,
             &quot;time&quot;: &quot;9:00 am - 10:00 am&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;time&quot;: &quot;10:00 am - 11:00 am&quot;
         }
     ]
 }</code>
@@ -3168,9 +3092,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/v1/users/profile/update" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "name=tempore" \
-    --form "phone=minus" \
-    --form "email=@C:\Users\user\AppData\Local\Temp\php71CB.tmp" </code></pre></div>
+    --form "name=enim" \
+    --form "phone=ea" \
+    --form "email=@C:\Users\user\AppData\Local\Temp\php773.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -3184,8 +3108,8 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'tempore');
-body.append('phone', 'minus');
+body.append('name', 'enim');
+body.append('phone', 'ea');
 body.append('email', document.querySelector('input[name="email"]').files[0]);
 
 fetch(url, {
@@ -3208,13 +3132,21 @@ fetch(url, {
     &quot;data&quot;: {
         &quot;id&quot;: 1,
         &quot;name&quot;: &quot;John Doe&quot;,
+        &quot;shop_name&quot;: &quot;John Doe Shop&quot;,
         &quot;email&quot;: &quot;john@yopmail.com&quot;,
         &quot;phone&quot;: &quot;1234567890&quot;,
         &quot;zipcode&quot;: &quot;123456&quot;,
+        &quot;email_verified_at&quot;: null,
+        &quot;profile_picture&quot;: null,
+        &quot;social_type&quot;: null,
         &quot;status&quot;: 1,
-        &quot;profile_picture&quot;: &quot;customer/2021-08-11-1628661381.jpg&quot;,
+        &quot;login_status&quot;: 0,
+        &quot;google_id&quot;: null,
+        &quot;facebook_id&quot;: null,
+        &quot;password_update_time&quot;: null,
         &quot;created_at&quot;: &quot;2023-03-15T06:15:27.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2023-04-25T06:57:45.000000Z&quot;
+        &quot;updated_at&quot;: &quot;2023-04-25T06:57:45.000000Z&quot;,
+        &quot;deleted_at&quot;: null
     },
     &quot;message&quot;: &quot;Profile updated successfully&quot;
 }</code>
@@ -3323,10 +3255,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-v1-users-profile-update"
-               value="tempore"
+               value="enim"
                data-component="body">
     <br>
-<p>name Example: <code>tempore</code></p>
+<p>name Example: <code>enim</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -3337,7 +3269,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>User email Example: <code>C:\Users\user\AppData\Local\Temp\php71CB.tmp</code></p>
+<p>User email Example: <code>C:\Users\user\AppData\Local\Temp\php773.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -3345,10 +3277,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone"                data-endpoint="POSTapi-v1-users-profile-update"
-               value="minus"
+               value="ea"
                data-component="body">
     <br>
-<p>phone Example: <code>minus</code></p>
+<p>phone Example: <code>ea</code></p>
         </div>
         </form>
 
@@ -3369,9 +3301,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"old_password\": \"et\",
-    \"new_password\": \"quia\",
-    \"comfirm_password\": \"quas\"
+    \"old_password\": \"blanditiis\",
+    \"new_password\": \"tempore\",
+    \"comfirm_password\": \"ut\"
 }"
 </code></pre></div>
 
@@ -3387,9 +3319,9 @@ const headers = {
 };
 
 let body = {
-    "old_password": "et",
-    "new_password": "quia",
-    "comfirm_password": "quas"
+    "old_password": "blanditiis",
+    "new_password": "tempore",
+    "comfirm_password": "ut"
 };
 
 fetch(url, {
@@ -3407,9 +3339,28 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;status&quot;: true,
-    &quot;statusCode&quot;: 200,
-    &quot;message&quot;: &quot;Password change successfully.&quot;
+&quot;status&quot;: true,
+&quot;statusCode&quot;: 200,
+&quot;data&quot;: {
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;shop_name&quot;: &quot;John Doe Shop&quot;,
+    &quot;email&quot;: &quot;john@yopmail.com&quot;,
+    &quot;phone&quot;: &quot;1234567890&quot;,
+    &quot;zipcode&quot;: &quot;123456&quot;,
+    &quot;email_verified_at&quot;: null,
+    &quot;profile_picture&quot;: null,
+    &quot;social_type&quot;: null,
+    &quot;status&quot;: 1,
+    &quot;login_status&quot;: 0,
+    &quot;google_id&quot;: null,
+    &quot;facebook_id&quot;: null,
+    &quot;password_update_time&quot;: null,
+    &quot;created_at&quot;: &quot;2023-03-15T06:15:27.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2023-04-25T06:57:45.000000Z&quot;,
+    &quot;deleted_at&quot;: null
+ }
+ &quot;message&quot;: &quot;Password change successfully.&quot;
 }</code>
  </pre>
             <blockquote>
@@ -3506,10 +3457,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="old_password"                data-endpoint="POSTapi-v1-users-profile-change-password"
-               value="et"
+               value="blanditiis"
                data-component="body">
     <br>
-<p>Old Password Example: <code>et</code></p>
+<p>Old Password Example: <code>blanditiis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>new_password</code></b>&nbsp;&nbsp;
@@ -3517,10 +3468,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="new_password"                data-endpoint="POSTapi-v1-users-profile-change-password"
-               value="quia"
+               value="tempore"
                data-component="body">
     <br>
-<p>New Password Example: <code>quia</code></p>
+<p>New Password Example: <code>tempore</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comfirm_password</code></b>&nbsp;&nbsp;
@@ -3528,10 +3479,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="comfirm_password"                data-endpoint="POSTapi-v1-users-profile-change-password"
-               value="quas"
+               value="ut"
                data-component="body">
     <br>
-<p>Confirm Password Example: <code>quas</code></p>
+<p>Confirm Password Example: <code>ut</code></p>
         </div>
         </form>
 
@@ -3710,10 +3661,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/v1/sellers/profile/update" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "name=natus" \
-    --form "phone=amet" \
-    --form "shop_name=pariatur" \
-    --form "email=@C:\Users\user\AppData\Local\Temp\php71FB.tmp" </code></pre></div>
+    --form "name=delectus" \
+    --form "phone=ut" \
+    --form "shop_name=ad" \
+    --form "email=@C:\Users\user\AppData\Local\Temp\php7B3.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -3727,9 +3678,9 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'natus');
-body.append('phone', 'amet');
-body.append('shop_name', 'pariatur');
+body.append('name', 'delectus');
+body.append('phone', 'ut');
+body.append('shop_name', 'ad');
 body.append('email', document.querySelector('input[name="email"]').files[0]);
 
 fetch(url, {
@@ -3869,10 +3820,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-v1-sellers-profile-update"
-               value="natus"
+               value="delectus"
                data-component="body">
     <br>
-<p>name Example: <code>natus</code></p>
+<p>name Example: <code>delectus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -3883,7 +3834,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>User email Example: <code>C:\Users\user\AppData\Local\Temp\php71FB.tmp</code></p>
+<p>User email Example: <code>C:\Users\user\AppData\Local\Temp\php7B3.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -3891,10 +3842,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone"                data-endpoint="POSTapi-v1-sellers-profile-update"
-               value="amet"
+               value="ut"
                data-component="body">
     <br>
-<p>phone Example: <code>amet</code></p>
+<p>phone Example: <code>ut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>shop_name</code></b>&nbsp;&nbsp;
@@ -3902,10 +3853,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shop_name"                data-endpoint="POSTapi-v1-sellers-profile-update"
-               value="pariatur"
+               value="ad"
                data-component="body">
     <br>
-<p>Example: <code>pariatur</code></p>
+<p>Example: <code>ad</code></p>
         </div>
         </form>
 
@@ -4076,7 +4027,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"service_name\": \"quae\"
+    \"service_name\": \"ullam\"
 }"
 </code></pre></div>
 
@@ -4092,7 +4043,7 @@ const headers = {
 };
 
 let body = {
-    "service_name": "quae"
+    "service_name": "ullam"
 };
 
 fetch(url, {
@@ -4236,10 +4187,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="service_name"                data-endpoint="POSTapi-v1-home-list"
-               value="quae"
+               value="ullam"
                data-component="body">
     <br>
-<p>Example: <code>quae</code></p>
+<p>Example: <code>ullam</code></p>
         </div>
         </form>
 
@@ -4287,6 +4238,7 @@ fetch(url, {
 <code class="language-json" style="max-height: 300px;">{
     &quot;status&quot;: true,
     &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Best seller find successfully&quot;,
     &quot;data&quot;: [
         {
             &quot;image&quot;: &quot;user/2021-05-12-1620813781.jpg&quot;
@@ -4381,7 +4333,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="service-apis-POSTapi-v1-home-banners">Best Seller API</h2>
+                    <h2 id="service-apis-POSTapi-v1-home-banners">Banner API</h2>
 
 <p>
 </p>
@@ -4424,11 +4376,12 @@ fetch(url, {
 
 <code class="language-json" style="max-height: 300px;">{
 &quot;status&quot;: true,
-  &quot;statusCode&quot;: 200,
-  &quot;data&quot;: {
+&quot;statusCode&quot;: 200,
+&quot;message&quot;: &quot;Banner find successfully&quot;,
+&quot;data&quot;: {
      &quot;middle_banner_1&quot;: &quot;home/middle_banner_1.jpg&quot;,
      &quot;middle_banner_2&quot;: &quot;home/middle_banner_2.jpg&quot;,
-    &quot;middle_banner_3&quot;: &quot;home/middle_banner_3.jpg&quot;
+     &quot;middle_banner_3&quot;: &quot;home/middle_banner_3.jpg&quot;
 }</code>
  </pre>
             <blockquote>
@@ -4535,14 +4488,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/auth/optio" \
+    --get "http://localhost/api/v1/auth/omnis" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"provider\": \"quia\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/optio"
+    "http://localhost/api/v1/auth/omnis"
 );
 
 const headers = {
@@ -4550,526 +4507,77 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "provider": "quia"
+};
+
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
 <span id="example-responses-GETapi-v1-auth--provider-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
-set-cookie: laravel_session=ecxoHVGKyArp51eTyzVT6HBfYTHmMz5JeVDOYEx6; expires=Wed, 03-May-2023 14:07:23 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Driver [optio] not supported.&quot;,
-    &quot;exception&quot;: &quot;InvalidArgumentException&quot;,
-    &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php&quot;,
-    &quot;line&quot;: 109,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php&quot;,
-            &quot;line&quot;: 80,
-            &quot;function&quot;: &quot;createDriver&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Manager&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;driver&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Manager&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\app\\Http\\Controllers\\API\\GoogleSocialiteController.php&quot;,
-            &quot;line&quot;: 33,
-            &quot;function&quot;: &quot;__callStatic&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Facades\\Facade&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;redirectToProvider&quot;,
-            &quot;class&quot;: &quot;App\\Http\\Controllers\\API\\GoogleSocialiteController&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;callAction&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 262,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 205,
-            &quot;function&quot;: &quot;runController&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 721,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php&quot;,
-            &quot;line&quot;: 50,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 127,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 723,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 698,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 662,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 651,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php&quot;,
-            &quot;line&quot;: 49,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\View\\Middleware\\ShareErrorsFromSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php&quot;,
-            &quot;line&quot;: 52,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php&quot;,
-            &quot;line&quot;: 64,
-            &quot;function&quot;: &quot;handleStatefulRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Session\\Middleware\\StartSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Session\\Middleware\\StartSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 142,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 111,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 92,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 209,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 166,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 95,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 124,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 71,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 49,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php&quot;,
-            &quot;line&quot;: 653,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 136,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Command\\Command.php&quot;,
-            &quot;line&quot;: 298,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 1040,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 301,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php&quot;,
-            &quot;line&quot;: 94,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
+    &quot;status&quot;: true,
+    &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Logged in successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;auth_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1N&quot;,
+        &quot;user_details&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;John Doe&quot;,
+            &quot;email&quot;: &quot;john@gmail.com&quot;,
+            &quot;email_verified_at&quot;: null,
+            &quot;phone&quot;: &quot;1234567890&quot;,
+            &quot;zipcode&quot;: &quot;123456&quot;,
+            &quot;status&quot;: 1,
+            &quot;profile_picture&quot;: &quot;user/20210914121212image.jpg&quot;,
+            &quot;created_at&quot;: &quot;2021-09-14T12:12:12.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2021-09-14T12:12:12.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;login_status&quot;: 1,
+            &quot;google_id&quot;: &quot;1234567890&quot;,
+            &quot;social_type&quot;: &quot;google&quot;
         }
-    ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: false,
+    &quot;statusCode&quot;: 401,
+    &quot;error&quot;: {
+        &quot;message&quot;: [
+            &quot;The provider field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: false,
+    &quot;statusCode&quot;: 401,
+    &quot;error&quot;: {
+        &quot;message&quot;: [
+            &quot;No detail found!&quot;
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -5149,12 +4657,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="provider"                data-endpoint="GETapi-v1-auth--provider-"
-               value="optio"
+               value="omnis"
                data-component="url">
     <br>
-<p>Example: <code>optio</code></p>
+<p>Example: <code>omnis</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>provider</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="provider"                data-endpoint="GETapi-v1-auth--provider-"
+               value="quia"
+               data-component="body">
+    <br>
+<p>provider, must be google or facebook. Example: <code>quia</code></p>
+        </div>
+        </form>
 
                     <h2 id="social-login-apis-GETapi-v1-auth-callback--provider-">Social login Api.</h2>
 
@@ -5169,14 +4689,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/auth/callback/sit" \
+    --get "http://localhost/api/v1/auth/callback/incidunt" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"provider\": \"voluptates\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/callback/sit"
+    "http://localhost/api/v1/auth/callback/incidunt"
 );
 
 const headers = {
@@ -5184,526 +4708,77 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "provider": "voluptates"
+};
+
 fetch(url, {
     method: "GET",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
 <span id="example-responses-GETapi-v1-auth-callback--provider-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
-access-control-allow-origin: *
-set-cookie: laravel_session=FhBhwjPOdXFdIgwVQDrbeAukeabG7YS0I64SeqHM; expires=Wed, 03-May-2023 14:07:23 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Driver [sit] not supported.&quot;,
-    &quot;exception&quot;: &quot;InvalidArgumentException&quot;,
-    &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php&quot;,
-    &quot;line&quot;: 109,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Manager.php&quot;,
-            &quot;line&quot;: 80,
-            &quot;function&quot;: &quot;createDriver&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Manager&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;driver&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Manager&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\app\\Http\\Controllers\\API\\GoogleSocialiteController.php&quot;,
-            &quot;line&quot;: 44,
-            &quot;function&quot;: &quot;__callStatic&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Facades\\Facade&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;handleCallback&quot;,
-            &quot;class&quot;: &quot;App\\Http\\Controllers\\API\\GoogleSocialiteController&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;callAction&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 262,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 205,
-            &quot;function&quot;: &quot;runController&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 721,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php&quot;,
-            &quot;line&quot;: 50,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 127,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 723,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 698,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 662,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 651,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php&quot;,
-            &quot;line&quot;: 49,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\View\\Middleware\\ShareErrorsFromSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php&quot;,
-            &quot;line&quot;: 52,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php&quot;,
-            &quot;line&quot;: 64,
-            &quot;function&quot;: &quot;handleStatefulRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Session\\Middleware\\StartSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Session\\Middleware\\StartSession&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 142,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 111,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 92,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 209,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 166,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 95,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 124,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 71,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 49,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php&quot;,
-            &quot;line&quot;: 653,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 136,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Command\\Command.php&quot;,
-            &quot;line&quot;: 298,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 1040,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 301,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php&quot;,
-            &quot;line&quot;: 94,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\xampp\\htdocs\\shreeja\\groomely_backend\\artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
+    &quot;status&quot;: true,
+    &quot;statusCode&quot;: 200,
+    &quot;message&quot;: &quot;Logged in successfully.&quot;,
+    &quot;data&quot;: {
+        &quot;auth_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1N&quot;,
+        &quot;user_details&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;John Doe&quot;,
+            &quot;email&quot;: &quot;john@gmail.com&quot;,
+            &quot;email_verified_at&quot;: null,
+            &quot;phone&quot;: &quot;1234567890&quot;,
+            &quot;zipcode&quot;: &quot;123456&quot;,
+            &quot;status&quot;: 1,
+            &quot;profile_picture&quot;: &quot;user/20210914121212image.jpg&quot;,
+            &quot;created_at&quot;: &quot;2021-09-14T12:12:12.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2021-09-14T12:12:12.000000Z&quot;,
+            &quot;deleted_at&quot;: null,
+            &quot;login_status&quot;: 1,
+            &quot;google_id&quot;: &quot;1234567890&quot;,
+            &quot;social_type&quot;: &quot;google&quot;
         }
-    ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: false,
+    &quot;statusCode&quot;: 401,
+    &quot;error&quot;: {
+        &quot;message&quot;: [
+            &quot;The provider field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;status&quot;: false,
+    &quot;statusCode&quot;: 401,
+    &quot;error&quot;: {
+        &quot;message&quot;: [
+            &quot;No detail found!&quot;
+        ]
+    }
 }</code>
  </pre>
     </span>
@@ -5783,12 +4858,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="provider"                data-endpoint="GETapi-v1-auth-callback--provider-"
-               value="sit"
+               value="incidunt"
                data-component="url">
     <br>
-<p>Example: <code>sit</code></p>
+<p>Example: <code>incidunt</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>provider</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="provider"                data-endpoint="GETapi-v1-auth-callback--provider-"
+               value="voluptates"
+               data-component="body">
+    <br>
+<p>provider, must be google or facebook. Example: <code>voluptates</code></p>
+        </div>
+        </form>
 
                 <h1 id="user-details-apis">User details APIs</h1>
 

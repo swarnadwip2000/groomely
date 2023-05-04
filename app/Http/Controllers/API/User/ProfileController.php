@@ -35,13 +35,21 @@ class ProfileController extends Controller
      * "data": {
      *     "id": 1,
      *     "name": "John Doe",
+     *     "shop_name": "John Doe Shop",
      *     "email": "john@yopmail.com",
      *     "phone": "1234567890",
      *     "zipcode": "123456",
+     *     "email_verified_at": null,
+     *     "profile_picture": null,
+     *     "social_type": null,
      *     "status": 1,
-     *     "profile_picture": "customer/2021-08-11-1628661381.jpg",
+     *     "login_status": 0,
+     *     "google_id": null,
+     *     "facebook_id": null,
+     *     "password_update_time": null,
      *     "created_at": "2023-03-15T06:15:27.000000Z",
-     *     "updated_at": "2023-04-25T06:57:45.000000Z"
+     *     "updated_at": "2023-04-25T06:57:45.000000Z",
+     *     "deleted_at": null
      * },
      * "message": "Profile updated successfully"
      * }
@@ -110,17 +118,36 @@ class ProfileController extends Controller
      * @response {
      * "status": true,
      * "statusCode": 200,
-     * "message": "Password change successfully."
+     * "data": {
+     *     "id": 1,
+     *     "name": "John Doe",
+     *     "shop_name": "John Doe Shop",
+     *     "email": "john@yopmail.com",
+     *     "phone": "1234567890",
+     *     "zipcode": "123456",
+     *     "email_verified_at": null,
+     *     "profile_picture": null,
+     *     "social_type": null,
+     *     "status": 1,
+     *     "login_status": 0,
+     *     "google_id": null,
+     *     "facebook_id": null,
+     *     "password_update_time": null,
+     *     "created_at": "2023-03-15T06:15:27.000000Z",
+     *     "updated_at": "2023-04-25T06:57:45.000000Z",
+     *     "deleted_at": null
+     *  }
+     *  "message": "Password change successfully."
      * }
      * @response 401 {
      * "status": false,
      * "statusCode": 401,
      * "error": {
-     * "message": [
-     * "The Old Password field is required.",
-     * "The New Password field is required.",
-     * "The Confirm Password field is required."
-     * ]
+     *      "message": [
+     *              "The Old Password field is required.",
+     *              "The New Password field is required.",
+     *              "The Confirm Password field is required."
+     *      ]
      * }
      * }
      * 
@@ -156,7 +183,7 @@ class ProfileController extends Controller
             $now_time = Carbon::now()->toDateTimeString();   
             $user->password_update_time = $now_time;
             $user->update();
-            return response()->json(['message' => 'Password changed successfully' , 'status' => true, 'data' => $user], 200);
+            return response()->json(['message' => 'Password change successfully' , 'status' => true, 'data' => $user], 200);
              
         } catch (Exception $e) {
             return response()->json(['message' => 'something went wrong' , 'status' => false], 401);

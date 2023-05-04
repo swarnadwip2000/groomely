@@ -33,16 +33,15 @@ class AuthController extends Controller
      * "statusCode": 200,
      * "message": "Login successfully.",
      * "data": {
-     * "user": {
-     * "id": 1,
-     * "name": "John Doe",
-     * "email": "johh@yopmail.com",
-     * "phone": "1234567890",
-     * "zipcode": "123456",
-     * "status": 1,
-     *  "profile_picture": "customer/20210914121212image.jpg",
-     * }
-     * }
+     *      "user": {
+     *          "id": 1,
+     *          "name": "John Doe",
+     *          "email": "johh@yopmail.com",
+     *          "phone": "1234567890",
+     *          "zipcode": "123456",
+     *          "status": 1 
+     *       }
+     *   }
      * }
      * @response 401 {
      * "status": false,
@@ -133,12 +132,13 @@ class AuthController extends Controller
      * "statusCode": 200,
      * "message": "Registration successfully.",
      * "data": {
-     * "user": {
-     * "id": 1,
-     * "name": "John Doe",
-     * "email": "johh@yopmail.com"
-     * }
-     * }
+     *      "id": 1,
+     *      "name": "John Doe",
+     *      "email": "johh@yopmail.com",
+     *      "phone": "1234567890",
+     *      "zipcode": "123456",
+     *      "status": 1,
+     *     }
      * }
      * @response 401 {
      * "status": false,
@@ -147,12 +147,10 @@ class AuthController extends Controller
      * "message": [
      * "The first_name field is required.",
      * "The last_name field is required.",
-     * "The email type field is required.",
+     * "The email format is invalid.",
      * "The email field is required.",
      * "The password field is required.",
      * "The user type field is required."
-     * 
-     * 
      * ]
      *  }
      * }

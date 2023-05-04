@@ -1,16 +1,20 @@
-name: Endpoints
-description: ''
+name: 'Authentication APIs'
+description: |-
+
+  APIs for Authentication
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/user
+      - POST
+    uri: api/v1/users/register
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: 'Authentication APIs'
+      groupDescription: |-
+
+        APIs for Authentication
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Registration Api'
       description: ''
       authenticated: false
       custom: []
@@ -21,19 +25,227 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: first_name.
+        required: true
+        example: quam
+        type: string
+        custom: []
+      last_name:
+        name: last_name
+        description: last_name.
+        required: true
+        example: qui
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'email, must be unique.'
+        required: true
+        example: ilene.rath@example.org
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: phone.
+        required: true
+        example: amet
+        type: string
+        custom: []
+      zipcode:
+        name: zipcode
+        description: zipcode.
+        required: true
+        example: autem
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'password, must be 8 character long.'
+        required: true
+        example: 'jgW5{/[/?,jDBe}h'
+        type: string
+        custom: []
+      confirm_password:
+        name: confirm_password
+        description: 'The value and <code>password</code> must match. Must be at least 8 characters.'
+        required: true
+        example: xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt
+        type: string
+        custom: []
+      user_type:
+        name: user_type
+        description: 'user_type, must be USER or BUSINESS_OWNER.'
+        required: true
+        example: excepturi
+        type: string
+        custom: []
+    cleanBodyParameters:
+      first_name: quam
+      last_name: qui
+      email: ilene.rath@example.org
+      phone: amet
+      zipcode: autem
+      password: 'jgW5{/[/?,jDBe}h'
+      confirm_password: xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt
+      user_type: excepturi
     fileParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Registration successfully.",
+          "data": {
+               "id": 1,
+               "name": "John Doe",
+               "email": "johh@yopmail.com",
+               "phone": "1234567890",
+               "zipcode": "123456",
+               "status": 1,
+              }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-          set-cookie: 'laravel_session=pB3G5kDz0jSt7EU3g5YzIofM8Zl59DrqQGizxIE5; expires=Wed, 03-May-2023 14:07:23 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
-        description: null
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The first_name field is required.",
+          "The last_name field is required.",
+          "The email format is invalid.",
+          "The email field is required.",
+          "The password field is required.",
+          "The user type field is required."
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/login
+    metadata:
+      groupName: 'Authentication APIs'
+      groupDescription: |-
+
+        APIs for Authentication
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'login Api'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'email, must be unique.'
+        required: true
+        example: albin.leuschke@example.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'password, must be 8 character long.'
+        required: true
+        example: '*|=a/r8Wp3TXCO(X"p'
+        type: string
+        custom: []
+      user_type:
+        name: user_type
+        description: 'user_type, must be USER or BUSINESS_OWNER.'
+        required: true
+        example: itaque
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: albin.leuschke@example.com
+      password: '*|=a/r8Wp3TXCO(X"p'
+      user_type: itaque
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "status": true,
+          "statusCode": 200,
+          "message": "Login successfully.",
+          "data": {
+               "user": {
+                   "id": 1,
+                   "name": "John Doe",
+                   "email": "johh@yopmail.com",
+                   "phone": "1234567890",
+                   "zipcode": "123456",
+                   "status": 1
+                }
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "The email field is required.",
+          "The password field is required.",
+          "The user type field is required."
+
+          ]
+           }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "message": "No detail found!",
+          "status": false
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []

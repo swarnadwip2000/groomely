@@ -118,8 +118,9 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
-     *   "statusCode": 200,
-     *   "data": [
+     * "statusCode": 200,
+     * "message": "Best seller find successfully",
+     *  "data": [
      *       {
      *       
      *           "image": "user/2021-05-12-1620813781.jpg"
@@ -130,10 +131,10 @@ class HomeController extends Controller
      * "status": false,
      * "statusCode": 401,
      * "error": {
-     * "message": [
-     * "No detail found!"
-     * ]
-     * }
+     *      "message": [
+     *          "No detail found!"
+     *      ]
+     *  }
      * }
     */ 
 
@@ -154,30 +155,37 @@ class HomeController extends Controller
                 }   
             }
             $details = collect($shop_detail)->sortByDesc('total');
-            return response()->json(['data' => $details, 'status' => true, 'message' => 'Best seller find successfully'], $this->successStatus);
+            if(count($details) > 0)
+            {
+                return response()->json(['data' => $details, 'status' => true, 'message' => 'Best seller find successfully'], $this->successStatus);
+            }else{
+                return response()->json(['status' => false , 'statusCode' => 401, 'message' => 'currently there is no Best Seller'], 401);
+            }
+            
         } catch (Exception $e) {
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         }      
     }
 
      /**
-     *  Best Seller API
+     *  Banner API
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
-     *   "statusCode": 200,
-     *   "data": {
+     * "statusCode": 200,
+     * "message": "Banner find successfully",
+     * "data": {
      *      "middle_banner_1": "home/middle_banner_1.jpg",
      *      "middle_banner_2": "home/middle_banner_2.jpg",
-     *     "middle_banner_3": "home/middle_banner_3.jpg"
+     *      "middle_banner_3": "home/middle_banner_3.jpg"
      * }
      * @response 401 {
      * "status": false,
      * "statusCode": 401,
      * "error": {
-     * "message": [
-     * "No detail found!"
-     * ]
+     *      "message": [
+     *          "No detail found!"
+     *      ]
      * }
      * }
     */ 

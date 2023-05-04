@@ -24,35 +24,36 @@ class ForgetPasswordController extends Controller
     
     /**
      * Forget Password API
-     * @bodyParam email string required email, must be unique.
+     * @bodyParam email string required email.
      * @response {
      * "status": true,
      * "statusCode": 200,
-     * "message": "Email sent successfully.",
+     * "message": "Please! check your mail.",
      * "data": {
-     * "user": {
-     * "id": 1,
-     * "name": "John Doe",
-     * "email": "john@gmail.com",
-     * "phone": "1234567890",
-     * "zipcode": "123456",
-     * "status": 1,
-     * "profile_picture": "customer/20210914121212image.jpg",
-     * }
-     * }
+     *      "id": 1,
+     *      "name": "John Doe",
+     *      "email": "john@gmail.com"
+     *     }
      * }
      * @response 401 {
      * "status": false,
      * "statusCode": 401,
      * "error": {
-     * "message": [
-     * "The email field is required.",
-     * "The email must be a valid email address."
-     * ]
-     * }
+     *      "message": [
+     *            "The email field is required.",
+     *             "The email must be a valid email address."
+     *       ]
      * }
      * @response 401 {
-     * "message": "Couldn't find your account!"
+     * "error": {
+     *       "message": {
+     *            "The email format is invalid."
+     *        }
+     *  }
+     * }
+     * @response 401 {
+     *      "message": "Couldn't find your account!"
+     *      "status": false
      * }
      */
 

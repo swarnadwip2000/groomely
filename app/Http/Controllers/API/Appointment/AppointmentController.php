@@ -31,17 +31,23 @@ class AppointmentController extends Controller
      * @bodyParam booking_date string required booking_date.
      * @bodyParam amount string required amount.
      * @bodyParam booking_time_id string required booking_time_id.
-    
      * @response {
      * "status": true,
      * "statusCode": 200,
-     * "message": "Booking successfully.",
+     * "message": "Booking successfully",
      * "data": {
-     * "user": {
-     * "id": 1,
-     * "name": "John Doe",
-     * "email": "johh@yopmail.com"
-     * }
+     *      "id": 1,
+     *      "user_id": 1,
+     *      "seller_id": 1,
+     *      "service_id": 1,
+     *      "name": "John Doe",
+     *      "email": "john@gmail.com",
+     *      "phone": "1234567890",
+     *      "booking_date": "2021-09-30",
+     *      "booking_time_id": 1,
+     *      "amount": "100",
+     *      "created_at": "2021-09-30T11:25:00.000000Z",
+     *      "updated_at": "2021-09-30T11:25:00.000000Z"
      * }
      * }
      * @response 401 {
@@ -49,21 +55,28 @@ class AppointmentController extends Controller
      * "statusCode": 401,
      * "error": {
      * "message": [
-     * "The service_id field is required.",
-     * "The seller_id field is required.",
-     * "The booking_date type field is required.",
+     * "The service id field is required.",
+     * "The seller id field is required.",
+     * "The booking date field is required.",
      * "The amount field is required.",
-     * "The booking_time_id field is required."
-     * 
-     * 
-     * ]
-     *  }
+     * "The booking time id field is required."
+     *  ]
+     * }
      * }
      * @response 401 {
-     * "message": "No detail found!",
-     * "status": false
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "The service id must be a number greater than 0.",
+     * "The seller id must be a number greater than 0.",
+     * "The booking time id must be a number greater than 0."
+     * ]
      * }
-     */
+     * }
+     */ 
+     
+    
     
     public function bookingcreate(Request $request)
     {
@@ -124,9 +137,49 @@ class AppointmentController extends Controller
      *   "statusCode": 200,
      *   "data": [
      *       {
-     *           "id": "1",
-     *           "time": "9:00 am - 10:00 am"
-     *       }
+     *          "id": 1,
+     *          "seller_id": 1,
+     *          "booking_date": "2021-09-30",
+     *          "booking_time_id": 1,
+     *          "amount": "100",
+     *          "service_id": 1,
+     *          "status": "process",
+     *          "seller": {
+     *             "id": 1,"id": 3,
+     *               "name": "test seller",
+     *               "shop_name": "Beauty shop",
+     *                "email": "testseller@yopmail.com",
+     *               "phone": "8956986523",
+     *               "zipcode": "789456",
+     *               "email_verified_at": null,
+     *               "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
+     *               "social_type": null,
+     *               "status": 1,
+     *               "login_status": 0,
+     *               "google_id": null,
+     *               "facebook_id": null,
+     *               "password_update_time": "2023-03-27 03:43:31",
+     *               "created_at": "2023-03-27T08:43:01.000000Z",
+     *               "updated_at": "2023-03-31T10:12:19.000000Z",
+     *               "deleted_at": null
+     *          },
+     *         "service": {
+     *              "id": 1,
+     *              "category_id": 1,
+     *              "service_type_id": 1,
+     *              "additional_service_id": 13,
+     *              "duration": "2:30",
+     *              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *              "status": 1,
+     *              "popular_services": 1,
+     *              "created_at": "2023-03-27T08:48:30.000000Z",
+     *              "updated_at": "2023-04-13T10:57:11.000000Z"
+     *           },
+     *          "booking_time": {
+     *              "id": 4,
+     *              "time": "12:00 pm - 1:00 pm"
+     *          }
+     *      }
      *   ]
      * }
      * @response 401 {
@@ -166,14 +219,60 @@ class AppointmentController extends Controller
      * "statusCode": 200,
      * "message": "Booking found successfully.",
      * "data": {
-     * "user": {
-     * "id": 1,
-     * "name": "John Doe",
-     * "email": "johh@yopmail.com",
-     * "phone": "1234567890",
-     * "zipcode": "123456"
+     *      "id": 1,
+     *      "seller_id": 3,
+     *      "booking_date": "03/20/2023",
+     *      "booking_time_id": 4,
+     *      "name": "test users",
+     *      "email": "testuser@gmail.com",
+     *      "phone": "9865327800",
+     *      "amount": "200",
+     *      "service_id": 1,
+     *      "status": "process",
+     *      "seller": {
+                "id": 3,
+                "name": "test seller",
+                "shop_name": "Beauty shop",
+                "email": "testseller@yopmail.com",
+                "phone": "8956986523",
+                "zipcode": "789456",
+                "email_verified_at": null,
+                "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
+                "social_type": null,
+                "status": 1,
+                "login_status": 0,
+                "google_id": null,
+                "facebook_id": null,
+                "password_update_time": "2023-03-27 03:43:31",
+                "created_at": "2023-03-27T08:43:01.000000Z",
+                "updated_at": "2023-03-31T10:12:19.000000Z",
+                "deleted_at": null
+            },
+            "service": {
+                "id": 1,
+                "category_id": 1,
+                "service_type_id": 1,
+                "additional_service_id": 13,
+                "duration": "2:30",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                "status": 1,
+                "popular_services": 1,
+                "created_at": "2023-03-27T08:48:30.000000Z",
+                "updated_at": "2023-04-13T10:57:11.000000Z",
+                "additional_service": {
+                    "id": 13,
+                    "name": "Hair starighning"
+                },
+                "category": {
+                    "id": 1,
+                    "name": "Women"
+                }
+            },
+            "booking_time": {
+                "id": 4,
+                "time": "12:00 pm - 1:00 pm"
+            }
      * 
-     * }
      * }
      * }
      * @response 401 {
@@ -303,14 +402,15 @@ class AppointmentController extends Controller
                 return response()->json(['data' => $review_submit, 'status' => true, 'message' => 'Review updated successfully'], $this->successStatus);
                 
             }else{
+                
                 $review = new Review;
                 $review->appointment_id = $request->appointment_id;
                 $review->service_id = $request->service_id;
                 $review->comment = $request->comment;
                 $review->rating = $request->rating;
-                $review->save();
+                $review->update();
 
-                return response()->json(['data' => $review_submit, 'status' => true, 'message' => 'Review submitted successfully'], $this->successStatus);
+                return response()->json(['data' => $review, 'status' => true, 'message' => 'Review submitted successfully'], $this->successStatus);
             }
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Something went wrong!', 'status' => false], 401);

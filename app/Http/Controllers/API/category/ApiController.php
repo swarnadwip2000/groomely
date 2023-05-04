@@ -25,19 +25,26 @@ use Illuminate\Support\Facades\Validator;
 class ApiController extends Controller
 {
     public $successStatus = 200;
-      /**
-     *  Category List API
+    /**
+     *  Category API
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
-     *   "statusCode": 200,
-     *   "data": [
+     * "statusCode": 200,
+     * "message": "Category find successfully.",
+     * "data": [
      *       {
      *           "id": "1",
      *           "name": "Women",
      *           "slug": "women",
-     *           "icon": "category/2021-05-12-1620813781.jpg"
-     *       }
+     *           "icon": "category/women-hair-cut.png"
+     *       },
+     *       {
+     *          "id": "2",
+     *          "name": "Men's",
+     *          "slug": "men",
+     *          "icon": "category/men-hair-cut.png"
+     *      }
      *   ]
      * }
      * @response 401 {
@@ -45,8 +52,8 @@ class ApiController extends Controller
      * "statusCode": 401,
      * "error": {
      * "message": [
-     * "No detail found!"
-     * ]
+     *      "No detail found!"
+     *  ]
      * }
      * }
     */
@@ -71,13 +78,19 @@ class ApiController extends Controller
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
-     *   "statusCode": 200,
-     *   "data": [
+     * "statusCode": 200,
+     * "message": "Servicetype find successfully.",
+     * "data": [
      *       {
      *           "id": "1",
      *           "name": "Styling",
      *           "icon": "service_type/styling.png"
-     *       }
+     *       },
+     *      {
+     *          "id": "2",
+     *          "name": "Spa",
+     *          "icon": "service_type/spa.png"
+     *      }
      *   ]
      * }
      * @response 401 {
@@ -117,6 +130,10 @@ class ApiController extends Controller
      *       {
      *           "id": "1",
      *           "time": "9:00 am - 10:00 am"
+     *       },
+     *       {
+     *            "id": 2,
+     *            "time": "10:00 am - 11:00 am"
      *       }
      *   ]
      * }
@@ -135,9 +152,10 @@ class ApiController extends Controller
     {
         // return "okkk";
         try {
-            $booking_time = BookingTime::select('id','time')->get();
-            if($booking_time !='')
+            $booking_time_count = BookingTime::select('id','time')->count();
+            if($booking_time_count > 0)
             {
+                $booking_time = BookingTime::select('id','time')->get();
                 return response()->json(['status' => true, 'statusCode' => $this->successStatus, 'data' => $booking_time, 'message' => 'Booking time find successfully'], $this->successStatus);
             }
             else{
@@ -154,8 +172,9 @@ class ApiController extends Controller
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
-     *   "statusCode": 200,
-     *   "data": [
+     * "statusCode": 200,
+     * "message": "Services find successfully.",
+     * "data": [
      *       {
      *           "id": 1,
      *           "category_id": 1,
@@ -163,6 +182,18 @@ class ApiController extends Controller
      *           "additional_service_id": 13,
      *           "duration": "2:30",
      *           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *           "status": 1,
+     *           "popular_services": 1,
+     *           "created_at": "2023-03-27T08:48:30.000000Z",
+     *           "updated_at": "2023-04-13T10:57:11.000000Z"
+     *       },
+     *      {
+     *           "id": 2,
+     *           "category_id": 1,
+     *           "service_type_id": 1,
+     *           "additional_service_id": 14,
+     *           "duration": "2:30",
+     *           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
      *           "status": 1,
      *           "popular_services": 1,
      *           "created_at": "2023-03-27T08:48:30.000000Z",
@@ -185,9 +216,10 @@ class ApiController extends Controller
     {
         // return "okkk";
         try {
-            $service_list = Service::where('status',1)->get();
-            if($service_list !='')
+            $service_list_count = Service::where('status',1)->count();
+            if($service_list_count > 0)
             {
+                $service_list = Service::where('status',1)->get();
                 return response()->json(['data' => $service_list, 'status' => true, 'message' => 'Service find successfully'], $this->successStatus);
             }
             else{
@@ -368,7 +400,7 @@ class ApiController extends Controller
     }
 
      /** 
-     * Service Types Api 
+     * Service Types By Category Api 
      * 
      * @return \Illuminate\Http\Response 
      * @bodyParam category_id string required Category Id
@@ -377,11 +409,21 @@ class ApiController extends Controller
      * "statusCode": 200,
      * "message": "Service type find successfully",
      * "data": [
-     * {
+     *   {
      *       "id": 4,
      *       "category_id": 2,
      *       "name": "Trimming",
      *       "image": "service_type/trimming.png",
+     *       "status": 1,
+     *       "main": 1,
+     *       "created_at": "2023-03-27T06:41:40.000000Z",
+     *       "updated_at": "2023-03-27T06:41:40.000000Z"
+     *   },
+     *   {
+     *       "id": 5,
+     *       "category_id": 2,
+     *       "name": "Shaving",
+     *       "image": "service_type/shaving.png",
      *       "status": 1,
      *       "main": 1,
      *       "created_at": "2023-03-27T06:41:40.000000Z",
@@ -393,9 +435,9 @@ class ApiController extends Controller
      * "status": false,
      * "statusCode": 401,
      * "error": {
-     * "message": [
-     * "The category_id field is required.",
-     * ]
+     *      "message": [
+     *              "The category_id field is required.",
+     *      ]
      *  }
      * }
      * @response 401 {
@@ -411,14 +453,14 @@ class ApiController extends Controller
         ]);
 
         try {
-            $service_type = ServiceType::where('category_id',$request->category_id)->where('status',1)->get();
-            if($service_type !='')
-                {
-                    return response()->json(['data' => $service_type, 'status' => true, 'message' => 'Service type find successfully'], $this->successStatus);
-                }
-                else{
-                    return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service type not found!'], 401);
-                }
+            $service_type_count = ServiceType::where('category_id',$request->category_id)->where('status',1)->count();
+            if($service_type_count > 0)
+            {
+                $service_type = ServiceType::where('category_id',$request->category_id)->where('status',1)->get();
+                return response()->json(['data' => $service_type, 'status' => true, 'message' => 'Service type find successfully'], $this->successStatus);
+            }else{
+                return response()->json(['status' => false , 'statusCode' => 401,'statusCode' => 401, 'message' => 'Service type not found!'], 401);
+            }
         } catch (Exception $e) {
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         } 
