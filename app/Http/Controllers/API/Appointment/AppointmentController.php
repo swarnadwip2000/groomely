@@ -82,12 +82,18 @@ class AppointmentController extends Controller
     {
        
         $validator = Validator::make($request->all(), [
-            'service_id'     => 'required|numeric|gt:0',
-            'seller_id' => 'required|numeric|gt:0',
+            'service_id'     => 'required|numeric|exists:services,id',
+            'seller_id' => 'required|numeric|exists:users,id',
             'booking_date' => 'required',
             'amount' => 'required',
-            'booking_time_id' => 'required|numeric|gt:0',
+            'booking_time_id' => 'required|numeric|exists:booking_times,id',
+
+        ], [
+            'service_id.exists' => 'Service does not exits.',
+            'seller_id.exists' => 'Seller does not exits.',
+            'booking_time_id.exists' => 'Booking time does not exits.'
         ]);
+        
 
         if ($validator->fails()) {
             $errors['status_code'] = 401;
