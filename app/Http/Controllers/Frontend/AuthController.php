@@ -74,9 +74,13 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::where('email', $request->email)->select('id', 'name', 'email', 'status')->first();
-
-            if ($request->user_type == 'USER' && $user->hasRole('USER') && $user->status == 1) {
-                return redirect()->route('appointments.index');
+            $session_service = session()->get('serviceId');
+            $id = base64_encode($session_service);
+            if ($request->user_type == 'USER' && $user->hasRole('USER') && $user->status == 1 && $session_service) {
+                return redirect()->route('book-now', $id);
+               
+            }else if($request->user_type == 'USER' && $user->hasRole('USER') && $user->status == 1){
+                return redirect()->route('package');
             } else if ($request->user_type == 'BUSINESS_OWNER' && $user->hasRole('BUSINESS_OWNER') && $user->status == 1) {
                 return redirect()->route('seller.dashboard');
             } else {

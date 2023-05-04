@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class BookNowController extends Controller
 {
@@ -30,9 +31,11 @@ class BookNowController extends Controller
     }
 
     public function submitAppointment(Request $request)
-    {
-       
+    { 
+        
         if (!Auth::check()) {
+            
+            $service = Session::put('serviceId',$request->service_id);
             return redirect()->route('login')->with('error', 'Please login first to booked the appointment!!');
         } else {
             if (Auth::user()->hasRole('USER')) {
@@ -66,6 +69,7 @@ class BookNowController extends Controller
                     'appointment' => $appointment,
                 ];
                 Mail::to($email)->send(new BookAppointmentMail($maildata));
+                session()->flash('serviceId');
                 return redirect()->route('appointments.index')->with('message', 'Thank you for booking slot. Our team will be in touch with you soon');
             } else {
                 return redirect()->route('login')->with('error', 'Please login as a user!!');
