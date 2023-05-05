@@ -32,67 +32,67 @@ endpoints:
         name: first_name
         description: first_name.
         required: true
-        example: quam
+        example: eveniet
         type: string
         custom: []
       last_name:
         name: last_name
         description: last_name.
         required: true
-        example: qui
+        example: et
         type: string
         custom: []
       email:
         name: email
         description: 'email, must be unique.'
         required: true
-        example: ilene.rath@example.org
+        example: omayert@example.org
         type: string
         custom: []
       phone:
         name: phone
         description: phone.
         required: true
-        example: amet
+        example: sint
         type: string
         custom: []
       zipcode:
         name: zipcode
         description: zipcode.
         required: true
-        example: autem
+        example: pariatur
         type: string
         custom: []
       password:
         name: password
         description: 'password, must be 8 character long.'
         required: true
-        example: 'jgW5{/[/?,jDBe}h'
+        example: lX\ev/
         type: string
         custom: []
       confirm_password:
         name: confirm_password
         description: 'The value and <code>password</code> must match. Must be at least 8 characters.'
         required: true
-        example: xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt
+        example: yzgixdwyjx
         type: string
         custom: []
       user_type:
         name: user_type
         description: 'user_type, must be USER or BUSINESS_OWNER.'
         required: true
-        example: excepturi
+        example: molestiae
         type: string
         custom: []
     cleanBodyParameters:
-      first_name: quam
-      last_name: qui
-      email: ilene.rath@example.org
-      phone: amet
-      zipcode: autem
-      password: 'jgW5{/[/?,jDBe}h'
-      confirm_password: xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt
-      user_type: excepturi
+      first_name: eveniet
+      last_name: et
+      email: omayert@example.org
+      phone: sint
+      zipcode: pariatur
+      password: lX\ev/
+      confirm_password: yzgixdwyjx
+      user_type: molestiae
     fileParameters: []
     responses:
       -
@@ -177,27 +177,27 @@ endpoints:
         name: email
         description: 'email, must be unique.'
         required: true
-        example: albin.leuschke@example.com
+        example: boyle.sarah@example.org
         type: string
         custom: []
       password:
         name: password
         description: 'password, must be 8 character long.'
         required: true
-        example: '*|=a/r8Wp3TXCO(X"p'
+        example: 'aYHc8{[iDWfqu1QK4'
         type: string
         custom: []
       user_type:
         name: user_type
         description: 'user_type, must be USER or BUSINESS_OWNER.'
         required: true
-        example: itaque
+        example: consectetur
         type: string
         custom: []
     cleanBodyParameters:
-      email: albin.leuschke@example.com
-      password: '*|=a/r8Wp3TXCO(X"p'
-      user_type: itaque
+      email: boyle.sarah@example.org
+      password: 'aYHc8{[iDWfqu1QK4'
+      user_type: consectetur
     fileParameters: []
     responses:
       -

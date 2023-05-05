@@ -109,7 +109,7 @@ endpoints:
         name: name
         description: name
         required: true
-        example: delectus
+        example: optio
         type: string
         custom: []
       email:
@@ -123,20 +123,20 @@ endpoints:
         name: phone
         description: phone
         required: true
-        example: ut
+        example: rerum
         type: string
         custom: []
       shop_name:
         name: shop_name
         description: ''
         required: true
-        example: ad
+        example: esse
         type: string
         custom: []
     cleanBodyParameters:
-      name: delectus
-      phone: ut
-      shop_name: ad
+      name: optio
+      phone: rerum
+      shop_name: esse
     fileParameters:
       email: null
     responses:

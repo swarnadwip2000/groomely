@@ -30,11 +30,11 @@ endpoints:
         name: email
         description: email.
         required: true
-        example: lbins@example.net
+        example: olga15@example.org
         type: string
         custom: []
     cleanBodyParameters:
-      email: lbins@example.net
+      email: olga15@example.org
     fileParameters: []
     responses:
       -

@@ -35,7 +35,6 @@ paths:
                     booking_date: '2021-09-30'
                     booking_time_id: 1
                     amount: '100'
-                    status: 0
                     created_at: '2021-09-30T11:25:00.000000Z'
                     updated_at: '2021-09-30T11:25:00.000000Z'
                 properties:
@@ -81,9 +80,6 @@ paths:
                       amount:
                         type: string
                         example: '100'
-                      status:
-                        type: integer
-                        example: 0
                       created_at:
                         type: string
                         example: '2021-09-30T11:25:00.000000Z'
@@ -101,9 +97,9 @@ paths:
                   statusCode: 401
                   error:
                     message:
-                      - 'The service id must be a number greater than 0.'
-                      - 'The seller id must be a number greater than 0.'
-                      - 'The booking time id must be a number greater than 0.'
+                      - 'Service does not exits.'
+                      - 'Seller does not exits.'
+                      - 'Booking time does not exits.'
                 properties:
                   status:
                     type: boolean
@@ -117,9 +113,9 @@ paths:
                       message:
                         type: array
                         example:
-                          - 'The service id must be a number greater than 0.'
-                          - 'The seller id must be a number greater than 0.'
-                          - 'The booking time id must be a number greater than 0.'
+                          - 'Service does not exits.'
+                          - 'Seller does not exits.'
+                          - 'Booking time does not exits.'
                         items:
                           type: string
       tags:
@@ -134,23 +130,23 @@ paths:
                 service_id:
                   type: string
                   description: service_id.
-                  example: iste
+                  example: id
                 seller_id:
                   type: string
                   description: seller_id.
-                  example: fugiat
+                  example: corporis
                 booking_date:
                   type: string
                   description: booking_date.
-                  example: aspernatur
+                  example: quia
                 amount:
                   type: string
                   description: amount.
-                  example: asperiores
+                  example: ad
                 booking_time_id:
                   type: string
                   description: booking_time_id.
-                  example: ullam
+                  example: minus
               required:
                 - service_id
                 - seller_id
@@ -176,8 +172,45 @@ paths:
                   statusCode: 200
                   data:
                     -
-                      id: '1'
-                      time: '9:00 am - 10:00 am'
+                      id: 1
+                      seller_id: 1
+                      booking_date: '2021-09-30'
+                      booking_time_id: 1
+                      amount: '100'
+                      service_id: 1
+                      status: process
+                      seller:
+                        id: 3
+                        name: 'test seller'
+                        shop_name: 'Beauty shop'
+                        email: testseller@yopmail.com
+                        phone: '8956986523'
+                        zipcode: '789456'
+                        email_verified_at: null
+                        profile_picture: seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png
+                        social_type: null
+                        status: 1
+                        login_status: 0
+                        google_id: null
+                        facebook_id: null
+                        password_update_time: '2023-03-27 03:43:31'
+                        created_at: '2023-03-27T08:43:01.000000Z'
+                        updated_at: '2023-03-31T10:12:19.000000Z'
+                        deleted_at: null
+                      service:
+                        id: 1
+                        category_id: 1
+                        service_type_id: 1
+                        additional_service_id: 13
+                        duration: '2:30'
+                        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                        status: 1
+                        popular_services: 1
+                        created_at: '2023-03-27T08:48:30.000000Z'
+                        updated_at: '2023-04-13T10:57:11.000000Z'
+                      booking_time:
+                        id: 4
+                        time: '12:00 pm - 1:00 pm'
                 properties:
                   status:
                     type: boolean
@@ -189,17 +222,165 @@ paths:
                     type: array
                     example:
                       -
-                        id: '1'
-                        time: '9:00 am - 10:00 am'
+                        id: 1
+                        seller_id: 1
+                        booking_date: '2021-09-30'
+                        booking_time_id: 1
+                        amount: '100'
+                        service_id: 1
+                        status: process
+                        seller:
+                          id: 3
+                          name: 'test seller'
+                          shop_name: 'Beauty shop'
+                          email: testseller@yopmail.com
+                          phone: '8956986523'
+                          zipcode: '789456'
+                          email_verified_at: null
+                          profile_picture: seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png
+                          social_type: null
+                          status: 1
+                          login_status: 0
+                          google_id: null
+                          facebook_id: null
+                          password_update_time: '2023-03-27 03:43:31'
+                          created_at: '2023-03-27T08:43:01.000000Z'
+                          updated_at: '2023-03-31T10:12:19.000000Z'
+                          deleted_at: null
+                        service:
+                          id: 1
+                          category_id: 1
+                          service_type_id: 1
+                          additional_service_id: 13
+                          duration: '2:30'
+                          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                          status: 1
+                          popular_services: 1
+                          created_at: '2023-03-27T08:48:30.000000Z'
+                          updated_at: '2023-04-13T10:57:11.000000Z'
+                        booking_time:
+                          id: 4
+                          time: '12:00 pm - 1:00 pm'
                     items:
                       type: object
                       properties:
                         id:
+                          type: integer
+                          example: 1
+                        seller_id:
+                          type: integer
+                          example: 1
+                        booking_date:
                           type: string
-                          example: '1'
-                        time:
+                          example: '2021-09-30'
+                        booking_time_id:
+                          type: integer
+                          example: 1
+                        amount:
                           type: string
-                          example: '9:00 am - 10:00 am'
+                          example: '100'
+                        service_id:
+                          type: integer
+                          example: 1
+                        status:
+                          type: string
+                          example: process
+                        seller:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: 'test seller'
+                            shop_name:
+                              type: string
+                              example: 'Beauty shop'
+                            email:
+                              type: string
+                              example: testseller@yopmail.com
+                            phone:
+                              type: string
+                              example: '8956986523'
+                            zipcode:
+                              type: string
+                              example: '789456'
+                            email_verified_at:
+                              type: string
+                              example: null
+                            profile_picture:
+                              type: string
+                              example: seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png
+                            social_type:
+                              type: string
+                              example: null
+                            status:
+                              type: integer
+                              example: 1
+                            login_status:
+                              type: integer
+                              example: 0
+                            google_id:
+                              type: string
+                              example: null
+                            facebook_id:
+                              type: string
+                              example: null
+                            password_update_time:
+                              type: string
+                              example: '2023-03-27 03:43:31'
+                            created_at:
+                              type: string
+                              example: '2023-03-27T08:43:01.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-03-31T10:12:19.000000Z'
+                            deleted_at:
+                              type: string
+                              example: null
+                        service:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            category_id:
+                              type: integer
+                              example: 1
+                            service_type_id:
+                              type: integer
+                              example: 1
+                            additional_service_id:
+                              type: integer
+                              example: 13
+                            duration:
+                              type: string
+                              example: '2:30'
+                            description:
+                              type: string
+                              example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                            status:
+                              type: integer
+                              example: 1
+                            popular_services:
+                              type: integer
+                              example: 1
+                            created_at:
+                              type: string
+                              example: '2023-03-27T08:48:30.000000Z'
+                            updated_at:
+                              type: string
+                              example: '2023-04-13T10:57:11.000000Z'
+                        booking_time:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 4
+                            time:
+                              type: string
+                              example: '12:00 pm - 1:00 pm'
         401:
           description: ''
           content:
@@ -249,12 +430,54 @@ paths:
                   statusCode: 200
                   message: 'Booking found successfully.'
                   data:
-                    user:
+                    id: 1
+                    seller_id: 3
+                    booking_date: 03/20/2023
+                    booking_time_id: 4
+                    name: 'test users'
+                    email: testuser@gmail.com
+                    phone: '9865327800'
+                    amount: '200'
+                    service_id: 1
+                    status: process
+                    seller:
+                      id: 3
+                      name: 'test seller'
+                      shop_name: 'Beauty shop'
+                      email: testseller@yopmail.com
+                      phone: '8956986523'
+                      zipcode: '789456'
+                      email_verified_at: null
+                      profile_picture: seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png
+                      social_type: null
+                      status: 1
+                      login_status: 0
+                      google_id: null
+                      facebook_id: null
+                      password_update_time: '2023-03-27 03:43:31'
+                      created_at: '2023-03-27T08:43:01.000000Z'
+                      updated_at: '2023-03-31T10:12:19.000000Z'
+                      deleted_at: null
+                    service:
                       id: 1
-                      name: 'John Doe'
-                      email: johh@yopmail.com
-                      phone: '1234567890'
-                      zipcode: '123456'
+                      category_id: 1
+                      service_type_id: 1
+                      additional_service_id: 13
+                      duration: '2:30'
+                      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                      status: 1
+                      popular_services: 1
+                      created_at: '2023-03-27T08:48:30.000000Z'
+                      updated_at: '2023-04-13T10:57:11.000000Z'
+                      additional_service:
+                        id: 13
+                        name: 'Hair starighning'
+                      category:
+                        id: 1
+                        name: Women
+                    booking_time:
+                      id: 4
+                      time: '12:00 pm - 1:00 pm'
                 properties:
                   status:
                     type: boolean
@@ -268,24 +491,150 @@ paths:
                   data:
                     type: object
                     properties:
-                      user:
+                      id:
+                        type: integer
+                        example: 1
+                      seller_id:
+                        type: integer
+                        example: 3
+                      booking_date:
+                        type: string
+                        example: 03/20/2023
+                      booking_time_id:
+                        type: integer
+                        example: 4
+                      name:
+                        type: string
+                        example: 'test users'
+                      email:
+                        type: string
+                        example: testuser@gmail.com
+                      phone:
+                        type: string
+                        example: '9865327800'
+                      amount:
+                        type: string
+                        example: '200'
+                      service_id:
+                        type: integer
+                        example: 1
+                      status:
+                        type: string
+                        example: process
+                      seller:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: 'test seller'
+                          shop_name:
+                            type: string
+                            example: 'Beauty shop'
+                          email:
+                            type: string
+                            example: testseller@yopmail.com
+                          phone:
+                            type: string
+                            example: '8956986523'
+                          zipcode:
+                            type: string
+                            example: '789456'
+                          email_verified_at:
+                            type: string
+                            example: null
+                          profile_picture:
+                            type: string
+                            example: seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png
+                          social_type:
+                            type: string
+                            example: null
+                          status:
+                            type: integer
+                            example: 1
+                          login_status:
+                            type: integer
+                            example: 0
+                          google_id:
+                            type: string
+                            example: null
+                          facebook_id:
+                            type: string
+                            example: null
+                          password_update_time:
+                            type: string
+                            example: '2023-03-27 03:43:31'
+                          created_at:
+                            type: string
+                            example: '2023-03-27T08:43:01.000000Z'
+                          updated_at:
+                            type: string
+                            example: '2023-03-31T10:12:19.000000Z'
+                          deleted_at:
+                            type: string
+                            example: null
+                      service:
                         type: object
                         properties:
                           id:
                             type: integer
                             example: 1
-                          name:
+                          category_id:
+                            type: integer
+                            example: 1
+                          service_type_id:
+                            type: integer
+                            example: 1
+                          additional_service_id:
+                            type: integer
+                            example: 13
+                          duration:
                             type: string
-                            example: 'John Doe'
-                          email:
+                            example: '2:30'
+                          description:
                             type: string
-                            example: johh@yopmail.com
-                          phone:
+                            example: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur'
+                          status:
+                            type: integer
+                            example: 1
+                          popular_services:
+                            type: integer
+                            example: 1
+                          created_at:
                             type: string
-                            example: '1234567890'
-                          zipcode:
+                            example: '2023-03-27T08:48:30.000000Z'
+                          updated_at:
                             type: string
-                            example: '123456'
+                            example: '2023-04-13T10:57:11.000000Z'
+                          additional_service:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 13
+                              name:
+                                type: string
+                                example: 'Hair starighning'
+                          category:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Women
+                      booking_time:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 4
+                          time:
+                            type: string
+                            example: '12:00 pm - 1:00 pm'
         401:
           description: ''
           content:
@@ -314,7 +663,7 @@ paths:
                 appointment_id:
                   type: number
                   description: ''
-                  example: 102970.0
+                  example: 688906.48006
               required:
                 - appointment_id
       security: []
@@ -413,19 +762,19 @@ paths:
                 appointment_id:
                   type: string
                   description: appointment_id
-                  example: aut
+                  example: illo
                 service_id:
                   type: required
                   description: 'User service_id'
-                  example: eligendi
+                  example: beatae
                 comment:
                   type: string
                   description: comment
-                  example: distinctio
+                  example: eligendi
                 rating:
                   type: string
                   description: rating
-                  example: laboriosam
+                  example: magni
               required:
                 - appointment_id
                 - comment
@@ -473,35 +822,35 @@ paths:
                 first_name:
                   type: string
                   description: first_name.
-                  example: quam
+                  example: eveniet
                 last_name:
                   type: string
                   description: last_name.
-                  example: qui
+                  example: et
                 email:
                   type: string
                   description: 'email, must be unique.'
-                  example: ilene.rath@example.org
+                  example: omayert@example.org
                 phone:
                   type: string
                   description: phone.
-                  example: amet
+                  example: sint
                 zipcode:
                   type: string
                   description: zipcode.
-                  example: autem
+                  example: pariatur
                 password:
                   type: string
                   description: 'password, must be 8 character long.'
-                  example: 'jgW5{/[/?,jDBe}h'
+                  example: lX\ev/
                 confirm_password:
                   type: string
                   description: 'The value and <code>password</code> must match. Must be at least 8 characters.'
-                  example: xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt
+                  example: yzgixdwyjx
                 user_type:
                   type: string
                   description: 'user_type, must be USER or BUSINESS_OWNER.'
-                  example: excepturi
+                  example: molestiae
               required:
                 - first_name
                 - last_name
@@ -599,15 +948,15 @@ paths:
                 email:
                   type: string
                   description: 'email, must be unique.'
-                  example: albin.leuschke@example.com
+                  example: boyle.sarah@example.org
                 password:
                   type: string
                   description: 'password, must be 8 character long.'
-                  example: '*|=a/r8Wp3TXCO(X"p'
+                  example: 'aYHc8{[iDWfqu1QK4'
                 user_type:
                   type: string
                   description: 'user_type, must be USER or BUSINESS_OWNER.'
-                  example: itaque
+                  example: consectetur
               required:
                 - email
                 - password
@@ -675,7 +1024,7 @@ paths:
                 email:
                   type: string
                   description: email.
-                  example: lbins@example.net
+                  example: olga15@example.org
               required:
                 - email
       security: []
@@ -898,7 +1247,7 @@ paths:
                 category_id:
                   type: string
                   description: 'Category Id'
-                  example: non
+                  example: odio
               required:
                 - category_id
       security: []
@@ -1133,7 +1482,7 @@ paths:
       security: []
   /api/v1/service/list-by-serviceType:
     post:
-      summary: 'Service List by Service Types Api'
+      summary: 'Service List By Service Types Api'
       operationId: serviceListByServiceTypesApi
       description: ''
       parameters: []
@@ -1453,11 +1802,11 @@ paths:
                 service_type:
                   type: string
                   description: ''
-                  example: quas
+                  example: excepturi
                 category_id:
                   type: string
                   description: 'Category Id'
-                  example: quos
+                  example: laborum
               required:
                 - service_type
                 - category_id
@@ -1504,13 +1853,13 @@ paths:
                 service_id:
                   type: number
                   description: ''
-                  example: 68802286.5
+                  example: 187842507.0
               required:
                 - service_id
       security: []
   /api/v1/service/populars:
     get:
-      summary: 'Popular service API'
+      summary: 'Popular Service API'
       operationId: popularServiceAPI
       description: ''
       parameters: []
@@ -1759,7 +2108,7 @@ paths:
                 name:
                   type: string
                   description: name
-                  example: enim
+                  example: voluptatem
                 email:
                   type: string
                   format: binary
@@ -1767,7 +2116,7 @@ paths:
                 phone:
                   type: string
                   description: phone
-                  example: ea
+                  example: non
               required:
                 - name
                 - email
@@ -1831,11 +2180,11 @@ paths:
                 old_password:
                   type: string
                   description: 'Old Password'
-                  example: blanditiis
+                  example: dolorum
                 new_password:
                   type: string
                   description: 'New Password'
-                  example: tempore
+                  example: perspiciatis
                 comfirm_password:
                   type: string
                   description: 'Confirm Password'
@@ -1977,7 +2326,7 @@ paths:
                 name:
                   type: string
                   description: name
-                  example: delectus
+                  example: optio
                 email:
                   type: string
                   format: binary
@@ -1985,11 +2334,11 @@ paths:
                 phone:
                   type: string
                   description: phone
-                  example: ut
+                  example: rerum
                 shop_name:
                   type: string
                   description: ''
-                  example: ad
+                  example: esse
               required:
                 - name
                 - email
@@ -2286,7 +2635,7 @@ paths:
                 service_name:
                   type: string
                   description: ''
-                  example: ullam
+                  example: ad
               required:
                 - service_name
       security: []
@@ -2409,8 +2758,8 @@ paths:
       security: []
   '/api/v1/auth/{provider}':
     get:
-      summary: 'Getting Strarted Api.'
-      operationId: gettingStrartedApi
+      summary: 'Getting Started Api.'
+      operationId: gettingStartedApi
       description: ''
       parameters: []
       responses:
@@ -2542,7 +2891,7 @@ paths:
                 provider:
                   type: string
                   description: 'provider, must be google or facebook.'
-                  example: quia
+                  example: commodi
               required:
                 - provider
       security: []
@@ -2551,7 +2900,7 @@ paths:
         in: path
         name: provider
         description: ''
-        example: omnis
+        example: quas
         required: true
         schema:
           type: string
@@ -2690,7 +3039,7 @@ paths:
                 provider:
                   type: string
                   description: 'provider, must be google or facebook.'
-                  example: voluptates
+                  example: qui
               required:
                 - provider
       security: []
@@ -2699,7 +3048,7 @@ paths:
         in: path
         name: provider
         description: ''
-        example: incidunt
+        example: est
         required: true
         schema:
           type: string

@@ -32,11 +32,11 @@ endpoints:
         name: service_name
         description: ''
         required: true
-        example: ullam
+        example: ad
         type: string
         custom: []
     cleanBodyParameters:
-      service_name: ullam
+      service_name: ad
     fileParameters: []
     responses:
       -

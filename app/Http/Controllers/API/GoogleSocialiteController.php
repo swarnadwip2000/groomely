@@ -24,7 +24,7 @@ class GoogleSocialiteController extends Controller
     
     public $successStatus = 200;
     /**
-     * Getting Strarted Api.
+     * Getting Started Api.
      * @bodyParam provider string required provider, must be google or facebook.
      * @return void
      * @response {

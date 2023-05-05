@@ -30,7 +30,7 @@ endpoints:
         name: name
         description: name
         required: true
-        example: enim
+        example: voluptatem
         type: string
         custom: []
       email:
@@ -44,12 +44,12 @@ endpoints:
         name: phone
         description: phone
         required: true
-        example: ea
+        example: non
         type: string
         custom: []
     cleanBodyParameters:
-      name: enim
-      phone: ea
+      name: voluptatem
+      phone: non
     fileParameters:
       email: null
     responses:
@@ -143,14 +143,14 @@ endpoints:
         name: old_password
         description: 'Old Password'
         required: true
-        example: blanditiis
+        example: dolorum
         type: string
         custom: []
       new_password:
         name: new_password
         description: 'New Password'
         required: true
-        example: tempore
+        example: perspiciatis
         type: string
         custom: []
       comfirm_password:
@@ -161,8 +161,8 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      old_password: blanditiis
-      new_password: tempore
+      old_password: dolorum
+      new_password: perspiciatis
       comfirm_password: ut
     fileParameters: []
     responses:

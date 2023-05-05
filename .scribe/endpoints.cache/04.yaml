@@ -32,43 +32,43 @@ endpoints:
         name: service_id
         description: service_id.
         required: true
-        example: iste
+        example: id
         type: string
         custom: []
       seller_id:
         name: seller_id
         description: seller_id.
         required: true
-        example: fugiat
+        example: corporis
         type: string
         custom: []
       booking_date:
         name: booking_date
         description: booking_date.
         required: true
-        example: aspernatur
+        example: quia
         type: string
         custom: []
       amount:
         name: amount
         description: amount.
         required: true
-        example: asperiores
+        example: ad
         type: string
         custom: []
       booking_time_id:
         name: booking_time_id
         description: booking_time_id.
         required: true
-        example: ullam
+        example: minus
         type: string
         custom: []
     cleanBodyParameters:
-      service_id: iste
-      seller_id: fugiat
-      booking_date: aspernatur
-      amount: asperiores
-      booking_time_id: ullam
+      service_id: id
+      seller_id: corporis
+      booking_date: quia
+      amount: ad
+      booking_time_id: minus
     fileParameters: []
     responses:
       -
@@ -79,19 +79,18 @@ endpoints:
           "statusCode": 200,
           "message": "Booking successfully",
           "data": {
-          "id": 1,
-          "user_id": 1,
-          "seller_id": 1,
-          "service_id": 1,
-          "name": "John Doe",
-          "email": "john@gmail.com",
-           "phone": "1234567890",
-          "booking_date": "2021-09-30",
-          "booking_time_id": 1,
-          "amount": "100",
-          "status": 0,
-          "created_at": "2021-09-30T11:25:00.000000Z",
-          "updated_at": "2021-09-30T11:25:00.000000Z"
+               "id": 1,
+               "user_id": 1,
+               "seller_id": 1,
+               "service_id": 1,
+               "name": "John Doe",
+               "email": "john@gmail.com",
+               "phone": "1234567890",
+               "booking_date": "2021-09-30",
+               "booking_time_id": 1,
+               "amount": "100",
+               "created_at": "2021-09-30T11:25:00.000000Z",
+               "updated_at": "2021-09-30T11:25:00.000000Z"
           }
           }
         headers: []
@@ -124,9 +123,9 @@ endpoints:
           "statusCode": 401,
           "error": {
           "message": [
-          "The service id must be a number greater than 0.",
-          "The seller id must be a number greater than 0.",
-          "The booking time id must be a number greater than 0."
+          "Service does not exits.",
+          "Seller does not exits.",
+          "Booking time does not exits."
           ]
           }
           }
@@ -173,9 +172,49 @@ endpoints:
             "statusCode": 200,
             "data": [
                 {
-                    "id": "1",
-                    "time": "9:00 am - 10:00 am"
-                }
+                   "id": 1,
+                   "seller_id": 1,
+                   "booking_date": "2021-09-30",
+                   "booking_time_id": 1,
+                   "amount": "100",
+                   "service_id": 1,
+                   "status": "process",
+                   "seller": {
+                      "id": 1,"id": 3,
+                        "name": "test seller",
+                        "shop_name": "Beauty shop",
+                         "email": "testseller@yopmail.com",
+                        "phone": "8956986523",
+                        "zipcode": "789456",
+                        "email_verified_at": null,
+                        "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
+                        "social_type": null,
+                        "status": 1,
+                        "login_status": 0,
+                        "google_id": null,
+                        "facebook_id": null,
+                        "password_update_time": "2023-03-27 03:43:31",
+                        "created_at": "2023-03-27T08:43:01.000000Z",
+                        "updated_at": "2023-03-31T10:12:19.000000Z",
+                        "deleted_at": null
+                   },
+                  "service": {
+                       "id": 1,
+                       "category_id": 1,
+                       "service_type_id": 1,
+                       "additional_service_id": 13,
+                       "duration": "2:30",
+                       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                       "status": 1,
+                       "popular_services": 1,
+                       "created_at": "2023-03-27T08:48:30.000000Z",
+                       "updated_at": "2023-04-13T10:57:11.000000Z"
+                    },
+                   "booking_time": {
+                       "id": 4,
+                       "time": "12:00 pm - 1:00 pm"
+                   }
+               }
             ]
           }
         headers: []
@@ -229,11 +268,11 @@ endpoints:
         name: appointment_id
         description: ''
         required: true
-        example: 102970.0
+        example: 688906.48006
         type: number
         custom: []
     cleanBodyParameters:
-      appointment_id: 102970.0
+      appointment_id: 688906.48006
     fileParameters: []
     responses:
       -
@@ -244,14 +283,60 @@ endpoints:
           "statusCode": 200,
           "message": "Booking found successfully.",
           "data": {
-          "user": {
-          "id": 1,
-          "name": "John Doe",
-          "email": "johh@yopmail.com",
-          "phone": "1234567890",
-          "zipcode": "123456"
+               "id": 1,
+               "seller_id": 3,
+               "booking_date": "03/20/2023",
+               "booking_time_id": 4,
+               "name": "test users",
+               "email": "testuser@gmail.com",
+               "phone": "9865327800",
+               "amount": "200",
+               "service_id": 1,
+               "status": "process",
+               "seller": {
+                    "id": 3,
+                    "name": "test seller",
+                    "shop_name": "Beauty shop",
+                    "email": "testseller@yopmail.com",
+                    "phone": "8956986523",
+                    "zipcode": "789456",
+                    "email_verified_at": null,
+                    "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
+                    "social_type": null,
+                    "status": 1,
+                    "login_status": 0,
+                    "google_id": null,
+                    "facebook_id": null,
+                    "password_update_time": "2023-03-27 03:43:31",
+                    "created_at": "2023-03-27T08:43:01.000000Z",
+                    "updated_at": "2023-03-31T10:12:19.000000Z",
+                    "deleted_at": null
+                },
+                "service": {
+                    "id": 1,
+                    "category_id": 1,
+                    "service_type_id": 1,
+                    "additional_service_id": 13,
+                    "duration": "2:30",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+                    "status": 1,
+                    "popular_services": 1,
+                    "created_at": "2023-03-27T08:48:30.000000Z",
+                    "updated_at": "2023-04-13T10:57:11.000000Z",
+                    "additional_service": {
+                        "id": 13,
+                        "name": "Hair starighning"
+                    },
+                    "category": {
+                        "id": 1,
+                        "name": "Women"
+                    }
+                },
+                "booking_time": {
+                    "id": 4,
+                    "time": "12:00 pm - 1:00 pm"
+                }
 
-          }
           }
           }
         headers: []
@@ -315,35 +400,35 @@ endpoints:
         name: appointment_id
         description: appointment_id
         required: true
-        example: aut
+        example: illo
         type: string
         custom: []
       service_id:
         name: service_id
         description: 'User service_id'
         required: false
-        example: eligendi
+        example: beatae
         type: required
         custom: []
       comment:
         name: comment
         description: comment
         required: true
-        example: distinctio
+        example: eligendi
         type: string
         custom: []
       rating:
         name: rating
         description: rating
         required: true
-        example: laboriosam
+        example: magni
         type: string
         custom: []
     cleanBodyParameters:
-      appointment_id: aut
-      service_id: eligendi
-      comment: distinctio
-      rating: laboriosam
+      appointment_id: illo
+      service_id: beatae
+      comment: eligendi
+      rating: magni
     fileParameters: []
     responses:
       -
@@ -380,6 +465,22 @@ endpoints:
           "The service_id field is required.",
           "The comment field is required.",
           "The rating field is required."
+          ]
+          }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+          "message": [
+          "Appointment does not exits.",
+          "Seller does not exits."
           ]
           }
           }

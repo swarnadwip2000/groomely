@@ -283,7 +283,7 @@ class ApiController extends Controller
       * "statusCode": 401,
       * "error": {
       * "message": [
-      * "Service not found successfully."
+      * "Service does not exist."
       * ]
       *  }
       * }
@@ -296,7 +296,7 @@ class ApiController extends Controller
     public function servicedetails(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'service_id'     => 'required|numeric|gt:0',
+            'service_id'     => 'required|numeric|exists:services,id',
         ]);
         if ($validator->fails()) {
             $errors['status_code'] = 401;
@@ -324,7 +324,7 @@ class ApiController extends Controller
     }
 
      /**
-     * Popular service API
+     * Popular Service API
      * @return \Illuminate\Http\Response
      * @response {
      * "status": true,
@@ -441,6 +441,15 @@ class ApiController extends Controller
      *  }
      * }
      * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     *      "message": {
+     *          "Category does not exist.",
+     *      }
+     * }
+     * }
+     * @response 401 {
      * "message": "No detail found!",
      * "status": false
      * }
@@ -449,7 +458,7 @@ class ApiController extends Controller
     public function serviceTypes(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'category_id'     => 'required|numeric|gt:0',
+            'category_id'     => 'required|numeric|exists:categories,id',
         ]);
 
         try {
@@ -465,10 +474,9 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'statusCode' => 401, 'message' => 'something went wrong' ], 401);
         } 
     }
-
     
      /** 
-     * Service List by Service Types Api 
+     * Service List By Service Types Api 
      * 
      * @return \Illuminate\Http\Response 
      * @bodyParam category_id string required Category Id
@@ -552,8 +560,7 @@ class ApiController extends Controller
      */
 
     public function servicelistByServiceType(Request $request)
-    {
-        
+    {   
         $validator = Validator::make($request->all(), [
             'service_type'     => 'required',
         ]);

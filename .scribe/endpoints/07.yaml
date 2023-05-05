@@ -102,11 +102,11 @@ endpoints:
         name: category_id
         description: 'Category Id'
         required: true
-        example: non
+        example: odio
         type: string
         custom: []
     cleanBodyParameters:
-      category_id: non
+      category_id: odio
     fileParameters: []
     responses:
       -
@@ -153,6 +153,21 @@ endpoints:
                        "The category_id field is required.",
                ]
            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "status": false,
+          "statusCode": 401,
+          "error": {
+               "message": {
+                   "Category does not exist.",
+               }
+          }
           }
         headers: []
         description: ''
@@ -338,7 +353,7 @@ endpoints:
         APIs for Listing
       subgroup: ''
       subgroupDescription: ''
-      title: 'Service List by Service Types Api'
+      title: 'Service List By Service Types Api'
       description: ''
       authenticated: false
       custom: []
@@ -354,19 +369,19 @@ endpoints:
         name: service_type
         description: ''
         required: true
-        example: quas
+        example: excepturi
         type: string
         custom: []
       category_id:
         name: category_id
         description: 'Category Id'
         required: true
-        example: quos
+        example: laborum
         type: string
         custom: []
     cleanBodyParameters:
-      service_type: quas
-      category_id: quos
+      service_type: excepturi
+      category_id: laborum
     fileParameters: []
     responses:
       -
@@ -497,11 +512,11 @@ endpoints:
         name: service_id
         description: ''
         required: true
-        example: 68802286.5
+        example: 187842507.0
         type: number
         custom: []
     cleanBodyParameters:
-      service_id: 68802286.5
+      service_id: 187842507.0
     fileParameters: []
     responses:
       -
@@ -562,7 +577,7 @@ endpoints:
           "statusCode": 401,
           "error": {
           "message": [
-          "Service not found successfully."
+          "Service does not exist."
           ]
            }
           }
@@ -596,7 +611,7 @@ endpoints:
         APIs for Listing
       subgroup: ''
       subgroupDescription: ''
-      title: 'Popular service API'
+      title: 'Popular Service API'
       description: ''
       authenticated: false
       custom: []

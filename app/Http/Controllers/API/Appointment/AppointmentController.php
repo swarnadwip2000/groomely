@@ -68,9 +68,9 @@ class AppointmentController extends Controller
      * "statusCode": 401,
      * "error": {
      * "message": [
-     * "The service id must be a number greater than 0.",
-     * "The seller id must be a number greater than 0.",
-     * "The booking time id must be a number greater than 0."
+     * "Service does not exits.",
+     * "Seller does not exits.",
+     * "Booking time does not exits."
      * ]
      * }
      * }
@@ -236,48 +236,48 @@ class AppointmentController extends Controller
      *      "service_id": 1,
      *      "status": "process",
      *      "seller": {
-                "id": 3,
-                "name": "test seller",
-                "shop_name": "Beauty shop",
-                "email": "testseller@yopmail.com",
-                "phone": "8956986523",
-                "zipcode": "789456",
-                "email_verified_at": null,
-                "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
-                "social_type": null,
-                "status": 1,
-                "login_status": 0,
-                "google_id": null,
-                "facebook_id": null,
-                "password_update_time": "2023-03-27 03:43:31",
-                "created_at": "2023-03-27T08:43:01.000000Z",
-                "updated_at": "2023-03-31T10:12:19.000000Z",
-                "deleted_at": null
-            },
-            "service": {
-                "id": 1,
-                "category_id": 1,
-                "service_type_id": 1,
-                "additional_service_id": 13,
-                "duration": "2:30",
-                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-                "status": 1,
-                "popular_services": 1,
-                "created_at": "2023-03-27T08:48:30.000000Z",
-                "updated_at": "2023-04-13T10:57:11.000000Z",
-                "additional_service": {
-                    "id": 13,
-                    "name": "Hair starighning"
-                },
-                "category": {
-                    "id": 1,
-                    "name": "Women"
-                }
-            },
-            "booking_time": {
-                "id": 4,
-                "time": "12:00 pm - 1:00 pm"
-            }
+     *           "id": 3,
+     *           "name": "test seller",
+     *           "shop_name": "Beauty shop",
+     *           "email": "testseller@yopmail.com",
+     *           "phone": "8956986523",
+     *           "zipcode": "789456",
+     *           "email_verified_at": null,
+     *           "profile_picture": "seller/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png",
+     *           "social_type": null,
+     *           "status": 1,
+     *           "login_status": 0,
+     *           "google_id": null,
+     *           "facebook_id": null,
+     *           "password_update_time": "2023-03-27 03:43:31",
+     *           "created_at": "2023-03-27T08:43:01.000000Z",
+     *           "updated_at": "2023-03-31T10:12:19.000000Z",
+     *           "deleted_at": null
+     *       },
+     *       "service": {
+     *           "id": 1,
+     *           "category_id": 1,
+     *           "service_type_id": 1,
+     *           "additional_service_id": 13,
+     *           "duration": "2:30",
+     *           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+     *           "status": 1,
+     *           "popular_services": 1,
+     *           "created_at": "2023-03-27T08:48:30.000000Z",
+     *           "updated_at": "2023-04-13T10:57:11.000000Z",
+     *           "additional_service": {
+     *               "id": 13,
+     *               "name": "Hair starighning"
+     *           },
+     *           "category": {
+     *               "id": 1,
+     *               "name": "Women"
+     *           }
+     *       },
+     *       "booking_time": {
+     *           "id": 4,
+     *           "time": "12:00 pm - 1:00 pm"
+     *       }
      * 
      * }
      * }
@@ -369,6 +369,16 @@ class AppointmentController extends Controller
      * }
      * }
      * @response 401 {
+     * "status": false,
+     * "statusCode": 401,
+     * "error": {
+     * "message": [
+     * "Appointment does not exits.",
+     * "Seller does not exits."
+     * ]
+     * }
+     * }
+     * @response 401 {
      *  "message": "No detail found!",
      * "status": false
      * }
@@ -377,8 +387,8 @@ class AppointmentController extends Controller
     public function reviewSubmit(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'appointment_id'     => 'required|numeric|gt:0',
-            'service_id'     => 'required|numeric|gt:0',
+            'appointment_id'     => 'required|numeric|exists:appointments,id',
+            'service_id'     => 'required|numeric|exists:services,id',
             'comment'     => 'required',
             "rating" => "required|numeric|min:1|max:5",
         ]);

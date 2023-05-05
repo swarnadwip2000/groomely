@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "fe8dd31f-6c72-4afe-9aa2-ebfb0eade5dd",
+        "_postman_id": "abe7f9d6-ced1-4cd8-8e7c-1165dcd8092e",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"service_id\":\"iste\",\"seller_id\":\"fugiat\",\"booking_date\":\"aspernatur\",\"amount\":\"asperiores\",\"booking_time_id\":\"ullam\"}"
+                            "raw": "{\"service_id\":\"id\",\"seller_id\":\"corporis\",\"booking_date\":\"quia\",\"amount\":\"ad\",\"booking_time_id\":\"minus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -52,7 +52,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Booking successfully\",\n\"data\": {\n\"id\": 1,\n\"user_id\": 1,\n\"seller_id\": 1,\n\"service_id\": 1,\n\"name\": \"John Doe\",\n\"email\": \"john@gmail.com\",\n \"phone\": \"1234567890\",\n\"booking_date\": \"2021-09-30\",\n\"booking_time_id\": 1,\n\"amount\": \"100\",\n\"status\": 0,\n\"created_at\": \"2021-09-30T11:25:00.000000Z\",\n\"updated_at\": \"2021-09-30T11:25:00.000000Z\"\n}\n}",
+                            "body": "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Booking successfully\",\n\"data\": {\n     \"id\": 1,\n     \"user_id\": 1,\n     \"seller_id\": 1,\n     \"service_id\": 1,\n     \"name\": \"John Doe\",\n     \"email\": \"john@gmail.com\",\n     \"phone\": \"1234567890\",\n     \"booking_date\": \"2021-09-30\",\n     \"booking_time_id\": 1,\n     \"amount\": \"100\",\n     \"created_at\": \"2021-09-30T11:25:00.000000Z\",\n     \"updated_at\": \"2021-09-30T11:25:00.000000Z\"\n}\n}",
                             "name": ""
                         },
                         {
@@ -64,7 +64,7 @@
                         {
                             "header": [],
                             "code": 401,
-                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"The service id must be a number greater than 0.\",\n\"The seller id must be a number greater than 0.\",\n\"The booking time id must be a number greater than 0.\"\n]\n}\n}",
+                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"Service does not exits.\",\n\"Seller does not exits.\",\n\"Booking time does not exits.\"\n]\n}\n}",
                             "name": ""
                         }
                     ]
@@ -99,7 +99,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"status\": true,\n  \"statusCode\": 200,\n  \"data\": [\n      {\n          \"id\": \"1\",\n          \"time\": \"9:00 am - 10:00 am\"\n      }\n  ]\n}",
+                            "body": "{\n\"status\": true,\n  \"statusCode\": 200,\n  \"data\": [\n      {\n         \"id\": 1,\n         \"seller_id\": 1,\n         \"booking_date\": \"2021-09-30\",\n         \"booking_time_id\": 1,\n         \"amount\": \"100\",\n         \"service_id\": 1,\n         \"status\": \"process\",\n         \"seller\": {\n            \"id\": 1,\"id\": 3,\n              \"name\": \"test seller\",\n              \"shop_name\": \"Beauty shop\",\n               \"email\": \"testseller@yopmail.com\",\n              \"phone\": \"8956986523\",\n              \"zipcode\": \"789456\",\n              \"email_verified_at\": null,\n              \"profile_picture\": \"seller\/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png\",\n              \"social_type\": null,\n              \"status\": 1,\n              \"login_status\": 0,\n              \"google_id\": null,\n              \"facebook_id\": null,\n              \"password_update_time\": \"2023-03-27 03:43:31\",\n              \"created_at\": \"2023-03-27T08:43:01.000000Z\",\n              \"updated_at\": \"2023-03-31T10:12:19.000000Z\",\n              \"deleted_at\": null\n         },\n        \"service\": {\n             \"id\": 1,\n             \"category_id\": 1,\n             \"service_type_id\": 1,\n             \"additional_service_id\": 13,\n             \"duration\": \"2:30\",\n             \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur\",\n             \"status\": 1,\n             \"popular_services\": 1,\n             \"created_at\": \"2023-03-27T08:48:30.000000Z\",\n             \"updated_at\": \"2023-04-13T10:57:11.000000Z\"\n          },\n         \"booking_time\": {\n             \"id\": 4,\n             \"time\": \"12:00 pm - 1:00 pm\"\n         }\n     }\n  ]\n}",
                             "name": ""
                         },
                         {
@@ -132,7 +132,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"appointment_id\":102970}"
+                            "raw": "{\"appointment_id\":688906.48006}"
                         },
                         "description": "",
                         "auth": {
@@ -143,7 +143,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Booking found successfully.\",\n\"data\": {\n\"user\": {\n\"id\": 1,\n\"name\": \"John Doe\",\n\"email\": \"johh@yopmail.com\",\n\"phone\": \"1234567890\",\n\"zipcode\": \"123456\"\n\n}\n}\n}",
+                            "body": "{\n\"status\": true,\n\"statusCode\": 200,\n\"message\": \"Booking found successfully.\",\n\"data\": {\n     \"id\": 1,\n     \"seller_id\": 3,\n     \"booking_date\": \"03\/20\/2023\",\n     \"booking_time_id\": 4,\n     \"name\": \"test users\",\n     \"email\": \"testuser@gmail.com\",\n     \"phone\": \"9865327800\",\n     \"amount\": \"200\",\n     \"service_id\": 1,\n     \"status\": \"process\",\n     \"seller\": {\n          \"id\": 3,\n          \"name\": \"test seller\",\n          \"shop_name\": \"Beauty shop\",\n          \"email\": \"testseller@yopmail.com\",\n          \"phone\": \"8956986523\",\n          \"zipcode\": \"789456\",\n          \"email_verified_at\": null,\n          \"profile_picture\": \"seller\/SRBLDIGkPVB79AhlkkOyQwQ8bUL9crlRU9RDQ95I.png\",\n          \"social_type\": null,\n          \"status\": 1,\n          \"login_status\": 0,\n          \"google_id\": null,\n          \"facebook_id\": null,\n          \"password_update_time\": \"2023-03-27 03:43:31\",\n          \"created_at\": \"2023-03-27T08:43:01.000000Z\",\n          \"updated_at\": \"2023-03-31T10:12:19.000000Z\",\n          \"deleted_at\": null\n      },\n      \"service\": {\n          \"id\": 1,\n          \"category_id\": 1,\n          \"service_type_id\": 1,\n          \"additional_service_id\": 13,\n          \"duration\": \"2:30\",\n          \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur\",\n          \"status\": 1,\n          \"popular_services\": 1,\n          \"created_at\": \"2023-03-27T08:48:30.000000Z\",\n          \"updated_at\": \"2023-04-13T10:57:11.000000Z\",\n          \"additional_service\": {\n              \"id\": 13,\n              \"name\": \"Hair starighning\"\n          },\n          \"category\": {\n              \"id\": 1,\n              \"name\": \"Women\"\n          }\n      },\n      \"booking_time\": {\n          \"id\": 4,\n          \"time\": \"12:00 pm - 1:00 pm\"\n      }\n\n}\n}",
                             "name": ""
                         },
                         {
@@ -182,7 +182,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"appointment_id\":\"aut\",\"service_id\":\"eligendi\",\"comment\":\"distinctio\",\"rating\":\"laboriosam\"}"
+                            "raw": "{\"appointment_id\":\"illo\",\"service_id\":\"beatae\",\"comment\":\"eligendi\",\"rating\":\"magni\"}"
                         },
                         "description": "",
                         "auth": {
@@ -200,6 +200,12 @@
                             "header": [],
                             "code": 401,
                             "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"The appointment_id field is required.\",\n\"The service_id field is required.\",\n\"The comment field is required.\",\n\"The rating field is required.\"\n]\n}\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"Appointment does not exits.\",\n\"Seller does not exits.\"\n]\n}\n}",
                             "name": ""
                         },
                         {
@@ -238,7 +244,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"quam\",\"last_name\":\"qui\",\"email\":\"ilene.rath@example.org\",\"phone\":\"amet\",\"zipcode\":\"autem\",\"password\":\"jgW5{\\\/[\\\/?,jDBe}h\",\"confirm_password\":\"xuafmqzlsvsqrnocdhhosisdtrsnubsmuetnzwmmutkdgzbiqfzvfwiijjdtzwuzabt\",\"user_type\":\"excepturi\"}"
+                            "raw": "{\"first_name\":\"eveniet\",\"last_name\":\"et\",\"email\":\"omayert@example.org\",\"phone\":\"sint\",\"zipcode\":\"pariatur\",\"password\":\"lX\\\\ev\\\/\",\"confirm_password\":\"yzgixdwyjx\",\"user_type\":\"molestiae\"}"
                         },
                         "description": "",
                         "auth": {
@@ -288,7 +294,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"albin.leuschke@example.com\",\"password\":\"*|=a\\\/r8Wp3TXCO(X\\\"p\",\"user_type\":\"itaque\"}"
+                            "raw": "{\"email\":\"boyle.sarah@example.org\",\"password\":\"aYHc8{[iDWfqu1QK4\",\"user_type\":\"consectetur\"}"
                         },
                         "description": "",
                         "auth": {
@@ -344,7 +350,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"lbins@example.net\"}"
+                            "raw": "{\"email\":\"olga15@example.org\"}"
                         },
                         "description": "",
                         "auth": {
@@ -447,7 +453,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_id\":\"non\"}"
+                            "raw": "{\"category_id\":\"odio\"}"
                         },
                         "description": "",
                         "auth": {
@@ -465,6 +471,12 @@
                             "header": [],
                             "code": 401,
                             "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n     \"message\": [\n             \"The category_id field is required.\",\n     ]\n }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n     \"message\": {\n         \"Category does not exist.\",\n     }\n}\n}",
                             "name": ""
                         },
                         {
@@ -558,7 +570,7 @@
                     ]
                 },
                 {
-                    "name": "Service List by Service Types Api",
+                    "name": "Service List By Service Types Api",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -579,7 +591,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"service_type\":\"quas\",\"category_id\":\"quos\"}"
+                            "raw": "{\"service_type\":\"excepturi\",\"category_id\":\"laborum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -629,7 +641,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"service_id\":68802286.5}"
+                            "raw": "{\"service_id\":187842507}"
                         },
                         "description": "",
                         "auth": {
@@ -646,7 +658,7 @@
                         {
                             "header": [],
                             "code": 401,
-                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"Service not found successfully.\"\n]\n }\n}",
+                            "body": "{\n\"status\": false,\n\"statusCode\": 401,\n\"error\": {\n\"message\": [\n\"Service does not exist.\"\n]\n }\n}",
                             "name": ""
                         },
                         {
@@ -658,7 +670,7 @@
                     ]
                 },
                 {
-                    "name": "Popular service API",
+                    "name": "Popular Service API",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -770,13 +782,13 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "enim",
+                                    "value": "voluptatem",
                                     "type": "text",
                                     "description": "name"
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "ea",
+                                    "value": "non",
                                     "type": "text",
                                     "description": "phone"
                                 },
@@ -835,7 +847,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"old_password\":\"blanditiis\",\"new_password\":\"tempore\",\"comfirm_password\":\"ut\"}"
+                            "raw": "{\"old_password\":\"dolorum\",\"new_password\":\"perspiciatis\",\"comfirm_password\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -935,19 +947,19 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "delectus",
+                                    "value": "optio",
                                     "type": "text",
                                     "description": "name"
                                 },
                                 {
                                     "key": "phone",
-                                    "value": "ut",
+                                    "value": "rerum",
                                     "type": "text",
                                     "description": "phone"
                                 },
                                 {
                                     "key": "shop_name",
-                                    "value": "ad",
+                                    "value": "esse",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1053,7 +1065,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"service_name\":\"ullam\"}"
+                            "raw": "{\"service_name\":\"ad\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1164,7 +1176,7 @@
             "description": "\nAPIs for Social Login",
             "item": [
                 {
-                    "name": "Getting Strarted Api.",
+                    "name": "Getting Started Api.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1175,7 +1187,7 @@
                                 {
                                     "id": "provider",
                                     "key": "provider",
-                                    "value": "omnis",
+                                    "value": "quas",
                                     "description": ""
                                 }
                             ]
@@ -1193,7 +1205,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"provider\":\"quia\"}"
+                            "raw": "{\"provider\":\"commodi\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1233,7 +1245,7 @@
                                 {
                                     "id": "provider",
                                     "key": "provider",
-                                    "value": "incidunt",
+                                    "value": "est",
                                     "description": ""
                                 }
                             ]
@@ -1251,7 +1263,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"provider\":\"voluptates\"}"
+                            "raw": "{\"provider\":\"qui\"}"
                         },
                         "description": "",
                         "auth": {

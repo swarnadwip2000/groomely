@@ -16,7 +16,7 @@ endpoints:
         APIs for Social Login
       subgroup: ''
       subgroupDescription: ''
-      title: 'Getting Strarted Api.'
+      title: 'Getting Started Api.'
       description: ''
       authenticated: false
       custom: []
@@ -28,11 +28,11 @@ endpoints:
         name: provider
         description: ''
         required: true
-        example: omnis
+        example: quas
         type: string
         custom: []
     cleanUrlParameters:
-      provider: omnis
+      provider: quas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -40,11 +40,11 @@ endpoints:
         name: provider
         description: 'provider, must be google or facebook.'
         required: true
-        example: quia
+        example: commodi
         type: string
         custom: []
     cleanBodyParameters:
-      provider: quia
+      provider: commodi
     fileParameters: []
     responses:
       -
@@ -136,11 +136,11 @@ endpoints:
         name: provider
         description: ''
         required: true
-        example: incidunt
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      provider: incidunt
+      provider: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -148,11 +148,11 @@ endpoints:
         name: provider
         description: 'provider, must be google or facebook.'
         required: true
-        example: voluptates
+        example: qui
         type: string
         custom: []
     cleanBodyParameters:
-      provider: voluptates
+      provider: qui
     fileParameters: []
     responses:
       -
