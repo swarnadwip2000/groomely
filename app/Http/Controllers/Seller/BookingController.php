@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use PDF;
 
 class BookingController extends Controller
@@ -25,6 +26,18 @@ class BookingController extends Controller
      */
     public function index()
     {
+        $appointment_get = Appointment::where('booking_date', date('m/d/Y'))->get();
+        foreach ($appointment_get as $key => $appointment) {
+            $lastTime = explode(' - ', $appointment['BookTime']['time']);
+            $time = Carbon::parse($lastTime[1]);
+            $time->addMinutes(30);
+            $newTime = date('h:i A', strtotime($time));
+            if ($appointment['BookTime'] != 'completed') {
+                if ($newTime >= date('h:i A') ) {
+                    Appointment::where('id', $appointment->id)->update(['status'=> 'cancelled']);
+                }
+            }    
+        }
        
         $appointments = Appointment::orderBy('booking_date', 'asc')->where('seller_id',Auth::user()->id)->with('service')->get();
         return view('seller.booking-history.list')->with(compact('appointments'));
@@ -37,7 +50,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
