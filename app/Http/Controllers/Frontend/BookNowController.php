@@ -26,8 +26,6 @@ class BookNowController extends Controller
         $service = Service::where('id',$id)->with('additionalService')->first();
         $shops = SellerService::where('service_id',$id)->with('user')->get();
         $reviews = Review::where('service_id',$id)->with('user')->get();
-        $dates = Carbon::now();
-        $date =  Carbon::createFromFormat('Y-m-d H:i:s', $dates)->format('m/d/Y');
         $times = BookingTime::get();
         return view('frontend.book-now')->with(compact('service', 'times','reviews','shops','date'));
           

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             AddFooterPageSeeder::class,
             GalleryImageSeeder::class,
             AddBestSellerSeeder::class,
-            AddContactUsSeeder::class
+            AddContactUsSeeder::class,
+            OfferSeeder::class
         ]);
     
     }

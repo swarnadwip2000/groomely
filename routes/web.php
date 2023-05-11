@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ContactUsController as AdminContactUsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\OfferController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Admin\ServiceCategoryController;
@@ -182,7 +183,9 @@ Route::group(['prefix' => 'admin'], function () {
                 Route::get('/service-type-delete/{id}', [ServiceTypeController::class, 'delete'])->name('service-type.delete');
                 Route::post('/service-type-update', [ServiceTypeController::class, 'serviceTypeUpdate'])->name('admin.service-type.update');
 
-                
+                Route::resource('offer', OfferController::class);
+                Route::post('/offer-update', [OfferController::class, 'offerUpdate'])->name('admin.offer.update');
+ 
 
                 Route::group(['prefix'=>'cms'], function(){
                         Route::get('/home-cms', [AdminCmsController::class, 'homeCms'])->name('home.cms');
@@ -216,7 +219,6 @@ Route::group(['prefix' => 'seller', 'middleware' => ['seller', 'preventBackHisto
         Route::post('/ajax-bar-chart', [SellerDashboardController::class, 'ajaxBarChart'])->name('seller.ajax-bar-chart');       
         Route::post('/transaction-download', [SellerDashboardController::class, 'downloadTransaction'])->name('seller.transaction.download');
         
-
         Route::resource('manage-services', ManageBookingController::class);
         Route::resource('booking-history', BookingController::class);
 

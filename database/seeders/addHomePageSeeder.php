@@ -26,9 +26,9 @@ class addHomePageSeeder extends Seeder
         $home->section_2_img = 'home/about.jpg';
         $home->section_3_title = 'OUR SERVICES';
         $home->section_3_description = 'All aspects of domestic and commercial environments';
-        $home->middle_banner_1 = 'home/middle_banner_1.jpg';
-        $home->middle_banner_2 = 'home/middle_banner_2.jpg';
-        $home->middle_banner_3 = 'home/middle_banner_3.jpg';
+        // $home->middle_banner_1 = 'home/middle_banner_1.jpg';
+        // $home->middle_banner_2 = 'home/middle_banner_2.jpg';
+        // $home->middle_banner_3 = 'home/middle_banner_3.jpg';
         $home->section_4_title = 'OUR FEATURED SERVICES';
         $home->section_4_description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus ultrices risus nisi ullamcorper aenean dignissim odio tincidunt.';
         $home->section_5_title = 'BECAME A SELLER';

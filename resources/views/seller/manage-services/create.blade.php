@@ -85,6 +85,16 @@ Groomely | Manage Services Create
                                             <input type="text" class="form-control" id="description" readonly>
                                         </div>
                                     </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Offer (%)</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="offer" name="offer" readonly>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input type="checkbox" checked name="vehicle1" class="checkOff">
+                                        </div>
+                                    </div>
                                                                 
                                     <div class="row mb-3">
                                         <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Rate<span style="color:red">*<span></label>
@@ -94,9 +104,9 @@ Groomely | Manage Services Create
                                             <div class="error" style="color:red;">{{ $errors->first('rate') }}</div>
                                             @endif
                                         </div>
-
                                     </div>
-                                   
+
+                                    
                                     <div class="row">
                                         <label class="col-sm-3 col-form-label"></label>
                                         <div class="col-sm-9">
@@ -134,7 +144,9 @@ Groomely | Manage Services Create
                 $('#categoryName').val(data.detail.category.name);
                 $('#serviceTypeName').val(data.detail.service_type.name);
                 $('#duration').val(data.detail.duration);
-                $('#description').val(data.detail.description);    
+                $('#description').val(data.detail.description);   
+                $('#offer').val(data.detail.offer.offer_amount);
+            
             }
         });
     
@@ -142,8 +154,6 @@ Groomely | Manage Services Create
 </script>
 
 <script>
-
-
    function serviceChange(){
             var service_id = $('#additionalServiceId').val();
             
@@ -158,10 +168,37 @@ Groomely | Manage Services Create
                     $('#categoryName').val(data.detail.category.name);
                     $('#serviceTypeName').val(data.detail.service_type.name);
                     $('#duration').val(data.detail.duration);
-                    $('#description').val(data.detail.description);    
+                    $('#description').val(data.detail.description);   
+                    $('#offer').val(data.detail.offer.offer_amount); 
+                    
                 }
             });
     }
     
 </script>
+
+<script>
+    $(document).ready ( function(){
+        $('.checkOff').change(function() {  
+            if($(this).is(":checked")) {  
+                var service_id = $('#additionalServiceId').val();
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{route("seller.manage-services.get-service-details")}}',
+                    data: {
+                        'additional_service_id': service_id    
+                    },
+                    success: function(data) {  
+                        $('#offer').val(data.detail.offer.offer_amount); 
+                        
+                    }
+                });
+                } else {  
+                    $('#offer').val(''); 
+                }  
+            });
+        
+    });
+    </script>
 @endpush

@@ -142,21 +142,13 @@ Groomely | HOME
 <section class="off_banner_sec">
     <div class="container-fluid">
         <div class="row align-items-center">
+            @foreach($offers as $offer)
             <div class="col-lg-4">
                 <a href="">
-                    <img src="{{ Storage::url($homeCms['middle_banner_1']) }}" />
+                    <img src="{{ Storage::url($offer->offer_image) }}" />
                 </a>
             </div>
-            <div class="col-lg-4">
-                <a href="">
-                    <img src="{{ Storage::url($homeCms['middle_banner_2']) }}" />
-                </a>
-            </div>
-            <div class="col-lg-4">
-                <a href="">
-                    <img src="{{ Storage::url($homeCms['middle_banner_3']) }}" />
-                </a>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

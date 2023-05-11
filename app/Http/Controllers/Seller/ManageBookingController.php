@@ -9,6 +9,7 @@ use App\Models\ServiceImage;
 use App\Models\ServiceType;
 use App\Models\ServiceCategory;
 use App\Models\Review;
+use App\Models\Offer;
 use App\Models\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +35,6 @@ class ManageBookingController extends Controller
         return view('seller.manage-services.list');
         
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -43,14 +42,13 @@ class ManageBookingController extends Controller
      */
     public function create()
     {
-        $services = Service::Orderby('id', 'desc')->where('status',1)->with('additionalService')->get();
+        $services = Service::Orderby('id', 'desc')->where('status',1)->with('additionalService','offer')->get();
         return view('seller.manage-services.create')->with(compact('services'));
     }
 
     public function serviceDetails(Request $request)
-    {
-        
-        $service_details = Service::where('id', $request->additional_service_id)->with('category','serviceType')->first();
+    {    
+        $service_details = Service::where('id', $request->additional_service_id)->with('category','serviceType','offer')->first();
         return response()->json(['detail' => $service_details]);
     }
 
@@ -143,9 +141,6 @@ class ManageBookingController extends Controller
             'service_id.required' => 'Please select a service.'
             
         ]);
-
-        
-
         $update_barber_service = SellerService::where('id',$request->seller_serviceId)->where('user_id',Auth::user()->id)->first();
         $update_barber_service->service_id = $request->service_id;
         $update_barber_service->rate = $request->rate;

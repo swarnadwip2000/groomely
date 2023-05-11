@@ -4,7 +4,7 @@
             <img src="assets/images/logo-icon.png" class="logo-icon-2" alt="" />
         </div>
         <div>
-            <a href="{{ route('home') }}"><h4 class="logo-text">Groomely</h4></a>
+            <a href=""><h4 class="logo-text">Groomely</h4></a>
         </div>
         <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
         </a>
@@ -79,6 +79,13 @@
         </li>
         
         <li class="menu-label">Others</li>
+        <li class="{{ Request::is('admin/offer*') ? 'mm-active' : '' }}">
+            <a href="{{ route('offer.index') }}">
+                <div class="parent-icon icon-color-1"><i class="fas fa-percent"></i>
+                </div>
+                <div class="menu-title">Offer</div>
+            </a>
+        </li>
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon icon-color-11"><i class="bx bx-menu"></i>

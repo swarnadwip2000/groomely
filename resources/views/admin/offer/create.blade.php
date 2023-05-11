@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Groomely | Category Create
+Groomely | Offers
 @endsection
 @push('styles')
 @endpush
@@ -18,7 +18,7 @@ Groomely | Category Create
                         <ol class="breadcrumb mb-0 p-0">
                             <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{route('category.index')}}">Category</a>
+                            <li class="breadcrumb-item"><a href="{{route('offer.index')}}">Offers</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
@@ -26,7 +26,7 @@ Groomely | Category Create
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <a href="{{route('category.index')}}"><button type="button" class="btn btn-dark">
+                        <a href="{{route('offer.index')}}"><button type="button" class="btn btn-dark">
                                 < Back</button></a>
                     </div>
                 </div>
@@ -36,39 +36,31 @@ Groomely | Category Create
             <!--end row-->
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h6 class="mb-0 text-uppercase">Create Category</h6>
+                    <h6 class="mb-0 text-uppercase">Create Offer</h6>
                     <hr>
                     <div class="card border-top border-0 border-4 border-info">
                         <div class="card-body">
-                            <form action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('offer.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="border p-4 rounded">
                                     <div class="row mb-3">
-                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Name <span style="color: red;">*</span></label>
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Offer (%)<span style="color:red">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('name')}}" name="name" placeholder="Enter Category Name">
-                                            @if($errors->has('name'))
-                                            <div class="error" style="color:red;">{{ $errors->first('name') }}</div>
+                                            <input type="text" class="form-control" id="inputEnterYourName" value="{{old('offer_amount')}}" name="offer_amount" placeholder="Enter Offer Amount(%)">
+                                            @if($errors->has('offer_amount'))
+                                            <div class="error" style="color:red;">{{ $errors->first('offer_amount') }}</div>
                                             @endif
                                         </div>
 
                                     </div>
+                                   
+                                   
                                     <div class="row mb-3">
-                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Slug<span style="color:red">*<span></label>
+                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Offer Image <span style="color:red">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="inputPhoneNo2" value="{{old('slug')}}" name="slug" placeholder="Slug">
-                                            @if($errors->has('slug'))
-                                            <div class="error" style="color:red;">{{ $errors->first('slug') }}</div>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Image<span style="color:red">*<span></label>
-                                        <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="inputConfirmPassword2" name="image">
-                                            @if($errors->has('image'))
-                                            <div class="error" style="color:red;">{{ $errors->first('image') }}</div>
+                                            <input type="file" class="form-control" id="inputConfirmPassword2" name="offer_image">
+                                            @if($errors->has('offer_image'))
+                                            <div class="error" style="color:red;">{{ $errors->first('offer_image') }}</div>
                                             @endif
                                         </div>
 

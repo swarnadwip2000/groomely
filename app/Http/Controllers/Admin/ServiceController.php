@@ -7,6 +7,7 @@ use App\Models\ServiceCategory;
 use App\Models\ServiceType;
 use App\Models\Service;
 use App\Models\Category;
+use App\Models\Offer;
 use App\Models\ServiceImage;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class ServiceController extends Controller
         $categories = Category::where('status', 1)->get();
         $serviceTypes = ServiceType::where('status', 1)->get();
         $additionalServices = ServiceCategory::where('status', 1)->get();
-        return view('admin.service.create',compact('categories','additionalServices','serviceTypes'));
+        $offers = Offer::Orderby('id','desc')->get();
+        return view('admin.service.create',compact('categories','additionalServices','serviceTypes','offers'));
     }
 
     public function store(Request $request)    
@@ -48,6 +50,7 @@ class ServiceController extends Controller
         $service->service_type_id = $request->service_type_id;
         $service->additional_service_id = $request->additional_service_id;
         $service->duration = $request->duration;
+        $service->offer_id = $request->offer;
         $service->description = $request->description;
         $service->save();
 
@@ -81,8 +84,9 @@ class ServiceController extends Controller
         $categories = Category::where('status', 1)->get();
         $serviceTypes = ServiceType::where('status', 1)->get();
         $additionalServices = ServiceCategory::where('status', 1)->get();
+        $offers = Offer::Orderby('id','desc')->get();
         $Service = Service::with('category','serviceType','images')->findOrFail($id);
-        return view('admin.service.edit')->with(compact('Service','categories','serviceTypes','additionalServices'));
+        return view('admin.service.edit')->with(compact('Service','categories','serviceTypes','additionalServices','offers'));
     }
 
     public function updateService(Request $request)
@@ -105,6 +109,7 @@ class ServiceController extends Controller
         $service->service_type_id = $request->service_type_id;
         $service->additional_service_id = $request->additional_service_id;
         $service->duration = $request->duration;
+        $service->offer_id = $request->offer;
         $service->description = $request->description;
         $service->save();
         $count = ServiceImage::where('service_id', $service->id)->count();

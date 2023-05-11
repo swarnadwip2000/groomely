@@ -25,6 +25,11 @@ class Service extends Model
         return $this->belongsTo(ServiceCategory::class);
     }
 
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -67,6 +72,8 @@ class Service extends Model
     {
         return $this->hasMany(SellerService::class);
     }
+
+    
 
    
 }

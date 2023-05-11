@@ -149,6 +149,21 @@ Groomely | Service Edit
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputPhoneNo2" class="col-sm-3 col-form-label">Offer (%)</label>
+                                        <div class="col-sm-9">
+                                            <select name="offer" class="form-control">
+                                                <option value="">Select Offer</option>                          
+                                                @foreach($offers as $offer)
+                                                <option value="{{$offer['id']}}" {{ $Service['offer_id']==$offer['id'] ? 'selected' : ''  }}>{{$offer['offer_amount']}}%</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('offer'))
+                                            <div class="error" style="color:red;">{{ $errors->first('offer') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
                                    
                                     <div class="row mb-3">
                                         <label for="inputEmailAddress2" class="col-sm-3 col-form-label">Description<span style="color:red">*<span></label>

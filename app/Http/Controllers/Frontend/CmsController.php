@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\SellerService;
 use App\Models\User;
 use App\Models\ServiceCms;
+use App\Models\Offer;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,7 @@ class CmsController extends Controller
         $categories = Category::where('status', 1)->get();
         $services = SellerService::where('status', 1)->orderBy('id', 'desc')->with('service','user')->get()->unique('service_id');
         $homeCms = HomeCms::first();
+        $offers = Offer::orderBy('id', 'desc')->get();
 
         $detail=[];
         $shop_detail=[];
@@ -41,7 +43,7 @@ class CmsController extends Controller
         $details = collect($shop_detail)->sortByDesc('total');
         $bestSellerCms = BestSellerCms::first();
         
-        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details','bestSellerCms','shop','our_shops'));
+        return view('frontend.home')->with(compact('categories','services', 'homeCms', 'servicesCms','details','bestSellerCms','shop','our_shops','offers'));
     }
 
     public function about()
