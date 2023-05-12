@@ -60,7 +60,7 @@ class ManageBookingController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        
         $request->validate([
             'service_id' => 'required',
             'rate' => 'required|numeric'
@@ -76,6 +76,7 @@ class ManageBookingController extends Controller
         $barber_service = new SellerService;
         $barber_service->user_id = Auth::user()->id;
         $barber_service->service_id = $request->service_id;
+        $barber_service->offer_id = $request->offer;
         $barber_service->rate = $request->rate;
         $barber_service->save();
         }
@@ -144,6 +145,7 @@ class ManageBookingController extends Controller
         $update_barber_service = SellerService::where('id',$request->seller_serviceId)->where('user_id',Auth::user()->id)->first();
         $update_barber_service->service_id = $request->service_id;
         $update_barber_service->rate = $request->rate;
+        $update_barber_service->offer_id = $request->offer;
         $update_barber_service->update();
         
 

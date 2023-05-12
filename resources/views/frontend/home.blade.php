@@ -144,7 +144,7 @@ Groomely | HOME
         <div class="row align-items-center">
             @foreach($offers as $offer)
             <div class="col-lg-4">
-                <a href="">
+                <a href="{{route('offer.services',$offer['id'])}}">
                     <img src="{{ Storage::url($offer->offer_image) }}" />
                 </a>
             </div>

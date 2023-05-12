@@ -82,14 +82,15 @@ Groomely | Manage Services Create
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Description</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="description" readonly>
+                                            <textarea class="form-control" id="description" readonly></textarea>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Offer (%)</label>
                                         <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="offer" name="offer" readonly>
+                                            <input type="text" class="form-control" id="offer" readonly>
+                                            <input type="hidden" class="form-control" id="offer_id" name="offer" >
                                         </div>
                                         <div class="col-sm-1">
                                             <input type="checkbox" checked name="vehicle1" class="checkOff">
@@ -145,7 +146,13 @@ Groomely | Manage Services Create
                 $('#serviceTypeName').val(data.detail.service_type.name);
                 $('#duration').val(data.detail.duration);
                 $('#description').val(data.detail.description);   
-                $('#offer').val(data.detail.offer.offer_amount);
+                if(data.detail.offer == null){
+                    $('#offer').val('');
+                    $('#offer_id').val('');
+                }else{
+                    $('#offer').val(data.detail.offer.offer_amount); 
+                    $('#offer_id').val(data.detail.offer.id);
+                }
             
             }
         });
@@ -169,7 +176,13 @@ Groomely | Manage Services Create
                     $('#serviceTypeName').val(data.detail.service_type.name);
                     $('#duration').val(data.detail.duration);
                     $('#description').val(data.detail.description);   
-                    $('#offer').val(data.detail.offer.offer_amount); 
+                    if(data.detail.offer == null){
+                        $('#offer').val('');
+                        $('#offer_id').val('');
+                    }else{
+                        $('#offer').val(data.detail.offer.offer_amount); 
+                        $('#offer_id').val(data.detail.offer.id);
+                    }
                     
                 }
             });
@@ -190,7 +203,13 @@ Groomely | Manage Services Create
                         'additional_service_id': service_id    
                     },
                     success: function(data) {  
+                        if(data.detail.offer == null){
+                        $('#offer').val('');
+                        $('#offer_id').val('');
+                    }else{
                         $('#offer').val(data.detail.offer.offer_amount); 
+                        $('#offer_id').val(data.detail.offer.id);
+                    }
                         
                     }
                 });

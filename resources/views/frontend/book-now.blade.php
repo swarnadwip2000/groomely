@@ -302,8 +302,8 @@ Groomely | Packages
                 },
                 success: function(resp) {
                     
-                        $('#service-price').html(resp.data.rate);   
-                        $('#service_amount').val(resp.data.rate);          
+                    $('#service-price').html(resp.data);   
+                    $('#service_amount').val(resp.data);          
                 }
                 });
                
@@ -328,8 +328,8 @@ Groomely | Packages
                 },
                 success: function(resp) {
                     
-                        $('#service-price').html(resp.data.rate);  
-                        $('#service_amount').val(resp.data.rate);      
+                        $('#service-price').html(resp.data);  
+                        $('#service_amount').val(resp.data);      
                 }
                 });
         });

@@ -50,7 +50,7 @@ Groomely | Manage Services Create
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Service</label>
                                            
                                         <div class="col-sm-9">
-                                            <select name="service_id" id="additionalServiceId" class="form-control" onchange="serviceChange()" readonly>
+                                            <select name="service_id" id="additionalServiceId" class="form-control" onchange="serviceChange()" >
                                                 
                                                 @foreach($services as $service)
                                                  <option value="{{$service->id}}"{{ ($sellerService->service_id) == $service->id ? 'selected' : ''}}>{{$service->additionalService->name}}</option>
@@ -86,7 +86,18 @@ Groomely | Manage Services Create
                                     <div class="row mb-3">
                                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Description</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="description" readonly>
+                                            <textarea class="form-control" id="description" readonly></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="inputEnterYourName" class="col-sm-3 col-form-label">Offer (%)</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" id="offer" value="{{ $sellerService->offer_id }}" readonly>
+                                            <input type="hidden" class="form-control" id="offer_id" value="{{ $sellerService->offer_id }}" name="offer">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input type="checkbox" checked  class="checkOff">
                                         </div>
                                     </div>
                                                                 
@@ -138,7 +149,14 @@ Groomely | Manage Services Create
                 $('#categoryName').val(data.detail.category.name);
                 $('#serviceTypeName').val(data.detail.service_type.name);
                 $('#duration').val(data.detail.duration);
-                $('#description').val(data.detail.description);    
+                $('#description').val(data.detail.description);   
+                if(data.detail.offer == null){
+                    $('#offer').val('');
+                    $('#offer_id').val('');
+                }else{
+                    $('#offer').val(data.detail.offer.offer_amount); 
+                    $('#offer_id').val(data.detail.offer.id);
+                } 
             }
         });
     
@@ -162,10 +180,49 @@ Groomely | Manage Services Create
                     $('#categoryName').val(data.detail.category.name);
                     $('#serviceTypeName').val(data.detail.service_type.name);
                     $('#duration').val(data.detail.duration);
-                    $('#description').val(data.detail.description);    
+                    $('#description').val(data.detail.description); 
+                    if(data.detail.offer == null){
+                        $('#offer').val('');
+                        $('#offer_id').val('');
+                    }else{
+                        $('#offer').val(data.detail.offer.offer_amount); 
+                        $('#offer_id').val(data.detail.offer.id);
+                    }   
                 }
             });
     }
     
 </script>
+
+<script>
+    $(document).ready ( function(){
+        $('.checkOff').change(function() {  
+            if($(this).is(":checked")) {  
+                var service_id = $('#additionalServiceId').val();
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '{{route("seller.manage-services.get-service-details")}}',
+                    data: {
+                        'additional_service_id': service_id    
+                    },
+                    success: function(data) {  
+                        if(data.detail.offer == null){
+                        $('#offer').val('');
+                        $('#offer_id').val('');
+                    }else{
+                        $('#offer').val(data.detail.offer.offer_amount); 
+                        $('#offer_id').val(data.detail.offer.id);
+                    }
+                        
+                    }
+                });
+                } else {  
+                    $('#offer').val(''); 
+                    $('#offer_id').val('');
+                }  
+            });
+        
+    });
+    </script>
 @endpush

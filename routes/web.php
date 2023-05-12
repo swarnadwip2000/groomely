@@ -76,6 +76,7 @@ Route::get('/package', [CmsController::class, 'package'])->name('package');
 Route::get('/service-category/{slug}/{id}', [CmsController::class, 'serviceCategory'])->name('service.category');
 Route::get('/shop-category/{slug}/{id}', [CmsController::class, 'shopCategory'])->name('shop.category');
 Route::get('/shop-servcies/{id}', [CmsController::class, 'shopServices'])->name('shop.services');
+Route::get('/offer-services/{id}', [CmsController::class, 'offerService'])->name('offer.services');
 
 // Contact us
 Route::get('/contact', [ContactusController::class, 'contact'])->name('contact');

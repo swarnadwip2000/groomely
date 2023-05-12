@@ -230,4 +230,25 @@ class CmsController extends Controller
         $shop_name = User::findOrFail($id);
         return view('frontend.seller-shops')->with(compact('seller_services','details','bestSellerCms','shop_name'));
     }
+
+    public function offerService($id)
+    {
+        $seller_services = SellerService::where('offer_id', $id)->where('status', 1)->with('service')->paginate(20);
+        $detail=[];
+        $shop_detail=[];
+        $shop = User::role('BUSINESS_OWNER')->with('appointment')->get();
+        foreach($shop as $vall)
+        {   
+            $detail['image'] = $vall['profile_picture'];
+            $detail['total'] = User::appointmentsSum($vall->id);
+            if($detail['total'] > 0)
+            {
+                $shop_detail[] = $detail;
+            }   
+        }
+        $details = collect($shop_detail)->sortByDesc('total');
+        $bestSellerCms = BestSellerCms::first();
+        $shop_name = '';
+        return view('frontend.seller-shops')->with(compact('seller_services','details','bestSellerCms','shop_name'));
+    }
 }

@@ -11,6 +11,7 @@ use App\Models\SellerService;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 /**
  * @group Appointments APIs

@@ -17,7 +17,6 @@ class SellerService extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     public static function ratingService($id)
     {
         $total_user_rating = Review::where('service_id', $id)->count();

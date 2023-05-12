@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\BookingTime;
 use App\Models\Service;
 use App\Models\Review;
+use App\Models\Offer;
 use App\Models\SellerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class BookNowController extends Controller
         $shops = SellerService::where('service_id',$id)->with('user')->get();
         $reviews = Review::where('service_id',$id)->with('user')->get();
         $times = BookingTime::get();
-        return view('frontend.book-now')->with(compact('service', 'times','reviews','shops','date'));
+        return view('frontend.book-now')->with(compact('service', 'times','reviews','shops'));
           
     }
 
@@ -35,7 +36,6 @@ class BookNowController extends Controller
     { 
         
         if (!Auth::check()) {
-            
             $service = Session::put('serviceId',$request->service_id);
             return redirect()->route('login')->with('error', 'Please login first to booked the appointment!!');
         } else {
@@ -83,7 +83,17 @@ class BookNowController extends Controller
     {
         
         $get_price = SellerService::where('user_id',$request->seller_id)->where('service_id',$request->service_id)->first();
-        return response()->json(['data' => $get_price]);
+        $offer = Offer::where('id',$get_price->offer_id)->first();
+        $offer_count = Offer::where('id',$get_price->offer_id)->count();
+        if($offer_count > 0){
+            $discounted_price = ($get_price->rate * $offer->offer_amount)/100;
+            $discounted_offer = $get_price->rate - $discounted_price;
+            $final_price = round($discounted_offer);
+        }
+        else{
+            $final_price = $get_price->rate;
+        }
+        return response()->json(['data' => $final_price]);
     }
 
     

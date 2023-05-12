@@ -11,6 +11,7 @@ use App\Http\Controllers\API\category\ApiController;
 use App\Http\Controllers\API\Appointment\AppointmentController;
 use App\Http\Controllers\API\GoogleSocialiteController;
 use App\Http\Controllers\API\Home\HomeController;
+use App\Http\Controllers\API\Wishlist\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['prefix' => 'profile'], function () {
             Route::post('update', [ProfileController::class, 'updateProfile']);
             Route::post('change-password', [ProfileController::class, 'changePassword']);
+        });
+
+        Route::group(['prefix' => 'wishlist'], function () {
+            Route::post('create', [WishlistController::class, 'createwishlist']);
+            Route::post('list', [WishlistController::class, 'wishlisting']);
         });
 
         Route::group(['prefix' => 'booking'], function () {
