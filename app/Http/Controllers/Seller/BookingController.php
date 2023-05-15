@@ -113,7 +113,6 @@ class BookingController extends Controller
     {
         
         $count = Appointment::where('id',$id)->count();
-
         if ($count > 0) {
             $appointment = Appointment::where('id',$id)->with('service')->first();
             $services = SellerService::where('user_id', Auth::user()->id)->get();

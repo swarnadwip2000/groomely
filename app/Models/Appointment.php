@@ -67,5 +67,16 @@ class Appointment extends Model
             return $rating->rate;
         }
     }
+
+    public static function appointmentOffer($service,$seller)
+    {
+        $offer  = SellerService::where('service_id', $service)->where('user_id',$seller)->first();
+        $offer_amount = Offer::where('id',$offer->offer_id)->first();
+        if($offer_amount != '')
+        {
+            return $offer_amount->offer_amount;
+        }
+        return $offer_amount = '00';
+    }
      
 }

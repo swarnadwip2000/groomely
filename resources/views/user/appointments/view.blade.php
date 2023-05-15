@@ -93,9 +93,11 @@
                                                 {{ date('i', strtotime($appointment['service']['duration'])) }} mins
                                             </div>
                                             <div class="col-md-12 m-1"><b>Rate:- </b>
-                                                ${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}</div>
+                                                ${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}
                                             </div>
-
+                                            <div class="col-md-12 m-1"><b>Offer:- </b>
+                                                {{ $appointment->appointmentOffer($appointment['service_id'],$appointment['seller_id']) }}%
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -121,6 +123,7 @@
                                     <th scope="col">Service Category</th>
                                     <th scope="col">Duration</th>
                                     <th scope="col">Rate</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>

@@ -74,8 +74,11 @@
                                                     {{ date('i', strtotime($appointment['service']['duration'])) }} mins
                                                 </div>
                                                 <div class="col-md-12 m-1"><b>Rate:-
-                                                    </b>${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}</div>
+                                                    </b>${{ $appointment->appointmentServicePrice($appointment['service_id'],$appointment['seller_id']) }}
                                                 </div>
+                                                <div class="col-md-12 m-1"><b>Offer:-
+                                                </b>{{ $appointment->appointmentOffer($appointment['service_id'],$appointment['seller_id']) }}%
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -83,92 +86,93 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        @if( $appointment['status'] != 'completed' && $appointment['status'] != 'cancelled')
-                        <div class="col-md-12">
-                            <div class="col-md-12 m-1">
-                                <div style="float: right">
-                                    <div class="col-md-12" style="padding-bottom:20px; "><button type="button"
-                                            class="btn btn-primary" id="toggle"><i class="fas fa-plus"></i> Add Extra
-                                            Services</button>
-                                    </div>
+                </div>
+                <div class="row">
+                    @if( $appointment['status'] != 'completed' && $appointment['status'] != 'cancelled')
+                    <div class="col-md-12">
+                        <div class="col-md-12 m-1">
+                            <div style="float: right">
+                                <div class="col-md-12" style="padding-bottom:20px; "><button type="button"
+                                        class="btn btn-primary" id="toggle"><i class="fas fa-plus"></i> Add Extra
+                                        Services</button>
                                 </div>
                             </div>
                         </div>
-                        @endif
-                        <div class="card radius-15" id="box" style="display: none">
-                            <div class="card-body">
-                                <div class="tab-content mt-3">
-                                    <div class="tab-pane fade show active">
-                                        <div class="card shadow-none mb-0 ">
-                                            <form action="{{ route('add.extra.service') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="appointment_id"
-                                                    value="{{ $appointment['id'] }}">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <select name="service_id" id="service_id" class="form-control">
-                                                            <option value="">Select A Service</option>
-                                                            @foreach ($services as $service)
-                                                                <option value="{{ $service['service']['id'] }}">
-                                                                    {{ $service['service']['additionalService']['name'] }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                        <div><span id="service_error" style="color : red;"></span></div>
-                                                    </div>
-                                                    <div class="col-md-6 add">
-                                                        <button type="submit" class="btn btn-success"
-                                                            onclick="return Validate()">Add
-                                                            Service</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @if (count($extraServices) > 0)
-                            <div class="card radius-15">
-                                <div class="card-body">
-                                    <div class="card-title">
-                                        <h4 class="mb-0">Extra Services</h4>
-                                    </div>
-                                    <hr>
-                                    <div class="table-responsive">
-                                        <table class="table mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Service Name</th>
-                                                    <th scope="col">Service Category</th>
-                                                    <th scope="col">Duration</th>
-                                                    <th scope="col">Rate</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($extraServices as $key => $extraService)
-                                               
-                                                    <tr>
-                                                        <th scope="row">{{ $key + 1 }}</th>
-                                                        <td>{{ $extraService['service']['additionalService']['name'] }}</td>
-                                                        <td>{{ $extraService['service']['category']['name'] }}</td>
-                                                        <td>{{ date('h', strtotime($extraService['service']['duration'])) }} hr
-                                                            {{ date('i', strtotime($extraService['service']['duration'])) }} mins</td>
-                                                        <td>${{ $extraService->extraServicePrice($extraService['service_id'],Auth::user()->id) }}     
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
                     </div>
+                    @endif
+                    <div class="card radius-15" id="box" style="display: none">
+                        <div class="card-body">
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active">
+                                    <div class="card shadow-none mb-0 ">
+                                        <form action="{{ route('add.extra.service') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="appointment_id"
+                                                value="{{ $appointment['id'] }}">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="service_id" id="service_id" class="form-control">
+                                                        <option value="">Select A Service</option>
+                                                        @foreach ($services as $service)
+                                                            <option value="{{ $service['service']['id'] }}">
+                                                                {{ $service['service']['additionalService']['name'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div><span id="service_error" style="color : red;"></span></div>
+                                                </div>
+                                                <div class="col-md-6 add">
+                                                    <button type="submit" class="btn btn-success"
+                                                        onclick="return Validate()">Add
+                                                        Service</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (count($extraServices) > 0)
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h4 class="mb-0">Extra Services</h4>
+                                </div>
+                                <hr>
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Service Name</th>
+                                                <th scope="col">Service Category</th>
+                                                <th scope="col">Duration</th>
+                                                <th scope="col">Rate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($extraServices as $key => $extraService)
+                                            
+                                                <tr>
+                                                    <th scope="row">{{ $key + 1 }}</th>
+                                                    <td>{{ $extraService['service']['additionalService']['name'] }}</td>
+                                                    <td>{{ $extraService['service']['category']['name'] }}</td>
+                                                    <td>{{ date('h', strtotime($extraService['service']['duration'])) }} hr
+                                                        {{ date('i', strtotime($extraService['service']['duration'])) }} mins</td>
+                                                    <td>${{ $extraService->extraServicePrice($extraService['service_id'],Auth::user()->id) }}     
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
-            <!--end page-content-wrapper-->
         </div>
+            <!--end page-content-wrapper-->
+    </div>
     @endsection
 
     @push('scripts')
