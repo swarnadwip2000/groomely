@@ -18,7 +18,7 @@ class CheckPassword
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+      public function handle(Request $request, Closure $next)
     {
         // return $next($request);
      
@@ -26,16 +26,19 @@ class CheckPassword
             $user = User::where('id', Auth::user()->id)->first();
             $token_update_time = Session::get('token_update_time');
            
-            if ($user->password_update_time == 'null') {
+            if ($user->password_update_time == null) {
                 return $next($request);
             } else {
+                $token_update_time = Carbon::parse($token_update_time)->format('Y-m-d H:i:s');
+                $user->password_update_time = Carbon::parse($user->password_update_time)->format('Y-m-d H:i:s');
                 if ($user->password_update_time > $token_update_time) {                                          
                     return response()->json(['message'=> 'unauthenticate'],401);           
                 } else {
                     return $next($request);
                 }
             }
-            
+        } else {
+            return response()->json(['message'=> 'unauthenticate'],401);
         }
     }
         

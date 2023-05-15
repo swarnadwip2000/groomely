@@ -207,8 +207,7 @@ class AppointmentController extends Controller
             $check_appointment = Appointment::where('user_id', Auth::user()->id)->count();
             if($check_appointment > 0)
             {
-                $appointments = Appointment::select('id','seller_id','booking_date','booking_time_id','amount','service_id','status')->where('user_id', Auth::user()->id)->with('seller','service','bookingTime:id,time')->get();
-                
+                $appointments = Appointment::select('id','seller_id','booking_date','booking_time_id','amount','service_id','status')->where('user_id', Auth::user()->id)->with('seller','service','bookingTime:id,time','service.additionalService','service.SellerService.offer')->get();
                 return response()->json(['data' => $appointments, 'status' => true, 'message' => 'Booking successfully'], $this->successStatus);
             }else{
                 return response()->json(['message' => 'No booking found!', 'status' => false], 401);

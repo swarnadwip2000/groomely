@@ -78,6 +78,7 @@ class DashboardController extends Controller
             'email'    => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix|unique:users,email,' . Auth::user()->id,
             'phone'    => 'required|numeric|min:10',
             'shop_name'    => 'required',
+            'shop_address'    => 'required',
             'profile_picture' => 'required',
         ]);
 
@@ -86,6 +87,7 @@ class DashboardController extends Controller
         $data->email = $request->email;
         $data->shop_name = $request->shop_name;
         $data->phone = $request->phone;
+        $data->shop_address = $request->shop_address;
         if ($request->password) {
             $request->validate([
                 'password' => 'required|min:8',

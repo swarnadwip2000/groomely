@@ -29,7 +29,7 @@ class ManageBookingController extends Controller
             
             return view('seller.manage-services.list')->with(compact('services'));
         } else {
-            return redirect()->route('seller.profile')->with('error', 'Please add the shop name for manage service section.');
+            return redirect()->route('seller.profile')->with('error', 'Please add the shop name, address for manage service section.');
         }
 
         return view('seller.manage-services.list');

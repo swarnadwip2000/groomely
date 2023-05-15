@@ -28,6 +28,7 @@ use App\Http\Controllers\Seller\BookingController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
 use App\Http\Controllers\Seller\ManageBookingController;
 use App\Http\Controllers\User\AppointmentController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
 use Illuminate\Support\Facades\Artisan;
 
@@ -261,6 +262,9 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'preventBackHistory']
         Route::get('appointments/accept-appointment/{id}', [AppointmentController::class, 'acceptAppointment'])->name('user.appointment.accept');
         Route::get('appointments/view/{id}', [AppointmentController::class, 'view'])->name('appointments.view');
         Route::get('download-invoice/{id}', [AppointmentController::class, 'downloadInvoice'])->name('download.invoice');
+
+        //wishlist
+        Route::get('wishlists', [WishlistController::class, 'viewWishlist'])->name('wishlists.index');
 
         //Review
         Route::post('/review',[ReviewController::class, 'submitReview'])->name('user.review');

@@ -13,6 +13,11 @@ class SellerService extends Model
         return $this->belongsTo(Service::class);
     }
 
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

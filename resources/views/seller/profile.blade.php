@@ -81,6 +81,13 @@ Groomely | Profile
                                                             @endif
                                                         </div>
                                                         <div class="col-12">
+                                                            <label class="form-label">Shop Address</label>
+                                                            <textarea name="shop_address" class="form-control">{{Auth::user()->shop_address}}</textarea>
+                                                            @if($errors->has('shop_address'))
+                                                            <div class="error" style="color:red;">{{ $errors->first('shop_address') }}</div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-12">
                                                             <label class="form-label">Email</label>
                                                             <input type="text" value="{{Auth::user()->email}}" name="email" class="form-control">
                                                             @if($errors->has('email'))
